@@ -60,7 +60,7 @@
 
     /* Header */
     header {
-      margin-bottom: 34px;
+      margin-bottom: 30px;
     }
 
     .header-top {
@@ -124,7 +124,7 @@
 
     /* Section Headings */
     section {
-      margin-bottom: 34px;
+      margin-bottom: 30px;
     }
 
     .section-title {
@@ -146,13 +146,112 @@
       background: var(--border);
     }
 
-    .subsection-label {
-      font-size: 0.75rem;
-      font-weight: 600;
+    /* Explainer Box ("What is Miqu Project?") */
+    .explainer-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 16px 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .explainer-stack {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 11px;
+    }
+
+    .stack-step {
+      padding: 3px 8px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .stack-step small {
       color: var(--text-muted);
-      margin: 14px 0 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      font-size: 10px;
+    }
+
+    .stack-step.external {
+      border-style: dashed;
+      color: var(--text-muted);
+    }
+
+    .stack-step.miqu-highlight {
+      border-color: rgba(168, 85, 247, 0.35);
+      background: rgba(168, 85, 247, 0.08);
+      color: #c084fc;
+    }
+
+    .stack-arrow {
+      color: var(--text-muted);
+      font-size: 10px;
+      user-select: none;
+    }
+
+    .explainer-body {
+      display: grid;
+      gap: 13px;
+    }
+
+    .explainer-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .explainer-heading {
+      font-weight: 700;
+      font-size: 0.86rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .heading-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .explainer-item p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .explainer-item code {
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 11px;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 1px 5px;
+      border-radius: 3px;
+      color: #00e5ff;
+    }
+
+    @media (prefers-color-scheme: light) {
+      .explainer-item code {
+        background: rgba(0, 0, 0, 0.06);
+        color: #0284c7;
+      }
+      .stack-step.miqu-highlight {
+        border-color: rgba(147, 51, 234, 0.3);
+        background: rgba(147, 51, 234, 0.08);
+        color: #7e22ce;
+      }
     }
 
     /* Unified Cards */
@@ -343,6 +442,49 @@
     </header>
 
     <main>
+      <!-- What is Miqu Project? -->
+      <section>
+        <h2 class="section-title">What is Miqu Project?</h2>
+        <div class="explainer-card">
+          <!-- The Linux Desktop Stack -->
+          <div class="explainer-stack">
+            <span class="stack-step external" title="Provided by Linux distro">Base Distro <small>(Arch/Debian)</small></span>
+            <span class="stack-arrow">&rarr;</span>
+            <span class="stack-step miqu-highlight">Compositor <small>(miquland)</small></span>
+            <span class="stack-arrow">&rarr;</span>
+            <span class="stack-step miqu-highlight">Shell <small>(miqudesk...)</small></span>
+            <span class="stack-arrow">&rarr;</span>
+            <span class="stack-step miqu-highlight">Native Apps <small>(miqumusic...)</small></span>
+          </div>
+
+          <div class="explainer-body">
+            <div class="explainer-item">
+              <span class="explainer-heading">
+                <span class="heading-dot" style="background: #a855f7;"></span>
+                Building a Parallel to GNOME &amp; KDE
+              </span>
+              <p>In Linux, a full <strong>Desktop Environment (DE)</strong> bundles a Window Manager + Shell + native Apps. We are essentially building an independent parallel to GNOME or KDE from the ground up. We are still evolving and currently utilize standard upstream components like <code>xdg-desktop-portal</code>, but the destination is a complete, sovereign Desktop Environment.</p>
+            </div>
+
+            <div class="explainer-item">
+              <span class="explainer-heading">
+                <span class="heading-dot" style="background: #ef4444;"></span>
+                Why We Do Not Build a Base Distro
+              </span>
+              <p>A base Linux distribution provides the kernel, packages, and environment before you launch a graphical session. Creating an OS distribution is massive work that requires dedicated infrastructure and full-time security teams. Because much of Miqu is AI-assisted and maintained by a single developer, an AI-coded base distro would present serious security, privacy, and supply-chain vulnerabilities. There is no plan nor capacity to build one—Miqu runs on top of trusted distributions like Arch or Debian.</p>
+            </div>
+
+            <div class="explainer-item">
+              <span class="explainer-heading">
+                <span class="heading-dot" style="background: #00e5ff;"></span>
+                More Than Just a Window Manager
+              </span>
+              <p>When people say "Window Manager", it rarely describes the full reality (neither Sway nor Hyprland are just bare WMs). Miqu spans its own C++ GUI framework (<code>miqutoolkit</code>), compositor (<code>miquland</code>), integrated shell utilities, first-party Linux apps, and companion Android apps to pioneer a cohesive cross-device ecosystem.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Core Foundation -->
       <section>
         <h2 class="section-title">Core Architecture</h2>
