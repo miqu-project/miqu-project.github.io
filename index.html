@@ -154,38 +154,79 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     }
 
-    .card h2 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 8px;
+    .card-top-link {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      transition: color 0.2s ease;
+    }
+
+    .card-header-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
     }
 
-    .card h2 span {
-      font-size: 0.8rem;
+    .repo-title-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .repo-gh-icon {
+      width: 17px;
+      height: 17px;
+      fill: var(--muted);
+      flex-shrink: 0;
+      transition: fill 0.2s ease, transform 0.2s ease;
+    }
+
+    .card-top-link:hover .repo-gh-icon {
+      fill: var(--accent);
+      transform: scale(1.1);
+    }
+
+    .card-top-link h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 0;
+      transition: color 0.2s ease;
+    }
+
+    .card-top-link:hover h2 {
+      color: var(--accent);
+    }
+
+    .ext-icon {
+      font-size: 0.88rem;
+      color: var(--muted);
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .card-top-link:hover .ext-icon {
+      color: var(--accent);
+      transform: translate(2px, -2px);
+    }
+
+    .card-badge {
+      font-size: 0.78rem;
       font-weight: 500;
       color: var(--muted);
       border: 1px solid var(--card-border);
       padding: 2px 8px;
       border-radius: 6px;
+      white-space: nowrap;
     }
 
     .card p {
       color: var(--muted);
       font-size: 0.92rem;
       flex-grow: 1;
-    }
-
-    .card-title-link {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-    }
-
-    .card-title-link:hover h2 {
-      color: var(--accent);
+      line-height: 1.5;
     }
 
     .repo-apps-details {
@@ -361,30 +402,64 @@
     <main>
       <h2 class="section-title">Ecosystem Repositories</h2>
       <div class="grid">
-        <a href="https://github.com/miqu-project/miquland" class="card" target="_blank" rel="noopener">
-          <h2>miquland <span>Compositor</span></h2>
-          <p>Wayland window manager and compositor core built with wlroots, dynamic tiling layouts, and IPC daemon.</p>
-        </a>
-
-        <a href="https://github.com/miqu-project/miqutoolkit" class="card" target="_blank" rel="noopener">
-          <h2>miqutoolkit <span>C++ Toolkit</span></h2>
-          <p>Shared UI framework providing Cairo, Pango, and Wayland abstractions, widgets, and live theme synchronization.</p>
-        </a>
-
-        <a href="https://github.com/miqu-project/miqu-linux-apps" class="card" target="_blank" rel="noopener">
-          <h2>miqu-linux-apps <span>Desktop Suite</span></h2>
-          <p>13 integrated native Linux utilities including miqudesk, miqusecure, miqumusic, miqudm, and miqulauncher.</p>
-        </a>
+        <div class="card">
+          <a href="https://github.com/miqu-project/miquland" class="card-top-link" target="_blank" rel="noopener">
+            <div class="card-header-row">
+              <div class="repo-title-wrap">
+                <svg class="repo-gh-icon" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                <h2>miquland</h2>
+                <span class="ext-icon">&nearr;</span>
+              </div>
+              <span class="card-badge">Compositor</span>
+            </div>
+            <p>Wayland window manager and compositor core built with wlroots, dynamic tiling layouts, and IPC daemon.</p>
+          </a>
+        </div>
 
         <div class="card">
-          <a href="https://github.com/miqu-project/miqu-android" class="card-title-link" target="_blank" rel="noopener">
-            <h2>miqu-android <span>Mobile Apps</span></h2>
+          <a href="https://github.com/miqu-project/miqutoolkit" class="card-top-link" target="_blank" rel="noopener">
+            <div class="card-header-row">
+              <div class="repo-title-wrap">
+                <svg class="repo-gh-icon" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                <h2>miqutoolkit</h2>
+                <span class="ext-icon">&nearr;</span>
+              </div>
+              <span class="card-badge">C++ Toolkit</span>
+            </div>
+            <p>Shared UI framework providing Cairo, Pango, and Wayland abstractions, widgets, and live theme synchronization.</p>
           </a>
-          <p>Android mobile applications and companion tools engineered for the Miqu ecosystem.</p>
+        </div>
+
+        <div class="card">
+          <a href="https://github.com/miqu-project/miqu-linux-apps" class="card-top-link" target="_blank" rel="noopener">
+            <div class="card-header-row">
+              <div class="repo-title-wrap">
+                <svg class="repo-gh-icon" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                <h2>miqu-linux-apps</h2>
+                <span class="ext-icon">&nearr;</span>
+              </div>
+              <span class="card-badge">Desktop Suite</span>
+            </div>
+            <p>13 integrated native Linux utilities including miqudesk, miqusecure, miqumusic, miqudm, and miqulauncher.</p>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="https://github.com/miqu-project/miqu-android" class="card-top-link" target="_blank" rel="noopener">
+            <div class="card-header-row">
+              <div class="repo-title-wrap">
+                <svg class="repo-gh-icon" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                <h2>miqu-android</h2>
+                <span class="ext-icon">&nearr;</span>
+              </div>
+              <span class="card-badge">Mobile Apps</span>
+            </div>
+            <p>Android mobile applications and companion tools engineered for the Miqu ecosystem.</p>
+          </a>
 
           <details class="repo-apps-details" open>
             <summary class="repo-apps-summary">
-              <span>Applications (1)</span>
+              <span>Applications (2)</span>
               <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </summary>
             <div class="repo-apps-list">
@@ -393,6 +468,14 @@
                 <div class="app-sub-info">
                   <div class="app-sub-title">Doctor <span class="app-badge">Clinical</span></div>
                   <div class="app-sub-desc">Calculators &amp; offline medical reference</div>
+                </div>
+                <span class="app-sub-arrow">&rarr;</span>
+              </a>
+              <a href="https://github.com/miqu-project/miqu-android/tree/main/recitation" class="app-sub-item" target="_blank" rel="noopener">
+                <img src="assets/apps/recitation.png" alt="Miqu Recitation" class="app-sub-icon" />
+                <div class="app-sub-info">
+                  <div class="app-sub-title">Recitation <span class="app-badge">Study &amp; Audio</span></div>
+                  <div class="app-sub-desc">Quranic reader, linguistic engine &amp; audio</div>
                 </div>
                 <span class="app-sub-arrow">&rarr;</span>
               </a>
