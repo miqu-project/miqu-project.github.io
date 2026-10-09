@@ -15,6 +15,35 @@
       --muted: #9499ad;
       --accent: #ff6584;
       --accent-gradient: linear-gradient(135deg, #ff758c 0%, #a855f7 100%);
+      --code-bg: #090a0e;
+      --code-text: #6ee7b7;
+      --subitem-bg: #0d0e14;
+      --subitem-hover: #181a24;
+      --subitem-border-hover: #3b3f56;
+      --badge-bg: rgba(255, 101, 132, 0.1);
+      --badge-border: rgba(255, 101, 132, 0.2);
+      --logo-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f5f6fa;
+        --card-bg: #ffffff;
+        --card-border: #e2e5ee;
+        --card-hover: #d3d7e5;
+        --text: #161822;
+        --muted: #62677d;
+        --accent: #e54065;
+        --accent-gradient: linear-gradient(135deg, #e54065 0%, #8b37e0 100%);
+        --code-bg: #161822;
+        --code-text: #34d399;
+        --subitem-bg: #f8f9fc;
+        --subitem-hover: #edeff5;
+        --subitem-border-hover: #ccd1df;
+        --badge-bg: rgba(229, 64, 101, 0.1);
+        --badge-border: rgba(229, 64, 101, 0.25);
+        --logo-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+      }
     }
 
     * {
@@ -50,7 +79,9 @@
       height: 160px;
       border-radius: 28px;
       margin-bottom: 24px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+      background: #0c0d12;
+      box-shadow: var(--logo-shadow);
+      border: 1px solid var(--card-border);
     }
 
     h1 {
@@ -205,7 +236,7 @@
       align-items: center;
       gap: 12px;
       padding: 10px 14px;
-      background: #0d0e14;
+      background: var(--subitem-bg);
       border: 1px solid var(--card-border);
       border-radius: 12px;
       text-decoration: none;
@@ -214,8 +245,8 @@
     }
 
     .app-sub-item:hover {
-      background: #181a24;
-      border-color: #3b3f56;
+      background: var(--subitem-hover);
+      border-color: var(--subitem-border-hover);
       transform: translateX(2px);
     }
 
@@ -249,8 +280,8 @@
       font-size: 0.7rem;
       font-weight: 500;
       color: var(--accent);
-      background: rgba(255, 101, 132, 0.1);
-      border: 1px solid rgba(255, 101, 132, 0.2);
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
       padding: 1px 6px;
       border-radius: 4px;
     }
@@ -275,13 +306,13 @@
     }
 
     .quickstart pre {
-      background: #090a0e;
+      background: var(--code-bg);
       padding: 16px 20px;
       border-radius: 10px;
       overflow-x: auto;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       font-size: 0.9rem;
-      color: #6ee7b7;
+      color: var(--code-text);
       margin-top: 12px;
     }
 
