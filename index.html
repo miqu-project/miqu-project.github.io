@@ -147,6 +147,125 @@
       flex-grow: 1;
     }
 
+    .card-title-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .card-title-link:hover h2 {
+      color: var(--accent);
+    }
+
+    .repo-apps-details {
+      margin-top: 16px;
+      border-top: 1px solid var(--card-border);
+      padding-top: 12px;
+    }
+
+    .repo-apps-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--muted);
+      list-style: none;
+      user-select: none;
+      transition: color 0.2s ease;
+      padding: 4px 0;
+    }
+
+    .repo-apps-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .repo-apps-summary:hover {
+      color: var(--text);
+    }
+
+    .repo-apps-summary .chevron {
+      transition: transform 0.2s ease;
+    }
+
+    .repo-apps-details[open] .repo-apps-summary .chevron {
+      transform: rotate(180deg);
+    }
+
+    .repo-apps-list {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .app-sub-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: #0d0e14;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s ease;
+    }
+
+    .app-sub-item:hover {
+      background: #181a24;
+      border-color: #3b3f56;
+      transform: translateX(2px);
+    }
+
+    .app-sub-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+
+    .app-sub-info {
+      flex-grow: 1;
+      min-width: 0;
+    }
+
+    .app-sub-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .app-sub-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .app-badge {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: rgba(255, 101, 132, 0.1);
+      border: 1px solid rgba(255, 101, 132, 0.2);
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    .app-sub-arrow {
+      color: var(--muted);
+      font-size: 1rem;
+      transition: transform 0.2s ease;
+    }
+
+    .app-sub-item:hover .app-sub-arrow {
+      color: var(--text);
+      transform: translateX(3px);
+    }
+
     .quickstart {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -226,21 +345,29 @@
           <p>13 integrated native Linux utilities including miqudesk, miqusecure, miqumusic, miqudm, and miqulauncher.</p>
         </a>
 
-        <a href="https://github.com/miqu-project/miqu-android" class="card" target="_blank" rel="noopener">
-          <h2>miqu-android <span>Mobile Apps</span></h2>
+        <div class="card">
+          <a href="https://github.com/miqu-project/miqu-android" class="card-title-link" target="_blank" rel="noopener">
+            <h2>miqu-android <span>Mobile Apps</span></h2>
+          </a>
           <p>Android mobile applications and companion tools engineered for the Miqu ecosystem.</p>
-        </a>
-      </div>
 
-      <h2 class="section-title">Ecosystem Applications</h2>
-      <div class="grid">
-        <a href="https://github.com/miqu-project/miqu-android/tree/main/doctor" class="card" target="_blank" rel="noopener" style="display: flex; flex-direction: row; align-items: center; gap: 18px;">
-          <img src="assets/apps/doctor.png" alt="Miqu Doctor" style="width: 64px; height: 64px; border-radius: 14px; flex-shrink: 0;" />
-          <div>
-            <h2>Miqu Doctor <span>Android</span></h2>
-            <p>Clinical calculators &amp; offline medical reference notebook built for clinicians and healthcare professionals.</p>
-          </div>
-        </a>
+          <details class="repo-apps-details" open>
+            <summary class="repo-apps-summary">
+              <span>Applications (1)</span>
+              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div class="repo-apps-list">
+              <a href="https://github.com/miqu-project/miqu-android/tree/main/doctor" class="app-sub-item" target="_blank" rel="noopener">
+                <img src="assets/apps/doctor.png" alt="Miqu Doctor" class="app-sub-icon" />
+                <div class="app-sub-info">
+                  <div class="app-sub-title">Doctor <span class="app-badge">Clinical</span></div>
+                  <div class="app-sub-desc">Calculators &amp; offline medical reference</div>
+                </div>
+                <span class="app-sub-arrow">&rarr;</span>
+              </a>
+            </div>
+          </details>
+        </div>
       </div>
 
       <div class="quickstart">
