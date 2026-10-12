@@ -9,18 +9,23 @@
 
   <style>
     /* -------------------------------------------------------------
-       Automatic Theme: Follows user's system preference automatically
+       Design Tokens & Automatic Theme (Dark / Light)
        ------------------------------------------------------------- */
     :root {
-      --bg: #0b0e14;
-      --card-bg: #131722;
-      --card-hover: #1a2030;
+      --bg: #090c10;
+      --card-bg: #12161f;
+      --card-hover: #181d2a;
       --border: rgba(255, 255, 255, 0.08);
-      --border-hover: rgba(255, 255, 255, 0.2);
-      --text: #edf2f7;
-      --text-muted: #8c96a8;
-      --code-bg: #07090e;
-      --shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+      --border-hover: rgba(255, 255, 255, 0.22);
+      --text: #f0f4f8;
+      --text-muted: #8c97a8;
+      --text-dim: #5c6675;
+      --code-bg: #06080d;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
     }
 
     @media (prefers-color-scheme: light) {
@@ -29,11 +34,12 @@
         --card-bg: #ffffff;
         --card-hover: #f1f5f9;
         --border: rgba(0, 0, 0, 0.08);
-        --border-hover: rgba(0, 0, 0, 0.18);
+        --border-hover: rgba(0, 0, 0, 0.2);
         --text: #0f172a;
         --text-muted: #64748b;
+        --text-dim: #94a3b8;
         --code-bg: #f1f5f9;
-        --shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
       }
     }
 
@@ -46,28 +52,27 @@
     body {
       background-color: var(--bg);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Helvetica Neue", Arial, sans-serif;
       font-size: 14px;
       line-height: 1.55;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     .container {
-      max-width: 700px;
+      max-width: 1140px;
       margin: 0 auto;
-      padding: 44px 20px 64px;
+      padding: 36px 24px 64px;
     }
 
-    /* Header */
+    /* -------------------------------------------------------------
+       Header & Navigation
+       ------------------------------------------------------------- */
     header {
-      margin-bottom: 30px;
-    }
-
-    .header-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 10px;
+      margin-bottom: 28px;
     }
 
     .brand {
@@ -79,14 +84,14 @@
     }
 
     .brand img {
-      width: 38px;
-      height: 38px;
-      border-radius: 9px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
 
     .brand h1 {
-      font-size: 1.25rem;
+      font-size: 1.35rem;
       font-weight: 800;
       letter-spacing: -0.02em;
       background: linear-gradient(135deg, #ff5778 0%, #a855f7 50%, #00e5ff 100%);
@@ -94,65 +99,175 @@
       -webkit-text-fill-color: transparent;
     }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
     .btn-github {
       background: var(--card-bg);
       border: 1px solid var(--border);
       color: var(--text-muted);
-      border-radius: 7px;
-      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      padding: 7px 14px;
       font-size: 12px;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 7px;
+      gap: 8px;
       text-decoration: none;
-      transition: all 0.15s ease;
+      transition: all 0.2s ease;
     }
 
     .btn-github:hover {
       border-color: #a855f7;
       color: var(--text);
-      box-shadow: 0 2px 10px rgba(168, 85, 247, 0.2);
+      box-shadow: 0 2px 12px rgba(168, 85, 247, 0.25);
+      transform: translateY(-1px);
     }
 
-    .tagline {
+    /* -------------------------------------------------------------
+       Hero Bento (2-Column Asymmetric Grid)
+       ------------------------------------------------------------- */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-main {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      top: -60px;
+      left: -60px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #00e5ff;
+      background: rgba(0, 229, 255, 0.08);
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      padding: 3px 10px;
+      border-radius: 20px;
+      width: fit-content;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .hero-tagline {
       color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.5;
+      font-size: 0.96rem;
+      line-height: 1.55;
+      margin-bottom: 22px;
     }
 
-    /* Section Headings */
-    section {
-      margin-bottom: 30px;
+    /* Terminal Box within Hero */
+    .terminal-box {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      position: relative;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.65;
+      margin-top: auto;
     }
 
-    .section-title {
-      font-size: 0.78rem;
+    .terminal-box code {
+      display: block;
+      overflow-x: auto;
+      white-space: pre;
+      padding-right: 60px;
+    }
+
+    .cmd-keyword { color: #f43f5e; font-weight: 600; }
+    .cmd-arg { color: #00e5ff; }
+    .cmd-path { color: #a855f7; }
+    .cmd-flag { color: #eab308; }
+    .cmd-comment { color: var(--text-muted); user-select: none; }
+
+    .btn-copy {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-copy:hover {
+      color: #00e5ff;
+      border-color: #00e5ff;
+    }
+
+    /* Right Hero Card: Architecture Stack */
+    .hero-stack-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-stack-card h3 {
+      font-size: 0.85rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--text-muted);
-      margin-bottom: 12px;
       display: flex;
       align-items: center;
       gap: 8px;
-    }
-
-    .section-title::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* Explainer Box ("What is Miqu Project?") */
-    .explainer-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      padding: 16px 18px;
-      box-shadow: var(--shadow);
     }
 
     .explainer-stack {
@@ -160,10 +275,11 @@
       align-items: center;
       gap: 6px;
       flex-wrap: wrap;
-      margin-bottom: 14px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
       font-size: 11px;
     }
 
@@ -190,7 +306,7 @@
 
     .stack-step.miqu-highlight {
       border-color: rgba(168, 85, 247, 0.35);
-      background: rgba(168, 85, 247, 0.08);
+      background: rgba(168, 85, 247, 0.1);
       color: #c084fc;
     }
 
@@ -202,7 +318,7 @@
 
     .explainer-body {
       display: grid;
-      gap: 13px;
+      gap: 14px;
     }
 
     .explainer-item {
@@ -221,8 +337,8 @@
     }
 
     .heading-dot {
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       flex-shrink: 0;
     }
@@ -230,11 +346,11 @@
     .explainer-item p {
       font-size: 0.82rem;
       color: var(--text-muted);
-      line-height: 1.5;
+      line-height: 1.48;
     }
 
     .explainer-item code {
-      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-family: var(--font-mono);
       font-size: 11px;
       background: rgba(255, 255, 255, 0.06);
       padding: 1px 5px;
@@ -254,24 +370,157 @@
       }
     }
 
-    /* Unified Cards */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+    /* -------------------------------------------------------------
+       Section Titles
+       ------------------------------------------------------------- */
+    section {
+      margin-bottom: 34px;
+    }
+
+    .section-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
       gap: 10px;
     }
 
-    @media (max-width: 560px) {
-      .card-grid {
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* -------------------------------------------------------------
+       Spotlight Bento Cards (Core Architecture)
+       ------------------------------------------------------------- */
+    .spotlight-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 720px) {
+      .spotlight-grid {
         grid-template-columns: 1fr;
       }
     }
 
+    .spotlight-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+      transition: all 0.22s ease;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .spotlight-card:hover {
+      border-color: var(--accent-color, var(--border-hover));
+      background: var(--card-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    .spotlight-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--accent-color, transparent);
+      opacity: 0.8;
+    }
+
+    .spotlight-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .spotlight-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .spotlight-title {
+      font-size: 1.18rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+
+    .spotlight-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .spotlight-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+    }
+
+    .spotlight-tag {
+      font-size: 10px;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    /* -------------------------------------------------------------
+       Responsive Multi-Column Card Grids
+       ------------------------------------------------------------- */
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    @media (max-width: 1040px) {
+      .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid-4, .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Standard Bento Cards */
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 9px;
-      padding: 12px 13px;
+      border-radius: var(--radius-md);
+      padding: 14px 14px;
       text-decoration: none;
       color: inherit;
       display: flex;
@@ -285,14 +534,13 @@
     .card:hover {
       border-color: var(--accent-color, var(--border-hover));
       background: var(--card-hover);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
     }
 
-    /* Icon badge container */
     .card-icon-wrap {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
       flex-shrink: 0;
       display: flex;
       align-items: center;
@@ -311,8 +559,8 @@
     }
 
     .card-icon-svg {
-      width: 19px;
-      height: 19px;
+      width: 20px;
+      height: 20px;
       stroke: currentColor;
       fill: none;
       stroke-width: 2;
@@ -330,13 +578,16 @@
       align-items: center;
       justify-content: space-between;
       gap: 6px;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
     }
 
     .card-name {
       font-weight: 600;
       font-size: 0.92rem;
       letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .card-badge {
@@ -348,63 +599,22 @@
       border: 1px solid var(--badge-border, rgba(255, 255, 255, 0.1));
       color: var(--accent-color, var(--text-muted));
       white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .card-desc {
-      font-size: 0.81rem;
+      font-size: 0.80rem;
       color: var(--text-muted);
       line-height: 1.42;
     }
 
-    /* Quickstart terminal */
-    .terminal-box {
-      background: var(--code-bg);
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      padding: 14px 16px;
-      position: relative;
-      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-      font-size: 12px;
-      line-height: 1.65;
-    }
-
-    .terminal-box code {
-      display: block;
-      overflow-x: auto;
-      white-space: pre;
-    }
-
-    .cmd-keyword { color: #f43f5e; font-weight: 600; }
-    .cmd-arg { color: #00e5ff; }
-    .cmd-path { color: #a855f7; }
-    .cmd-flag { color: #eab308; }
-    .cmd-comment { color: var(--text-muted); user-select: none; }
-
-    .btn-copy {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      font-size: 11px;
-      font-weight: 600;
-      padding: 3px 9px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .btn-copy:hover {
-      color: #00e5ff;
-      border-color: #00e5ff;
-    }
-
-    /* Footer */
+    /* -------------------------------------------------------------
+       Footer
+       ------------------------------------------------------------- */
     footer {
       border-top: 1px solid var(--border);
-      padding-top: 22px;
-      margin-top: 40px;
+      padding-top: 24px;
+      margin-top: 48px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -425,12 +635,13 @@
 </head>
 <body>
   <div class="container">
+    <!-- Header -->
     <header>
-      <div class="header-top">
-        <a href="#" class="brand">
-          <img src="assets/logo.png" alt="Miqu logo" />
-          <h1>Miqu Project</h1>
-        </a>
+      <a href="#" class="brand">
+        <img src="assets/logo.png" alt="Miqu logo" />
+        <h1>Miqu Project</h1>
+      </a>
+      <div class="header-actions">
         <a href="https://github.com/miqu-project" target="_blank" rel="noopener" class="btn-github">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
@@ -438,103 +649,132 @@
           GitHub
         </a>
       </div>
-      <p class="tagline">A unified, sovereign Wayland desktop ecosystem and native applications built from first principles in modern C++.</p>
     </header>
 
     <main>
-      <!-- What is Miqu Project? -->
-      <section>
-        <h2 class="section-title">What is Miqu Project?</h2>
-        <div class="explainer-card">
-          <!-- The Linux Desktop Stack -->
+      <!-- Hero Bento Section -->
+      <section class="hero-grid">
+        <!-- Hero Left: Mission & Quickstart -->
+        <div class="hero-main">
+          <div>
+            <div class="hero-badge">Sovereign Wayland Desktop</div>
+            <h2 class="hero-title">Unified Desktop Ecosystem Built From First Principles</h2>
+            <p class="hero-tagline">
+              An independent, cohesive parallel to GNOME and KDE crafted in modern C++20. From the custom Wayland compositor core and GUI framework to first-party shell utilities and native apps.
+            </p>
+          </div>
+
+          <!-- Integrated Quickstart Terminal -->
+          <div class="terminal-box">
+            <button class="btn-copy" id="copy-btn" title="Copy command">Copy</button>
+            <span class="cmd-comment"># Clone and build the sovereign compositor</span>
+            <code id="cmd-text"><span class="cmd-keyword">git</span> clone <span class="cmd-flag">--recurse-submodules</span> <span class="cmd-arg">https://github.com/miqu-project/miquland.git</span>
+<span class="cmd-keyword">cd</span> <span class="cmd-path">miquland</span> &amp;&amp; <span class="cmd-keyword">sudo</span> ./make.sh</code>
+          </div>
+        </div>
+
+        <!-- Hero Right: Architecture & Philosophy -->
+        <div class="hero-stack-card">
+          <h3>Ecosystem Architecture</h3>
+          <!-- Visual Stack Flow -->
           <div class="explainer-stack">
             <span class="stack-step external" title="Provided by Linux distro">Base Distro <small>(Arch/Debian)</small></span>
             <span class="stack-arrow">&rarr;</span>
             <span class="stack-step miqu-highlight">Compositor <small>(miquland)</small></span>
             <span class="stack-arrow">&rarr;</span>
-            <span class="stack-step miqu-highlight">Shell <small>(miqudesk...)</small></span>
+            <span class="stack-step miqu-highlight">GUI Toolkit <small>(miqutoolkit)</small></span>
             <span class="stack-arrow">&rarr;</span>
-            <span class="stack-step miqu-highlight">Native Apps <small>(miqumusic...)</small></span>
+            <span class="stack-step miqu-highlight">Shell &amp; Apps</span>
           </div>
 
           <div class="explainer-body">
             <div class="explainer-item">
               <span class="explainer-heading">
                 <span class="heading-dot" style="background: #a855f7;"></span>
-                Building a Parallel to GNOME &amp; KDE
+                Parallel to Traditional DEs
               </span>
-              <p>In Linux, a full <strong>Desktop Environment (DE)</strong> bundles a Window Manager + Shell + native Apps. We are essentially building an independent parallel to GNOME or KDE from the ground up. We are still evolving and currently utilize standard upstream components like <code>xdg-desktop-portal</code>, but the destination is a complete, sovereign Desktop Environment.</p>
+              <p>In Linux, a full <strong>Desktop Environment</strong> bundles a Compositor + Shell + Native Apps. Miqu builds this entire unified continuum without the bloat of fragmented desktop layers.</p>
             </div>
 
             <div class="explainer-item">
               <span class="explainer-heading">
                 <span class="heading-dot" style="background: #ef4444;"></span>
-                Why We Do Not Build a Base Distro
+                Distro Sovereignty
               </span>
-              <p>A base Linux distribution provides the kernel, packages, and environment before you launch a graphical session. Creating an OS distribution is massive work that requires dedicated infrastructure and full-time security teams. Because much of Miqu is AI-assisted and maintained by a single developer, an AI-coded base distro would present serious security, privacy, and supply-chain vulnerabilities. There is no plan nor capacity to build one—Miqu runs on top of trusted distributions like Arch or Debian.</p>
+              <p>Miqu runs on top of battle-tested distributions like Arch or Debian, maintaining strict security boundaries while providing a tailored sovereign graphical user space.</p>
             </div>
 
             <div class="explainer-item">
               <span class="explainer-heading">
                 <span class="heading-dot" style="background: #00e5ff;"></span>
-                More Than Just a Window Manager
+                Cross-Device Scope
               </span>
-              <p>When people say "Window Manager", it rarely describes the full reality (neither Sway nor Hyprland are just bare WMs). Miqu spans its own C++ GUI framework (<code>miqutoolkit</code>), compositor (<code>miquland</code>), integrated shell utilities, first-party Linux apps, and companion Android apps to pioneer a cohesive cross-device ecosystem.</p>
+              <p>Features our declarative C++ GUI framework (<code>miqutoolkit</code>), compositor (<code>miquland</code>), shell daemons, first-party Linux apps, and Android companions.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Core Foundation -->
+      <!-- Core Foundation Spotlight (Bento Tier 1) -->
       <section>
-        <h2 class="section-title">Core Architecture</h2>
-        <div class="card-grid">
+        <h2 class="section-title">Core Foundation</h2>
+        <div class="spotlight-grid">
           <!-- miquland -->
-          <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener" class="card"
-             style="--accent-color: #8b5cf6; --badge-bg: rgba(139,92,246,0.12); --badge-border: rgba(139,92,246,0.28); --icon-bg: rgba(139,92,246,0.12);">
-            <div class="card-icon-wrap">
-              <svg class="card-icon-svg" viewBox="0 0 24 24">
-                <rect x="2" y="3" width="20" height="14" rx="2"></rect>
-                <line x1="8" y1="21" x2="16" y2="21"></line>
-                <line x1="12" y1="17" x2="12" y2="21"></line>
-              </svg>
-            </div>
-            <div class="card-body">
-              <div class="card-header">
-                <span class="card-name">miquland</span>
-                <span class="card-badge">Compositor</span>
+          <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener" class="spotlight-card"
+             style="--accent-color: #8b5cf6;">
+            <div class="spotlight-top">
+              <div class="spotlight-brand">
+                <div class="card-icon-wrap" style="--accent-color: #8b5cf6; --icon-bg: rgba(139,92,246,0.12);">
+                  <svg class="card-icon-svg" viewBox="0 0 24 24">
+                    <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                  </svg>
+                </div>
+                <h3 class="spotlight-title">miquland</h3>
               </div>
-              <p class="card-desc">Sovereign Wayland compositor built with wlroots and modern C++20.</p>
+              <span class="card-badge" style="--accent-color: #8b5cf6; --badge-bg: rgba(139,92,246,0.12); --badge-border: rgba(139,92,246,0.28);">Compositor</span>
+            </div>
+            <p class="spotlight-desc">Sovereign Wayland compositor built with wlroots and modern C++20. Powers multi-monitor rendering, window tiling policies, dynamic animations, and IPC control.</p>
+            <div class="spotlight-tags">
+              <span class="spotlight-tag">Modern C++20</span>
+              <span class="spotlight-tag">wlroots</span>
+              <span class="spotlight-tag">Wayland Protocols</span>
+              <span class="spotlight-tag">Scene Graph</span>
             </div>
           </a>
 
           <!-- miqutoolkit -->
-          <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener" class="card"
-             style="--accent-color: #f43f5e; --badge-bg: rgba(244,63,94,0.12); --badge-border: rgba(244,63,94,0.28); --icon-bg: rgba(244,63,94,0.12);">
-            <div class="card-icon-wrap">
-              <svg class="card-icon-svg" viewBox="0 0 24 24">
-                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                <polyline points="2 17 12 22 22 17"></polyline>
-                <polyline points="2 12 12 17 22 12"></polyline>
-              </svg>
-            </div>
-            <div class="card-body">
-              <div class="card-header">
-                <span class="card-name">miqutoolkit</span>
-                <span class="card-badge">Framework</span>
+          <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener" class="spotlight-card"
+             style="--accent-color: #f43f5e;">
+            <div class="spotlight-top">
+              <div class="spotlight-brand">
+                <div class="card-icon-wrap" style="--accent-color: #f43f5e; --icon-bg: rgba(244,63,94,0.12);">
+                  <svg class="card-icon-svg" viewBox="0 0 24 24">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                  </svg>
+                </div>
+                <h3 class="spotlight-title">miqutoolkit</h3>
               </div>
-              <p class="card-desc">Declarative C++ GUI toolkit powering all ecosystem components.</p>
+              <span class="card-badge" style="--accent-color: #f43f5e; --badge-bg: rgba(244,63,94,0.12); --badge-border: rgba(244,63,94,0.28);">GUI Framework</span>
+            </div>
+            <p class="spotlight-desc">Declarative C++ GUI toolkit and widget library powering all ecosystem components with unified themes, Cairo/Pango rendering, and Wayland layer-shell bindings.</p>
+            <div class="spotlight-tags">
+              <span class="spotlight-tag">Declarative UI</span>
+              <span class="spotlight-tag">Cairo / Pango</span>
+              <span class="spotlight-tag">Layer Shell</span>
+              <span class="spotlight-tag">Live Theming</span>
             </div>
           </a>
         </div>
       </section>
 
-      <!-- Linux Applications & Shell Components -->
+      <!-- First-Party Linux Applications (Bento Tier 2) -->
       <section>
-        <h2 class="section-title">Linux Applications &amp; Shell</h2>
-
-        <!-- Featured First-Party Apps -->
-        <div class="card-grid">
+        <h2 class="section-title">First-Party Desktop Applications</h2>
+        <div class="grid-4">
           <!-- MiquSecure -->
           <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener" class="card"
              style="--accent-color: #10b981; --badge-bg: rgba(16,185,129,0.12); --badge-border: rgba(16,185,129,0.28);">
@@ -594,8 +834,28 @@
               <p class="card-desc">Real-time system monitor &amp; hardware diagnostics.</p>
             </div>
           </a>
+        </div>
+      </section>
 
-          <!-- Shell Components -->
+      <!-- Wayland Shell & Daemons (Bento Tier 3) -->
+      <section>
+        <h2 class="section-title">Wayland Shell &amp; System Daemons</h2>
+        <div class="grid-4">
+          <!-- MiquBar -->
+          <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener" class="card"
+             style="--accent-color: #00e5ff; --badge-bg: rgba(0,229,255,0.12); --badge-border: rgba(0,229,255,0.28);">
+            <div class="card-icon-wrap">
+              <img src="assets/apps/miqubar.png" alt="MiquBar icon" class="card-icon-img" />
+            </div>
+            <div class="card-body">
+              <div class="card-header">
+                <span class="card-name">MiquBar</span>
+                <span class="card-badge">Taskbar</span>
+              </div>
+              <p class="card-desc">Wayland status bar &amp; taskbar with popup flyouts.</p>
+            </div>
+          </a>
+
           <!-- miqudesk -->
           <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener" class="card"
              style="--accent-color: #14b8a6; --badge-bg: rgba(20,184,166,0.12); --badge-border: rgba(20,184,166,0.28); --icon-bg: rgba(20,184,166,0.12);">
@@ -608,24 +868,9 @@
             <div class="card-body">
               <div class="card-header">
                 <span class="card-name">miqudesk</span>
-                <span class="card-badge">Desktop Canvas</span>
+                <span class="card-badge">Desktop</span>
               </div>
-              <p class="card-desc">Interactive desktop canvas &amp; wallpaper widget layer.</p>
-            </div>
-          </a>
-
-          <!-- miqubar -->
-          <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener" class="card"
-             style="--accent-color: #00e5ff; --badge-bg: rgba(0,229,255,0.12); --badge-border: rgba(0,229,255,0.28);">
-            <div class="card-icon-wrap">
-              <img src="assets/apps/miqubar.png" alt="MiquBar icon" class="card-icon-img" />
-            </div>
-            <div class="card-body">
-              <div class="card-header">
-                <span class="card-name">MiquBar</span>
-                <span class="card-badge">Taskbar</span>
-              </div>
-              <p class="card-desc">Wayland status bar &amp; Windows-style taskbar with flyouts.</p>
+              <p class="card-desc">Interactive desktop canvas &amp; widget layer.</p>
             </div>
           </a>
 
@@ -643,7 +888,7 @@
                 <span class="card-name">miqulauncher</span>
                 <span class="card-badge">Launcher</span>
               </div>
-              <p class="card-desc">Fuzzy-search application runner and command executor.</p>
+              <p class="card-desc">Fuzzy-search application runner &amp; command executor.</p>
             </div>
           </a>
 
@@ -679,7 +924,7 @@
             <div class="card-body">
               <div class="card-header">
                 <span class="card-name">miqulock</span>
-                <span class="card-badge">Screen Lock</span>
+                <span class="card-badge">Lock</span>
               </div>
               <p class="card-desc">Hardware-accelerated PAM-authenticated screen locker.</p>
             </div>
@@ -697,7 +942,7 @@
             <div class="card-body">
               <div class="card-header">
                 <span class="card-name">miquidle</span>
-                <span class="card-badge">Idle Daemon</span>
+                <span class="card-badge">Idle</span>
               </div>
               <p class="card-desc">Wayland idle protocol detection and energy manager.</p>
             </div>
@@ -757,7 +1002,7 @@
             </div>
           </a>
 
-          <!-- miquutest -->
+          <!-- miqutest -->
           <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener" class="card"
              style="--accent-color: #06b6d4; --badge-bg: rgba(6,182,212,0.12); --badge-border: rgba(6,182,212,0.28); --icon-bg: rgba(6,182,212,0.12);">
             <div class="card-icon-wrap">
@@ -776,10 +1021,10 @@
         </div>
       </section>
 
-      <!-- Mobile Companions -->
+      <!-- Mobile Companions (Bento Tier 4) -->
       <section>
         <h2 class="section-title">Mobile Companions</h2>
-        <div class="card-grid">
+        <div class="grid-2">
           <!-- Doctor -->
           <a href="https://github.com/miqu-project/miqu-android" target="_blank" rel="noopener" class="card"
              style="--accent-color: #10b981; --badge-bg: rgba(16,185,129,0.12); --badge-border: rgba(16,185,129,0.28);">
@@ -791,7 +1036,7 @@
                 <span class="card-name">Doctor</span>
                 <span class="card-badge">Android</span>
               </div>
-              <p class="card-desc">Medical diagnostics and clinical management companion.</p>
+              <p class="card-desc">Medical diagnostics and clinical management companion app.</p>
             </div>
           </a>
 
@@ -806,24 +1051,14 @@
                 <span class="card-name">Recitation</span>
                 <span class="card-badge">Android</span>
               </div>
-              <p class="card-desc">Distraction-free Quran memorization and audio recitation.</p>
+              <p class="card-desc">Distraction-free Quran memorization and audio recitation companion.</p>
             </div>
           </a>
         </div>
       </section>
-
-      <!-- Quickstart -->
-      <section>
-        <h2 class="section-title">Quickstart</h2>
-        <div class="terminal-box">
-          <button class="btn-copy" id="copy-btn" title="Copy command">Copy</button>
-          <span class="cmd-comment"># Clone and build the compositor</span>
-          <code id="cmd-text"><span class="cmd-keyword">git</span> clone <span class="cmd-flag">--recurse-submodules</span> <span class="cmd-arg">https://github.com/miqu-project/miquland.git</span>
-<span class="cmd-keyword">cd</span> <span class="cmd-path">miquland</span> &amp;&amp; <span class="cmd-keyword">sudo</span> ./make.sh</code>
-        </div>
-      </section>
     </main>
 
+    <!-- Footer -->
     <footer>
       <span>&copy; 2026 Miqu Project &middot; Apache-2.0 / GPL-3.0</span>
       <a href="https://github.com/miqu-project" target="_blank" rel="noopener">github.com/miqu-project</a>
@@ -831,9 +1066,8 @@
   </div>
 
   <script>
-    // Copy command
+    // Copy quickstart command to clipboard
     const copyBtn = document.getElementById('copy-btn');
-    const cmdText = document.getElementById('cmd-text');
     copyBtn.addEventListener('click', () => {
       const rawText = "git clone --recurse-submodules https://github.com/miqu-project/miquland.git\ncd miquland && sudo ./make.sh";
       navigator.clipboard.writeText(rawText).then(() => {
