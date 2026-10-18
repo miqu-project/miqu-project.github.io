@@ -467,6 +467,108 @@
       border: 1px solid var(--border);
     }
 
+    .feature-links-bar {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    .inline-nav-btn {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.15s ease;
+    }
+
+    .inline-nav-btn:hover {
+      color: var(--secondary);
+    }
+
+    .inline-git-btn {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: var(--bg-hover);
+      border: 1px solid var(--border);
+      transition: all 0.15s ease;
+    }
+
+    .inline-git-btn:hover {
+      color: var(--text);
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+    }
+
+    .tab-github-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 24px;
+      font-size: 0.86rem;
+    }
+
+    .tab-github-banner a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .tab-github-banner a:hover {
+      text-decoration: underline;
+    }
+
+    .ecosystem-section {
+      margin-bottom: 40px;
+    }
+
+    .ecosystem-subhead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ecosystem-subtitle {
+      font-size: 1.25rem;
+      font-weight: 750;
+      color: var(--text);
+    }
+
+    .ecosystem-git-link {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ecosystem-git-link:hover {
+      text-decoration: underline;
+    }
+
     /* Terminal Box */
     .term-box {
       background: var(--code-bg);
@@ -800,68 +902,47 @@
         A complete, cohesive Linux desktop environment engineered from first principles in modern C++20 for Arch Linux.
       </p>
 
-      <!-- Clean 3 Pillars -->
-      <div class="card-grid">
-        <!-- Miquland Gateway -->
-        <div class="bento-card" onclick="switchTab('miquland')" style="cursor: pointer;">
-          <div>
-            <div class="card-head">
-              <span class="card-title">Miquland</span>
-              <span class="card-tag">Compositor</span>
-            </div>
-            <p class="card-desc">
-              Dynamic tiling window manager built with wlroots and SceneFX. Features spiral layouts, live corner rounding, and Gaussian blurs.
-            </p>
-          </div>
-          <div class="card-action-row">
-            <span class="card-link-txt">More &rarr;</span>
-            <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener" class="card-git-link" onclick="event.stopPropagation()" title="Miquland on GitHub">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-              </svg>
-            </a>
+      <!-- Clean 3 Pillars as Paragraphs -->
+      <div class="feature-article">
+        <div class="feature-block">
+          <h3 class="feature-headline">
+            Miquland
+            <span class="feature-headline-tag">Compositor</span>
+          </h3>
+          <p class="feature-paragraph">
+            Dynamic tiling window manager built with wlroots and SceneFX. Features spiral layouts, live corner rounding, drop shadows, and dual-pass Gaussian blurs.
+          </p>
+          <div class="feature-links-bar">
+            <a href="#miquland" onclick="switchTab('miquland')" class="inline-nav-btn">Explore Miquland &rarr;</a>
+            <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener" class="inline-git-btn">GitHub ↗</a>
           </div>
         </div>
 
-        <!-- Miqutoolkit Gateway -->
-        <div class="bento-card" onclick="switchTab('miqutoolkit')" style="cursor: pointer;">
-          <div>
-            <div class="card-head">
-              <span class="card-title">Miqutoolkit</span>
-              <span class="card-tag">UI Framework</span>
-            </div>
-            <p class="card-desc">
-              Shared C++20 declarative UI framework powering all desktop apps with Cairo/Pango rendering and atomic live reload.
-            </p>
-          </div>
-          <div class="card-action-row">
-            <span class="card-link-txt">More &rarr;</span>
-            <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener" class="card-git-link" onclick="event.stopPropagation()" title="Miqutoolkit on GitHub">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-              </svg>
-            </a>
+        <div class="feature-block">
+          <h3 class="feature-headline">
+            Miqutoolkit
+            <span class="feature-headline-tag">UI Framework</span>
+          </h3>
+          <p class="feature-paragraph">
+            Shared C++20 declarative UI framework powering all desktop apps with Cairo/Pango vector rendering, ViewGroup layouts, and atomic live reload.
+          </p>
+          <div class="feature-links-bar">
+            <a href="#miqutoolkit" onclick="switchTab('miqutoolkit')" class="inline-nav-btn">Explore Toolkit &rarr;</a>
+            <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener" class="inline-git-btn">GitHub ↗</a>
           </div>
         </div>
 
-        <!-- MiquEcosystem Gateway -->
-        <div class="bento-card" onclick="switchTab('ecosystem')" style="cursor: pointer;">
-          <div>
-            <div class="card-head">
-              <span class="card-title">MiquEcosystem</span>
-              <span class="card-tag">16 Applications</span>
-            </div>
-            <p class="card-desc">
-              Cohesive native suite of 16 applications (status bar, launcher, audio player, firewall, wallpaper daemon, lockscreen).
-            </p>
-          </div>
-          <div class="card-action-row">
-            <span class="card-link-txt">More &rarr;</span>
-            <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener" class="card-git-link" onclick="event.stopPropagation()" title="Miqu Linux Apps on GitHub">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-              </svg>
-            </a>
+        <div class="feature-block">
+          <h3 class="feature-headline">
+            MiquEcosystem
+            <span class="feature-headline-tag">Applications</span>
+          </h3>
+          <p class="feature-paragraph">
+            A cohesive native suite of 16 Wayland applications and Android companion tools, including status bar, app launcher, audio player, firewall center, and greeter.
+          </p>
+          <div class="feature-links-bar">
+            <a href="#ecosystem" onclick="switchTab('ecosystem')" class="inline-nav-btn">Explore Ecosystem &rarr;</a>
+            <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener" class="inline-git-btn">GitHub ↗</a>
           </div>
         </div>
       </div>
@@ -889,6 +970,11 @@
       <p class="page-subtitle">
         Miquland is a dynamic tiling window manager and compositor for Wayland built with wlroots and SceneFX.
       </p>
+
+      <div class="tab-github-banner">
+        <span>Source Repository:</span>
+        <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener">github.com/miqu-project/miquland ↗</a>
+      </div>
 
       <div class="feature-article">
         <div class="feature-block">
@@ -943,6 +1029,11 @@
       <p class="page-subtitle">
         Miqutoolkit is a shared C++20 declarative UI framework powering all Miqu desktop applications.
       </p>
+
+      <div class="tab-github-banner">
+        <span>Source Repository:</span>
+        <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener">github.com/miqu-project/miqutoolkit ↗</a>
+      </div>
 
       <div class="feature-article">
         <div class="feature-block">
@@ -999,172 +1090,298 @@
         A unified application suite of 16 native Wayland desktop tools and Android companion applications.
       </p>
 
-      <div class="apps-catalog-grid">
-        <!-- MiquBar -->
-        <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqubar" target="_blank" rel="noopener" class="app-item">
-          <img src="assets/apps/miqubar.png" alt="MiquBar" class="app-icon" />
-          <div class="app-info">
-            <div class="app-title-row">
-              <span class="app-name">MiquBar</span>
-              <span class="app-role">Status Bar</span>
-            </div>
-            <p class="app-summary">Wayland status bar, workspace indicators, and flyout menus.</p>
-          </div>
-        </a>
+      <!-- Section 1: Linux Applications -->
+      <div class="ecosystem-section">
+        <div class="ecosystem-subhead">
+          <h3 class="ecosystem-subtitle">Linux Applications (16)</h3>
+          <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener" class="ecosystem-git-link">
+            github.com/miqu-project/miqu-linux-apps ↗
+          </a>
+        </div>
 
-        <!-- MiquDesk -->
-        <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqudesk" target="_blank" rel="noopener" class="app-item">
-          <div class="app-icon-svg">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="3" width="18" height="18" rx="2"></rect>
-              <path d="M3 9h18M9 21V9"></path>
-            </svg>
-          </div>
-          <div class="app-info">
-            <div class="app-title-row">
-              <span class="app-name">MiquDesk</span>
-              <span class="app-role">Desktop</span>
+        <div class="apps-catalog-grid">
+          <!-- MiquBar -->
+          <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqubar" target="_blank" rel="noopener" class="app-item">
+            <img src="assets/apps/miqubar.png" alt="MiquBar" class="app-icon" />
+            <div class="app-info">
+              <div class="app-title-row">
+                <span class="app-name">MiquBar</span>
+                <span class="app-role">Status Bar</span>
+              </div>
+              <p class="app-summary">Wayland status bar, workspace indicators, and flyout menus.</p>
             </div>
-            <p class="app-summary">Interactive desktop canvas and widget layer.</p>
-          </div>
-        </a>
+          </a>
 
-        <!-- MiquTheme -->
-        <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqutheme" target="_blank" rel="noopener" class="app-item">
-          <img src="assets/apps/miqutheme.png" alt="MiquTheme" class="app-icon" />
-          <div class="app-info">
-            <div class="app-title-row">
-              <span class="app-name">MiquTheme</span>
-              <span class="app-role">Theming</span>
+          <!-- MiquDesk -->
+          <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqudesk" target="_blank" rel="noopener" class="app-item">
+            <div class="app-icon-svg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                <path d="M3 9h18M9 21V9"></path>
+              </svg>
             </div>
-            <p class="app-summary">Material You palette generator and wallpaper manager.</p>
-          </div>
-        </a>
+            <div class="app-info">
+              <div class="app-title-row">
+                <span class="app-name">MiquDesk</span>
+                <span class="app-role">Desktop</span>
+              </div>
+              <p class="app-summary">Interactive desktop canvas and widget layer.</p>
+            </div>
+          </a>
 
-        <!-- MiquSecure -->
-        <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqusecure" target="_blank" rel="noopener" class="app-item">
-          <img src="assets/apps/miqusecure.png" alt="MiquSecure" class="app-icon" />
-          <div class="app-info">
-            <div class="app-title-row">
-              <span class="app-name">MiquSecure</span>
-              <span class="app-role">Security</span>
+          <!-- MiquTheme -->
+          <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqutheme" target="_blank" rel="noopener" class="app-item">
+            <img src="assets/apps/miqutheme.png" alt="MiquTheme" class="app-icon" />
+            <div class="app-info">
+              <div class="app-title-row">
+                <span class="app-name">MiquTheme</span>
+                <span class="app-role">Theming</span>
+              </div>
+              <p class="app-summary">Material You palette generator and wallpaper manager.</p>
             </div>
-            <p class="app-summary">Privacy and firewall command center (Tor, OpenSnitch, LUKS).</p>
-          </div>
-        </a>
+          </a>
 
-        <!-- MiquMusic -->
-        <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqumusic" target="_blank" rel="noopener" class="app-item">
-          <img src="assets/apps/miqumusic.png" alt="MiquMusic" class="app-icon" />
-          <div class="app-info">
-            <div class="app-title-row">
-              <span class="app-name">MiquMusic</span>
-              <span class="app-role">Audio</span>
+          <!-- MiquSecure -->
+          <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqusecure" target="_blank" rel="noopener" class="app-item">
+            <img src="assets/apps/miqusecure.png" alt="MiquSecure" class="app-icon" />
+            <div class="app-info">
+              <div class="app-title-row">
+                <span class="app-name">MiquSecure</span>
+                <span class="app-role">Security</span>
+              </div>
+              <p class="app-summary">Privacy and firewall command center (Tor, OpenSnitch, LUKS).</p>
             </div>
-            <p class="app-summary">Fast native MPD client and playback controller.</p>
-          </div>
-        </a>
+          </a>
 
-        <!-- MiquLauncher -->
-        <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqulauncher" target="_blank" rel="noopener" class="app-item">
-          <div class="app-icon-svg">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="7"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-          </div>
-          <div class="app-info">
-            <div class="app-title-row">
-              <span class="app-name">MiquLauncher</span>
-              <span class="app-role">Launcher</span>
+          <!-- MiquMusic -->
+          <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqumusic" target="_blank" rel="noopener" class="app-item">
+            <img src="assets/apps/miqumusic.png" alt="MiquMusic" class="app-icon" />
+            <div class="app-info">
+              <div class="app-title-row">
+                <span class="app-name">MiquMusic</span>
+                <span class="app-role">Audio</span>
+              </div>
+              <p class="app-summary">Fast native MPD client and playback controller.</p>
             </div>
-            <p class="app-summary">Fuzzy dmenu alternative and application finder.</p>
-          </div>
-        </a>
+          </a>
 
-        <!-- MiquNotify -->
-        <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqunotify" target="_blank" rel="noopener" class="app-item">
-          <div class="app-icon-svg">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-            </svg>
-          </div>
-          <div class="app-info">
-            <div class="app-title-row">
-              <span class="app-name">MiquNotify</span>
-              <span class="app-role">Notify</span>
+          <!-- MiquLauncher -->
+          <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqulauncher" target="_blank" rel="noopener" class="app-item">
+            <div class="app-icon-svg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="7"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
             </div>
-            <p class="app-summary">Native notification daemon and history drawer.</p>
-          </div>
-        </a>
+            <div class="app-info">
+              <div class="app-title-row">
+                <span class="app-name">MiquLauncher</span>
+                <span class="app-role">Launcher</span>
+              </div>
+              <p class="app-summary">Fuzzy dmenu alternative and application finder.</p>
+            </div>
+          </a>
 
-        <!-- MiquOverview -->
-        <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miquoverview" target="_blank" rel="noopener" class="app-item">
-          <div class="app-icon-svg">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="3" width="7" height="7"></rect>
-              <rect x="14" y="3" width="7" height="7"></rect>
-              <rect x="14" y="14" width="7" height="7"></rect>
-              <rect x="3" y="14" width="7" height="7"></rect>
-            </svg>
-          </div>
-          <div class="app-info">
-            <div class="app-title-row">
-              <span class="app-name">MiquOverview</span>
-              <span class="app-role">Expose</span>
+          <!-- MiquNotify -->
+          <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqunotify" target="_blank" rel="noopener" class="app-item">
+            <div class="app-icon-svg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
             </div>
-            <p class="app-summary">Live workspace expose and window switcher.</p>
-          </div>
-        </a>
+            <div class="app-info">
+              <div class="app-title-row">
+                <span class="app-name">MiquNotify</span>
+                <span class="app-role">Notify</span>
+              </div>
+              <p class="app-summary">Native notification daemon and history drawer.</p>
+            </div>
+          </a>
 
-        <!-- MiquGallery -->
-        <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqugallery" target="_blank" rel="noopener" class="app-item">
-          <img src="assets/apps/miqugallery.png" alt="MiquGallery" class="app-icon" />
-          <div class="app-info">
-            <div class="app-title-row">
-              <span class="app-name">MiquGallery</span>
-              <span class="app-role">Media</span>
+          <!-- MiquOverview -->
+          <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miquoverview" target="_blank" rel="noopener" class="app-item">
+            <div class="app-icon-svg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
             </div>
-            <p class="app-summary">Hardware-accelerated image viewer.</p>
-          </div>
-        </a>
+            <div class="app-info">
+              <div class="app-title-row">
+                <span class="app-name">MiquOverview</span>
+                <span class="app-role">Expose</span>
+              </div>
+              <p class="app-summary">Live workspace expose and window switcher.</p>
+            </div>
+          </a>
 
-        <!-- MiquInfo -->
-        <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miquinfo" target="_blank" rel="noopener" class="app-item">
-          <img src="assets/apps/miquinfo.png" alt="MiquInfo" class="app-icon" />
-          <div class="app-info">
-            <div class="app-title-row">
-              <span class="app-name">MiquInfo</span>
-              <span class="app-role">Telemetry</span>
+          <!-- MiquGallery -->
+          <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqugallery" target="_blank" rel="noopener" class="app-item">
+            <img src="assets/apps/miqugallery.png" alt="MiquGallery" class="app-icon" />
+            <div class="app-info">
+              <div class="app-title-row">
+                <span class="app-name">MiquGallery</span>
+                <span class="app-role">Media</span>
+              </div>
+              <p class="app-summary">Hardware-accelerated image viewer.</p>
             </div>
-            <p class="app-summary">Real-time system telemetry and resource stats.</p>
-          </div>
-        </a>
+          </a>
 
-        <!-- Doctor (Android) -->
-        <a href="https://github.com/miqu-project/miqu-android" target="_blank" rel="noopener" class="app-item">
-          <img src="assets/apps/doctor.png" alt="Doctor" class="app-icon" />
-          <div class="app-info">
-            <div class="app-title-row">
-              <span class="app-name">Doctor</span>
-              <span class="app-role">Android</span>
+          <!-- MiquInfo -->
+          <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miquinfo" target="_blank" rel="noopener" class="app-item">
+            <img src="assets/apps/miquinfo.png" alt="MiquInfo" class="app-icon" />
+            <div class="app-info">
+              <div class="app-title-row">
+                <span class="app-name">MiquInfo</span>
+                <span class="app-role">Telemetry</span>
+              </div>
+              <p class="app-summary">Real-time system telemetry and resource stats.</p>
             </div>
-            <p class="app-summary">Medical diagnostics and clinical companion.</p>
-          </div>
-        </a>
+          </a>
 
-        <!-- Recitation (Android) -->
-        <a href="https://github.com/miqu-project/miqu-android" target="_blank" rel="noopener" class="app-item">
-          <img src="assets/apps/recitation.png" alt="Recitation" class="app-icon" />
-          <div class="app-info">
-            <div class="app-title-row">
-              <span class="app-name">Recitation</span>
-              <span class="app-role">Android</span>
+          <!-- MiquDM -->
+          <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqudm" target="_blank" rel="noopener" class="app-item">
+            <div class="app-icon-svg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                <polyline points="10 17 15 12 10 7"></polyline>
+                <line x1="15" y1="12" x2="3" y2="12"></line>
+              </svg>
             </div>
-            <p class="app-summary">Distraction-free Quran memorization companion.</p>
-          </div>
-        </a>
+            <div class="app-info">
+              <div class="app-title-row">
+                <span class="app-name">MiquDM</span>
+                <span class="app-role">Greeter</span>
+              </div>
+              <p class="app-summary">Wayland-native Display Manager and login greeter.</p>
+            </div>
+          </a>
+
+          <!-- MiquBG -->
+          <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqubg" target="_blank" rel="noopener" class="app-item">
+            <div class="app-icon-svg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+            </div>
+            <div class="app-info">
+              <div class="app-title-row">
+                <span class="app-name">MiquBG</span>
+                <span class="app-role">Wallpaper</span>
+              </div>
+              <p class="app-summary">Independent wallpaper rendering and transition daemon.</p>
+            </div>
+          </a>
+
+          <!-- MiquPolkit -->
+          <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqupolkit" target="_blank" rel="noopener" class="app-item">
+            <div class="app-icon-svg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <polyline points="9 12 11 14 15 10"></polyline>
+              </svg>
+            </div>
+            <div class="app-info">
+              <div class="app-title-row">
+                <span class="app-name">MiquPolkit</span>
+                <span class="app-role">Auth</span>
+              </div>
+              <p class="app-summary">Native graphical Polkit authentication agent.</p>
+            </div>
+          </a>
+
+          <!-- MiquLock -->
+          <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqulock" target="_blank" rel="noopener" class="app-item">
+            <div class="app-icon-svg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <div class="app-info">
+              <div class="app-title-row">
+                <span class="app-name">MiquLock</span>
+                <span class="app-role">Lockscreen</span>
+              </div>
+              <p class="app-summary">Session locking utility implementing ext-session-lock-v1.</p>
+            </div>
+          </a>
+
+          <!-- MiquIdle -->
+          <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miquidle" target="_blank" rel="noopener" class="app-item">
+            <div class="app-icon-svg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div class="app-info">
+              <div class="app-title-row">
+                <span class="app-name">MiquIdle</span>
+                <span class="app-role">Idle</span>
+              </div>
+              <p class="app-summary">Idle management daemon monitoring user activity.</p>
+            </div>
+          </a>
+
+          <!-- MiquTest -->
+          <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqutest" target="_blank" rel="noopener" class="app-item">
+            <div class="app-icon-svg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"></path>
+                <line x1="8.5" y1="2" x2="15.5" y2="2"></line>
+              </svg>
+            </div>
+            <div class="app-info">
+              <div class="app-title-row">
+                <span class="app-name">MiquTest</span>
+                <span class="app-role">Sandbox</span>
+              </div>
+              <p class="app-summary">Component testing sandbox and interactive widget showcase.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Section 2: Android Companions -->
+      <div class="ecosystem-section">
+        <div class="ecosystem-subhead">
+          <h3 class="ecosystem-subtitle">Android Companions</h3>
+          <a href="https://github.com/miqu-project/miqu-android" target="_blank" rel="noopener" class="ecosystem-git-link">
+            github.com/miqu-project/miqu-android ↗
+          </a>
+        </div>
+
+        <div class="apps-catalog-grid">
+          <!-- Doctor (Android) -->
+          <a href="https://github.com/miqu-project/miqu-android" target="_blank" rel="noopener" class="app-item">
+            <img src="assets/apps/doctor.png" alt="Doctor" class="app-icon" />
+            <div class="app-info">
+              <div class="app-title-row">
+                <span class="app-name">Doctor</span>
+                <span class="app-role">Android</span>
+              </div>
+              <p class="app-summary">Medical diagnostics and clinical companion.</p>
+            </div>
+          </a>
+
+          <!-- Recitation (Android) -->
+          <a href="https://github.com/miqu-project/miqu-android" target="_blank" rel="noopener" class="app-item">
+            <img src="assets/apps/recitation.png" alt="Recitation" class="app-icon" />
+            <div class="app-info">
+              <div class="app-title-row">
+                <span class="app-name">Recitation</span>
+                <span class="app-role">Android</span>
+              </div>
+              <p class="app-summary">Distraction-free Quran memorization companion.</p>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -1177,6 +1394,11 @@
       <p class="page-subtitle">
         The uniform Two-Tier Single-File Authority model governs configuration across all Miqu components.
       </p>
+
+      <div class="tab-github-banner">
+        <span>Architecture Guidelines &amp; Contracts:</span>
+        <a href="https://github.com/miqu-project/miqu-project/blob/main/AGENTS.md" target="_blank" rel="noopener">AGENTS.md on GitHub ↗</a>
+      </div>
 
       <div class="feature-article">
         <div class="feature-block">
@@ -1220,6 +1442,11 @@
       <p class="page-subtitle">
         Building and installing the Miqu desktop environment on Arch Linux.
       </p>
+
+      <div class="tab-github-banner">
+        <span>Master Repository &amp; Scripts:</span>
+        <a href="https://github.com/miqu-project/miqu-project" target="_blank" rel="noopener">github.com/miqu-project/miqu-project ↗</a>
+      </div>
 
       <div class="term-box">
         <div class="term-header">
@@ -1265,6 +1492,11 @@
       <p class="page-subtitle">
         "A fully functional Desktop Environment is the goal, but we are slowly making progress."
       </p>
+
+      <div class="tab-github-banner">
+        <span>GitHub Organization:</span>
+        <a href="https://github.com/miqu-project" target="_blank" rel="noopener">github.com/miqu-project ↗</a>
+      </div>
 
       <div class="feature-article">
         <div class="feature-block">
