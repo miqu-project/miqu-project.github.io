@@ -375,6 +375,15 @@
       margin-bottom: 16px;
     }
 
+    .card-action-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
     .card-link-txt {
       font-size: 0.84rem;
       font-weight: 650;
@@ -382,6 +391,26 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
+    }
+
+    .card-git-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: var(--bg-hover);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: all 0.18s ease;
+    }
+
+    .card-git-link:hover {
+      color: var(--text);
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
     }
 
     /* Terminal Box */
@@ -711,7 +740,7 @@
       <!-- Clean 3 Pillars -->
       <div class="card-grid">
         <!-- Miquland Gateway -->
-        <a href="#miquland" class="bento-card" onclick="switchTab('miquland')">
+        <div class="bento-card" onclick="switchTab('miquland')" style="cursor: pointer;">
           <div>
             <div class="card-head">
               <span class="card-title">Miquland</span>
@@ -721,11 +750,18 @@
               Dynamic tiling window manager built with wlroots and SceneFX. Features spiral layouts, live corner rounding, and Gaussian blurs.
             </p>
           </div>
-          <span class="card-link-txt">Explore Compositor &rarr;</span>
-        </a>
+          <div class="card-action-row">
+            <span class="card-link-txt">More &rarr;</span>
+            <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener" class="card-git-link" onclick="event.stopPropagation()" title="Miquland on GitHub">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
 
         <!-- Miqutoolkit Gateway -->
-        <a href="#miqutoolkit" class="bento-card" onclick="switchTab('miqutoolkit')">
+        <div class="bento-card" onclick="switchTab('miqutoolkit')" style="cursor: pointer;">
           <div>
             <div class="card-head">
               <span class="card-title">Miqutoolkit</span>
@@ -735,11 +771,18 @@
               Shared C++20 declarative UI framework powering all desktop apps with Cairo/Pango rendering and atomic live reload.
             </p>
           </div>
-          <span class="card-link-txt">Explore Toolkit &rarr;</span>
-        </a>
+          <div class="card-action-row">
+            <span class="card-link-txt">More &rarr;</span>
+            <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener" class="card-git-link" onclick="event.stopPropagation()" title="Miqutoolkit on GitHub">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
 
         <!-- MiquEcosystem Gateway -->
-        <a href="#ecosystem" class="bento-card" onclick="switchTab('ecosystem')">
+        <div class="bento-card" onclick="switchTab('ecosystem')" style="cursor: pointer;">
           <div>
             <div class="card-head">
               <span class="card-title">MiquEcosystem</span>
@@ -749,8 +792,15 @@
               Cohesive native suite of 16 applications (status bar, launcher, audio player, firewall, wallpaper daemon, lockscreen).
             </p>
           </div>
-          <span class="card-link-txt">Browse Applications &rarr;</span>
-        </a>
+          <div class="card-action-row">
+            <span class="card-link-txt">More &rarr;</span>
+            <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener" class="card-git-link" onclick="event.stopPropagation()" title="Miqu Linux Apps on GitHub">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
 
       <!-- Quick Install Box -->
