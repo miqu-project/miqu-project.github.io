@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Miqu Project — Sovereign Wayland Desktop Ecosystem</title>
   <meta name="description" content="A unified, sovereign Wayland desktop ecosystem and native applications built from first principles in modern C++20." />
   <link rel="icon" type="image/png" href="assets/logo.png" />
+
+  <!-- Synchronous Anti-Flash Auto Theme Initializer -->
+  <script>
+    (function() {
+      try {
+        const mode = localStorage.getItem('miqu_theme_mode') || 'auto';
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const resolved = (mode === 'auto') ? (prefersDark ? 'dark' : 'light') : mode;
+        document.documentElement.setAttribute('data-theme', resolved);
+        document.documentElement.setAttribute('data-theme-mode', mode);
+      } catch (e) {}
+    })();
+  </script>
 
   <style>
     /* ==========================================================================
@@ -16,7 +29,7 @@
       --primary-subtle: rgba(56, 189, 248, 0.10);
       --secondary: #0ea5e9;
 
-      /* Dark Theme (Default) */
+      /* Dark Theme (Default when dark preference) */
       --bg: #090c10;
       --bg-surface: #0f141e;
       --bg-card: rgba(17, 24, 39, 0.65);
@@ -40,6 +53,30 @@
 
       --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Helvetica Neue", Arial, sans-serif;
       --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    /* Automatic System Light Fallback before or alongside JS evaluation */
+    @media (prefers-color-scheme: light) {
+      :root:not([data-theme="dark"]) {
+        --primary: #0284c7;
+        --primary-subtle: rgba(2, 132, 199, 0.08);
+        --secondary: #0369a1;
+
+        --bg: #f8fafc;
+        --bg-surface: #ffffff;
+        --bg-card: rgba(255, 255, 255, 0.85);
+        --bg-card-hover: #ffffff;
+        --bg-hover: rgba(0, 0, 0, 0.04);
+        --border: rgba(0, 0, 0, 0.08);
+        --border-hover: rgba(0, 0, 0, 0.16);
+
+        --text: #0f172a;
+        --text-muted: #475569;
+        --text-dim: #94a3b8;
+
+        --code-bg: #f1f5f9;
+        --code-header: #e2e8f0;
+      }
     }
 
     html[data-theme="light"] {
@@ -919,10 +956,10 @@
     </div>
 
     <div class="sidebar-footer">
-      <!-- Simple Dark / Light Mode Toggle Button -->
-      <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Light / Dark mode">
-        <span id="theme-icon">☀️</span>
-        <span id="theme-label">Light</span>
+      <!-- Theme Mode Toggle Button (Auto / Light / Dark) -->
+      <button class="theme-toggle-btn" id="theme-toggle" title="Theme: Auto (System)">
+        <span id="theme-icon">💻</span>
+        <span id="theme-label">Auto</span>
       </button>
 
       <a href="https://github.com/miqu-project" target="_blank" rel="noopener" class="github-link-btn" title="GitHub">
@@ -1817,34 +1854,79 @@
     });
 
     // -------------------------------------------------------------
-    // Simple Dark / Light Mode Toggle
+    // Auto / Light / Dark Theme Management
     // -------------------------------------------------------------
     const htmlEl = document.documentElement;
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     const themeLabel = document.getElementById('theme-label');
-    const THEME_KEY = 'miqu_simple_theme';
+    const THEME_MODE_KEY = 'miqu_theme_mode';
 
-    function setTheme(theme) {
-      htmlEl.setAttribute('data-theme', theme);
-      localStorage.setItem(THEME_KEY, theme);
+    // Clear old legacy theme key to prevent forced dark mode
+    try { localStorage.removeItem('miqu_simple_theme'); } catch (e) {}
 
-      if (theme === 'dark') {
-        themeIcon.textContent = '☀️';
-        themeLabel.textContent = 'Light';
-      } else {
-        themeIcon.textContent = '🌙';
-        themeLabel.textContent = 'Dark';
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function updateThemeUI(mode, resolvedTheme) {
+      htmlEl.setAttribute('data-theme', resolvedTheme);
+      htmlEl.setAttribute('data-theme-mode', mode);
+
+      if (themeIcon && themeLabel && themeToggleBtn) {
+        if (mode === 'auto') {
+          themeIcon.textContent = '💻';
+          themeLabel.textContent = 'Auto';
+          themeToggleBtn.title = `Theme: Auto (System is currently ${resolvedTheme}) — Click to switch to Light`;
+        } else if (mode === 'light') {
+          themeIcon.textContent = '☀️';
+          themeLabel.textContent = 'Light';
+          themeToggleBtn.title = 'Theme: Light — Click to switch to Dark';
+        } else {
+          themeIcon.textContent = '🌙';
+          themeLabel.textContent = 'Dark';
+          themeToggleBtn.title = 'Theme: Dark — Click to switch to Auto';
+        }
       }
     }
 
-    const saved = localStorage.getItem(THEME_KEY) || 'dark';
-    setTheme(saved);
+    function applyThemeMode(mode) {
+      let resolved = mode;
+      if (mode === 'auto') {
+        resolved = mediaQuery.matches ? 'dark' : 'light';
+      }
+      try {
+        localStorage.setItem(THEME_MODE_KEY, mode);
+      } catch (e) {}
+      updateThemeUI(mode, resolved);
+    }
 
+    // Initialize UI from saved mode or default 'auto'
+    let currentMode = 'auto';
+    try {
+      currentMode = localStorage.getItem(THEME_MODE_KEY) || 'auto';
+    } catch (e) {}
+    applyThemeMode(currentMode);
+
+    // Listen dynamically to OS system preference changes
+    mediaQuery.addEventListener('change', (e) => {
+      let saved = 'auto';
+      try { saved = localStorage.getItem(THEME_MODE_KEY) || 'auto'; } catch (err) {}
+      if (saved === 'auto') {
+        updateThemeUI('auto', e.matches ? 'dark' : 'light');
+      }
+    });
+
+    // Theme toggle cycle: Auto -> Light -> Dark -> Auto
     if (themeToggleBtn) {
       themeToggleBtn.addEventListener('click', () => {
-        const current = htmlEl.getAttribute('data-theme');
-        setTheme(current === 'dark' ? 'light' : 'dark');
+        let saved = 'auto';
+        try { saved = localStorage.getItem(THEME_MODE_KEY) || 'auto'; } catch (e) {}
+        if (saved === 'auto') {
+          applyThemeMode('light');
+        } else if (saved === 'light') {
+          applyThemeMode('dark');
+        } else {
+          applyThemeMode('auto');
+        }
       });
     }
 
