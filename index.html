@@ -569,6 +569,55 @@
       text-decoration: underline;
     }
 
+    /* Tab Breadcrumb & Home Navigation */
+    .tab-nav-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      font-size: 0.84rem;
+    }
+
+    .tab-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--bg-hover);
+      border: 1px solid var(--border);
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+
+    .tab-back-btn:hover {
+      color: var(--primary);
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+    }
+
+    .tab-nav-divider {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+    }
+
+    .tab-nav-current {
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    .tab-bottom-nav {
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
     /* Terminal Box */
     .term-box {
       background: var(--code-bg);
@@ -780,7 +829,7 @@
 
   <!-- Mobile Topbar -->
   <div class="mobile-topbar">
-    <div style="display: flex; align-items: center; gap: 10px;">
+    <div style="display: flex; align-items: center; gap: 10px; cursor: pointer;" onclick="switchTab('home')" title="Go to Home">
       <img src="assets/logo.png" alt="Miqu Logo" style="width: 24px; height: 24px;" />
       <span style="font-weight: 800;">Miqu Project</span>
     </div>
@@ -790,7 +839,7 @@
   <!-- Left Sidebar -->
   <aside class="sidebar" id="sidebar">
     <div>
-      <a href="#home" class="brand">
+      <a href="#home" class="brand" onclick="switchTab('home')" title="Go to Home">
         <img src="assets/logo.png" alt="Miqu Logo" class="brand-logo" />
         <span class="brand-title">Miqu Project</span>
       </a>
@@ -965,6 +1014,18 @@
          2. MIQULAND VIEW
          ==================================================================== -->
     <section class="page-section" id="view-miquland">
+      <div class="tab-nav-bar">
+        <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Home
+        </a>
+        <span class="tab-nav-divider">/</span>
+        <span class="tab-nav-current">Miquland</span>
+      </div>
+
       <div class="hero-badge">Core Compositor</div>
       <h2 class="page-title">Miquland</h2>
       <p class="page-subtitle">
@@ -1018,12 +1079,34 @@
           <div><span class="prompt">Core Protocols:</span> wlr-layer-shell-v1, ext-session-lock-v1, ext-idle-notify-v1</div>
         </div>
       </div>
+
+      <div class="tab-bottom-nav">
+        <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Home
+        </a>
+      </div>
     </section>
 
     <!-- ====================================================================
          3. MIQUTOOLKIT VIEW
          ==================================================================== -->
     <section class="page-section" id="view-miqutoolkit">
+      <div class="tab-nav-bar">
+        <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Home
+        </a>
+        <span class="tab-nav-divider">/</span>
+        <span class="tab-nav-current">Miqutoolkit</span>
+      </div>
+
       <div class="hero-badge">Shared UI Framework</div>
       <h2 class="page-title">Miqutoolkit</h2>
       <p class="page-subtitle">
@@ -1078,12 +1161,34 @@
           <div style="padding-left: 18px;">-&gt;add_child(<span class="kw">TextView</span>::create(<span style="color: #10b981;">"MiquBar"</span>));</div>
         </div>
       </div>
+
+      <div class="tab-bottom-nav">
+        <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Home
+        </a>
+      </div>
     </section>
 
     <!-- ====================================================================
          4. MIQUECOSYSTEM VIEW
          ==================================================================== -->
     <section class="page-section" id="view-ecosystem">
+      <div class="tab-nav-bar">
+        <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Home
+        </a>
+        <span class="tab-nav-divider">/</span>
+        <span class="tab-nav-current">MiquEcosystem</span>
+      </div>
+
       <div class="hero-badge">Native Suite</div>
       <h2 class="page-title">MiquEcosystem</h2>
       <p class="page-subtitle">
@@ -1383,12 +1488,34 @@
           </a>
         </div>
       </div>
+
+      <div class="tab-bottom-nav">
+        <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Home
+        </a>
+      </div>
     </section>
 
     <!-- ====================================================================
          5. DOCUMENTATION VIEW
          ==================================================================== -->
     <section class="page-section" id="view-docs">
+      <div class="tab-nav-bar">
+        <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Home
+        </a>
+        <span class="tab-nav-divider">/</span>
+        <span class="tab-nav-current">Documentation</span>
+      </div>
+
       <div class="hero-badge">Architecture Contract</div>
       <h2 class="page-title">Documentation</h2>
       <p class="page-subtitle">
@@ -1431,12 +1558,34 @@
           </p>
         </div>
       </div>
+
+      <div class="tab-bottom-nav">
+        <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Home
+        </a>
+      </div>
     </section>
 
     <!-- ====================================================================
          6. QUICK START VIEW
          ==================================================================== -->
     <section class="page-section" id="view-quickstart">
+      <div class="tab-nav-bar">
+        <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Home
+        </a>
+        <span class="tab-nav-divider">/</span>
+        <span class="tab-nav-current">Quick Start</span>
+      </div>
+
       <div class="hero-badge">Installation</div>
       <h2 class="page-title">Quick Start</h2>
       <p class="page-subtitle">
@@ -1481,12 +1630,34 @@
           </p>
         </div>
       </div>
+
+      <div class="tab-bottom-nav">
+        <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Home
+        </a>
+      </div>
     </section>
 
     <!-- ====================================================================
          7. ABOUT US VIEW
          ==================================================================== -->
     <section class="page-section" id="view-about">
+      <div class="tab-nav-bar">
+        <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Home
+        </a>
+        <span class="tab-nav-divider">/</span>
+        <span class="tab-nav-current">About Us</span>
+      </div>
+
       <div class="hero-badge">Philosophy &amp; Vision</div>
       <h2 class="page-title">About Us</h2>
       <p class="page-subtitle">
@@ -1528,6 +1699,16 @@
             Miqu is built and verified on Arch Linux using modern C++20 and standard CMake build protocols.
           </p>
         </div>
+      </div>
+
+      <div class="tab-bottom-nav">
+        <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Home
+        </a>
       </div>
     </section>
   </main>
