@@ -413,60 +413,58 @@
       background: var(--bg-card-hover);
     }
 
-    /* Editorial Feature Strip — Clean, Non-Boxy, Informational */
-    .feature-strip {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 32px;
+    /* Clean Paragraph Feature Sections */
+    .feature-article {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
       margin: 28px 0 36px;
-      padding: 24px 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      max-width: 840px;
     }
 
-    .feature-entry {
+    .feature-block {
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
-    .feature-entry-head {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .feature-indicator {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--primary);
-      flex-shrink: 0;
-    }
-
-    .feature-entry-title {
-      font-size: 1.05rem;
+    .feature-headline {
+      font-size: 1.15rem;
       font-weight: 750;
       color: var(--text);
+      letter-spacing: -0.015em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .feature-entry-tag {
+    .feature-headline-tag {
       font-size: 0.65rem;
       font-family: var(--font-mono);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      padding: 2px 6px;
+      padding: 2px 7px;
       border-radius: 4px;
       background: var(--bg-hover);
       color: var(--text-dim);
       border: 1px solid var(--border);
     }
 
-    .feature-entry-desc {
-      font-size: 0.88rem;
+    .feature-paragraph {
+      font-size: 0.96rem;
       color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 1.68;
+    }
+
+    .feature-paragraph code {
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      background: var(--bg-hover);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--text);
+      border: 1px solid var(--border);
     }
 
     /* Terminal Box */
@@ -892,37 +890,34 @@
         Miquland is a dynamic tiling window manager and compositor for Wayland built with wlroots and SceneFX.
       </p>
 
-      <div class="feature-strip">
-        <div class="feature-entry">
-          <div class="feature-entry-head">
-            <span class="feature-indicator"></span>
-            <h3 class="feature-entry-title">Dynamic Tiling</h3>
-            <span class="feature-entry-tag">Layout</span>
-          </div>
-          <p class="feature-entry-desc">
-            Intelligent spiral, stack, and floating layout engines with automatic window splitting and multi-monitor management.
+      <div class="feature-article">
+        <div class="feature-block">
+          <h3 class="feature-headline">
+            Dynamic Tiling Layout Engine
+            <span class="feature-headline-tag">Layout</span>
+          </h3>
+          <p class="feature-paragraph">
+            Miquland implements intelligent spiral, stack, and floating layout algorithms. Windows automatically split and arrange themselves across workspaces, providing fluid ergonomics with seamless multi-monitor management.
           </p>
         </div>
 
-        <div class="feature-entry">
-          <div class="feature-entry-head">
-            <span class="feature-indicator"></span>
-            <h3 class="feature-entry-title">SceneFX Shaders</h3>
-            <span class="feature-entry-tag">Visuals</span>
-          </div>
-          <p class="feature-entry-desc">
-            Hardware-accelerated window corner rounding, soft drop shadows, and dual-pass Gaussian layer blurs.
+        <div class="feature-block">
+          <h3 class="feature-headline">
+            SceneFX Hardware-Accelerated Shaders
+            <span class="feature-headline-tag">Visuals</span>
+          </h3>
+          <p class="feature-paragraph">
+            Window decorations are rendered natively on the GPU via wlroots and SceneFX. The compositor delivers real-time corner rounding, soft drop shadows, and dual-pass Gaussian layer blurs without sacrificing frame rates.
           </p>
         </div>
 
-        <div class="feature-entry">
-          <div class="feature-entry-head">
-            <span class="feature-indicator"></span>
-            <h3 class="feature-entry-title">IPC Controller</h3>
-            <span class="feature-entry-tag">miquctl</span>
-          </div>
-          <p class="feature-entry-desc">
-            Dedicated Unix domain socket IPC protocol for dynamic workspace switching, window queries, and runtime reloads.
+        <div class="feature-block">
+          <h3 class="feature-headline">
+            IPC Controller &amp; Runtime Dispatch
+            <span class="feature-headline-tag">miquctl</span>
+          </h3>
+          <p class="feature-paragraph">
+            Compositor state, workspace transitions, and window dispatching can be queried and controlled programmatically over a dedicated Unix domain socket using <code>miquctl</code>.
           </p>
         </div>
       </div>
@@ -949,37 +944,34 @@
         Miqutoolkit is a shared C++20 declarative UI framework powering all Miqu desktop applications.
       </p>
 
-      <div class="feature-strip">
-        <div class="feature-entry">
-          <div class="feature-entry-head">
-            <span class="feature-indicator"></span>
-            <h3 class="feature-entry-title">Declarative Layout</h3>
-            <span class="feature-entry-tag">API</span>
-          </div>
-          <p class="feature-entry-desc">
-            Ergonomic container hierarchy inspired by modern declarative patterns (`ViewGroup`, `CardView`, `TextView`).
+      <div class="feature-article">
+        <div class="feature-block">
+          <h3 class="feature-headline">
+            Declarative Layout Hierarchy
+            <span class="feature-headline-tag">API</span>
+          </h3>
+          <p class="feature-paragraph">
+            Inspired by modern declarative patterns, Miqutoolkit provides structured layout containers like <code>ViewGroup</code> and <code>CardView</code>. User interfaces are declared fluently in C++20 with strict RAII lifecycle management.
           </p>
         </div>
 
-        <div class="feature-entry">
-          <div class="feature-entry-head">
-            <span class="feature-indicator"></span>
-            <h3 class="feature-entry-title">Vector Rendering</h3>
-            <span class="feature-entry-tag">Cairo &amp; Pango</span>
-          </div>
-          <p class="feature-entry-desc">
-            High-DPI vector rendering, crisp typography, and sub-pixel antialiasing with Wayland shared-memory buffers.
+        <div class="feature-block">
+          <h3 class="feature-headline">
+            Cairo &amp; Pango Vector Rendering
+            <span class="feature-headline-tag">Graphics</span>
+          </h3>
+          <p class="feature-paragraph">
+            All controls render through Cairo vector graphics and Pango font layouts onto Wayland shared-memory buffers, ensuring crisp sub-pixel antialiasing and flawless high-DPI scaling across monitors.
           </p>
         </div>
 
-        <div class="feature-entry">
-          <div class="feature-entry-head">
-            <span class="feature-indicator"></span>
-            <h3 class="feature-entry-title">Atomic Live Reload</h3>
-            <span class="feature-entry-tag">inotify</span>
-          </div>
-          <p class="feature-entry-desc">
-            Watches configuration and theme files for immediate zero-restart appearance propagation across running apps.
+        <div class="feature-block">
+          <h3 class="feature-headline">
+            Atomic inotify Live Reload
+            <span class="feature-headline-tag">Theming</span>
+          </h3>
+          <p class="feature-paragraph">
+            The toolkit monitors active configuration and palette files via inotify. Theme changes and metric updates propagate instantly to all running applications with zero restarts.
           </p>
         </div>
       </div>
@@ -1186,39 +1178,34 @@
         The uniform Two-Tier Single-File Authority model governs configuration across all Miqu components.
       </p>
 
-      <div class="feature-strip">
-        <div class="feature-entry">
-          <div class="feature-entry-head">
-            <span class="feature-indicator"></span>
-            <h3 class="feature-entry-title">1. System Baseline</h3>
-            <span class="feature-entry-tag">Tier 1</span>
-          </div>
-          <p class="feature-entry-desc">
-            <code>/usr/share/&lt;app&gt;/&lt;app&gt;.conf</code><br />
-            Fully functional out of the box. Zero files are automatically created in <code>~/.config/</code>.
+      <div class="feature-article">
+        <div class="feature-block">
+          <h3 class="feature-headline">
+            1. System Baseline (/usr/share)
+            <span class="feature-headline-tag">Tier 1</span>
+          </h3>
+          <p class="feature-paragraph">
+            Every application installs a fully functional default baseline configuration into <code>/usr/share/&lt;app&gt;/&lt;app&gt;.conf</code>. On a fresh installation, applications run directly from this file without polluting the user's home directory.
           </p>
         </div>
 
-        <div class="feature-entry">
-          <div class="feature-entry-head">
-            <span class="feature-indicator"></span>
-            <h3 class="feature-entry-title">2. Safe Archiving</h3>
-            <span class="feature-entry-tag">Init</span>
-          </div>
-          <p class="feature-entry-desc">
-            Running <code>&lt;app&gt; --init-config</code> safely archives any existing config to <code>.bak.&lt;timestamp&gt;</code> before generating a fresh template.
+        <div class="feature-block">
+          <h3 class="feature-headline">
+            2. Safe Timestamped Archiving
+            <span class="feature-headline-tag">--init-config</span>
+          </h3>
+          <p class="feature-paragraph">
+            When a user invokes <code>&lt;app&gt; --init-config</code>, any existing configuration is never silently overwritten. It is safely archived with a timestamp (<code>.bak.&lt;timestamp&gt;</code>) before a fresh, fully documented template is generated.
           </p>
         </div>
 
-        <div class="feature-entry">
-          <div class="feature-entry-head">
-            <span class="feature-indicator"></span>
-            <h3 class="feature-entry-title">3. User Authority</h3>
-            <span class="feature-entry-tag">Tier 2</span>
-          </div>
-          <p class="feature-entry-desc">
-            <code>~/.config/&lt;app&gt;/&lt;app&gt;.conf</code><br />
-            Loaded exclusively once it exists. Dynamic themes are included via standard <code>source =</code> lines.
+        <div class="feature-block">
+          <h3 class="feature-headline">
+            3. Standalone User Authority (~/.config)
+            <span class="feature-headline-tag">Tier 2</span>
+          </h3>
+          <p class="feature-paragraph">
+            Once <code>~/.config/&lt;app&gt;/&lt;app&gt;.conf</code> exists, it is loaded exclusively. There is no hidden background merging or implicit inheritance. Dynamic themes are included cleanly through standard <code>source =</code> directives.
           </p>
         </div>
       </div>
@@ -1246,26 +1233,24 @@
         </div>
       </div>
 
-      <div class="feature-strip">
-        <div class="feature-entry">
-          <div class="feature-entry-head">
-            <span class="feature-indicator"></span>
-            <h3 class="feature-entry-title">Local Test Builds</h3>
-            <span class="feature-entry-tag">Non-Root</span>
-          </div>
-          <p class="feature-entry-desc">
-            Every component contains an idempotent <code>./make.sh</code> that compiles locally into <code>build/</code> without requiring sudo privileges.
+      <div class="feature-article">
+        <div class="feature-block">
+          <h3 class="feature-headline">
+            Single-Command Ecosystem Installation
+            <span class="feature-headline-tag">install_all.sh</span>
+          </h3>
+          <p class="feature-paragraph">
+            The <code>install_all.sh</code> script orchestrates a topological build across the entire stack: first compiling the <code>miquland</code> compositor, then installing the <code>miqutoolkit</code> shared library, and finally building the complete native application suite.
           </p>
         </div>
 
-        <div class="feature-entry">
-          <div class="feature-entry-head">
-            <span class="feature-indicator"></span>
-            <h3 class="feature-entry-title">Topological Order</h3>
-            <span class="feature-entry-tag">Build Order</span>
-          </div>
-          <p class="feature-entry-desc">
-            <code>install_all.sh</code> builds in dependency order: 1. miquland &rarr; 2. miqutoolkit &rarr; 3. native application suite.
+        <div class="feature-block">
+          <h3 class="feature-headline">
+            Local Test Builds &amp; Non-Root Workflows
+            <span class="feature-headline-tag">make.sh</span>
+          </h3>
+          <p class="feature-paragraph">
+            Every component contains an independent <code>make.sh</code> script. Running <code>./make.sh</code> as an unprivileged user configures and compiles locally into <code>build/</code> for rapid development without touching system directories.
           </p>
         </div>
       </div>
@@ -1281,37 +1266,34 @@
         "A fully functional Desktop Environment is the goal, but we are slowly making progress."
       </p>
 
-      <div class="feature-strip">
-        <div class="feature-entry">
-          <div class="feature-entry-head">
-            <span class="feature-indicator"></span>
-            <h3 class="feature-entry-title">Sovereignty</h3>
-            <span class="feature-entry-tag">Core Value</span>
-          </div>
-          <p class="feature-entry-desc">
-            We build and maintain every layer of the stack: the compositor, the UI toolkit, and all native applications. No fragmented third-party compromises.
+      <div class="feature-article">
+        <div class="feature-block">
+          <h3 class="feature-headline">
+            Full-Stack Sovereignty
+            <span class="feature-headline-tag">Core Value</span>
+          </h3>
+          <p class="feature-paragraph">
+            We design, build, and maintain every layer of the Miqu ecosystem: the compositor, the UI framework, and all native applications. This end-to-end sovereignty eliminates mismatched widget toolkits and styling fragmentation.
           </p>
         </div>
 
-        <div class="feature-entry">
-          <div class="feature-entry-head">
-            <span class="feature-indicator"></span>
-            <h3 class="feature-entry-title">Modern C++20</h3>
-            <span class="feature-entry-tag">Craftsmanship</span>
-          </div>
-          <p class="feature-entry-desc">
-            Small, single-responsibility functions, strict RAII lifecycle management, zero sleep synchronization, and zero dead code.
+        <div class="feature-block">
+          <h3 class="feature-headline">
+            First-Principles Craftsmanship
+            <span class="feature-headline-tag">C++20</span>
+          </h3>
+          <p class="feature-paragraph">
+            Code across the project adheres to strict standards: small single-responsibility functions, scope-bound RAII memory safety, event-driven thread confinement, and zero pseudo-solutions or hidden magic.
           </p>
         </div>
 
-        <div class="feature-entry">
-          <div class="feature-entry-head">
-            <span class="feature-indicator"></span>
-            <h3 class="feature-entry-title">Arch Linux Base</h3>
-            <span class="feature-entry-tag">Platform</span>
-          </div>
-          <p class="feature-entry-desc">
-            Targeted and verified on Arch Linux with standard GNU prefixes and deterministic CMake configurations.
+        <div class="feature-block">
+          <h3 class="feature-headline">
+            Arch Linux Platform Foundation
+            <span class="feature-headline-tag">Platform</span>
+          </h3>
+          <p class="feature-paragraph">
+            Miqu is built and verified on Arch Linux using modern C++20 and standard CMake build protocols.
           </p>
         </div>
       </div>
