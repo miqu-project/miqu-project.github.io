@@ -865,14 +865,23 @@
             </a>
           </li>
           <li>
-            <a href="#ecosystem" class="nav-item-btn" data-tab="ecosystem">
+            <a href="#linux-apps" class="nav-item-btn" data-tab="linux-apps">
               <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="3" y="3" width="7" height="7"></rect>
                 <rect x="14" y="3" width="7" height="7"></rect>
                 <rect x="14" y="14" width="7" height="7"></rect>
                 <rect x="3" y="14" width="7" height="7"></rect>
               </svg>
-              MiquEcosystem
+              MiquLinux Apps
+            </a>
+          </li>
+          <li>
+            <a href="#android-apps" class="nav-item-btn" data-tab="android-apps">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+              </svg>
+              MiquAndroid Apps
             </a>
           </li>
           <li>
@@ -971,15 +980,31 @@
 
         <div class="feature-block">
           <h3 class="feature-headline">
-            MiquEcosystem
-            <span class="feature-headline-tag">Applications</span>
+            MiquLinux Apps
+            <span class="feature-headline-tag">Desktop Applications</span>
           </h3>
           <p class="feature-paragraph">
-            A cohesive native suite of 16 Wayland applications and Android companion tools, including status bar, app launcher, audio player, firewall center, and greeter.
+            A unified suite of 16 native Wayland desktop applications engineered in modern C++20 with miqutoolkit, including status bar, app launcher, audio player, firewall center, display manager, and greeter.
           </p>
           <div class="feature-links-bar">
-            <a href="#ecosystem" onclick="switchTab('ecosystem')" class="inline-nav-btn">
-              <span>Explore Ecosystem</span>
+            <a href="#linux-apps" onclick="switchTab('linux-apps')" class="inline-nav-btn">
+              <span>Explore Linux Apps</span>
+              <span class="nav-arrow">&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="feature-block">
+          <h3 class="feature-headline">
+            MiquAndroid Apps
+            <span class="feature-headline-tag">Mobile Companions</span>
+          </h3>
+          <p class="feature-paragraph">
+            Native Android mobile companion tools built for clinical workflows, medical diagnostics, and focused Quran recitation and study.
+          </p>
+          <div class="feature-links-bar">
+            <a href="#android-apps" onclick="switchTab('android-apps')" class="inline-nav-btn">
+              <span>Explore Android Apps</span>
               <span class="nav-arrow">&rarr;</span>
             </a>
           </div>
@@ -1172,9 +1197,9 @@
     </section>
 
     <!-- ====================================================================
-         4. MIQUECOSYSTEM VIEW
+          4. MIQULINUX APPS VIEW
          ==================================================================== -->
-    <section class="page-section" id="view-ecosystem">
+    <section class="page-section" id="view-linux-apps">
       <div class="tab-nav-bar">
         <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1184,25 +1209,25 @@
           Home
         </a>
         <span class="tab-nav-divider">/</span>
-        <span class="tab-nav-current">MiquEcosystem</span>
+        <span class="tab-nav-current">MiquLinux Apps</span>
       </div>
 
-      <h2 class="page-title">MiquEcosystem</h2>
+      <h2 class="page-title">MiquLinux Apps</h2>
       <p class="page-subtitle">
-        A unified application suite of 16 native Wayland desktop tools and Android companion applications.
+        A unified application suite of 16 native Wayland desktop tools engineered in modern C++20.
       </p>
 
-      <!-- Section 1: Linux Applications -->
-      <div class="ecosystem-section">
-        <div class="ecosystem-subhead">
-          <h3 class="ecosystem-subtitle">Linux Applications (16)</h3>
-          <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener" class="ecosystem-git-link">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            <span>miqu-linux-apps ↗</span>
-          </a>
+      <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener" class="git-repo-card">
+        <svg class="git-icon" viewBox="0 0 24 24">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <div class="git-repo-meta">
+          <span class="git-repo-label">Source Repository</span>
+          <span class="git-repo-name">github.com/miqu-project/miqu-linux-apps <span class="git-repo-arrow">↗</span></span>
         </div>
+      </a>
 
-        <div class="apps-catalog-grid">
+      <div class="apps-catalog-grid">
           <!-- MiquBar -->
           <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqubar" target="_blank" rel="noopener" class="app-item">
             <img src="assets/apps/miqubar.png" alt="MiquBar" class="app-icon" />
@@ -1449,17 +1474,48 @@
             </div>
           </a>
         </div>
-      </div>
 
-      <!-- Section 2: Android Companions -->
-      <div class="ecosystem-section">
-        <div class="ecosystem-subhead">
-          <h3 class="ecosystem-subtitle">Android Companions</h3>
-          <a href="https://github.com/miqu-project/miqu-android" target="_blank" rel="noopener" class="ecosystem-git-link">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            <span>miqu-android ↗</span>
+        <div class="tab-bottom-nav">
+          <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back to Home
           </a>
         </div>
+      </section>
+
+      <!-- ====================================================================
+           5. MIQUANDROID APPS VIEW
+           ==================================================================== -->
+      <section class="page-section" id="view-android-apps">
+        <div class="tab-nav-bar">
+          <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Home
+          </a>
+          <span class="tab-nav-divider">/</span>
+          <span class="tab-nav-current">MiquAndroid Apps</span>
+        </div>
+
+        <h2 class="page-title">MiquAndroid Apps</h2>
+        <p class="page-subtitle">
+          Mobile companion applications and clinical/study tools for Android.
+        </p>
+
+        <a href="https://github.com/miqu-project/miqu-android" target="_blank" rel="noopener" class="git-repo-card">
+          <svg class="git-icon" viewBox="0 0 24 24">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <div class="git-repo-meta">
+            <span class="git-repo-label">Source Repository</span>
+            <span class="git-repo-name">github.com/miqu-project/miqu-android <span class="git-repo-arrow">↗</span></span>
+          </div>
+        </a>
 
         <div class="apps-catalog-grid">
           <!-- Doctor (Android) -->
@@ -1486,21 +1542,20 @@
             </div>
           </a>
         </div>
-      </div>
 
-      <div class="tab-bottom-nav">
-        <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-          Back to Home
-        </a>
-      </div>
-    </section>
+        <div class="tab-bottom-nav">
+          <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back to Home
+          </a>
+        </div>
+      </section>
 
     <!-- ====================================================================
-         5. DOCUMENTATION VIEW
+         6. DOCUMENTATION VIEW
          ==================================================================== -->
     <section class="page-section" id="view-docs">
       <div class="tab-nav-bar">
@@ -1574,7 +1629,7 @@
     </section>
 
     <!-- ====================================================================
-         6. QUICK START VIEW
+         7. QUICK START VIEW
          ==================================================================== -->
     <section class="page-section" id="view-quickstart">
       <div class="tab-nav-bar">
@@ -1650,7 +1705,7 @@
     </section>
 
     <!-- ====================================================================
-         7. ABOUT US VIEW
+         8. ABOUT US VIEW
          ==================================================================== -->
     <section class="page-section" id="view-about">
       <div class="tab-nav-bar">
