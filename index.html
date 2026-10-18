@@ -413,6 +413,62 @@
       background: var(--bg-card-hover);
     }
 
+    /* Editorial Feature Strip — Clean, Non-Boxy, Informational */
+    .feature-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      margin: 28px 0 36px;
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .feature-entry {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .feature-entry-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feature-indicator {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .feature-entry-title {
+      font-size: 1.05rem;
+      font-weight: 750;
+      color: var(--text);
+    }
+
+    .feature-entry-tag {
+      font-size: 0.65rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--bg-hover);
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+    }
+
+    .feature-entry-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
     /* Terminal Box */
     .term-box {
       background: var(--code-bg);
@@ -548,6 +604,15 @@
       background: var(--bg-hover);
       color: var(--text-dim);
       border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .app-role::after {
+      content: "↗";
+      font-size: 0.70rem;
+      opacity: 0.8;
     }
 
     .app-summary {
@@ -827,33 +892,36 @@
         Miquland is a dynamic tiling window manager and compositor for Wayland built with wlroots and SceneFX.
       </p>
 
-      <div class="card-grid">
-        <div class="bento-card">
-          <div class="card-head">
-            <span class="card-title">Dynamic Tiling</span>
-            <span class="card-tag">Layout</span>
+      <div class="feature-strip">
+        <div class="feature-entry">
+          <div class="feature-entry-head">
+            <span class="feature-indicator"></span>
+            <h3 class="feature-entry-title">Dynamic Tiling</h3>
+            <span class="feature-entry-tag">Layout</span>
           </div>
-          <p class="card-desc">
+          <p class="feature-entry-desc">
             Intelligent spiral, stack, and floating layout engines with automatic window splitting and multi-monitor management.
           </p>
         </div>
 
-        <div class="bento-card">
-          <div class="card-head">
-            <span class="card-title">SceneFX Shaders</span>
-            <span class="card-tag">Visuals</span>
+        <div class="feature-entry">
+          <div class="feature-entry-head">
+            <span class="feature-indicator"></span>
+            <h3 class="feature-entry-title">SceneFX Shaders</h3>
+            <span class="feature-entry-tag">Visuals</span>
           </div>
-          <p class="card-desc">
+          <p class="feature-entry-desc">
             Hardware-accelerated window corner rounding, soft drop shadows, and dual-pass Gaussian layer blurs.
           </p>
         </div>
 
-        <div class="bento-card">
-          <div class="card-head">
-            <span class="card-title">IPC Controller</span>
-            <span class="card-tag">miquctl</span>
+        <div class="feature-entry">
+          <div class="feature-entry-head">
+            <span class="feature-indicator"></span>
+            <h3 class="feature-entry-title">IPC Controller</h3>
+            <span class="feature-entry-tag">miquctl</span>
           </div>
-          <p class="card-desc">
+          <p class="feature-entry-desc">
             Dedicated Unix domain socket IPC protocol for dynamic workspace switching, window queries, and runtime reloads.
           </p>
         </div>
@@ -881,33 +949,36 @@
         Miqutoolkit is a shared C++20 declarative UI framework powering all Miqu desktop applications.
       </p>
 
-      <div class="card-grid">
-        <div class="bento-card">
-          <div class="card-head">
-            <span class="card-title">Declarative Layout</span>
-            <span class="card-tag">API</span>
+      <div class="feature-strip">
+        <div class="feature-entry">
+          <div class="feature-entry-head">
+            <span class="feature-indicator"></span>
+            <h3 class="feature-entry-title">Declarative Layout</h3>
+            <span class="feature-entry-tag">API</span>
           </div>
-          <p class="card-desc">
+          <p class="feature-entry-desc">
             Ergonomic container hierarchy inspired by modern declarative patterns (`ViewGroup`, `CardView`, `TextView`).
           </p>
         </div>
 
-        <div class="bento-card">
-          <div class="card-head">
-            <span class="card-title">Vector Rendering</span>
-            <span class="card-tag">Cairo &amp; Pango</span>
+        <div class="feature-entry">
+          <div class="feature-entry-head">
+            <span class="feature-indicator"></span>
+            <h3 class="feature-entry-title">Vector Rendering</h3>
+            <span class="feature-entry-tag">Cairo &amp; Pango</span>
           </div>
-          <p class="card-desc">
+          <p class="feature-entry-desc">
             High-DPI vector rendering, crisp typography, and sub-pixel antialiasing with Wayland shared-memory buffers.
           </p>
         </div>
 
-        <div class="bento-card">
-          <div class="card-head">
-            <span class="card-title">Atomic Live Reload</span>
-            <span class="card-tag">inotify</span>
+        <div class="feature-entry">
+          <div class="feature-entry-head">
+            <span class="feature-indicator"></span>
+            <h3 class="feature-entry-title">Atomic Live Reload</h3>
+            <span class="feature-entry-tag">inotify</span>
           </div>
-          <p class="card-desc">
+          <p class="feature-entry-desc">
             Watches configuration and theme files for immediate zero-restart appearance propagation across running apps.
           </p>
         </div>
@@ -1115,34 +1186,37 @@
         The uniform Two-Tier Single-File Authority model governs configuration across all Miqu components.
       </p>
 
-      <div class="card-grid">
-        <div class="bento-card">
-          <div class="card-head">
-            <span class="card-title">1. System Baseline</span>
-            <span class="card-tag">Tier 1</span>
+      <div class="feature-strip">
+        <div class="feature-entry">
+          <div class="feature-entry-head">
+            <span class="feature-indicator"></span>
+            <h3 class="feature-entry-title">1. System Baseline</h3>
+            <span class="feature-entry-tag">Tier 1</span>
           </div>
-          <p class="card-desc">
+          <p class="feature-entry-desc">
             <code>/usr/share/&lt;app&gt;/&lt;app&gt;.conf</code><br />
             Fully functional out of the box. Zero files are automatically created in <code>~/.config/</code>.
           </p>
         </div>
 
-        <div class="bento-card">
-          <div class="card-head">
-            <span class="card-title">2. Safe Archiving</span>
-            <span class="card-tag">Init</span>
+        <div class="feature-entry">
+          <div class="feature-entry-head">
+            <span class="feature-indicator"></span>
+            <h3 class="feature-entry-title">2. Safe Archiving</h3>
+            <span class="feature-entry-tag">Init</span>
           </div>
-          <p class="card-desc">
+          <p class="feature-entry-desc">
             Running <code>&lt;app&gt; --init-config</code> safely archives any existing config to <code>.bak.&lt;timestamp&gt;</code> before generating a fresh template.
           </p>
         </div>
 
-        <div class="bento-card">
-          <div class="card-head">
-            <span class="card-title">3. User Authority</span>
-            <span class="card-tag">Tier 2</span>
+        <div class="feature-entry">
+          <div class="feature-entry-head">
+            <span class="feature-indicator"></span>
+            <h3 class="feature-entry-title">3. User Authority</h3>
+            <span class="feature-entry-tag">Tier 2</span>
           </div>
-          <p class="card-desc">
+          <p class="feature-entry-desc">
             <code>~/.config/&lt;app&gt;/&lt;app&gt;.conf</code><br />
             Loaded exclusively once it exists. Dynamic themes are included via standard <code>source =</code> lines.
           </p>
@@ -1172,23 +1246,25 @@
         </div>
       </div>
 
-      <div class="card-grid">
-        <div class="bento-card">
-          <div class="card-head">
-            <span class="card-title">Local Test Builds</span>
-            <span class="card-tag">Non-Root</span>
+      <div class="feature-strip">
+        <div class="feature-entry">
+          <div class="feature-entry-head">
+            <span class="feature-indicator"></span>
+            <h3 class="feature-entry-title">Local Test Builds</h3>
+            <span class="feature-entry-tag">Non-Root</span>
           </div>
-          <p class="card-desc">
+          <p class="feature-entry-desc">
             Every component contains an idempotent <code>./make.sh</code> that compiles locally into <code>build/</code> without requiring sudo privileges.
           </p>
         </div>
 
-        <div class="bento-card">
-          <div class="card-head">
-            <span class="card-title">Topological Order</span>
-            <span class="card-tag">Build Order</span>
+        <div class="feature-entry">
+          <div class="feature-entry-head">
+            <span class="feature-indicator"></span>
+            <h3 class="feature-entry-title">Topological Order</h3>
+            <span class="feature-entry-tag">Build Order</span>
           </div>
-          <p class="card-desc">
+          <p class="feature-entry-desc">
             <code>install_all.sh</code> builds in dependency order: 1. miquland &rarr; 2. miqutoolkit &rarr; 3. native application suite.
           </p>
         </div>
@@ -1205,33 +1281,36 @@
         "A fully functional Desktop Environment is the goal, but we are slowly making progress."
       </p>
 
-      <div class="card-grid">
-        <div class="bento-card">
-          <div class="card-head">
-            <span class="card-title">Sovereignty</span>
-            <span class="card-tag">Core Value</span>
+      <div class="feature-strip">
+        <div class="feature-entry">
+          <div class="feature-entry-head">
+            <span class="feature-indicator"></span>
+            <h3 class="feature-entry-title">Sovereignty</h3>
+            <span class="feature-entry-tag">Core Value</span>
           </div>
-          <p class="card-desc">
+          <p class="feature-entry-desc">
             We build and maintain every layer of the stack: the compositor, the UI toolkit, and all native applications. No fragmented third-party compromises.
           </p>
         </div>
 
-        <div class="bento-card">
-          <div class="card-head">
-            <span class="card-title">Modern C++20</span>
-            <span class="card-tag">Craftsmanship</span>
+        <div class="feature-entry">
+          <div class="feature-entry-head">
+            <span class="feature-indicator"></span>
+            <h3 class="feature-entry-title">Modern C++20</h3>
+            <span class="feature-entry-tag">Craftsmanship</span>
           </div>
-          <p class="card-desc">
+          <p class="feature-entry-desc">
             Small, single-responsibility functions, strict RAII lifecycle management, zero sleep synchronization, and zero dead code.
           </p>
         </div>
 
-        <div class="bento-card">
-          <div class="card-head">
-            <span class="card-title">Arch Linux Base</span>
-            <span class="card-tag">Platform</span>
+        <div class="feature-entry">
+          <div class="feature-entry-head">
+            <span class="feature-indicator"></span>
+            <h3 class="feature-entry-title">Arch Linux Base</h3>
+            <span class="feature-entry-tag">Platform</span>
           </div>
-          <p class="card-desc">
+          <p class="feature-entry-desc">
             Targeted and verified on Arch Linux with standard GNU prefixes and deterministic CMake configurations.
           </p>
         </div>
