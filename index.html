@@ -120,6 +120,25 @@
       position: relative;
     }
 
+    /* Ambient Subtle Glow Effect */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+      max-width: 1280px;
+      height: 440px;
+      background: radial-gradient(55% 55% at 50% 0%, rgba(56, 189, 248, 0.08) 0%, rgba(14, 165, 233, 0.02) 60%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    html[data-theme="light"] body::before {
+      background: radial-gradient(55% 55% at 50% 0%, rgba(2, 132, 199, 0.07) 0%, rgba(3, 105, 161, 0.02) 60%, transparent 100%);
+    }
+
     /* ==========================================================================
        Top Navigation Bar
        ========================================================================== */
@@ -132,6 +151,8 @@
       border-bottom: 1px solid var(--border);
       backdrop-filter: var(--glass-blur);
       -webkit-backdrop-filter: var(--glass-blur);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.15);
+      transition: background-color 0.2s ease, border-color 0.2s ease;
     }
 
     .topbar-inner {
@@ -152,24 +173,34 @@
       text-decoration: none;
       color: var(--text);
       cursor: pointer;
+      flex-shrink: 0;
+      transition: opacity 0.18s ease;
+    }
+
+    .topbar-brand:hover {
+      opacity: 0.9;
     }
 
     .topbar-logo {
       width: 32px;
       height: 32px;
       border-radius: 8px;
+      object-fit: contain;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
 
     .topbar-title {
       font-size: 1.25rem;
       font-weight: 800;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
+      white-space: nowrap;
     }
 
     .topbar-right {
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-shrink: 0;
     }
 
     .topbar-nav {
@@ -188,6 +219,7 @@
       transition: all 0.18s ease;
       cursor: pointer;
       border: 1px solid transparent;
+      white-space: nowrap;
     }
 
     .topbar-link:hover {
@@ -223,6 +255,7 @@
       font-size: 0.84rem;
       font-weight: 600;
       transition: all 0.18s ease;
+      flex-shrink: 0;
     }
 
     .theme-toggle-btn:hover {
@@ -242,10 +275,139 @@
       justify-content: center;
       text-decoration: none;
       transition: all 0.18s ease;
+      flex-shrink: 0;
     }
 
     .github-link-btn:hover {
       border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+    }
+
+    /* Mobile Menu Toggle Button */
+    .mobile-menu-toggle {
+      display: none;
+      background: var(--bg-hover);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .mobile-menu-toggle:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+    }
+
+    .mobile-menu-toggle .menu-icon-close {
+      display: none;
+    }
+
+    .topbar.mobile-open .mobile-menu-toggle .menu-icon-bars {
+      display: none;
+    }
+
+    .topbar.mobile-open .mobile-menu-toggle .menu-icon-close {
+      display: block;
+    }
+
+    /* Mobile Drawer Dropdown */
+    .mobile-menu-drawer {
+      display: none;
+      border-top: 1px solid var(--border);
+      background: var(--bg-surface);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.4);
+      animation: slideDownMenu 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .topbar.mobile-open .mobile-menu-drawer {
+      display: block;
+    }
+
+    @keyframes slideDownMenu {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .mobile-drawer-inner {
+      padding: 16px 20px 22px;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    .mobile-drawer-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      font-weight: 750;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.15s ease;
+      margin-bottom: 4px;
+    }
+
+    .mobile-nav-link:hover,
+    .mobile-nav-link.active {
+      background: var(--bg-hover);
+      color: var(--primary);
+    }
+
+    .mobile-drawer-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 14px 0 12px;
+    }
+
+    .mobile-quick-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .mobile-quick-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 12px;
+      background: var(--bg-hover);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 600;
+      transition: all 0.15s ease;
+    }
+
+    .mobile-quick-item:hover {
+      color: var(--primary);
+      border-color: var(--primary);
       background: var(--bg-card-hover);
     }
 
@@ -901,6 +1063,57 @@
     }
 
 
+    /* Hero Status Pill */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: 9999px;
+      background: var(--primary-subtle);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      color: var(--primary);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 18px -4px rgba(56, 189, 248, 0.3);
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 8px var(--primary);
+      animation: pulseDot 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.75); }
+    }
+
+    /* Terminal Window Indicators */
+    .term-dots {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-right: 8px;
+    }
+
+    .term-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #ff5f56; box-shadow: 0 0 4px rgba(255, 95, 86, 0.4); }
+    .dot-yellow { background: #ffbd2e; box-shadow: 0 0 4px rgba(255, 189, 46, 0.4); }
+    .dot-green { background: #27c93f; box-shadow: 0 0 4px rgba(39, 201, 63, 0.4); }
+
     @media (max-width: 860px) {
       .quad-grid {
         grid-template-columns: 1fr;
@@ -917,35 +1130,64 @@
       }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 680px) {
       .topbar-inner {
         padding: 0 16px;
         height: 58px;
       }
       .topbar-title {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
       }
-      .topbar-link {
-        padding: 6px 9px;
-        font-size: 0.82rem;
+      /* Hide desktop nav links and divider on mobile; accessible via mobile menu drawer */
+      .topbar-nav {
+        display: none;
       }
       .topbar-divider {
         display: none;
       }
+      /* Hide text label on theme button so it's a compact icon button */
+      #theme-label {
+        display: none;
+      }
       .theme-toggle-btn {
-        padding: 6px 10px;
-        font-size: 0.80rem;
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        justify-content: center;
+        border-radius: 8px;
       }
       .github-link-btn {
-        width: 34px;
-        height: 34px;
+        width: 36px;
+        height: 36px;
+      }
+      /* Show mobile hamburger toggle button */
+      .mobile-menu-toggle {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .topbar-inner {
+        padding: 0 12px;
+      }
+      .topbar-title {
+        font-size: 1.05rem;
+      }
+      .topbar-right {
+        gap: 6px;
+      }
+      .theme-toggle-btn,
+      .github-link-btn,
+      .mobile-menu-toggle {
+        width: 32px;
+        height: 32px;
       }
     }
   </style>
 </head>
 <body>
   <!-- Top Navigation Bar -->
-  <header class="topbar">
+  <header class="topbar" id="site-topbar">
     <div class="topbar-inner">
       <a href="#home" onclick="switchTab('home')" class="topbar-brand" title="Go to Home">
         <img src="assets/logo.png" alt="Miqu Logo" class="topbar-logo" />
@@ -970,6 +1212,45 @@
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
           </svg>
         </a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg class="menu-icon-bars" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <svg class="menu-icon-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu Dropdown -->
+    <div class="mobile-menu-drawer" id="mobile-drawer">
+      <div class="mobile-drawer-inner">
+        <div class="mobile-drawer-label">Navigation</div>
+        <a href="#home" onclick="switchTab('home')" class="mobile-nav-link" data-tab="home">
+          <span>🏠</span> Home
+        </a>
+        <a href="#docs" onclick="switchTab('docs')" class="mobile-nav-link" data-tab="docs">
+          <span>📖</span> Documentation
+        </a>
+        <a href="#about" onclick="switchTab('about')" class="mobile-nav-link" data-tab="about">
+          <span>ℹ️</span> About Us
+        </a>
+
+        <div class="mobile-drawer-divider"></div>
+
+        <div class="mobile-drawer-label">Ecosystem Components</div>
+        <div class="mobile-quick-grid">
+          <a href="#miquland" onclick="switchTab('miquland')" class="mobile-quick-item">Miquland</a>
+          <a href="#miqutoolkit" onclick="switchTab('miqutoolkit')" class="mobile-quick-item">Miqu Toolkit</a>
+          <a href="#miqu-linux-apps" onclick="switchTab('miqu-linux-apps')" class="mobile-quick-item">Linux Apps</a>
+          <a href="#miqu-android-apps" onclick="switchTab('miqu-android-apps')" class="mobile-quick-item">Android Apps</a>
+        </div>
       </div>
     </div>
   </header>
@@ -980,6 +1261,10 @@
          1. HOME VIEW (Minimal, Calm, Direct)
          ==================================================================== -->
     <section class="page-section active" id="view-home">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span>Sovereign Wayland Desktop Ecosystem</span>
+      </div>
       <h1 class="page-title">High-Performance Wayland Native Computing</h1>
       <p class="page-subtitle">
         A complete, cohesive Linux desktop environment engineered from first principles in modern C++20 for Arch Linux.
@@ -1075,7 +1360,14 @@
       <!-- Quick Install Box -->
       <div class="term-box">
         <div class="term-header">
-          <span class="term-title">bash &mdash; quickstart</span>
+          <div style="display: flex; align-items: center;">
+            <div class="term-dots">
+              <span class="term-dot dot-red"></span>
+              <span class="term-dot dot-yellow"></span>
+              <span class="term-dot dot-green"></span>
+            </div>
+            <span class="term-title">bash &mdash; quickstart</span>
+          </div>
           <button class="term-copy" onclick="copyQuickstart()">Copy</button>
         </div>
         <div class="term-code">
@@ -1851,18 +2143,68 @@
 
   <script>
     // -------------------------------------------------------------
+    // Mobile Navigation Drawer Toggle
+    // -------------------------------------------------------------
+    const siteTopbar = document.getElementById('site-topbar');
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+
+    function toggleMobileMenu() {
+      if (!siteTopbar) return;
+      const isOpen = siteTopbar.classList.toggle('mobile-open');
+      if (mobileMenuBtn) {
+        mobileMenuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+    }
+
+    function closeMobileMenu() {
+      if (!siteTopbar) return;
+      siteTopbar.classList.remove('mobile-open');
+      if (mobileMenuBtn) {
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMobileMenu();
+      });
+    }
+
+    // Close mobile drawer when clicking outside
+    document.addEventListener('click', (e) => {
+      if (siteTopbar && siteTopbar.classList.contains('mobile-open')) {
+        if (!siteTopbar.contains(e.target)) {
+          closeMobileMenu();
+        }
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMobileMenu();
+      }
+    });
+
+    // -------------------------------------------------------------
     // Tab Switching Logic
     // -------------------------------------------------------------
     function switchTab(tabId) {
       document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
       document.querySelectorAll('.topbar-link').forEach(link => link.classList.remove('active'));
+      document.querySelectorAll('.mobile-nav-link').forEach(link => link.classList.remove('active'));
 
       const targetSec = document.getElementById(`view-${tabId}`);
       const targetLink = document.querySelector(`.topbar-link[data-tab="${tabId}"]`);
+      const targetMobileLink = document.querySelector(`.mobile-nav-link[data-tab="${tabId}"]`);
 
       if (targetSec) targetSec.classList.add('active');
       if (targetLink) targetLink.classList.add('active');
+      if (targetMobileLink) targetMobileLink.classList.add('active');
 
+      closeMobileMenu();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
