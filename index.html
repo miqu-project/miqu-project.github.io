@@ -359,23 +359,8 @@
       font-size: 0.96rem;
       color: var(--text-muted);
       line-height: 1.62;
-      margin-bottom: 24px;
+      margin-bottom: 0;
       flex: 1;
-    }
-
-    .quad-footer-hint {
-      font-size: 0.86rem;
-      font-weight: 650;
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      opacity: 0.88;
-      transition: opacity 0.2s ease;
-    }
-
-    .quad-card:hover .quad-footer-hint {
-      opacity: 1;
     }
 
     .page-section {
@@ -605,70 +590,52 @@
       transform: translateX(4px);
     }
 
-    /* Boxy Interactive Git Repo Card */
-    .git-repo-card {
+    /* Subtle Parent Git Link below headings */
+    .subtle-git-link {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      padding: 10px 16px;
+      gap: 8px;
+      padding: 6px 12px;
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius-sm);
       text-decoration: none;
-      color: var(--text);
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 550;
+      margin-top: 4px;
       margin-bottom: 24px;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      width: fit-content;
     }
 
-    .git-repo-card:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--primary);
+    .subtle-git-link:hover {
       color: var(--primary);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+      border-color: var(--primary);
+      background: var(--bg-card-hover);
+      transform: translateY(-1px);
     }
 
-    .git-repo-card .git-icon {
-      width: 20px;
-      height: 20px;
+    .subtle-git-link .subtle-git-icon {
+      width: 14px;
+      height: 14px;
       fill: currentColor;
       flex-shrink: 0;
-      opacity: 0.9;
+      opacity: 0.85;
     }
 
-    .git-repo-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-    }
-
-    .git-repo-label {
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      color: var(--text-dim);
-    }
-
-    .git-repo-name {
-      font-size: 0.88rem;
-      font-family: var(--font-mono);
-      font-weight: 650;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .git-repo-arrow {
+    .subtle-git-link .subtle-git-arrow {
       font-family: var(--font-sans);
-      font-size: 0.82rem;
+      font-size: 0.80rem;
+      opacity: 0.7;
       transition: transform 0.18s ease;
     }
 
-    .git-repo-card:hover .git-repo-arrow {
+    .subtle-git-link:hover .subtle-git-arrow {
       transform: translate(2px, -2px);
+      opacity: 1;
     }
 
     .ecosystem-section {
@@ -892,20 +859,39 @@
       font-size: 0.65rem;
       font-weight: 700;
       text-transform: uppercase;
-      padding: 2px 6px;
+      padding: 2px 7px;
       border-radius: 4px;
       background: var(--bg-hover);
       color: var(--text-dim);
       border: 1px solid var(--border);
       display: inline-flex;
       align-items: center;
-      gap: 3px;
+      gap: 4px;
+      transition: all 0.18s ease;
+    }
+
+    .app-role::before {
+      content: "";
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+      background-color: currentColor;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z'/%3E%3C/svg%3E") no-repeat center / contain;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z'/%3E%3C/svg%3E") no-repeat center / contain;
+      flex-shrink: 0;
+      opacity: 0.85;
     }
 
     .app-role::after {
       content: "↗";
       font-size: 0.70rem;
       opacity: 0.8;
+    }
+
+    .app-item:hover .app-role {
+      color: var(--primary);
+      border-color: var(--primary);
+      background: var(--primary-subtle);
     }
 
     .app-summary {
@@ -1020,7 +1006,6 @@
           <p class="quad-summary">
             Dynamic tiling window manager and compositor built on wlroots and SceneFX. Features GPU-accelerated corner rounding, dual-pass Gaussian blurs, and miquctl IPC dispatch.
           </p>
-          <div class="quad-footer-hint">View architecture &amp; shaders &rarr;</div>
         </div>
 
         <!-- Box 2: Miqutoolkit -->
@@ -1042,7 +1027,6 @@
           <p class="quad-summary">
             Shared C++20 declarative UI framework powering all desktop apps. Delivers vector rendering with Cairo/Pango, ViewGroup tree layouts, and atomic dynamic theming.
           </p>
-          <div class="quad-footer-hint">View declarative framework &rarr;</div>
         </div>
 
         <!-- Box 3: Miqu Linux Apps -->
@@ -1065,7 +1049,6 @@
           <p class="quad-summary">
             A cohesive suite of 16 native Wayland desktop tools including status bar, app launcher, firewall command center, audio player, display manager, and greeter.
           </p>
-          <div class="quad-footer-hint">Explore the 16 desktop applications &rarr;</div>
         </div>
 
         <!-- Box 4: Miqu Android Apps -->
@@ -1086,7 +1069,6 @@
           <p class="quad-summary">
             Native mobile companion applications built for clinical workflow diagnostics and focused, distraction-free Quran recitation and study tools.
           </p>
-          <div class="quad-footer-hint">Explore mobile companion tools &rarr;</div>
         </div>
       </div>
 
@@ -1124,6 +1106,14 @@
       <p class="page-subtitle">
         Miquland is a dynamic tiling window manager and compositor for Wayland built with wlroots and SceneFX.
       </p>
+
+      <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener" class="subtle-git-link">
+        <svg class="subtle-git-icon" viewBox="0 0 24 24">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <span>github.com/miqu-project/miquland</span>
+        <span class="subtle-git-arrow">↗</span>
+      </a>
 
       <div class="feature-article">
         <div class="feature-block">
@@ -1167,17 +1157,6 @@
         </div>
       </div>
 
-      <!-- End of Section: GitHub Source Repository -->
-      <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener" class="git-repo-card">
-        <svg class="git-icon" viewBox="0 0 24 24">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-        </svg>
-        <div class="git-repo-meta">
-          <span class="git-repo-label">Source Repository</span>
-          <span class="git-repo-name">github.com/miqu-project/miquland <span class="git-repo-arrow">↗</span></span>
-        </div>
-      </a>
-
       <div class="tab-bottom-nav">
         <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1209,6 +1188,14 @@
       <p class="page-subtitle">
         Miqutoolkit is a shared C++20 declarative UI framework powering all Miqu desktop applications.
       </p>
+
+      <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener" class="subtle-git-link">
+        <svg class="subtle-git-icon" viewBox="0 0 24 24">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <span>github.com/miqu-project/miqutoolkit</span>
+        <span class="subtle-git-arrow">↗</span>
+      </a>
 
       <div class="feature-article">
         <div class="feature-block">
@@ -1254,17 +1241,6 @@
         </div>
       </div>
 
-      <!-- End of Section: GitHub Source Repository -->
-      <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener" class="git-repo-card">
-        <svg class="git-icon" viewBox="0 0 24 24">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-        </svg>
-        <div class="git-repo-meta">
-          <span class="git-repo-label">Source Repository</span>
-          <span class="git-repo-name">github.com/miqu-project/miqutoolkit <span class="git-repo-arrow">↗</span></span>
-        </div>
-      </a>
-
       <div class="tab-bottom-nav">
         <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1296,6 +1272,14 @@
       <p class="page-subtitle">
         A unified application suite of 16 native Wayland desktop tools engineered in modern C++20.
       </p>
+
+      <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener" class="subtle-git-link">
+        <svg class="subtle-git-icon" viewBox="0 0 24 24">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <span>github.com/miqu-project/miqu-linux-apps</span>
+        <span class="subtle-git-arrow">↗</span>
+      </a>
 
       <div class="feature-article" style="margin-bottom: 32px;">
         <div class="feature-block">
@@ -1557,17 +1541,6 @@
           </a>
         </div>
 
-        <!-- End of Section: Parent GitHub Source Repository -->
-        <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener" class="git-repo-card">
-          <svg class="git-icon" viewBox="0 0 24 24">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-          </svg>
-          <div class="git-repo-meta">
-            <span class="git-repo-label">Source Repository</span>
-            <span class="git-repo-name">github.com/miqu-project/miqu-linux-apps <span class="git-repo-arrow">↗</span></span>
-          </div>
-        </a>
-
         <div class="tab-bottom-nav">
           <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1599,6 +1572,14 @@
         <p class="page-subtitle">
           Mobile companion applications and clinical/study tools for Android.
         </p>
+
+        <a href="https://github.com/miqu-project/miqu-android" target="_blank" rel="noopener" class="subtle-git-link">
+          <svg class="subtle-git-icon" viewBox="0 0 24 24">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span>github.com/miqu-project/miqu-android</span>
+          <span class="subtle-git-arrow">↗</span>
+        </a>
 
         <div class="feature-article" style="margin-bottom: 32px;">
           <div class="feature-block">
@@ -1638,17 +1619,6 @@
           </a>
         </div>
 
-        <!-- End of Section: Parent GitHub Source Repository -->
-        <a href="https://github.com/miqu-project/miqu-android" target="_blank" rel="noopener" class="git-repo-card">
-          <svg class="git-icon" viewBox="0 0 24 24">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-          </svg>
-          <div class="git-repo-meta">
-            <span class="git-repo-label">Source Repository</span>
-            <span class="git-repo-name">github.com/miqu-project/miqu-android <span class="git-repo-arrow">↗</span></span>
-          </div>
-        </a>
-
         <div class="tab-bottom-nav">
           <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1680,6 +1650,14 @@
       <p class="page-subtitle">
         The uniform Two-Tier Single-File Authority model governs configuration across all Miqu components.
       </p>
+
+      <a href="https://github.com/miqu-project/miqu-project/blob/main/AGENTS.md" target="_blank" rel="noopener" class="subtle-git-link">
+        <svg class="subtle-git-icon" viewBox="0 0 24 24">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <span>AGENTS.md on GitHub</span>
+        <span class="subtle-git-arrow">↗</span>
+      </a>
 
       <div class="feature-article">
         <div class="feature-block">
@@ -1713,17 +1691,6 @@
         </div>
       </div>
 
-      <!-- End of Section: Architecture Contract GitHub Link -->
-      <a href="https://github.com/miqu-project/miqu-project/blob/main/AGENTS.md" target="_blank" rel="noopener" class="git-repo-card">
-        <svg class="git-icon" viewBox="0 0 24 24">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-        </svg>
-        <div class="git-repo-meta">
-          <span class="git-repo-label">Architecture Contract</span>
-          <span class="git-repo-name">AGENTS.md on GitHub <span class="git-repo-arrow">↗</span></span>
-        </div>
-      </a>
-
       <div class="tab-bottom-nav">
         <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1755,6 +1722,14 @@
       <p class="page-subtitle">
         Building and installing the Miqu desktop environment on Arch Linux.
       </p>
+
+      <a href="https://github.com/miqu-project/miqu-project" target="_blank" rel="noopener" class="subtle-git-link">
+        <svg class="subtle-git-icon" viewBox="0 0 24 24">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <span>github.com/miqu-project/miqu-project</span>
+        <span class="subtle-git-arrow">↗</span>
+      </a>
 
       <div class="term-box">
         <div class="term-header">
@@ -1790,16 +1765,6 @@
         </div>
       </div>
 
-      <a href="https://github.com/miqu-project/miqu-project" target="_blank" rel="noopener" class="git-repo-card">
-        <svg class="git-icon" viewBox="0 0 24 24">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-        </svg>
-        <div class="git-repo-meta">
-          <span class="git-repo-label">Master Repository</span>
-          <span class="git-repo-name">github.com/miqu-project/miqu-project <span class="git-repo-arrow">↗</span></span>
-        </div>
-      </a>
-
       <div class="tab-bottom-nav">
         <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1832,6 +1797,14 @@
         "A fully functional Desktop Environment is the goal, but we are slowly making progress."
       </p>
 
+      <a href="https://github.com/miqu-project" target="_blank" rel="noopener" class="subtle-git-link">
+        <svg class="subtle-git-icon" viewBox="0 0 24 24">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <span>github.com/miqu-project</span>
+        <span class="subtle-git-arrow">↗</span>
+      </a>
+
       <div class="feature-article">
         <div class="feature-block">
           <h3 class="feature-headline">
@@ -1863,16 +1836,6 @@
           </p>
         </div>
       </div>
-
-      <a href="https://github.com/miqu-project" target="_blank" rel="noopener" class="git-repo-card">
-        <svg class="git-icon" viewBox="0 0 24 24">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-        </svg>
-        <div class="git-repo-meta">
-          <span class="git-repo-label">GitHub Organization</span>
-          <span class="git-repo-name">github.com/miqu-project <span class="git-repo-arrow">↗</span></span>
-        </div>
-      </a>
 
       <div class="tab-bottom-nav">
         <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
