@@ -120,113 +120,105 @@
     }
 
     /* ==========================================================================
-       Sidebar
+       Top Navigation Bar
        ========================================================================== */
-    .sidebar {
-      width: var(--sidebar-width);
-      flex-shrink: 0;
-      height: 100vh;
+    .topbar {
       position: sticky;
       top: 0;
-      border-right: 1px solid var(--border);
+      z-index: 100;
       background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
       backdrop-filter: var(--glass-blur);
       -webkit-backdrop-filter: var(--glass-blur);
-      padding: 28px 18px 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      z-index: 100;
     }
 
-    .brand {
+    .topbar-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .topbar-brand {
       display: flex;
       align-items: center;
       gap: 12px;
       text-decoration: none;
-      color: inherit;
-      padding: 0 10px 24px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 20px;
+      color: var(--text);
+      cursor: pointer;
     }
 
-    .brand-logo {
+    .topbar-logo {
       width: 32px;
       height: 32px;
       border-radius: 8px;
     }
 
-    .brand-title {
+    .topbar-title {
       font-size: 1.25rem;
       font-weight: 800;
       letter-spacing: -0.02em;
     }
 
-    .nav-list {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      list-style: none;
-    }
-
-    .nav-item-btn {
-      width: 100%;
+    .topbar-right {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 10px 14px;
-      border-radius: 10px;
-      border: 1px solid transparent;
-      background: transparent;
-      color: var(--text-muted);
-      font-size: 0.92rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-align: left;
-      transition: all 0.18s ease;
-      text-decoration: none;
+      gap: 10px;
     }
 
-    .nav-item-btn:hover {
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .topbar-link {
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.90rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.18s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .topbar-link:hover {
       color: var(--text);
       background: var(--bg-hover);
     }
 
-    .nav-item-btn.active {
+    .topbar-link.active {
       color: var(--text);
       background: var(--bg-hover);
       border-color: var(--border-hover);
       font-weight: 650;
     }
 
-    .nav-icon {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-      opacity: 0.85;
+    .topbar-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--border);
+      margin: 0 4px;
     }
 
-    .sidebar-footer {
-      border-top: 1px solid var(--border);
-      padding-top: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    /* Simple Sun/Moon Toggle Button */
+    /* Simple Sun/Moon/Auto Toggle Button */
     .theme-toggle-btn {
       background: var(--bg-hover);
       border: 1px solid var(--border);
       color: var(--text);
       cursor: pointer;
-      padding: 8px 14px;
+      padding: 7px 12px;
       border-radius: 8px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 0.85rem;
+      gap: 7px;
+      font-size: 0.84rem;
       font-weight: 600;
       transition: all 0.18s ease;
     }
@@ -240,8 +232,8 @@
       background: var(--bg-hover);
       border: 1px solid var(--border);
       color: var(--text);
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 8px;
       display: flex;
       align-items: center;
@@ -259,11 +251,129 @@
        Main Content Viewport
        ========================================================================== */
     .viewport {
-      flex: 1;
-      min-width: 0;
-      padding: 48px 56px 80px;
-      max-width: 1120px;
+      width: 100%;
+      max-width: 1140px;
       margin: 0 auto;
+      padding: 44px 24px 80px;
+      flex: 1;
+    }
+
+    /* ==========================================================================
+       Home 2x2 Bento Quad Cards
+       ========================================================================== */
+    .quad-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin: 36px 0 44px;
+    }
+
+    .quad-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 30px;
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+      position: relative;
+      user-select: none;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .quad-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+      background: var(--bg-card-hover);
+      box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.35);
+    }
+
+    html[data-theme="light"] .quad-card:hover {
+      box-shadow: 0 16px 36px -12px rgba(2, 132, 199, 0.15);
+    }
+
+    .quad-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .quad-icon-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--primary-subtle);
+      color: var(--primary);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quad-header-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .quad-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--bg-hover);
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+    }
+
+    .quad-arrow {
+      font-size: 1.25rem;
+      color: var(--text-dim);
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .quad-card:hover .quad-arrow {
+      transform: translateX(5px);
+      color: var(--primary);
+    }
+
+    .quad-title {
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .quad-summary {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+      line-height: 1.62;
+      margin-bottom: 24px;
+      flex: 1;
+    }
+
+    .quad-footer-hint {
+      font-size: 0.86rem;
+      font-weight: 650;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.88;
+      transition: opacity 0.2s ease;
+    }
+
+    .quad-card:hover .quad-footer-hint {
+      opacity: 1;
     }
 
     .page-section {
@@ -802,175 +912,81 @@
       line-height: 1.45;
     }
 
-    /* Mobile Hamburger */
-    .mobile-topbar {
-      display: none;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 20px;
-      background: var(--bg-card);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 101;
-      backdrop-filter: var(--glass-blur);
-    }
 
-    .mobile-menu-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 6px 10px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    @media (max-width: 900px) {
-      body {
-        flex-direction: column;
+    @media (max-width: 860px) {
+      .quad-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
       }
-      .mobile-topbar {
-        display: flex;
-      }
-      .sidebar {
-        display: none;
-        position: fixed;
-        top: 54px;
-        left: 0;
-        width: 100%;
-        height: calc(100vh - 54px);
-      }
-      .sidebar.open {
-        display: flex;
+      .quad-card {
+        padding: 26px 22px;
       }
       .viewport {
-        padding: 28px 20px 60px;
+        padding: 28px 18px 60px;
       }
       .page-title {
-        font-size: 1.85rem;
+        font-size: 1.9rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar-inner {
+        padding: 0 16px;
+        height: 58px;
+      }
+      .topbar-title {
+        font-size: 1.1rem;
+      }
+      .topbar-link {
+        padding: 6px 9px;
+        font-size: 0.82rem;
+      }
+      .topbar-divider {
+        display: none;
+      }
+      .theme-toggle-btn {
+        padding: 6px 10px;
+        font-size: 0.80rem;
+      }
+      .github-link-btn {
+        width: 34px;
+        height: 34px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Mobile Topbar -->
-  <div class="mobile-topbar">
-    <div style="display: flex; align-items: center; gap: 10px; cursor: pointer;" onclick="switchTab('home')" title="Go to Home">
-      <img src="assets/logo.png" alt="Miqu Logo" style="width: 24px; height: 24px;" />
-      <span style="font-weight: 800;">Miqu Project</span>
-    </div>
-    <button class="mobile-menu-btn" id="mobile-toggle" aria-label="Toggle menu">Menu</button>
-  </div>
-
-  <!-- Left Sidebar -->
-  <aside class="sidebar" id="sidebar">
-    <div>
-      <a href="#home" class="brand" onclick="switchTab('home')" title="Go to Home">
-        <img src="assets/logo.png" alt="Miqu Logo" class="brand-logo" />
-        <span class="brand-title">Miqu Project</span>
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="#home" onclick="switchTab('home')" class="topbar-brand" title="Go to Home">
+        <img src="assets/logo.png" alt="Miqu Logo" class="topbar-logo" />
+        <span class="topbar-title">Miqu Project</span>
       </a>
 
-      <nav>
-        <ul class="nav-list">
-          <li>
-            <a href="#home" class="nav-item-btn active" data-tab="home">
-              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-              </svg>
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="#miquland" class="nav-item-btn" data-tab="miquland">
-              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="3" width="20" height="14" rx="2"></rect>
-                <line x1="8" y1="21" x2="16" y2="21"></line>
-                <line x1="12" y1="17" x2="12" y2="21"></line>
-              </svg>
-              Miquland
-            </a>
-          </li>
-          <li>
-            <a href="#miqutoolkit" class="nav-item-btn" data-tab="miqutoolkit">
-              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                <polyline points="2 17 12 22 22 17"></polyline>
-                <polyline points="2 12 12 17 22 12"></polyline>
-              </svg>
-              Miqutoolkit
-            </a>
-          </li>
-          <li>
-            <a href="#linux-apps" class="nav-item-btn" data-tab="linux-apps">
-              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="3" width="7" height="7"></rect>
-                <rect x="14" y="3" width="7" height="7"></rect>
-                <rect x="14" y="14" width="7" height="7"></rect>
-                <rect x="3" y="14" width="7" height="7"></rect>
-              </svg>
-              Miqu Linux Apps
-            </a>
-          </li>
-          <li>
-            <a href="#android-apps" class="nav-item-btn" data-tab="android-apps">
-              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-                <line x1="12" y1="18" x2="12.01" y2="18"></line>
-              </svg>
-              Miqu Android Apps
-            </a>
-          </li>
-          <li>
-            <a href="#docs" class="nav-item-btn" data-tab="docs">
-              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                <polyline points="14 2 14 8 20 8"></polyline>
-                <line x1="16" y1="13" x2="8" y2="13"></line>
-                <line x1="16" y1="17" x2="8" y2="17"></line>
-              </svg>
-              Documentation
-            </a>
-          </li>
-          <li>
-            <a href="#quickstart" class="nav-item-btn" data-tab="quickstart">
-              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="4 17 10 11 4 5"></polyline>
-                <line x1="12" y1="19" x2="20" y2="19"></line>
-              </svg>
-              Quick Start
-            </a>
-          </li>
-          <li>
-            <a href="#about" class="nav-item-btn" data-tab="about">
-              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="16" x2="12" y2="12"></line>
-                <line x1="12" y1="8" x2="12.01" y2="8"></line>
-              </svg>
-              About Us
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <div class="topbar-right">
+        <nav class="topbar-nav">
+          <a href="#docs" onclick="switchTab('docs')" class="topbar-link" data-tab="docs">Documentation</a>
+          <a href="#about" onclick="switchTab('about')" class="topbar-link" data-tab="about">About Us</a>
+        </nav>
+
+        <div class="topbar-divider"></div>
+
+        <button class="theme-toggle-btn" id="theme-toggle" title="Theme: Auto (System)">
+          <span id="theme-icon">💻</span>
+          <span id="theme-label">Auto</span>
+        </button>
+
+        <a href="https://github.com/miqu-project" target="_blank" rel="noopener" class="github-link-btn" title="GitHub (miqu-project)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
     </div>
+  </header>
 
-    <div class="sidebar-footer">
-      <!-- Theme Mode Toggle Button (Auto / Light / Dark) -->
-      <button class="theme-toggle-btn" id="theme-toggle" title="Theme: Auto (System)">
-        <span id="theme-icon">💻</span>
-        <span id="theme-label">Auto</span>
-      </button>
-
-      <a href="https://github.com/miqu-project" target="_blank" rel="noopener" class="github-link-btn" title="GitHub">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-        </svg>
-      </a>
-    </div>
-  </aside>
-
-  <!-- Viewport Content Area -->
+  <!-- Main Viewport -->
   <main class="viewport">
     <!-- ====================================================================
          1. HOME VIEW (Minimal, Calm, Direct)
@@ -981,70 +997,94 @@
         A complete, cohesive Linux desktop environment engineered from first principles in modern C++20 for Arch Linux.
       </p>
 
-      <!-- Clean 3 Pillars as Paragraphs -->
-      <div class="feature-article">
-        <div class="feature-block">
-          <h3 class="feature-headline">
-            Miquland
-            <span class="feature-headline-tag">Compositor</span>
-          </h3>
-          <p class="feature-paragraph">
-            Dynamic tiling window manager built with wlroots and SceneFX. Features spiral layouts, live corner rounding, drop shadows, and dual-pass Gaussian blurs.
-          </p>
-          <div class="feature-links-bar">
-            <a href="#miquland" onclick="switchTab('miquland')" class="inline-nav-btn">
-              <span>Explore Miquland</span>
-              <span class="nav-arrow">&rarr;</span>
-            </a>
+      <!-- Big 4 Bento Boxes (2x2) -->
+      <div class="quad-grid">
+        <!-- Box 1: Miquland -->
+        <div class="quad-card" onclick="switchTab('miquland')" tabindex="0" role="button" aria-label="Explore Miquland">
+          <div class="quad-card-header">
+            <div class="quad-icon-badge">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <div class="quad-header-meta">
+              <span class="quad-tag">Compositor</span>
+              <span class="quad-arrow">&rarr;</span>
+            </div>
           </div>
+          <h2 class="quad-title">Miquland</h2>
+          <p class="quad-summary">
+            Dynamic tiling window manager and compositor built on wlroots and SceneFX. Features GPU-accelerated corner rounding, dual-pass Gaussian blurs, and miquctl IPC dispatch.
+          </p>
+          <div class="quad-footer-hint">View architecture &amp; shaders &rarr;</div>
         </div>
 
-        <div class="feature-block">
-          <h3 class="feature-headline">
-            Miqutoolkit
-            <span class="feature-headline-tag">UI Framework</span>
-          </h3>
-          <p class="feature-paragraph">
-            Shared C++20 declarative UI framework powering all desktop apps with Cairo/Pango vector rendering, ViewGroup layouts, and atomic live reload.
-          </p>
-          <div class="feature-links-bar">
-            <a href="#miqutoolkit" onclick="switchTab('miqutoolkit')" class="inline-nav-btn">
-              <span>Explore Toolkit</span>
-              <span class="nav-arrow">&rarr;</span>
-            </a>
+        <!-- Box 2: Miqutoolkit -->
+        <div class="quad-card" onclick="switchTab('miqutoolkit')" tabindex="0" role="button" aria-label="Explore Miqutoolkit">
+          <div class="quad-card-header">
+            <div class="quad-icon-badge">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <div class="quad-header-meta">
+              <span class="quad-tag">UI Framework</span>
+              <span class="quad-arrow">&rarr;</span>
+            </div>
           </div>
+          <h2 class="quad-title">Miqutoolkit</h2>
+          <p class="quad-summary">
+            Shared C++20 declarative UI framework powering all desktop apps. Delivers vector rendering with Cairo/Pango, ViewGroup tree layouts, and atomic dynamic theming.
+          </p>
+          <div class="quad-footer-hint">View declarative framework &rarr;</div>
         </div>
 
-        <div class="feature-block">
-          <h3 class="feature-headline">
-            Miqu Linux Apps
-            <span class="feature-headline-tag">Desktop Applications</span>
-          </h3>
-          <p class="feature-paragraph">
-            A unified suite of 16 native Wayland desktop applications engineered in modern C++20 with miqutoolkit, including status bar, app launcher, audio player, firewall center, display manager, and greeter.
-          </p>
-          <div class="feature-links-bar">
-            <a href="#linux-apps" onclick="switchTab('linux-apps')" class="inline-nav-btn">
-              <span>Explore Linux Apps</span>
-              <span class="nav-arrow">&rarr;</span>
-            </a>
+        <!-- Box 3: Miqu Linux Apps -->
+        <div class="quad-card" onclick="switchTab('linux-apps')" tabindex="0" role="button" aria-label="Explore Miqu Linux Apps">
+          <div class="quad-card-header">
+            <div class="quad-icon-badge">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+            </div>
+            <div class="quad-header-meta">
+              <span class="quad-tag">16 Applications</span>
+              <span class="quad-arrow">&rarr;</span>
+            </div>
           </div>
+          <h2 class="quad-title">Miqu Linux Apps</h2>
+          <p class="quad-summary">
+            A cohesive suite of 16 native Wayland desktop tools including status bar, app launcher, firewall command center, audio player, display manager, and greeter.
+          </p>
+          <div class="quad-footer-hint">Explore the 16 desktop applications &rarr;</div>
         </div>
 
-        <div class="feature-block">
-          <h3 class="feature-headline">
-            Miqu Android Apps
-            <span class="feature-headline-tag">Mobile Companions</span>
-          </h3>
-          <p class="feature-paragraph">
-            Native Android mobile companion tools built for clinical workflows, medical diagnostics, and focused Quran recitation and study.
-          </p>
-          <div class="feature-links-bar">
-            <a href="#android-apps" onclick="switchTab('android-apps')" class="inline-nav-btn">
-              <span>Explore Android Apps</span>
-              <span class="nav-arrow">&rarr;</span>
-            </a>
+        <!-- Box 4: Miqu Android Apps -->
+        <div class="quad-card" onclick="switchTab('android-apps')" tabindex="0" role="button" aria-label="Explore Miqu Android Apps">
+          <div class="quad-card-header">
+            <div class="quad-icon-badge">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+              </svg>
+            </div>
+            <div class="quad-header-meta">
+              <span class="quad-tag">Mobile Suite</span>
+              <span class="quad-arrow">&rarr;</span>
+            </div>
           </div>
+          <h2 class="quad-title">Miqu Android Apps</h2>
+          <p class="quad-summary">
+            Native mobile companion applications built for clinical workflow diagnostics and focused, distraction-free Quran recitation and study tools.
+          </p>
+          <div class="quad-footer-hint">Explore mobile companion tools &rarr;</div>
         </div>
       </div>
 
@@ -1083,16 +1123,6 @@
         Miquland is a dynamic tiling window manager and compositor for Wayland built with wlroots and SceneFX.
       </p>
 
-      <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener" class="git-repo-card">
-        <svg class="git-icon" viewBox="0 0 24 24">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-        </svg>
-        <div class="git-repo-meta">
-          <span class="git-repo-label">Source Repository</span>
-          <span class="git-repo-name">github.com/miqu-project/miquland <span class="git-repo-arrow">↗</span></span>
-        </div>
-      </a>
-
       <div class="feature-article">
         <div class="feature-block">
           <h3 class="feature-headline">
@@ -1123,18 +1153,28 @@
             Compositor state, workspace transitions, and window dispatching can be queried and controlled programmatically over a dedicated Unix domain socket using <code>miquctl</code>.
           </p>
         </div>
+
+        <div class="feature-block">
+          <h3 class="feature-headline">
+            Plugin Architecture v2.0
+            <span class="feature-headline-tag">Extensibility</span>
+          </h3>
+          <p class="feature-paragraph">
+            Extend compositor capabilities dynamically with native C++ shared library plugins without rebuilding the core. Supports custom tiling layout engines, multi-finger gesture handlers, and workspace switch hooks.
+          </p>
+        </div>
       </div>
 
-      <div class="term-box">
-        <div class="term-header">
-          <span class="term-title">source repository</span>
-          <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener" style="color: var(--primary); font-size: 0.76rem; text-decoration: none; font-weight: 600;">github.com/miqu-project/miquland &rarr;</a>
+      <!-- End of Section: GitHub Source Repository -->
+      <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener" class="git-repo-card">
+        <svg class="git-icon" viewBox="0 0 24 24">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <div class="git-repo-meta">
+          <span class="git-repo-label">Source Repository</span>
+          <span class="git-repo-name">github.com/miqu-project/miquland <span class="git-repo-arrow">↗</span></span>
         </div>
-        <div class="term-code">
-          <div><span class="prompt">Languages:</span> C++20, C</div>
-          <div><span class="prompt">Core Protocols:</span> wlr-layer-shell-v1, ext-session-lock-v1, ext-idle-notify-v1</div>
-        </div>
-      </div>
+      </a>
 
       <div class="tab-bottom-nav">
         <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
@@ -1167,16 +1207,6 @@
       <p class="page-subtitle">
         Miqutoolkit is a shared C++20 declarative UI framework powering all Miqu desktop applications.
       </p>
-
-      <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener" class="git-repo-card">
-        <svg class="git-icon" viewBox="0 0 24 24">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-        </svg>
-        <div class="git-repo-meta">
-          <span class="git-repo-label">Source Repository</span>
-          <span class="git-repo-name">github.com/miqu-project/miqutoolkit <span class="git-repo-arrow">↗</span></span>
-        </div>
-      </a>
 
       <div class="feature-article">
         <div class="feature-block">
@@ -1222,6 +1252,17 @@
         </div>
       </div>
 
+      <!-- End of Section: GitHub Source Repository -->
+      <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener" class="git-repo-card">
+        <svg class="git-icon" viewBox="0 0 24 24">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <div class="git-repo-meta">
+          <span class="git-repo-label">Source Repository</span>
+          <span class="git-repo-name">github.com/miqu-project/miqutoolkit <span class="git-repo-arrow">↗</span></span>
+        </div>
+      </a>
+
       <div class="tab-bottom-nav">
         <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1254,15 +1295,17 @@
         A unified application suite of 16 native Wayland desktop tools engineered in modern C++20.
       </p>
 
-      <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener" class="git-repo-card">
-        <svg class="git-icon" viewBox="0 0 24 24">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-        </svg>
-        <div class="git-repo-meta">
-          <span class="git-repo-label">Source Repository</span>
-          <span class="git-repo-name">github.com/miqu-project/miqu-linux-apps <span class="git-repo-arrow">↗</span></span>
+      <div class="feature-article" style="margin-bottom: 32px;">
+        <div class="feature-block">
+          <h3 class="feature-headline">
+            Cohesive Desktop Suite Architecture
+            <span class="feature-headline-tag">Wayland Native</span>
+          </h3>
+          <p class="feature-paragraph">
+            The MiquLinux desktop suite is engineered as an interconnected family of 16 purpose-built Wayland utilities. All tools share the same declarative UI foundation via <code>miqutoolkit</code>, enforcing strict layer boundaries, standard CMake build contracts, and zero hidden appearance fallbacks.
+          </p>
         </div>
-      </a>
+      </div>
 
       <div class="apps-catalog-grid">
           <!-- MiquBar -->
@@ -1512,6 +1555,17 @@
           </a>
         </div>
 
+        <!-- End of Section: Parent GitHub Source Repository -->
+        <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener" class="git-repo-card">
+          <svg class="git-icon" viewBox="0 0 24 24">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <div class="git-repo-meta">
+            <span class="git-repo-label">Source Repository</span>
+            <span class="git-repo-name">github.com/miqu-project/miqu-linux-apps <span class="git-repo-arrow">↗</span></span>
+          </div>
+        </a>
+
         <div class="tab-bottom-nav">
           <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1544,15 +1598,17 @@
           Mobile companion applications and clinical/study tools for Android.
         </p>
 
-        <a href="https://github.com/miqu-project/miqu-android" target="_blank" rel="noopener" class="git-repo-card">
-          <svg class="git-icon" viewBox="0 0 24 24">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-          </svg>
-          <div class="git-repo-meta">
-            <span class="git-repo-label">Source Repository</span>
-            <span class="git-repo-name">github.com/miqu-project/miqu-android <span class="git-repo-arrow">↗</span></span>
+        <div class="feature-article" style="margin-bottom: 32px;">
+          <div class="feature-block">
+            <h3 class="feature-headline">
+              Specialized Mobile Utility Architecture
+              <span class="feature-headline-tag">Mobile Companions</span>
+            </h3>
+            <p class="feature-paragraph">
+              The MiquAndroid repository delivers dedicated, distraction-free mobile companion tools built for high-focus use cases, ranging from medical diagnostic guidelines to focused Quran recitation study.
+            </p>
           </div>
-        </a>
+        </div>
 
         <div class="apps-catalog-grid">
           <!-- Doctor (Android) -->
@@ -1579,6 +1635,17 @@
             </div>
           </a>
         </div>
+
+        <!-- End of Section: Parent GitHub Source Repository -->
+        <a href="https://github.com/miqu-project/miqu-android" target="_blank" rel="noopener" class="git-repo-card">
+          <svg class="git-icon" viewBox="0 0 24 24">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <div class="git-repo-meta">
+            <span class="git-repo-label">Source Repository</span>
+            <span class="git-repo-name">github.com/miqu-project/miqu-android <span class="git-repo-arrow">↗</span></span>
+          </div>
+        </a>
 
         <div class="tab-bottom-nav">
           <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
@@ -1612,16 +1679,6 @@
         The uniform Two-Tier Single-File Authority model governs configuration across all Miqu components.
       </p>
 
-      <a href="https://github.com/miqu-project/miqu-project/blob/main/AGENTS.md" target="_blank" rel="noopener" class="git-repo-card">
-        <svg class="git-icon" viewBox="0 0 24 24">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-        </svg>
-        <div class="git-repo-meta">
-          <span class="git-repo-label">Architecture Contract</span>
-          <span class="git-repo-name">AGENTS.md on GitHub <span class="git-repo-arrow">↗</span></span>
-        </div>
-      </a>
-
       <div class="feature-article">
         <div class="feature-block">
           <h3 class="feature-headline">
@@ -1654,6 +1711,17 @@
         </div>
       </div>
 
+      <!-- End of Section: Architecture Contract GitHub Link -->
+      <a href="https://github.com/miqu-project/miqu-project/blob/main/AGENTS.md" target="_blank" rel="noopener" class="git-repo-card">
+        <svg class="git-icon" viewBox="0 0 24 24">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <div class="git-repo-meta">
+          <span class="git-repo-label">Architecture Contract</span>
+          <span class="git-repo-name">AGENTS.md on GitHub <span class="git-repo-arrow">↗</span></span>
+        </div>
+      </a>
+
       <div class="tab-bottom-nav">
         <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1685,16 +1753,6 @@
       <p class="page-subtitle">
         Building and installing the Miqu desktop environment on Arch Linux.
       </p>
-
-      <a href="https://github.com/miqu-project/miqu-project" target="_blank" rel="noopener" class="git-repo-card">
-        <svg class="git-icon" viewBox="0 0 24 24">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-        </svg>
-        <div class="git-repo-meta">
-          <span class="git-repo-label">Master Repository</span>
-          <span class="git-repo-name">github.com/miqu-project/miqu-project <span class="git-repo-arrow">↗</span></span>
-        </div>
-      </a>
 
       <div class="term-box">
         <div class="term-header">
@@ -1730,6 +1788,16 @@
         </div>
       </div>
 
+      <a href="https://github.com/miqu-project/miqu-project" target="_blank" rel="noopener" class="git-repo-card">
+        <svg class="git-icon" viewBox="0 0 24 24">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <div class="git-repo-meta">
+          <span class="git-repo-label">Master Repository</span>
+          <span class="git-repo-name">github.com/miqu-project/miqu-project <span class="git-repo-arrow">↗</span></span>
+        </div>
+      </a>
+
       <div class="tab-bottom-nav">
         <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1761,16 +1829,6 @@
       <p class="page-subtitle">
         "A fully functional Desktop Environment is the goal, but we are slowly making progress."
       </p>
-
-      <a href="https://github.com/miqu-project" target="_blank" rel="noopener" class="git-repo-card">
-        <svg class="git-icon" viewBox="0 0 24 24">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-        </svg>
-        <div class="git-repo-meta">
-          <span class="git-repo-label">GitHub Organization</span>
-          <span class="git-repo-name">github.com/miqu-project <span class="git-repo-arrow">↗</span></span>
-        </div>
-      </a>
 
       <div class="feature-article">
         <div class="feature-block">
@@ -1804,6 +1862,16 @@
         </div>
       </div>
 
+      <a href="https://github.com/miqu-project" target="_blank" rel="noopener" class="git-repo-card">
+        <svg class="git-icon" viewBox="0 0 24 24">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <div class="git-repo-meta">
+          <span class="git-repo-label">GitHub Organization</span>
+          <span class="git-repo-name">github.com/miqu-project <span class="git-repo-arrow">↗</span></span>
+        </div>
+      </a>
+
       <div class="tab-bottom-nav">
         <a href="#home" onclick="switchTab('home')" class="tab-back-btn">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1822,36 +1890,35 @@
     // -------------------------------------------------------------
     function switchTab(tabId) {
       document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
-      document.querySelectorAll('.nav-item-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.topbar-link').forEach(link => link.classList.remove('active'));
 
       const targetSec = document.getElementById(`view-${tabId}`);
-      const targetBtn = document.querySelector(`.nav-item-btn[data-tab="${tabId}"]`);
+      const targetLink = document.querySelector(`.topbar-link[data-tab="${tabId}"]`);
 
       if (targetSec) targetSec.classList.add('active');
-      if (targetBtn) targetBtn.classList.add('active');
+      if (targetLink) targetLink.classList.add('active');
 
-      // Close mobile drawer on navigation
-      const sidebar = document.getElementById('sidebar');
-      if (sidebar) sidebar.classList.remove('open');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    document.querySelectorAll('.nav-item-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const tab = btn.getAttribute('data-tab');
+    document.querySelectorAll('.topbar-link').forEach(link => {
+      link.addEventListener('click', () => {
+        const tab = link.getAttribute('data-tab');
         if (tab) {
           switchTab(tab);
         }
       });
     });
 
-    // Hash navigation on load
-    window.addEventListener('load', () => {
-      const hash = window.location.hash.replace('#', '');
-      if (hash && document.getElementById(`view-${hash}`)) {
+    // Hash navigation on load and hash change
+    function handleHashNav() {
+      const hash = window.location.hash.replace('#', '') || 'home';
+      if (document.getElementById(`view-${hash}`)) {
         switchTab(hash);
       }
-    });
+    }
+    window.addEventListener('load', handleHashNav);
+    window.addEventListener('hashchange', handleHashNav);
 
     // -------------------------------------------------------------
     // Auto / Light / Dark Theme Management
@@ -1927,17 +1994,6 @@
         } else {
           applyThemeMode('auto');
         }
-      });
-    }
-
-    // -------------------------------------------------------------
-    // Mobile Drawer Toggle
-    // -------------------------------------------------------------
-    const mobileBtn = document.getElementById('mobile-toggle');
-    const sidebarEl = document.getElementById('sidebar');
-    if (mobileBtn && sidebarEl) {
-      mobileBtn.addEventListener('click', () => {
-        sidebarEl.classList.toggle('open');
       });
     }
 
