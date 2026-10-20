@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Use, Engineering Philosophy & Code Safety — Miqu Project</title>
+    <meta name="description" content="How Miqu desktop ecosystem pairs human architectural stewardship with AI synthesis under strict C++20 RAII, 100% offline isolation, and zero telemetry.">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS with custom config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 6.5rem;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #1e293b;
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        }
+        html.dark body {
+            background-color: #0b0f17;
+            color: #e2e8f0;
+        }
+
+        /* Ecosystem dark theme contrast & hierarchical surface tokens */
+        html.dark header.bg-white,
+        html.dark section.bg-white {
+            background-color: #0b0f17;
+        }
+        html.dark section.bg-brand-50\/50 {
+            background-color: #080c14;
+        }
+        html.dark .bg-white {
+            background-color: #111927;
+        }
+        html.dark .bg-brand-50,
+        html.dark .bg-brand-50\/70 {
+            background-color: #141e2e;
+        }
+        html.dark .bg-brand-100 {
+            background-color: #1e293b;
+        }
+        html.dark .border-brand-100 {
+            border-color: #1e293b;
+        }
+        html.dark .border-brand-200,
+        html.dark .border-brand-200\/70,
+        html.dark .border-brand-200\/80 {
+            border-color: #243247;
+        }
+        html.dark .text-brand-900 {
+            color: #f8fafc;
+        }
+        html.dark .text-brand-800 {
+            color: #f1f5f9;
+        }
+        html.dark .text-brand-700 {
+            color: #cbd5e1;
+        }
+        html.dark .text-brand-600 {
+            color: #94a3b8;
+        }
+        html.dark .text-brand-500 {
+            color: #64748b;
+        }
+        html.dark .text-brand-400 {
+            color: #94a3b8;
+        }
+        html.dark code {
+            color: #f1f5f9;
+        }
+        html.dark pre {
+            color: #f1f5f9;
+        }
+    </style>
+</head>
+<body class="font-sans text-brand-800 dark:text-brand-200 antialiased selection:bg-brand-200 dark:selection:bg-brand-700 selection:text-brand-900 dark:selection:text-brand-100">
+
+    <!-- Two-Tier Navigation Header -->
+    <header class="border-b border-brand-200/70 dark:border-brand-800/80 bg-white/90 dark:bg-[#0b0f17]/90 backdrop-blur-md sticky top-0 z-50 transition-colors">
+        <!-- Tier 1: Main Header (Branding & Global Controls) -->
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 py-3 sm:py-3.5 flex items-center justify-between border-b border-brand-100 dark:border-brand-800/50">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="assets/logo.png" alt="Miqu Logo" class="w-7 h-7 sm:w-8 sm:h-8 object-contain rounded transition-transform group-hover:scale-105" />
+                <span class="font-bold text-lg sm:text-xl tracking-tight text-brand-900 dark:text-white">miqu-project</span>
+            </a>
+
+            <!-- Right Controls: Docs Link, LLM & Safety Link (Active), Theme Switcher & GitHub Button -->
+            <div class="hidden md:flex items-center gap-2 lg:gap-3">
+                <a href="docs.html" class="text-xs font-semibold text-brand-600 dark:text-brand-300 hover:text-brand-900 dark:hover:text-white transition-colors px-3 py-1.5 rounded-lg hover:bg-brand-50 dark:hover:bg-brand-800/60">
+                    Docs
+                </a>
+                <a href="llm.html" class="text-xs font-semibold text-brand-900 dark:text-white bg-brand-100 dark:bg-brand-800/80 px-3 py-1.5 rounded-lg border border-brand-200 dark:border-brand-700">
+                    LLM & Safety
+                </a>
+
+                <!-- Theme Mode Toggle (Auto / Light / Dark) -->
+                <button id="theme-toggle" onclick="cycleTheme()" class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900/90 hover:bg-brand-50 dark:hover:bg-brand-800 text-brand-800 dark:text-brand-200 transition-colors shadow-2xs cursor-pointer ml-1" title="Switch theme (System Auto / Light / Dark)" aria-label="Toggle theme">
+                    <span id="theme-toggle-icon" class="flex items-center justify-center"></span>
+                    <span id="theme-toggle-text" class="text-xs font-medium text-brand-600 dark:text-brand-300">Auto</span>
+                </button>
+
+                <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-1.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 hover:bg-brand-50 dark:hover:bg-brand-800 text-brand-800 dark:text-brand-200 transition-colors shadow-2xs">
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <div class="md:hidden flex items-center gap-2">
+                <button onclick="cycleTheme()" class="p-2 text-brand-600 dark:text-brand-300 hover:text-brand-900 dark:hover:text-white rounded-lg border border-brand-200 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-900/50 focus:outline-none" aria-label="Toggle theme">
+                    <span id="mobile-theme-icon" class="flex items-center justify-center"></span>
+                </button>
+                <button id="mobile-toggle" onclick="toggleMenu()" class="p-2 text-brand-600 dark:text-brand-300 hover:text-brand-900 dark:hover:text-white rounded-lg border border-brand-200 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-900/50 focus:outline-none" aria-label="Open menu">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Tier 2: Sticky Section Sub-nav Bar -->
+        <nav class="hidden md:block overflow-x-auto no-scrollbar" aria-label="LLM and Safety section navigation">
+            <div class="max-w-7xl mx-auto px-6 sm:px-8 py-2 flex items-center gap-1 lg:gap-2 text-xs font-semibold text-brand-600 dark:text-brand-300 whitespace-nowrap">
+                <a href="#philosophy" class="px-3 py-1.5 rounded-md hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/60 dark:hover:bg-brand-800/50 transition-colors">Philosophy & Authorship</a>
+                <a href="#safety" class="px-3 py-1.5 rounded-md hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/60 dark:hover:bg-brand-800/50 transition-colors">Security & Memory Safety</a>
+                <a href="#governance" class="px-3 py-1.5 rounded-md hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/60 dark:hover:bg-brand-800/50 transition-colors">Audits & Governance</a>
+                <a href="#double-standard" class="px-3 py-1.5 rounded-md hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/60 dark:hover:bg-brand-800/50 transition-colors">AI Double Standard</a>
+                <a href="#trust-verdict" class="px-3 py-1.5 rounded-md hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/60 dark:hover:bg-brand-800/50 transition-colors">Trust Guarantees</a>
+                <a href="https://github.com/miqu-project/.github/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-md text-brand-500 dark:text-brand-400 hover:text-brand-900 dark:hover:text-white transition-colors">AGENTS.md ↗</a>
+            </div>
+        </nav>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-brand-200 dark:border-brand-800 px-6 py-5 bg-white/95 dark:bg-[#0b0f17]/95 space-y-4 shadow-lg">
+            <div class="grid grid-cols-2 gap-2 pb-3 border-b border-brand-200 dark:border-brand-800">
+                <a href="index.html" class="flex items-center justify-center px-3 py-2 text-xs font-semibold text-brand-900 dark:text-white rounded-lg bg-brand-50 dark:bg-brand-800/60 border border-brand-200 dark:border-brand-700">Landing Page</a>
+                <a href="docs.html" class="flex items-center justify-center px-3 py-2 text-xs font-semibold text-brand-900 dark:text-white rounded-lg bg-brand-50 dark:bg-brand-800/60 border border-brand-200 dark:border-brand-700">Documentation</a>
+            </div>
+            <a href="#philosophy" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">Philosophy & Authorship</a>
+            <a href="#safety" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">Security & Memory Safety</a>
+            <a href="#governance" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">Audits & Governance</a>
+            <a href="#double-standard" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">AI Double Standard</a>
+            <a href="#trust-verdict" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">Trust Guarantees</a>
+            
+            <div class="pt-3 border-t border-brand-200 dark:border-brand-800 flex items-center justify-between">
+                <span class="text-xs font-medium text-brand-600 dark:text-brand-400">Theme</span>
+                <button onclick="cycleTheme()" class="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 text-brand-800 dark:text-brand-200">
+                    <span id="mobile-theme-text">Auto</span>
+                </button>
+            </div>
+
+            <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full text-xs font-semibold px-4 py-2.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 text-brand-800 dark:text-brand-200 shadow-2xs">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                GitHub Organization
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Header -->
+    <section class="border-b border-brand-200/70 dark:border-brand-800/80 bg-brand-50/50 dark:bg-[#080c14] py-14 sm:py-16 transition-colors">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="inline-flex items-center gap-2 text-xs font-mono font-medium px-3 py-1 rounded-full bg-brand-100 dark:bg-brand-800/80 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 mb-4">
+                <span>ENGINEERING PHILOSOPHY</span>
+                <span>•</span>
+                <span>SAFETY & TRUST</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-900 dark:text-white tracking-tight mb-4">
+                LLM USE, CODE ARCHITECTURE & SAFETY
+            </h1>
+            <p class="text-sm sm:text-base text-brand-600 dark:text-brand-400 max-w-3xl leading-relaxed">
+                How the Miqu desktop ecosystem pairs human architectural leadership with agentic synthesis under strict C++20 RAII, 100% offline isolation, and zero telemetry.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 1: Architectural Philosophy & Authorship -->
+    <section id="philosophy" class="border-b border-brand-200/80 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-16 transition-colors">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="flex items-center justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
+                <h2 class="text-2xl sm:text-3xl font-bold text-brand-900 dark:text-white tracking-tight">ENGINEERING PHILOSOPHY & AUTHORSHIP</h2>
+                <span class="text-xs font-mono px-3 py-1 rounded bg-brand-100 dark:bg-brand-800 text-brand-700 dark:text-brand-300">Human Architecture</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 1. The Continuum of Abstraction -->
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl border border-brand-200 dark:border-brand-800 p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-bold text-brand-900 dark:text-white text-base">The Continuum of Abstraction</h3>
+                            <span class="text-[11px] font-mono text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-950/60 px-2 py-0.5 rounded border border-purple-200 dark:border-purple-800">Scaffolding</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                            Compilers (FORTRAN, C) automated machine code without reducing developer authorship. In Wayland, <code class="font-mono text-brand-900 dark:text-brand-100 bg-brand-100 dark:bg-brand-800 px-1 py-0.5 rounded text-[11px]">wayland-scanner</code> already synthesizes hundreds of C boilerplate lines from XML. Directing an LLM to generate listener structs and Cairo geometry calculations is context-aware scaffolding; true engineering remains state machine verification, event synchronization, and lifecycle discipline.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2. Architect vs. Synthesizer -->
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl border border-brand-200 dark:border-brand-800 p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-bold text-brand-900 dark:text-white text-base">Architect vs. Synthesizer</h3>
+                            <span class="text-[11px] font-mono text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/60 px-2 py-0.5 rounded border border-blue-200 dark:border-blue-800">Authorship</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                            An architect designs load-bearing distributions and blueprints spatial ergonomics without personally mixing every cubic yard of concrete. In Miqu, <span class="font-semibold text-brand-900 dark:text-white">the LLM is the modern power tool; the developer is the system architect</span> authoring the contracts, enforcing the Two-Tier Single-File Authority doctrine, and guaranteeing protocol invariants.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 3. Architectural Pragmatism -->
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl border border-brand-200 dark:border-brand-800 p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-bold text-brand-900 dark:text-white text-base">Architectural Pragmatism</h3>
+                            <span class="text-[11px] font-mono text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800">The Sweet Spot</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                            Miqu does not reinvent the Linux kernel, base packaging (Arch, Debian, Fedora), or cryptography. Adhering to the Unix philosophy, we integrate battle-tested backends: <code class="font-mono text-brand-900 dark:text-brand-100 bg-brand-100 dark:bg-brand-800 px-1 py-0.5 rounded text-[11px]">ufw/nftables</code> in <span class="font-medium text-brand-900 dark:text-white">miqusecure</span>, Linux PAM in <span class="font-medium text-brand-900 dark:text-white">miqudm</span>, <code class="font-mono text-brand-900 dark:text-brand-100 bg-brand-100 dark:bg-brand-800 px-1 py-0.5 rounded text-[11px]">systemd-logind</code> in <span class="font-medium text-brand-900 dark:text-white">miqulock</span>, and standard NetworkManager D-Bus interfaces.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4. Universal Standards & Anti-Lock-In -->
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl border border-brand-200 dark:border-brand-800 p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-bold text-brand-900 dark:text-white text-base">Open Wayland Standards</h3>
+                            <span class="text-[11px] font-mono text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800">Anti-Lock-In</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                            Universal protocol adherence (<code class="font-mono text-brand-900 dark:text-brand-100 bg-brand-100 dark:bg-brand-800 px-1 py-0.5 rounded text-[11px]">xdg-shell</code>, <code class="font-mono text-brand-900 dark:text-brand-100 bg-brand-100 dark:bg-brand-800 px-1 py-0.5 rounded text-[11px]">wlr-layer-shell-v1</code>, <code class="font-mono text-brand-900 dark:text-brand-100 bg-brand-100 dark:bg-brand-800 px-1 py-0.5 rounded text-[11px]">ext-session-lock-v1</code>) guarantees component interchangeability. Users can freely swap in <code class="font-mono text-brand-900 dark:text-brand-100 bg-brand-100 dark:bg-brand-800 px-1 py-0.5 rounded text-[11px]">waybar</code>, <code class="font-mono text-brand-900 dark:text-brand-100 bg-brand-100 dark:bg-brand-800 px-1 py-0.5 rounded text-[11px]">rofi</code>, or <code class="font-mono text-brand-900 dark:text-brand-100 bg-brand-100 dark:bg-brand-800 px-1 py-0.5 rounded text-[11px]">swaylock</code> with zero proprietary lock-in.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Threat Modeling & Memory Safety -->
+    <section id="safety" class="border-b border-brand-200/80 dark:border-brand-800/80 bg-brand-50/50 dark:bg-[#080c14] py-16 transition-colors">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="flex items-center justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
+                <h2 class="text-2xl sm:text-3xl font-bold text-brand-900 dark:text-white tracking-tight">SECURITY, THREAT MODELING & MEMORY SAFETY</h2>
+                <span class="text-xs font-mono px-3 py-1 rounded bg-brand-100 dark:bg-brand-800 text-brand-700 dark:text-brand-300">Strict RAII</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <!-- Safety 1: Zero Cloud / Zero Telemetry -->
+                <div class="bg-white dark:bg-brand-900/60 rounded-xl border border-brand-200 dark:border-brand-800 p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-bold text-brand-900 dark:text-white text-base">Zero Cloud & Telemetry</h3>
+                            <span class="text-[11px] font-mono text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800">100% Local</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                            Zero analytics, zero telemetry, and zero mandatory cloud services. The desktop runs completely offline. Network activity occurs strictly when explicitly triggered by the user (e.g., MPD streaming or package searches). All code is fully open and auditable.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Safety 2: Strict C++20 RAII -->
+                <div class="bg-white dark:bg-brand-900/60 rounded-xl border border-brand-200 dark:border-brand-800 p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-bold text-brand-900 dark:text-white text-base">Strict C++20 RAII</h3>
+                            <span class="text-[11px] font-mono text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/60 px-2 py-0.5 rounded border border-blue-200 dark:border-blue-800">Memory Safety</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                            Raw owning pointers are banned. All file descriptors, Cairo contexts, and Wayland listeners are wrapped in scope-bound RAII guards with custom deleters. UI mutations are strictly confined to the main Wayland thread, with worker isolation via <code class="font-mono text-brand-900 dark:text-brand-100 bg-brand-100 dark:bg-brand-800 px-1 py-0.5 rounded text-[11px]">eventfd</code> and pipes.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Safety 3: Tri-Tier Verification -->
+                <div class="bg-white dark:bg-brand-900/60 rounded-xl border border-brand-200 dark:border-brand-800 p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-bold text-brand-900 dark:text-white text-base">Tri-Tier Verification</h3>
+                            <span class="text-[11px] font-mono text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-950/60 px-2 py-0.5 rounded border border-purple-200 dark:border-purple-800">Pipeline</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                            Code is never blindly accepted. It moves through <strong>Model Synthesis</strong> (guided by strict interface contracts) &rarr; <strong>Deterministic Tooling</strong> (<code class="font-mono text-brand-900 dark:text-brand-100 bg-brand-100 dark:bg-brand-800 px-1 py-0.5 rounded text-[11px]">-Wall -Wextra</code>, ASan, UBSan, cppcheck) &rarr; <strong>Human Architectural Review</strong> on live Wayland hardware.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zero Idle CPU Rule Card -->
+            <div class="bg-white dark:bg-brand-900/60 rounded-2xl border border-brand-200 dark:border-brand-800 p-6 sm:p-8">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 flex items-center justify-center font-bold text-xs">0%</span>
+                    <h3 class="text-base font-bold text-brand-900 dark:text-white">Strict Event-Driven Inactivity (Absolute 0.0% Idle CPU)</h3>
+                </div>
+                <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                    The compositor (<code class="font-mono text-xs">miquland</code>) and all applications sleep completely in the Wayland event loop when there are no active input events, damaged scene buffers, or running animations. Never use continuous timers, tick loops, or unthrottled frame callbacks when the UI is static. Frame scheduling is strictly damage-driven.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: The Audit System & Contribution Governance -->
+    <section id="governance" class="border-b border-brand-200/80 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-16 transition-colors">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="flex items-center justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
+                <h2 class="text-2xl sm:text-3xl font-bold text-brand-900 dark:text-white tracking-tight">CODEBASE AUDITS & CONTRIBUTION GOVERNANCE</h2>
+                <span class="text-xs font-mono px-3 py-1 rounded bg-brand-100 dark:bg-brand-800 text-brand-700 dark:text-brand-300">Continuous Auditing</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Audit System -->
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl border border-brand-200 dark:border-brand-800 p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-bold text-brand-900 dark:text-white text-base">Continuous Audit Pipeline</h3>
+                            <span class="text-[11px] font-mono text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded border border-indigo-200 dark:border-indigo-800">Verification</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                            The entire codebase across all repositories undergoes periodic automated scans targeting security vulnerabilities, <a href="https://github.com/miqu-project/.github/blob/main/AGENTS.md" target="_blank" class="font-medium text-brand-900 dark:text-white underline decoration-brand-300">AGENTS.md</a> non-conformance, memory leaks, and dead/junk abstractions.
+                        </p>
+                        <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 mt-2.5 leading-relaxed">
+                            Findings are cross-checked by independent review agents to author an authentic implementation plan. Before edits are applied, a system-wide <span class="font-semibold text-brand-900 dark:text-white">blast-radius analysis</span> models cross-component ripple effects (from the compositor down through <code class="font-mono text-brand-900 dark:text-brand-100 bg-brand-100 dark:bg-brand-800 px-1 py-0.5 rounded text-[11px]">miqutoolkit</code> and applications). Edits are subjected to heavy test compilation with runtime sanitizers (ASan/UBSan), and only committed after explicit human architectural sign-off.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Single-Maintainer Governance -->
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl border border-brand-200 dark:border-brand-800 p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-bold text-brand-900 dark:text-white text-base">Single-Maintainer Stewardship</h3>
+                            <span class="text-[11px] font-mono text-teal-700 dark:text-teal-300 bg-teal-50 dark:bg-teal-950/60 px-2 py-0.5 rounded border border-teal-200 dark:border-teal-800">Architecture</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                            Building a cohesive 16-app desktop suite requires unyielding adherence to core contracts: the Two-Tier Single-File Authority doctrine, strict RAII, main-thread Wayland confinement, and zero hidden C++ magic. Diverse external PRs frequently introduce fragmented patterns or conflicting long-term visions.
+                        </p>
+                        <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 mt-2.5 leading-relaxed">
+                            To maintain absolute architectural purity, <span class="font-semibold text-brand-900 dark:text-white">miqu-project maintains a single-author commit model</span>. However, the ecosystem deeply values community engagement: volunteers are warmly welcomed to participate as <span class="font-semibold text-brand-900 dark:text-white">code reviewers, security auditors, issue reporters, and testers</span> to scrutinize the codebase alongside us.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: The Closed-Source Asymmetry & Double Standard -->
+    <section id="double-standard" class="border-b border-brand-200/80 dark:border-brand-800/80 bg-brand-50/50 dark:bg-[#080c14] py-16 transition-colors">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="bg-white dark:bg-brand-900/60 rounded-2xl border border-brand-200 dark:border-brand-800 p-6 sm:p-8 shadow-2xs">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 rounded-lg bg-rose-100 dark:bg-rose-950/80 border border-rose-200 dark:border-rose-800 flex items-center justify-center text-rose-700 dark:text-rose-400 flex-shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white">Closed-Source Asymmetry & The Double Standard of AI Scrutiny</h2>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed border-t border-brand-100 dark:border-brand-800/80 pt-4">
+                    <p>
+                        The epitome of software engineering—Google, Microsoft, and industry leaders—have publicly confirmed that an enormous, rapidly increasing percentage of their internal code is synthesized by AI models. Yet if critics object to AI-assisted code, will they stop using <span class="font-semibold text-brand-900 dark:text-white">YouTube, Windows, macOS, or Google Play Services</span>? How could anyone ever verify proprietary software isn't already "vibecoded"?
+                    </p>
+                    <p>
+                        You can't. Closed-source giants escape purist criticism purely through opacity—hiding their code behind compiled binaries and NDAs. You are already running AI-synthesized software daily without the ability to inspect it. In Miqu, we choose <span class="font-semibold text-brand-900 dark:text-white">radical honesty and total sovereignty</span>: every single line of C++20 and Wayland code is 100% open, auditable, and verifiable by you.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Author's Personal Verdict & Trust Guarantees -->
+    <section id="trust-verdict" class="border-b border-brand-200/80 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-16 transition-colors">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="bg-gradient-to-br from-white dark:from-brand-900/60 to-brand-50 dark:to-brand-900/30 border border-brand-200 dark:border-brand-800 rounded-2xl p-6 sm:p-8 shadow-2xs">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-200 dark:border-emerald-800 flex items-center justify-center text-emerald-700 dark:text-emerald-400 flex-shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white">When Can You Trust Agent-Assisted Code?</h2>
+                    </div>
+                </div>
+
+                <div class="space-y-4 text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed border-t border-brand-100 dark:border-brand-800/80 pt-4">
+                    <p class="italic text-brand-800 dark:text-brand-200 font-medium text-sm sm:text-base">
+                        "Will I personally use software developed with AI assistance? My answer is simple: I will use an agent-assisted project <span class="text-brand-900 dark:text-white font-bold not-italic">only if</span> it never connects to the internet on its own, or if I have the full freedom to audit every line of code."
+                    </p>
+                    <p>
+                        Massive closed-source proprietary software from big tech is an unavoidable reality of modern computing, so users have no choice but to trust those to luck. But <span class="font-semibold text-brand-900 dark:text-white">miquland and the Miqu ecosystem satisfy both of my criteria</span>:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                        <div class="bg-white dark:bg-brand-950/80 rounded-lg p-4 border border-brand-200/80 dark:border-brand-800">
+                            <span class="font-bold text-brand-900 dark:text-white text-xs block mb-1">1. Absolute Network Isolation</span>
+                            <span class="text-xs text-brand-600 dark:text-brand-300">The desktop never connects to the internet. Network connectivity is strictly the domain of the base Linux distribution (e.g. Arch Linux) and user-configured NetworkManager.</span>
+                        </div>
+                        <div class="bg-white dark:bg-brand-950/80 rounded-lg p-4 border border-brand-200/80 dark:border-brand-800">
+                            <span class="font-bold text-brand-900 dark:text-white text-xs block mb-1">2. 100% Audited Codebase</span>
+                            <span class="text-xs text-brand-600 dark:text-brand-300">Every single line of C++20, Cairo rendering, and Wayland protocol binding is completely public and personally reviewed to guarantee zero phishy phone-home behavior.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="mt-12 flex flex-wrap items-center justify-center gap-4">
+                <a href="index.html" class="inline-flex items-center gap-2 text-xs font-semibold px-5 py-2.5 rounded-xl border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 text-brand-800 dark:text-brand-200 hover:bg-brand-50 dark:hover:bg-brand-800 transition-colors shadow-2xs">
+                    ← Back to Landing Page
+                </a>
+                <a href="docs.html" class="inline-flex items-center gap-2 text-xs font-semibold px-5 py-2.5 rounded-xl bg-brand-900 dark:bg-white text-white dark:text-brand-900 hover:bg-brand-800 dark:hover:bg-brand-100 transition-colors shadow-2xs">
+                    Explore Ecosystem Documentation →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-brand-200/70 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-10 text-brand-500 dark:text-brand-400 text-sm transition-colors">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <img src="assets/logo.png" alt="Miqu Logo" class="w-6 h-6 object-contain" />
+                <span class="font-bold text-brand-900 dark:text-white">Miqu Project</span>
+                <span class="text-brand-400 dark:text-brand-600">•</span>
+                <span>Philosophy & Safety</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-brand-600 dark:text-brand-300">
+                <a href="index.html" class="hover:text-brand-900 dark:hover:text-white transition-colors">Home</a>
+                <a href="docs.html" class="hover:text-brand-900 dark:hover:text-white transition-colors">Documentation</a>
+                <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900 dark:hover:text-white transition-colors">miquland</a>
+                <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900 dark:hover:text-white transition-colors">miqutoolkit</a>
+                <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900 dark:hover:text-white transition-colors">miqu-linux-apps</a>
+                <a href="https://github.com/miqu-project/.github/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900 dark:hover:text-white transition-colors">AGENTS.md ↗</a>
+            </div>
+            <p class="text-xs text-brand-400 dark:text-brand-500">&copy; 2026 miqu-project. Released under the MIT License.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Management: Auto (System) / Light / Dark with persistence
+        function getThemeMode() {
+            return localStorage.getItem('theme') || 'system';
+        }
+
+        function applyTheme(mode) {
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = mode === 'dark' || (mode === 'system' && systemDark);
+            
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            
+            updateThemeUI(mode, isDark);
+        }
+
+        function updateThemeUI(mode, isDark) {
+            const textElem = document.getElementById('theme-toggle-text');
+            const iconElem = document.getElementById('theme-toggle-icon');
+            const mobileText = document.getElementById('mobile-theme-text');
+            const mobileIcon = document.getElementById('mobile-theme-icon');
+
+            let label = 'Auto';
+            let iconSvg = '';
+
+            if (mode === 'light') {
+                label = 'Light';
+                iconSvg = '<svg class="w-3.5 h-3.5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>';
+            } else if (mode === 'dark') {
+                label = 'Dark';
+                iconSvg = '<svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>';
+            } else {
+                label = 'Auto';
+                iconSvg = '<svg class="w-3.5 h-3.5 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>';
+            }
+
+            if (textElem) textElem.textContent = label;
+            if (iconElem) iconElem.innerHTML = iconSvg;
+            if (mobileText) mobileText.textContent = label;
+            if (mobileIcon) mobileIcon.innerHTML = iconSvg;
+        }
+
+        function cycleTheme() {
+            const current = getThemeMode();
+            let next = 'system';
+            if (current === 'system') next = 'light';
+            else if (current === 'light') next = 'dark';
+            else if (current === 'dark') next = 'system';
+
+            localStorage.setItem('theme', next);
+            applyTheme(next);
+        }
+
+        // Mobile drawer toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) {
+                menu.classList.toggle('hidden');
+            }
+        }
+
+        // Initialize theme on page load
+        applyTheme(getThemeMode());
+
+        // Listen for OS color scheme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+            if (getThemeMode() === 'system') {
+                applyTheme('system');
+            }
+        });
+    </script>
+</body>
+</html>

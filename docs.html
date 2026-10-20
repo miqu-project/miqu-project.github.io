@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation & Architectural Contracts — Miqu Project</title>
+    <meta name="description" content="Authoritative architectural contracts, configuration management doctrines, build protocols, and craftsmanship standards for the Miqu Wayland desktop ecosystem.">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS with custom config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 6.5rem;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #1e293b;
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        }
+        html.dark body {
+            background-color: #0b0f17;
+            color: #e2e8f0;
+        }
+
+        /* Ecosystem dark theme contrast & hierarchical surface tokens */
+        html.dark header.bg-white,
+        html.dark section.bg-white {
+            background-color: #0b0f17;
+        }
+        html.dark section.bg-brand-50\/50 {
+            background-color: #080c14;
+        }
+        html.dark .bg-white {
+            background-color: #111927;
+        }
+        html.dark .bg-brand-50,
+        html.dark .bg-brand-50\/70 {
+            background-color: #141e2e;
+        }
+        html.dark .bg-brand-100 {
+            background-color: #1e293b;
+        }
+        html.dark .border-brand-100 {
+            border-color: #1e293b;
+        }
+        html.dark .border-brand-200,
+        html.dark .border-brand-200\/70,
+        html.dark .border-brand-200\/80 {
+            border-color: #243247;
+        }
+        html.dark .text-brand-900 {
+            color: #f8fafc;
+        }
+        html.dark .text-brand-800 {
+            color: #f1f5f9;
+        }
+        html.dark .text-brand-700 {
+            color: #cbd5e1;
+        }
+        html.dark .text-brand-600 {
+            color: #94a3b8;
+        }
+        html.dark .text-brand-500 {
+            color: #64748b;
+        }
+        html.dark .text-brand-400 {
+            color: #94a3b8;
+        }
+        html.dark code {
+            color: #f1f5f9;
+        }
+        html.dark pre {
+            color: #f1f5f9;
+        }
+    </style>
+</head>
+<body class="font-sans text-brand-800 dark:text-brand-200 antialiased selection:bg-brand-200 dark:selection:bg-brand-700 selection:text-brand-900 dark:selection:text-brand-100">
+
+    <!-- Two-Tier Navigation Header -->
+    <header class="border-b border-brand-200/70 dark:border-brand-800/80 bg-white/90 dark:bg-[#0b0f17]/90 backdrop-blur-md sticky top-0 z-50 transition-colors">
+        <!-- Tier 1: Main Header (Branding & Global Controls) -->
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 py-3 sm:py-3.5 flex items-center justify-between border-b border-brand-100 dark:border-brand-800/50">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="assets/logo.png" alt="Miqu Logo" class="w-7 h-7 sm:w-8 sm:h-8 object-contain rounded transition-transform group-hover:scale-105" />
+                <span class="font-bold text-lg sm:text-xl tracking-tight text-brand-900 dark:text-white">miqu-project</span>
+            </a>
+
+            <!-- Right Controls: Docs Link (Active), LLM & Safety Link, Theme Switcher & GitHub Button -->
+            <div class="hidden md:flex items-center gap-2 lg:gap-3">
+                <a href="docs.html" class="text-xs font-semibold text-brand-900 dark:text-white bg-brand-100 dark:bg-brand-800/80 px-3 py-1.5 rounded-lg border border-brand-200 dark:border-brand-700">
+                    Docs
+                </a>
+                <a href="llm.html" class="text-xs font-semibold text-brand-600 dark:text-brand-300 hover:text-brand-900 dark:hover:text-white transition-colors px-3 py-1.5 rounded-lg hover:bg-brand-50 dark:hover:bg-brand-800/60">
+                    LLM & Safety
+                </a>
+
+                <!-- Theme Mode Toggle (Auto / Light / Dark) -->
+                <button id="theme-toggle" onclick="cycleTheme()" class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900/90 hover:bg-brand-50 dark:hover:bg-brand-800 text-brand-800 dark:text-brand-200 transition-colors shadow-2xs cursor-pointer ml-1" title="Switch theme (System Auto / Light / Dark)" aria-label="Toggle theme">
+                    <span id="theme-toggle-icon" class="flex items-center justify-center"></span>
+                    <span id="theme-toggle-text" class="text-xs font-medium text-brand-600 dark:text-brand-300">Auto</span>
+                </button>
+
+                <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-1.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 hover:bg-brand-50 dark:hover:bg-brand-800 text-brand-800 dark:text-brand-200 transition-colors shadow-2xs">
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <div class="md:hidden flex items-center gap-2">
+                <button onclick="cycleTheme()" class="p-2 text-brand-600 dark:text-brand-300 hover:text-brand-900 dark:hover:text-white rounded-lg border border-brand-200 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-900/50 focus:outline-none" aria-label="Toggle theme">
+                    <span id="mobile-theme-icon" class="flex items-center justify-center"></span>
+                </button>
+                <button id="mobile-toggle" onclick="toggleMenu()" class="p-2 text-brand-600 dark:text-brand-300 hover:text-brand-900 dark:hover:text-white rounded-lg border border-brand-200 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-900/50 focus:outline-none" aria-label="Open menu">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Tier 2: Sticky Section Sub-nav Bar -->
+        <nav class="hidden md:block overflow-x-auto no-scrollbar" aria-label="Documentation section navigation">
+            <div class="max-w-7xl mx-auto px-6 sm:px-8 py-2 flex items-center gap-1 lg:gap-2 text-xs font-semibold text-brand-600 dark:text-brand-300 whitespace-nowrap">
+                <a href="#overview" class="px-3 py-1.5 rounded-md hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/60 dark:hover:bg-brand-800/50 transition-colors">Overview</a>
+                <a href="#config-doctrine" class="px-3 py-1.5 rounded-md hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/60 dark:hover:bg-brand-800/50 transition-colors">Configuration Doctrine</a>
+                <a href="#components" class="px-3 py-1.5 rounded-md hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/60 dark:hover:bg-brand-800/50 transition-colors">Component Matrix</a>
+                <a href="#build-install" class="px-3 py-1.5 rounded-md hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/60 dark:hover:bg-brand-800/50 transition-colors">Build Protocols</a>
+                <a href="#craftsmanship" class="px-3 py-1.5 rounded-md hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/60 dark:hover:bg-brand-800/50 transition-colors">Craftsmanship Standards</a>
+                <a href="#roadmap" class="px-3 py-1.5 rounded-md hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/60 dark:hover:bg-brand-800/50 transition-colors">Active Roadmap</a>
+                <a href="https://github.com/miqu-project/.github/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-md text-brand-500 dark:text-brand-400 hover:text-brand-900 dark:hover:text-white transition-colors">AGENTS.md ↗</a>
+            </div>
+        </nav>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-brand-200 dark:border-brand-800 px-6 py-5 bg-white/95 dark:bg-[#0b0f17]/95 space-y-4 shadow-lg">
+            <div class="grid grid-cols-2 gap-2 pb-3 border-b border-brand-200 dark:border-brand-800">
+                <a href="index.html" class="flex items-center justify-center px-3 py-2 text-xs font-semibold text-brand-900 dark:text-white rounded-lg bg-brand-50 dark:bg-brand-800/60 border border-brand-200 dark:border-brand-700">Landing Page</a>
+                <a href="llm.html" class="flex items-center justify-center px-3 py-2 text-xs font-semibold text-brand-900 dark:text-white rounded-lg bg-brand-50 dark:bg-brand-800/60 border border-brand-200 dark:border-brand-700">LLM & Safety</a>
+            </div>
+            <a href="#overview" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">Overview</a>
+            <a href="#config-doctrine" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">Configuration Doctrine</a>
+            <a href="#components" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">Component Matrix</a>
+            <a href="#build-install" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">Build Protocols</a>
+            <a href="#craftsmanship" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">Craftsmanship Standards</a>
+            <a href="#roadmap" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">Active Roadmap</a>
+            
+            <div class="pt-3 border-t border-brand-200 dark:border-brand-800 flex items-center justify-between">
+                <span class="text-xs font-medium text-brand-600 dark:text-brand-400">Theme</span>
+                <button onclick="cycleTheme()" class="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 text-brand-800 dark:text-brand-200">
+                    <span id="mobile-theme-text">Auto</span>
+                </button>
+            </div>
+
+            <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full text-xs font-semibold px-4 py-2.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 text-brand-800 dark:text-brand-200 shadow-2xs">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                GitHub Organization
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Header -->
+    <section class="border-b border-brand-200/70 dark:border-brand-800/80 bg-brand-50/50 dark:bg-[#080c14] py-14 sm:py-16 transition-colors">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="inline-flex items-center gap-2 text-xs font-mono font-medium px-3 py-1 rounded-full bg-brand-100 dark:bg-brand-800/80 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 mb-4">
+                <span>AUTHORITATIVE SPECIFICATION</span>
+                <span>•</span>
+                <span>AGENTS.md</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-900 dark:text-white tracking-tight mb-4">
+                ECOSYSTEM DOCUMENTATION & SPECIFICATIONS
+            </h1>
+            <p class="text-sm sm:text-base text-brand-600 dark:text-brand-400 max-w-3xl leading-relaxed">
+                The authoritative single source of truth for architectural contracts, configuration management doctrines, build protocols, craftsmanship standards, and active roadmaps across the Miqu desktop ecosystem.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 1: Overview & Foundation -->
+    <section id="overview" class="border-b border-brand-200/80 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-16 transition-colors">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="flex items-center justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
+                <h2 class="text-2xl sm:text-3xl font-bold text-brand-900 dark:text-white tracking-tight">OVERVIEW & PLATFORM BASE</h2>
+                <span class="text-xs font-mono px-3 py-1 rounded bg-brand-100 dark:bg-brand-800 text-brand-700 dark:text-brand-300">Arch Linux Base</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-6 border border-brand-200 dark:border-brand-800">
+                    <h3 class="text-base font-bold text-brand-900 dark:text-white mb-2">Author's Goal</h3>
+                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                        A fully functional Wayland Desktop Environment is the ultimate goal. Progress is made methodically with strict adherence to architectural contracts, zero hidden magic, and total layer independence.
+                    </p>
+                </div>
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-6 border border-brand-200 dark:border-brand-800">
+                    <h3 class="text-base font-bold text-brand-900 dark:text-white mb-2">Platform Base</h3>
+                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Currently developed and verified on an <strong>Arch Linux</strong> base. Standard Wayland protocols ensure compatibility across modern Linux distributions (Debian, Fedora, Alpine) without proprietary lock-in.
+                    </p>
+                </div>
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-6 border border-brand-200 dark:border-brand-800">
+                    <h3 class="text-base font-bold text-brand-900 dark:text-white mb-2">Zero Source-Code Defaults</h3>
+                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Appearance tokens (colors, fonts, metrics, icon themes) must <em>never</em> have fallback magic literals in C++ struct initializers. All downstream apps implement a <code class="font-mono text-xs">sync_defaults_from_toolkit()</code> pattern.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Configuration Doctrine -->
+    <section id="config-doctrine" class="border-b border-brand-200/80 dark:border-brand-800/80 bg-brand-50/50 dark:bg-[#080c14] py-16 transition-colors">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="flex items-center justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
+                <h2 class="text-2xl sm:text-3xl font-bold text-brand-900 dark:text-white tracking-tight">CONFIGURATION MANAGEMENT GOLDEN RULES</h2>
+                <span class="text-xs font-mono px-3 py-1 rounded bg-brand-100 dark:bg-brand-800 text-brand-700 dark:text-brand-300">Single-File Authority</span>
+            </div>
+
+            <p class="text-sm text-brand-600 dark:text-brand-400 mb-8 max-w-4xl leading-relaxed">
+                Configuration management is the most critical architectural contract across the Miqu desktop ecosystem. It enforces absolute uniformity, predictable user customization, strict lifecycle safety, and zero hidden C++ magic.
+            </p>
+
+            <!-- Diagram Card -->
+            <div class="bg-white dark:bg-brand-900/60 rounded-2xl border border-brand-200 dark:border-brand-800 p-6 sm:p-8 mb-8 shadow-2xs">
+                <h3 class="text-base font-bold text-brand-900 dark:text-white mb-4">The Uniform Two-Tier Ecosystem Architecture</h3>
+                <div class="bg-brand-900 text-brand-100 p-5 rounded-xl font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto">
+<pre>┌────────────────────────────────────────────────────────┐
+│ Tier 1: System Baseline (/usr/share/&lt;app&gt;/&lt;app&gt;.conf)  │
+│  • Fully functional out of the box                     │
+│  • Loaded ONLY if user config does not exist           │
+└──────────────────────────┬─────────────────────────────┘
+                           │ (when user invokes &lt;app&gt; --init-config)
+                           ▼
+┌────────────────────────────────────────────────────────┐
+│ Tier 2: User Standalone (~/.config/&lt;app&gt;/&lt;app&gt;.conf)   │
+│  • Generated on demand via '&lt;app&gt; --init-config'       │
+│  • Safe timestamped archiving of existing config       │
+│  • Loaded EXCLUSIVELY once it exists                   │
+│  • Explicit 'source =' for dynamic themes/modules      │
+└────────────────────────────────────────────────────────┘</pre>
+                </div>
+            </div>
+
+            <!-- Pillars -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white dark:bg-brand-900/60 rounded-xl p-6 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 block mb-1">RULE 1</span>
+                    <h4 class="text-base font-bold text-brand-900 dark:text-white mb-2">Zero-Config Out of the Box</h4>
+                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                        On a fresh system where <code class="font-mono text-xs">~/.config/&lt;component&gt;/&lt;component&gt;.conf</code> does not exist, the component executes directly from the authoritative system baseline at <code class="font-mono text-xs">/usr/share/&lt;component&gt;/&lt;component&gt;.conf</code>. No configuration files are ever auto-seeded or written to <code class="font-mono text-xs">~/.config/</code> automatically on launch.
+                    </p>
+                </div>
+
+                <div class="bg-white dark:bg-brand-900/60 rounded-xl p-6 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 block mb-1">RULE 2</span>
+                    <h4 class="text-base font-bold text-brand-900 dark:text-white mb-2">On-Demand Init & Safe Archiving</h4>
+                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                        User configs are created strictly on-demand via <code class="font-mono text-xs">&lt;component&gt; --init-config</code>. If a config already exists, it is <em>never</em> silently overwritten: it is safely archived to <code class="font-mono text-xs">&lt;component&gt;.conf.bak.&lt;YYYYMMDD-HHMMSS&gt;</code> before a fresh template is placed.
+                    </p>
+                </div>
+
+                <div class="bg-white dark:bg-brand-900/60 rounded-xl p-6 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono font-bold text-purple-600 dark:text-purple-400 block mb-1">RULE 3</span>
+                    <h4 class="text-base font-bold text-brand-900 dark:text-white mb-2">Single-File Standalone Authority</h4>
+                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Once <code class="font-mono text-xs">~/.config/&lt;component&gt;/&lt;component&gt;.conf</code> exists, the component loads <strong>only</strong> that user file. There is no hidden C++ background inheritance, no implicit layered merging, and no silent magic.
+                    </p>
+                </div>
+
+                <div class="bg-white dark:bg-brand-900/60 rounded-xl p-6 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono font-bold text-amber-600 dark:text-amber-400 block mb-1">RULE 4</span>
+                    <h4 class="text-base font-bold text-brand-900 dark:text-white mb-2">Decoupled Dynamic Theming via `source`</h4>
+                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                        <code class="font-mono text-xs">miqutoolkit</code> C++ contains zero hardcoded internal couplings to <code class="font-mono text-xs">miqutheme</code>. Users who want dynamic wallpaper palettes explicitly add <code class="font-mono text-xs">source = ~/.config/miqutheme/current/miqutoolkit.conf</code>. Static users simply define colors directly.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Code Lifecycle -->
+            <div class="bg-white dark:bg-brand-900/60 rounded-2xl border border-brand-200 dark:border-brand-800 p-6 sm:p-8">
+                <h3 class="text-base font-bold text-brand-900 dark:text-white mb-3">Canonical Component Lifecycle Sequence</h3>
+                <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-400 mb-4">All ecosystem binaries implement the uniform configuration lifecycle in pure C++20:</p>
+                <div class="bg-brand-900 text-brand-100 p-5 rounded-xl font-mono text-xs leading-relaxed overflow-x-auto">
+<pre><span class="text-brand-400">// 1. Resolve configuration path</span>
+std::string user_conf = FsUtils::get_user_config_file(app_name);
+std::string target_conf = fs::exists(user_conf) ? user_conf : FsUtils::get_system_config_file(app_name);
+
+<span class="text-brand-400">// 2. Load exclusive configuration file (processes any internal 'source =' directives)</span>
+Config::get()->load_from_file(target_conf);
+
+<span class="text-brand-400">// 3. Register inotify watcher on loaded file and all sourced files for live reload</span>
+Config::get()->setup_config_watcher();</pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Component Matrix -->
+    <section id="components" class="border-b border-brand-200/80 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-16 transition-colors">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="flex items-center justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
+                <h2 class="text-2xl sm:text-3xl font-bold text-brand-900 dark:text-white tracking-tight">ECOSYSTEM COMPONENT MATRIX</h2>
+                <span class="text-xs font-mono px-3 py-1 rounded bg-brand-100 dark:bg-brand-800 text-brand-700 dark:text-brand-300">18 Applications & Core</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Core & Toolkit -->
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono text-blue-600 dark:text-blue-400 font-bold block mb-1">COMPOSITOR CORE</span>
+                    <h3 class="font-bold text-brand-900 dark:text-white text-base mb-1">miquland</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Wayland window manager and compositor (wlroots-based). Manages tiling/floating layouts, input, Wayland protocols, and IPC plugin architecture.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono text-purple-600 dark:text-purple-400 font-bold block mb-1">SHARED FRAMEWORK</span>
+                    <h3 class="font-bold text-brand-900 dark:text-white text-base mb-1">miqutoolkit</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        C++20 UI framework and application development toolkit (Cairo/Pango/Wayland abstraction) powering widgets, theming, and layout containers.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold block mb-1">SHELL</span>
+                    <h3 class="font-bold text-brand-900 dark:text-white text-base mb-1">miqubar</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Status bar and taskbar featuring workspace indicators, window lists, system tray, battery/network telemetry, and interactive flyouts.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold block mb-1">CANVAS</span>
+                    <h3 class="font-bold text-brand-900 dark:text-white text-base mb-1">miqudesk</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Interactive desktop canvas bringing familiar desktop ergonomics (shortcuts, desktop icons, widgets) to a modern tiling environment.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono text-rose-600 dark:text-rose-400 font-bold block mb-1">SECURITY</span>
+                    <h3 class="font-bold text-brand-900 dark:text-white text-base mb-1">miqusecure</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Privacy and firewall center managing Tor onion routing, OpenSnitch rules, LUKS encryption status, and privacy auditing.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono text-amber-600 dark:text-amber-400 font-bold block mb-1">AUDIO</span>
+                    <h3 class="font-bold text-brand-900 dark:text-white text-base mb-1">miqumusic</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Fast, lightweight native MPD (Music Player Daemon) client and audio playback interface with library management.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono text-indigo-600 dark:text-indigo-400 font-bold block mb-1">LAUNCHER</span>
+                    <h3 class="font-bold text-brand-900 dark:text-white text-base mb-1">miqulauncher</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Fuzzy application launcher, dmenu alternative, workspace navigator, and active window switcher with instant response.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono text-cyan-600 dark:text-cyan-400 font-bold block mb-1">OVERVIEW</span>
+                    <h3 class="font-bold text-brand-900 dark:text-white text-base mb-1">miquoverview</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        GPU-accelerated live workspace expose and overview plugin for interactive window management in miquland.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono text-teal-600 dark:text-teal-400 font-bold block mb-1">NOTIFICATIONS</span>
+                    <h3 class="font-bold text-brand-900 dark:text-white text-base mb-1">miqunotify</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Native desktop notification daemon implementing standard Desktop Notifications spec with slide-out history center.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono text-fuchsia-600 dark:text-fuchsia-400 font-bold block mb-1">THEMING</span>
+                    <h3 class="font-bold text-brand-900 dark:text-white text-base mb-1">miqutheme</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Visual appearance manager orchestrating color schemes, wallpapers, fonts, and instant theme broadcast across all apps.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono text-sky-600 dark:text-sky-400 font-bold block mb-1">MEDIA</span>
+                    <h3 class="font-bold text-brand-900 dark:text-white text-base mb-1">miqugallery</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        High-performance image viewer and media gallery application with hardware-accelerated scaling and directory browsing.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono text-orange-600 dark:text-orange-400 font-bold block mb-1">TELEMETRY</span>
+                    <h3 class="font-bold text-brand-900 dark:text-white text-base mb-1">miquinfo</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Hardware monitoring, system telemetry, memory/CPU metrics, and diagnostic resource inspection utility.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono text-blue-600 dark:text-blue-400 font-bold block mb-1">DISPLAY MANAGER</span>
+                    <h3 class="font-bold text-brand-900 dark:text-white text-base mb-1">miqudm</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Wayland-native Display Manager and login greeter with Linux PAM authentication and logind session management.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold block mb-1">WALLPAPER</span>
+                    <h3 class="font-bold text-brand-900 dark:text-white text-base mb-1">miqubg</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Independent wallpaper daemon rendering, scaling, and transitioning desktop background surfaces via layer-shell.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono text-rose-600 dark:text-rose-400 font-bold block mb-1">SESSION LOCK</span>
+                    <h3 class="font-bold text-brand-900 dark:text-white text-base mb-1">miqulock</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Session locking utility implementing the Wayland <code class="font-mono text-xs">ext-session-lock-v1</code> protocol with PAM authentication.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono text-violet-600 dark:text-violet-400 font-bold block mb-1">POWER & IDLE</span>
+                    <h3 class="font-bold text-brand-900 dark:text-white text-base mb-1">miquidle</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Idle management daemon monitoring user activity and display power timeouts via <code class="font-mono text-xs">ext-idle-notify-v1</code>.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono text-yellow-600 dark:text-yellow-400 font-bold block mb-1">PRIVILEGE</span>
+                    <h3 class="font-bold text-brand-900 dark:text-white text-base mb-1">miqupolkit</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Graphical Polkit authentication agent handling privilege escalation prompts securely over Wayland.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <span class="text-xs font-mono text-slate-600 dark:text-slate-400 font-bold block mb-1">SANDBOX</span>
+                    <h3 class="font-bold text-brand-900 dark:text-white text-base mb-1">miqutest</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Component testing sandbox and interactive widget showcase for developing and verifying miqutoolkit controls.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Build & Installation Standards -->
+    <section id="build-install" class="border-b border-brand-200/80 dark:border-brand-800/80 bg-brand-50/50 dark:bg-[#080c14] py-16 transition-colors">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="flex items-center justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
+                <h2 class="text-2xl sm:text-3xl font-bold text-brand-900 dark:text-white tracking-tight">BUILD SYSTEM & INSTALLATION PROTOCOLS</h2>
+                <span class="text-xs font-mono px-3 py-1 rounded bg-brand-100 dark:bg-brand-800 text-brand-700 dark:text-brand-300">Deterministic CMake & make.sh</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <!-- make.sh Protocol -->
+                <div class="bg-white dark:bg-brand-900/60 rounded-2xl border border-brand-200 dark:border-brand-800 p-6 sm:p-8">
+                    <h3 class="text-base font-bold text-brand-900 dark:text-white mb-2">1. The Standard `make.sh` Pattern</h3>
+                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 mb-4 leading-relaxed">
+                        Every repository and downstream app provides a uniform, standalone <code class="font-mono text-xs">make.sh</code> script. It provides an idempotent local build for unprivileged users, and automatic system-wide installation to <code class="font-mono text-xs">/usr</code> when executed as root:
+                    </p>
+                    <div class="bg-brand-900 text-brand-100 p-4 rounded-xl font-mono text-xs leading-relaxed overflow-x-auto">
+<pre><span class="text-brand-400"># Local unprivileged build (into build/)</span>
+./make.sh
+
+<span class="text-brand-400"># System-wide install to /usr</span>
+sudo ./make.sh</pre>
+                    </div>
+                </div>
+
+                <!-- Dependency Order -->
+                <div class="bg-white dark:bg-brand-900/60 rounded-2xl border border-brand-200 dark:border-brand-800 p-6 sm:p-8">
+                    <h3 class="text-base font-bold text-brand-900 dark:text-white mb-2">2. Hierarchical Dependency Order</h3>
+                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 mb-4 leading-relaxed">
+                        Components must be built strictly in their topological dependency order. The master orchestrator <code class="font-mono text-xs">install_all.sh</code> enforces this:
+                    </p>
+                    <ol class="space-y-2 text-xs sm:text-sm text-brand-700 dark:text-brand-300">
+                        <li class="flex items-center gap-2">
+                            <span class="w-5 h-5 rounded-full bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 flex items-center justify-center font-bold text-[11px]">1</span>
+                            <span><strong>miquland</strong> — Compositor core & plugin headers</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-5 h-5 rounded-full bg-purple-100 dark:bg-purple-900/60 text-purple-700 dark:text-purple-300 flex items-center justify-center font-bold text-[11px]">2</span>
+                            <span><strong>miqutoolkit</strong> — Shared C++20 UI framework</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 flex items-center justify-center font-bold text-[11px]">3</span>
+                            <span><strong>miqu-linux-apps</strong> — All 16 downstream utilities & daemons</span>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Craftsmanship Standards -->
+    <section id="craftsmanship" class="border-b border-brand-200/80 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-16 transition-colors">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="flex items-center justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
+                <h2 class="text-2xl sm:text-3xl font-bold text-brand-900 dark:text-white tracking-tight">CORE CRAFTSMANSHIP STANDARDS</h2>
+                <span class="text-xs font-mono px-3 py-1 rounded bg-brand-100 dark:bg-brand-800 text-brand-700 dark:text-brand-300">Strict RAII & Zero Idle CPU</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <h3 class="font-bold text-brand-900 dark:text-white text-sm mb-2">1. Strict Layer Sovereignty</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Downstream apps never touch raw Cairo, Pango, or Wayland surface protocols directly. Reusable widgets are promoted into <code class="font-mono text-[11px]">miqutoolkit</code>.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <h3 class="font-bold text-brand-900 dark:text-white text-sm mb-2">2. Strict RAII & No Zombie States</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Raw owning pointers are banned. File descriptors, Cairo contexts, and Wayland listeners are wrapped in scope-bound RAII guards with custom deleters.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <h3 class="font-bold text-brand-900 dark:text-white text-sm mb-2">3. Main-Thread Confinement</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        All Wayland protocol dispatches and Cairo rendering run strictly on the main thread. Background worker threads communicate exclusively via <code class="font-mono text-[11px]">eventfd</code> and pipes.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <h3 class="font-bold text-brand-900 dark:text-white text-sm mb-2">4. 0% Idle CPU Utilization</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        Compositor and applications sleep completely in the event loop when idle. Repaints are damage-driven; animation timers are torn down the moment transitions finish.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <h3 class="font-bold text-brand-900 dark:text-white text-sm mb-2">5. Zero Defensive Fallbacks</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        We maintain the entire stack end-to-end. Never introduce speculative fallback branches for capabilities we natively control and guarantee across our own codebase.
+                    </p>
+                </div>
+
+                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl p-5 border border-brand-200 dark:border-brand-800">
+                    <h3 class="font-bold text-brand-900 dark:text-white text-sm mb-2">6. Radical Candor & Real Protocols</h3>
+                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed">
+                        State hard protocol or low-level limitations upfront. Zero pseudo-solutions or fabricated APIs. Architectural prerequisites precede implementation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Active Roadmap -->
+    <section id="roadmap" class="border-b border-brand-200/80 dark:border-brand-800/80 bg-brand-50/50 dark:bg-[#080c14] py-16 transition-colors">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8">
+            <div class="flex items-center justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
+                <h2 class="text-2xl sm:text-3xl font-bold text-brand-900 dark:text-white tracking-tight">ACTIVE ECOSYSTEM ROADMAP</h2>
+                <a href="https://github.com/miqu-project/.github/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 hover:bg-brand-50 dark:hover:bg-brand-800 text-brand-800 dark:text-brand-200 transition-colors shadow-2xs">
+                    AGENTS.md Tracker ↗
+                </a>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-white dark:bg-brand-900/60 rounded-xl p-5 border border-brand-200 dark:border-brand-800 flex items-start gap-4">
+                    <span class="w-6 h-6 rounded-md bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 flex items-center justify-center font-bold text-xs flex-shrink-0">1</span>
+                    <div>
+                        <h3 class="font-bold text-brand-900 dark:text-white text-sm">`miquctl` Compositor IPC Utility</h3>
+                        <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed mt-1">
+                            First-party CLI controller communicating with <code class="font-mono text-xs">miquland</code> over Unix domain socket (workspace switching, window dispatching, monitor configuration, config reload, and runtime diagnostics).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-brand-900/60 rounded-xl p-5 border border-brand-200 dark:border-brand-800 flex items-start gap-4">
+                    <span class="w-6 h-6 rounded-md bg-purple-100 dark:bg-purple-900/60 text-purple-700 dark:text-purple-300 flex items-center justify-center font-bold text-xs flex-shrink-0">2</span>
+                    <div>
+                        <h3 class="font-bold text-brand-900 dark:text-white text-sm">Plugin System v2.0 (Post-miquctl)</h3>
+                        <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed mt-1">
+                            Window & workspace event bus, multi-finger gesture hooks, dynamic CLI plugin loading/unloading, and custom layout engine registration.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-brand-900/60 rounded-xl p-5 border border-brand-200 dark:border-brand-800 flex items-start gap-4">
+                    <span class="w-6 h-6 rounded-md bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 flex items-center justify-center font-bold text-xs flex-shrink-0">3</span>
+                    <div>
+                        <h3 class="font-bold text-brand-900 dark:text-white text-sm">Next Utilities: `miqushot`, `miqusunset`, `miqusettings`, `miqupower`</h3>
+                        <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed mt-1">
+                            Screenshot utility with layer-shell freeze, blue light/gamma regulator, centralized graphical settings center, and session power dialog.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-brand-900/60 rounded-xl p-5 border border-brand-200 dark:border-brand-800 flex items-start gap-4">
+                    <span class="w-6 h-6 rounded-md bg-amber-100 dark:bg-amber-900/60 text-amber-700 dark:text-amber-300 flex items-center justify-center font-bold text-xs flex-shrink-0">4</span>
+                    <div>
+                        <h3 class="font-bold text-brand-900 dark:text-white text-sm">`miqutoolkit` Internal Animation Framework</h3>
+                        <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed mt-1">
+                            First-class frame-driven animation engine inside the toolkit with configurable easing curves, spring dynamics, and smooth geometry transitions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-brand-200/70 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-10 text-brand-500 dark:text-brand-400 text-sm transition-colors">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <img src="assets/logo.png" alt="Miqu Logo" class="w-6 h-6 object-contain" />
+                <span class="font-bold text-brand-900 dark:text-white">Miqu Project</span>
+                <span class="text-brand-400 dark:text-brand-600">•</span>
+                <span>Documentation</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-brand-600 dark:text-brand-300">
+                <a href="index.html" class="hover:text-brand-900 dark:hover:text-white transition-colors">Home</a>
+                <a href="llm.html" class="hover:text-brand-900 dark:hover:text-white transition-colors">LLM & Safety</a>
+                <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900 dark:hover:text-white transition-colors">miquland</a>
+                <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900 dark:hover:text-white transition-colors">miqutoolkit</a>
+                <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900 dark:hover:text-white transition-colors">miqu-linux-apps</a>
+                <a href="https://github.com/miqu-project/.github/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900 dark:hover:text-white transition-colors">AGENTS.md ↗</a>
+            </div>
+            <p class="text-xs text-brand-400 dark:text-brand-500">&copy; 2026 miqu-project. Released under the MIT License.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Management: Auto (System) / Light / Dark with persistence
+        function getThemeMode() {
+            return localStorage.getItem('theme') || 'system';
+        }
+
+        function applyTheme(mode) {
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = mode === 'dark' || (mode === 'system' && systemDark);
+            
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            
+            updateThemeUI(mode, isDark);
+        }
+
+        function updateThemeUI(mode, isDark) {
+            const textElem = document.getElementById('theme-toggle-text');
+            const iconElem = document.getElementById('theme-toggle-icon');
+            const mobileText = document.getElementById('mobile-theme-text');
+            const mobileIcon = document.getElementById('mobile-theme-icon');
+
+            let label = 'Auto';
+            let iconSvg = '';
+
+            if (mode === 'light') {
+                label = 'Light';
+                iconSvg = '<svg class="w-3.5 h-3.5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>';
+            } else if (mode === 'dark') {
+                label = 'Dark';
+                iconSvg = '<svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>';
+            } else {
+                label = 'Auto';
+                iconSvg = '<svg class="w-3.5 h-3.5 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>';
+            }
+
+            if (textElem) textElem.textContent = label;
+            if (iconElem) iconElem.innerHTML = iconSvg;
+            if (mobileText) mobileText.textContent = label;
+            if (mobileIcon) mobileIcon.innerHTML = iconSvg;
+        }
+
+        function cycleTheme() {
+            const current = getThemeMode();
+            let next = 'system';
+            if (current === 'system') next = 'light';
+            else if (current === 'light') next = 'dark';
+            else if (current === 'dark') next = 'system';
+
+            localStorage.setItem('theme', next);
+            applyTheme(next);
+        }
+
+        // Mobile drawer toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) {
+                menu.classList.toggle('hidden');
+            }
+        }
+
+        // Initialize theme on page load
+        applyTheme(getThemeMode());
+
+        // Listen for OS color scheme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+            if (getThemeMode() === 'system') {
+                applyTheme('system');
+            }
+        });
+    </script>
+</body>
+</html>
