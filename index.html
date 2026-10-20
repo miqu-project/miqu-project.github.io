@@ -258,166 +258,78 @@
 </header>
 
     <!-- Architecture & Foundation Section: Big Concise Graphical Flow Pipeline -->
-    <section id="architecture" class="w-full border-b border-brand-200/80 dark:border-brand-800/80 bg-brand-50/50 dark:bg-[#080c14] py-20 transition-colors">
+    <section id="architecture" class="w-full border-b border-brand-200/80 dark:border-brand-800/80 bg-brand-50/50 dark:bg-[#080c14] py-16 transition-colors">
         <div class="max-w-7xl mx-auto px-6 sm:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 border-b border-brand-200 dark:border-brand-800 pb-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
                 <div>
-                    <h2 class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">System Architecture</h2>
-                    <h3 class="text-3xl font-bold text-brand-900 dark:text-white tracking-tight">Ecosystem Architecture Pipeline</h3>
-                    <p class="text-brand-500 dark:text-brand-400 mt-2 text-sm max-w-2xl">
-                        A contract-driven, modular Wayland stack spanning from the base Linux kernel up through the compositor, toolkit, and native client applications.
-                    </p>
+                    <h2 class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-1">System Architecture</h2>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-brand-900 dark:text-white tracking-tight">Four-Tier Architecture Flow</h3>
                 </div>
                 <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 hover:bg-brand-50 dark:hover:bg-brand-800 text-brand-800 dark:text-brand-200 transition-colors shadow-2xs self-start md:self-auto">
                     <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    GitHub Organization
+                    GitHub
                 </a>
             </div>
 
-            <!-- Big Graphical Flowchart Pipeline -->
-            <div class="max-w-5xl mx-auto space-y-4">
-                <!-- Layer 1: Hardware & Linux OS Base -->
-                <div class="bg-white dark:bg-brand-900/60 border border-brand-200 dark:border-brand-800 rounded-2xl p-6 sm:p-7 shadow-2xs hover:border-brand-400 dark:hover:border-brand-600 transition-all">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-300 flex-shrink-0 font-bold shadow-2xs">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-2 mb-1">
-                                    <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Layer 1 • Platform Base</span>
-                                    <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Arch Linux / Debian / Fedora</span>
-                                </div>
-                                <h4 class="text-lg font-bold text-brand-900 dark:text-white">Hardware & Linux OS Base</h4>
-                                <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 mt-0.5">Provides the Linux kernel, DRM/KMS graphics drivers, libinput event handling, and systemd session management.</p>
-                            </div>
+            <!-- Big Graphical Architecture Flow Pipeline -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
+                <!-- Step 1: Base -->
+                <div class="relative bg-white dark:bg-brand-900/60 border border-brand-200 dark:border-brand-800 rounded-2xl p-6 shadow-2xs hover:border-slate-400 dark:hover:border-slate-600 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono font-bold px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">01</span>
+                            <span class="text-[11px] font-mono font-semibold uppercase text-slate-500 dark:text-slate-400">OS Base</span>
                         </div>
-                        <div class="flex flex-wrap items-center gap-1.5 md:self-center">
-                            <span class="font-mono text-[11px] px-2.5 py-1 rounded-md bg-brand-50 dark:bg-brand-800/60 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700">Linux Kernel</span>
-                            <span class="font-mono text-[11px] px-2.5 py-1 rounded-md bg-brand-50 dark:bg-brand-800/60 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700">DRM / KMS</span>
-                            <span class="font-mono text-[11px] px-2.5 py-1 rounded-md bg-brand-50 dark:bg-brand-800/60 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700">libinput</span>
-                        </div>
+                        <h4 class="text-base font-bold text-brand-900 dark:text-white mb-1.5">Hardware & Linux OS</h4>
+                        <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300">Linux kernel, DRM/KMS graphics drivers, and libinput event subsystem.</p>
+                    </div>
+                    <!-- Flow indicator for desktop -->
+                    <div class="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-brand-900 border border-brand-200 dark:border-brand-700 items-center justify-center text-brand-400 shadow-2xs">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
                     </div>
                 </div>
 
-                <!-- Connector 1 -->
-                <div class="flex items-center justify-center py-1">
-                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-brand-900/90 border border-brand-200 dark:border-brand-700 text-[11px] font-mono text-brand-600 dark:text-brand-300 shadow-2xs">
-                        <svg class="w-3.5 h-3.5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-                        <span>Hardware Input & DRM Modesetting</span>
+                <!-- Step 2: Compositor -->
+                <div class="relative bg-white dark:bg-brand-900/60 border border-blue-200 dark:border-blue-900/80 rounded-2xl p-6 shadow-2xs hover:border-blue-400 dark:hover:border-blue-600 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono font-bold px-2.5 py-1 rounded-md bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300">02</span>
+                            <span class="text-[11px] font-mono font-semibold uppercase text-blue-600 dark:text-blue-400">Compositor</span>
+                        </div>
+                        <h4 class="text-base font-bold text-brand-900 dark:text-white mb-1.5">miquland Compositor</h4>
+                        <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300">Dynamic tiling compositor, scenefx GPU visual effects, and 0% idle CPU.</p>
+                    </div>
+                    <!-- Flow indicator for desktop -->
+                    <div class="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-brand-900 border border-brand-200 dark:border-brand-700 items-center justify-center text-brand-400 shadow-2xs">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
                     </div>
                 </div>
 
-                <!-- Layer 2: Display Server & Wayland Compositor (miquland) -->
-                <div class="bg-white dark:bg-brand-900/60 border border-blue-200 dark:border-blue-900/80 rounded-2xl p-6 sm:p-7 shadow-2xs hover:border-blue-400 dark:hover:border-blue-600 transition-all">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-950/80 border border-blue-200 dark:border-blue-800 flex items-center justify-center text-blue-700 dark:text-blue-400 flex-shrink-0 font-bold shadow-2xs">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-2 mb-1">
-                                    <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Layer 2 • Display Server & Compositor</span>
-                                    <a href="#miquland" class="text-xs px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 font-semibold hover:underline">miquland Details ↓</a>
-                                </div>
-                                <h4 class="text-lg font-bold text-brand-900 dark:text-white">miquland Compositor</h4>
-                                <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 mt-0.5">Orchestrates dynamic tiling, scenefx GPU blur/effects, display outputs, layer-shell, and IPC dispatching with 0% idle CPU.</p>
-                            </div>
+                <!-- Step 3: Toolkit -->
+                <div class="relative bg-white dark:bg-brand-900/60 border border-purple-200 dark:border-purple-900/80 rounded-2xl p-6 shadow-2xs hover:border-purple-400 dark:hover:border-purple-600 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono font-bold px-2.5 py-1 rounded-md bg-purple-100 dark:bg-purple-950/80 text-purple-700 dark:text-purple-300">03</span>
+                            <span class="text-[11px] font-mono font-semibold uppercase text-purple-600 dark:text-purple-400">Toolkit</span>
                         </div>
-                        <div class="flex flex-wrap items-center gap-1.5 md:self-center">
-                            <span class="font-mono text-[11px] px-2.5 py-1 rounded-md bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">C++20</span>
-                            <span class="font-mono text-[11px] px-2.5 py-1 rounded-md bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">wlroots</span>
-                            <span class="font-mono text-[11px] px-2.5 py-1 rounded-md bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">scenefx</span>
-                            <span class="font-mono text-[11px] px-2.5 py-1 rounded-md bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">OpenGL</span>
-                        </div>
+                        <h4 class="text-base font-bold text-brand-900 dark:text-white mb-1.5">miqutoolkit Framework</h4>
+                        <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300">Cairo/Pango vector widget engine and Two-Tier configuration doctrine.</p>
+                    </div>
+                    <!-- Flow indicator for desktop -->
+                    <div class="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-brand-900 border border-brand-200 dark:border-brand-700 items-center justify-center text-brand-400 shadow-2xs">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
                     </div>
                 </div>
 
-                <!-- Connector 2 -->
-                <div class="flex items-center justify-center py-1">
-                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-brand-900/90 border border-brand-200 dark:border-brand-700 text-[11px] font-mono text-brand-600 dark:text-brand-300 shadow-2xs">
-                        <svg class="w-3.5 h-3.5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-                        <span>Wayland Protocols (xdg-shell, layer-shell, session-lock) & Unix IPC Socket</span>
-                    </div>
-                </div>
-
-                <!-- Layer 3: Application UI Framework (miqutoolkit) -->
-                <div class="bg-white dark:bg-brand-900/60 border border-purple-200 dark:border-purple-900/80 rounded-2xl p-6 sm:p-7 shadow-2xs hover:border-purple-400 dark:hover:border-purple-600 transition-all">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-950/80 border border-purple-200 dark:border-purple-800 flex items-center justify-center text-purple-700 dark:text-purple-400 flex-shrink-0 font-bold shadow-2xs">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polygon><polyline points="2 17 12 22 22 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline><polyline points="2 12 12 17 22 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-2 mb-1">
-                                    <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">Layer 3 • Client Application Framework</span>
-                                    <a href="#miqutoolkit" class="text-xs px-2 py-0.5 rounded-full bg-purple-50 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 font-semibold hover:underline">miqutoolkit Details ↓</a>
-                                </div>
-                                <h4 class="text-lg font-bold text-brand-900 dark:text-white">miqutoolkit UI Framework</h4>
-                                <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 mt-0.5">Powers client applications with Cairo/Pango widgets, thread-safe event loops, Two-Tier config authority, and instant theming.</p>
-                            </div>
+                <!-- Step 4: Applications -->
+                <div class="relative bg-white dark:bg-brand-900/60 border border-emerald-200 dark:border-emerald-900/80 rounded-2xl p-6 shadow-2xs hover:border-emerald-400 dark:hover:border-emerald-600 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono font-bold px-2.5 py-1 rounded-md bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300">04</span>
+                            <span class="text-[11px] font-mono font-semibold uppercase text-emerald-600 dark:text-emerald-400">Applications</span>
                         </div>
-                        <div class="flex flex-wrap items-center gap-1.5 md:self-center">
-                            <span class="font-mono text-[11px] px-2.5 py-1 rounded-md bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800">C++20</span>
-                            <span class="font-mono text-[11px] px-2.5 py-1 rounded-md bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800">Cairo</span>
-                            <span class="font-mono text-[11px] px-2.5 py-1 rounded-md bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800">Pango</span>
-                            <span class="font-mono text-[11px] px-2.5 py-1 rounded-md bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800">Two-Tier Config</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Connector 3 -->
-                <div class="flex items-center justify-center py-1">
-                    <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-brand-900/90 border border-brand-200 dark:border-brand-700 text-[11px] font-mono text-brand-600 dark:text-brand-300 shadow-2xs">
-                        <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-                        <span>libmiqutoolkit.so Dynamic Linkage & Ecosystem Appearance Tokens</span>
-                    </div>
-                </div>
-
-                <!-- Layer 4: Client Applications Split Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Layer 4A: 16 Linux Desktop Applications -->
-                    <div class="bg-white dark:bg-brand-900/60 border border-emerald-200 dark:border-emerald-900/80 rounded-2xl p-6 shadow-2xs hover:border-emerald-400 dark:hover:border-emerald-600 transition-all flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center gap-3.5 mb-3">
-                                <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-200 dark:border-emerald-800 flex items-center justify-center text-emerald-700 dark:text-emerald-400 font-bold flex-shrink-0">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" stroke-width="2" rx="1"></rect><rect x="14" y="3" width="7" height="7" stroke-width="2" rx="1"></rect><rect x="14" y="14" width="7" height="7" stroke-width="2" rx="1"></rect><rect x="3" y="14" width="7" height="7" stroke-width="2" rx="1"></rect></svg>
-                                </div>
-                                <div>
-                                    <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Layer 4A • Desktop Suite</span>
-                                    <h4 class="text-base font-bold text-brand-900 dark:text-white">Miqu Linux Applications (16 Apps)</h4>
-                                </div>
-                            </div>
-                            <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 leading-relaxed">
-                                Complete 16-application desktop suite sharing uniform design tokens, inotify live theming, and zero UI fragmentation.
-                            </p>
-                        </div>
-                        <div class="mt-4 pt-4 border-t border-brand-100 dark:border-brand-800 flex items-center justify-between">
-                            <span class="text-xs font-mono text-brand-500 dark:text-brand-400">miqubar, miqudesk, miqusecure...</span>
-                            <a href="#linux-apps" class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:underline">Explore 16 Apps ↓</a>
-                        </div>
-                    </div>
-
-                    <!-- Layer 4B: Android Companion Applications -->
-                    <div class="bg-white dark:bg-brand-900/60 border border-amber-200 dark:border-amber-900/80 rounded-2xl p-6 shadow-2xs hover:border-amber-400 dark:hover:border-amber-600 transition-all flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center gap-3.5 mb-3">
-                                <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/80 border border-amber-200 dark:border-amber-800 flex items-center justify-center text-amber-700 dark:text-amber-400 font-bold flex-shrink-0">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" stroke-width="2"></rect><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="2" stroke-linecap="round"></line></svg>
-                                </div>
-                                <div>
-                                    <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">Layer 4B • Mobile Suite</span>
-                                    <h4 class="text-base font-bold text-brand-900 dark:text-white">Miqu Android Applications (2 Apps)</h4>
-                                </div>
-                            </div>
-                            <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 leading-relaxed">
-                                Native Android mobile companion tools written in Kotlin and Jetpack Compose for clinical diagnostics and Quran study.
-                            </p>
-                        </div>
-                        <div class="mt-4 pt-4 border-t border-brand-100 dark:border-brand-800 flex items-center justify-between">
-                            <span class="text-xs font-mono text-brand-500 dark:text-brand-400">Doctor & Recitation</span>
-                            <a href="#android-apps" class="text-xs font-semibold text-amber-600 dark:text-amber-400 hover:underline">Explore 2 Apps ↓</a>
-                        </div>
+                        <h4 class="text-base font-bold text-brand-900 dark:text-white mb-1.5">Client Applications</h4>
+                        <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300">16 native Linux desktop applications and 2 Android mobile companion tools.</p>
                     </div>
                 </div>
             </div>
@@ -425,18 +337,15 @@
     </section>
 
     <!-- Dedicated miquland Compositor Section -->
-    <section id="miquland" class="w-full border-b border-brand-200/80 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-20 transition-colors">
+    <section id="miquland" class="w-full border-b border-brand-200/80 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-16 transition-colors">
         <div class="max-w-7xl mx-auto px-6 sm:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 border-b border-brand-200 dark:border-brand-800 pb-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
                 <div>
-                    <div class="flex items-center gap-2 mb-2">
-                        <span class="text-xs font-bold tracking-widest text-blue-600 dark:text-blue-400 uppercase">Core Compositor & Window Manager</span>
+                    <div class="flex items-center gap-2 mb-1.5">
+                        <span class="text-xs font-bold tracking-widest text-blue-600 dark:text-blue-400 uppercase">Wayland Compositor</span>
                         <span class="text-xs font-mono font-medium px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">C++20 • wlroots • scenefx</span>
                     </div>
-                    <h3 class="text-3xl font-bold text-brand-900 dark:text-white tracking-tight">miquland</h3>
-                    <p class="text-brand-500 dark:text-brand-400 mt-2 text-sm max-w-2xl">
-                        An independent, high-performance Wayland compositor and tiling window manager featuring scenefx hardware visual effects, strictly damage-driven rendering, and IPC control.
-                    </p>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-brand-900 dark:text-white tracking-tight">miquland</h3>
                 </div>
                 <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 hover:bg-brand-50 dark:hover:bg-brand-800 text-brand-800 dark:text-brand-200 transition-colors shadow-2xs self-start md:self-auto">
                     <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
@@ -444,120 +353,66 @@
                 </a>
             </div>
 
-            <!-- miquland Feature Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- 1. Dynamic Tiling & Floating -->
-                <div class="bg-brand-50/70 dark:bg-brand-900/40 border border-brand-200 dark:border-brand-800 rounded-xl p-6 flex flex-col justify-between hover:border-blue-400 dark:hover:border-blue-600 transition-colors shadow-2xs">
-                    <div>
-                        <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-950/80 border border-blue-200 dark:border-blue-800 flex items-center justify-center text-blue-700 dark:text-blue-400 font-bold mb-4">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+            <!-- miquland Features Bullet Points -->
+            <div class="bg-brand-50/70 dark:bg-brand-900/40 border border-brand-200 dark:border-brand-800 rounded-2xl p-6 sm:p-8 shadow-2xs">
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                    <li class="flex items-start gap-3">
+                        <span class="w-2 h-2 rounded-full bg-blue-500 mt-2 flex-shrink-0"></span>
+                        <div class="text-sm">
+                            <strong class="font-semibold text-brand-900 dark:text-white">Dynamic Tiling & Floating:</strong>
+                            <span class="text-brand-600 dark:text-brand-300"> Full binary dynamic tiling, floating window rules, and multi-monitor output tracking.</span>
                         </div>
-                        <h4 class="text-base font-bold text-brand-900 dark:text-white mb-1.5">Dynamic Tiling & Floating Engine</h4>
-                        <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 leading-relaxed">
-                            Full binary dynamic tiling and floating window management with configurable window rules, smooth geometry animations, multi-monitor output tracking, and custom layout extensibility.
-                        </p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-brand-200 dark:border-brand-800 text-[11px] font-mono text-brand-500 dark:text-brand-400">
-                        Multi-Monitor • Tiling • Floating Rules
-                    </div>
-                </div>
-
-                <!-- 2. Scenefx Visual Pipeline -->
-                <div class="bg-brand-50/70 dark:bg-brand-900/40 border border-brand-200 dark:border-brand-800 rounded-xl p-6 flex flex-col justify-between hover:border-blue-400 dark:hover:border-blue-600 transition-colors shadow-2xs">
-                    <div>
-                        <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-950/80 border border-blue-200 dark:border-blue-800 flex items-center justify-center text-blue-700 dark:text-blue-400 font-bold mb-4">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="w-2 h-2 rounded-full bg-blue-500 mt-2 flex-shrink-0"></span>
+                        <div class="text-sm">
+                            <strong class="font-semibold text-brand-900 dark:text-white">Scenefx GPU Visuals:</strong>
+                            <span class="text-brand-600 dark:text-brand-300"> Hardware dual-kawase blur, rounded window corners, soft drop shadows, and gradient borders.</span>
                         </div>
-                        <h4 class="text-base font-bold text-brand-900 dark:text-white mb-1.5">Scenefx GPU Visual Pipeline</h4>
-                        <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 leading-relaxed">
-                            Hardware-accelerated dual-kawase blur, rounded window corners, soft drop shadows, and multi-stop gradient borders rendered directly via scenefx and OpenGL without external compositor lag.
-                        </p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-brand-200 dark:border-brand-800 text-[11px] font-mono text-brand-500 dark:text-brand-400">
-                        Dual-Kawase Blur • Shadows • Rounded Corners
-                    </div>
-                </div>
-
-                <!-- 3. Protocol Sovereignty -->
-                <div class="bg-brand-50/70 dark:bg-brand-900/40 border border-brand-200 dark:border-brand-800 rounded-xl p-6 flex flex-col justify-between hover:border-blue-400 dark:hover:border-blue-600 transition-colors shadow-2xs">
-                    <div>
-                        <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-950/80 border border-blue-200 dark:border-blue-800 flex items-center justify-center text-blue-700 dark:text-blue-400 font-bold mb-4">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="w-2 h-2 rounded-full bg-blue-500 mt-2 flex-shrink-0"></span>
+                        <div class="text-sm">
+                            <strong class="font-semibold text-brand-900 dark:text-white">Wayland Protocol Suite:</strong>
+                            <span class="text-brand-600 dark:text-brand-300"> Native support for <code class="font-mono text-xs">xdg-shell</code>, <code class="font-mono text-xs">wlr-layer-shell-v1</code>, <code class="font-mono text-xs">ext-session-lock-v1</code>, and <code class="font-mono text-xs">ext-idle-notify-v1</code>.</span>
                         </div>
-                        <h4 class="text-base font-bold text-brand-900 dark:text-white mb-1.5">Universal Wayland Protocols</h4>
-                        <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 leading-relaxed">
-                            First-class implementations of <code class="font-mono text-[11px] text-brand-900 dark:text-brand-100">xdg-shell</code>, <code class="font-mono text-[11px] text-brand-900 dark:text-brand-100">wlr-layer-shell-v1</code> (bars, wallpaper, overlays), <code class="font-mono text-[11px] text-brand-900 dark:text-brand-100">ext-session-lock-v1</code>, and <code class="font-mono text-[11px] text-brand-900 dark:text-brand-100">ext-idle-notify-v1</code>.
-                        </p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-brand-200 dark:border-brand-800 text-[11px] font-mono text-brand-500 dark:text-brand-400">
-                        Layer-Shell • Session-Lock • Idle-Notify
-                    </div>
-                </div>
-
-                <!-- 4. Absolute 0% Idle CPU -->
-                <div class="bg-brand-50/70 dark:bg-brand-900/40 border border-brand-200 dark:border-brand-800 rounded-xl p-6 flex flex-col justify-between hover:border-blue-400 dark:hover:border-blue-600 transition-colors shadow-2xs">
-                    <div>
-                        <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-950/80 border border-blue-200 dark:border-blue-800 flex items-center justify-center text-blue-700 dark:text-blue-400 font-bold mb-4">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="w-2 h-2 rounded-full bg-blue-500 mt-2 flex-shrink-0"></span>
+                        <div class="text-sm">
+                            <strong class="font-semibold text-brand-900 dark:text-white">Absolute 0% Idle CPU:</strong>
+                            <span class="text-brand-600 dark:text-brand-300"> Strictly damage-driven repaints (<code class="font-mono text-xs">wlr_output_schedule_frame</code>), instant animation timer teardown, and zero busy polling.</span>
                         </div>
-                        <h4 class="text-base font-bold text-brand-900 dark:text-white mb-1.5">0% Idle CPU & Damage Scheduling</h4>
-                        <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 leading-relaxed">
-                            Enforces strict event-driven dormancy. Frame scheduling is damage-driven (<code class="font-mono text-[11px] text-brand-900 dark:text-brand-100">wlr_output_schedule_frame</code>) with immediate animation timer teardown and zero busy polling in the event loop.
-                        </p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-brand-200 dark:border-brand-800 text-[11px] font-mono text-brand-500 dark:text-brand-400">
-                        0.0% Idle CPU • Damage Repaints • Zero Polling
-                    </div>
-                </div>
-
-                <!-- 5. Compositor IPC Architecture -->
-                <div class="bg-brand-50/70 dark:bg-brand-900/40 border border-brand-200 dark:border-brand-800 rounded-xl p-6 flex flex-col justify-between hover:border-blue-400 dark:hover:border-blue-600 transition-colors shadow-2xs">
-                    <div>
-                        <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-950/80 border border-blue-200 dark:border-blue-800 flex items-center justify-center text-blue-700 dark:text-blue-400 font-bold mb-4">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="w-2 h-2 rounded-full bg-blue-500 mt-2 flex-shrink-0"></span>
+                        <div class="text-sm">
+                            <strong class="font-semibold text-brand-900 dark:text-white">Compositor IPC Socket:</strong>
+                            <span class="text-brand-600 dark:text-brand-300"> High-speed Unix domain socket controller (<code class="font-mono text-xs">miquctl</code>) for runtime queries, window manipulation, and dynamic dispatching.</span>
                         </div>
-                        <h4 class="text-base font-bold text-brand-900 dark:text-white mb-1.5">Compositor IPC Socket (miquctl)</h4>
-                        <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 leading-relaxed">
-                            High-speed Unix domain socket controller for runtime queries, dynamic workspace switching, window manipulation, configuration reloads, and external utility orchestration.
-                        </p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-brand-200 dark:border-brand-800 text-[11px] font-mono text-brand-500 dark:text-brand-400">
-                        Unix Domain Socket • Dispatcher • Controller
-                    </div>
-                </div>
-
-                <!-- 6. Display-Manager-Optional Lifecycle -->
-                <div class="bg-brand-50/70 dark:bg-brand-900/40 border border-brand-200 dark:border-brand-800 rounded-xl p-6 flex flex-col justify-between hover:border-blue-400 dark:hover:border-blue-600 transition-colors shadow-2xs">
-                    <div>
-                        <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-950/80 border border-blue-200 dark:border-blue-800 flex items-center justify-center text-blue-700 dark:text-blue-400 font-bold mb-4">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="w-2 h-2 rounded-full bg-blue-500 mt-2 flex-shrink-0"></span>
+                        <div class="text-sm">
+                            <strong class="font-semibold text-brand-900 dark:text-white">TTY & Display Manager Ready:</strong>
+                            <span class="text-brand-600 dark:text-brand-300"> Direct invocation from virtual terminal (TTY) or standard session registration with <code class="font-mono text-xs">miqudm</code>, SDDM, or GDM.</span>
                         </div>
-                        <h4 class="text-base font-bold text-brand-900 dark:text-white mb-1.5">TTY & Display Manager Agnostic</h4>
-                        <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 leading-relaxed">
-                            Launches cleanly and directly from your virtual terminal (TTY) with a single command, or registers as a standard Wayland session in display managers (miqudm, SDDM, GDM).
-                        </p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-brand-200 dark:border-brand-800 text-[11px] font-mono text-brand-500 dark:text-brand-400">
-                        TTY Direct • miqudm • SDDM / GDM Session
-                    </div>
-                </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
 
     <!-- Dedicated miqutoolkit UI Framework Section -->
-    <section id="miqutoolkit" class="w-full border-b border-brand-200/80 dark:border-brand-800/80 bg-brand-50/50 dark:bg-[#080c14] py-20 transition-colors">
+    <section id="miqutoolkit" class="w-full border-b border-brand-200/80 dark:border-brand-800/80 bg-brand-50/50 dark:bg-[#080c14] py-16 transition-colors">
         <div class="max-w-7xl mx-auto px-6 sm:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 border-b border-brand-200 dark:border-brand-800 pb-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
                 <div>
-                    <div class="flex items-center gap-2 mb-2">
-                        <span class="text-xs font-bold tracking-widest text-purple-600 dark:text-purple-400 uppercase">Shared UI Application Framework</span>
+                    <div class="flex items-center gap-2 mb-1.5">
+                        <span class="text-xs font-bold tracking-widest text-purple-600 dark:text-purple-400 uppercase">Application UI Framework</span>
                         <span class="text-xs font-mono font-medium px-2 py-0.5 rounded bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800">C++20 • Cairo • Pango</span>
                     </div>
-                    <h3 class="text-3xl font-bold text-brand-900 dark:text-white tracking-tight">miqutoolkit</h3>
-                    <p class="text-brand-500 dark:text-brand-400 mt-2 text-sm max-w-2xl">
-                        The shared client-side application toolkit powering all 16 Linux desktop applications with Cairo/Pango rendering, strict RAII memory safety, and the Two-Tier Configuration doctrine.
-                    </p>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-brand-900 dark:text-white tracking-tight">miqutoolkit</h3>
                 </div>
                 <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 hover:bg-brand-50 dark:hover:bg-brand-800 text-brand-800 dark:text-brand-200 transition-colors shadow-2xs self-start md:self-auto">
                     <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
@@ -565,103 +420,52 @@
                 </a>
             </div>
 
-            <!-- miqutoolkit Feature Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- 1. Cairo & Pango Abstraction -->
-                <div class="bg-white dark:bg-brand-900/60 border border-brand-200 dark:border-brand-800 rounded-xl p-6 flex flex-col justify-between hover:border-purple-400 dark:hover:border-purple-600 transition-colors shadow-2xs">
-                    <div>
-                        <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-950/80 border border-purple-200 dark:border-purple-800 flex items-center justify-center text-purple-700 dark:text-purple-400 font-bold mb-4">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polygon><polyline points="2 17 12 22 22 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline><polyline points="2 12 12 17 22 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+            <!-- miqutoolkit Features Bullet Points -->
+            <div class="bg-white dark:bg-brand-900/60 border border-brand-200 dark:border-brand-800 rounded-2xl p-6 sm:p-8 shadow-2xs">
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                    <li class="flex items-start gap-3">
+                        <span class="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></span>
+                        <div class="text-sm">
+                            <strong class="font-semibold text-brand-900 dark:text-white">Cairo & Pango Abstraction:</strong>
+                            <span class="text-brand-600 dark:text-brand-300"> Clean object-oriented vector drawing and layout widgets (<code class="font-mono text-xs">ViewGroup</code>, <code class="font-mono text-xs">CardView</code>, <code class="font-mono text-xs">Label</code>).</span>
                         </div>
-                        <h4 class="text-base font-bold text-brand-900 dark:text-white mb-1.5">Cairo & Pango Graphics Abstraction</h4>
-                        <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 leading-relaxed">
-                            Clean object-oriented vector drawing and layout abstraction. Applications interact with structured views (ViewGroup, CardView, Label) rather than raw Cairo or Pango C APIs.
-                        </p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-brand-100 dark:border-brand-800 text-[11px] font-mono text-brand-500 dark:text-brand-400">
-                        Vector Drawing • Sub-pixel Pango • ViewGroup
-                    </div>
-                </div>
-
-                <!-- 2. Two-Tier Single-File Authority -->
-                <div class="bg-white dark:bg-brand-900/60 border border-brand-200 dark:border-brand-800 rounded-xl p-6 flex flex-col justify-between hover:border-purple-400 dark:hover:border-purple-600 transition-colors shadow-2xs">
-                    <div>
-                        <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-950/80 border border-purple-200 dark:border-purple-800 flex items-center justify-center text-purple-700 dark:text-purple-400 font-bold mb-4">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></span>
+                        <div class="text-sm">
+                            <strong class="font-semibold text-brand-900 dark:text-white">Two-Tier Single-File Authority:</strong>
+                            <span class="text-brand-600 dark:text-brand-300"> System baseline in <code class="font-mono text-xs">/usr/share/</code> with on-demand user configs via <code class="font-mono text-xs">--init-config</code> and safe timestamped backups.</span>
                         </div>
-                        <h4 class="text-base font-bold text-brand-900 dark:text-white mb-1.5">Two-Tier Single-File Authority</h4>
-                        <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 leading-relaxed">
-                            System baseline (<code class="font-mono text-[11px] text-brand-900 dark:text-brand-100">/usr/share/&lt;app&gt;</code>) loaded strictly when no user config exists. On-demand standalone configs generated via <code class="font-mono text-[11px] text-brand-900 dark:text-brand-100">--init-config</code> with safe timestamped archiving.
-                        </p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-brand-100 dark:border-brand-800 text-[11px] font-mono text-brand-500 dark:text-brand-400">
-                        Zero Home Pollution • Safe Archiving • Single File
-                    </div>
-                </div>
-
-                <!-- 3. Decoupled Dynamic Theming -->
-                <div class="bg-white dark:bg-brand-900/60 border border-brand-200 dark:border-brand-800 rounded-xl p-6 flex flex-col justify-between hover:border-purple-400 dark:hover:border-purple-600 transition-colors shadow-2xs">
-                    <div>
-                        <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-950/80 border border-purple-200 dark:border-purple-800 flex items-center justify-center text-purple-700 dark:text-purple-400 font-bold mb-4">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></span>
+                        <div class="text-sm">
+                            <strong class="font-semibold text-brand-900 dark:text-white">Decoupled Dynamic Theming:</strong>
+                            <span class="text-brand-600 dark:text-brand-300"> Transparent <code class="font-mono text-xs">source =</code> directives with automatic inotify file watchers for instant live reload.</span>
                         </div>
-                        <h4 class="text-base font-bold text-brand-900 dark:text-white mb-1.5">Decoupled Dynamic Theming</h4>
-                        <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 leading-relaxed">
-                            Zero internal magic connections to theme daemons. Uses transparent <code class="font-mono text-[11px] text-brand-900 dark:text-brand-100">source =</code> directives with automated inotify file watchers for instant, crash-free theme reloads across all apps.
-                        </p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-brand-100 dark:border-brand-800 text-[11px] font-mono text-brand-500 dark:text-brand-400">
-                        source = Directives • inotify Watchers • Live Reload
-                    </div>
-                </div>
-
-                <!-- 4. Strict RAII & Pointer Safety -->
-                <div class="bg-white dark:bg-brand-900/60 border border-brand-200 dark:border-brand-800 rounded-xl p-6 flex flex-col justify-between hover:border-purple-400 dark:hover:border-purple-600 transition-colors shadow-2xs">
-                    <div>
-                        <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-950/80 border border-purple-200 dark:border-purple-800 flex items-center justify-center text-purple-700 dark:text-purple-400 font-bold mb-4">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></span>
+                        <div class="text-sm">
+                            <strong class="font-semibold text-brand-900 dark:text-white">Strict RAII & Pointer Safety:</strong>
+                            <span class="text-brand-600 dark:text-brand-300"> Scope-bound smart pointers with custom deleters; zero raw owning pointers or memory leaks.</span>
                         </div>
-                        <h4 class="text-base font-bold text-brand-900 dark:text-white mb-1.5">Strict RAII & Pointer Safety</h4>
-                        <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 leading-relaxed">
-                            Raw owning pointers are banned across the toolkit. All scene nodes, Cairo contexts, file descriptors, and Wayland listeners are wrapped in scope-bound smart pointers with custom deleters.
-                        </p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-brand-100 dark:border-brand-800 text-[11px] font-mono text-brand-500 dark:text-brand-400">
-                        Scope-Bound RAII • Custom Deleters • Zero Leaks
-                    </div>
-                </div>
-
-                <!-- 5. Main-Thread Confinement & Worker Isolation -->
-                <div class="bg-white dark:bg-brand-900/60 border border-brand-200 dark:border-brand-800 rounded-xl p-6 flex flex-col justify-between hover:border-purple-400 dark:hover:border-purple-600 transition-colors shadow-2xs">
-                    <div>
-                        <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-950/80 border border-purple-200 dark:border-purple-800 flex items-center justify-center text-purple-700 dark:text-purple-400 font-bold mb-4">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></span>
+                        <div class="text-sm">
+                            <strong class="font-semibold text-brand-900 dark:text-white">Thread Safety & Event Isolation:</strong>
+                            <span class="text-brand-600 dark:text-brand-300"> UI rendering strictly confined to main thread; background workers communicate safely via <code class="font-mono text-xs">eventfd</code> and pipes.</span>
                         </div>
-                        <h4 class="text-base font-bold text-brand-900 dark:text-white mb-1.5">Thread Safety & Event Isolation</h4>
-                        <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 leading-relaxed">
-                            UI mutations, Cairo rendering, and Wayland protocols are strictly confined to the main event thread. Background workers communicate via thread-safe <code class="font-mono text-[11px] text-brand-900 dark:text-brand-100">eventfd</code> and pipes.
-                        </p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-brand-100 dark:border-brand-800 text-[11px] font-mono text-brand-500 dark:text-brand-400">
-                        eventfd Signaling • Pipe Channels • Main Thread
-                    </div>
-                </div>
-
-                <!-- 6. Zero UI Fragmentation -->
-                <div class="bg-white dark:bg-brand-900/60 border border-brand-200 dark:border-brand-800 rounded-xl p-6 flex flex-col justify-between hover:border-purple-400 dark:hover:border-purple-600 transition-colors shadow-2xs">
-                    <div>
-                        <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-950/80 border border-purple-200 dark:border-purple-800 flex items-center justify-center text-purple-700 dark:text-purple-400 font-bold mb-4">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></span>
+                        <div class="text-sm">
+                            <strong class="font-semibold text-brand-900 dark:text-white">Zero UI Fragmentation:</strong>
+                            <span class="text-brand-600 dark:text-brand-300"> Shared widgets, metrics, and styling tokens unifying all 16 ecosystem applications.</span>
                         </div>
-                        <h4 class="text-base font-bold text-brand-900 dark:text-white mb-1.5">Zero UI Fragmentation</h4>
-                        <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 leading-relaxed">
-                            A single shared control library powers status bars, taskbars, dialogs, sliders, and canvases across all 16 ecosystem applications with identical metrics, padding, and interactions.
-                        </p>
-                    </div>
-                    <div class="mt-4 pt-3 border-t border-brand-100 dark:border-brand-800 text-[11px] font-mono text-brand-500 dark:text-brand-400">
-                        16 Native Apps • Common Controls • Uniformity
-                    </div>
-                </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
