@@ -107,15 +107,21 @@
         </p>
     </header>
 
-    <!-- Architecture & Foundation Section (Clarifying the 4 Pillars) -->
-    <section id="architecture" class="border-y border-brand-200/80 bg-white py-18">
+    <!-- Architecture & Foundation Section -->
+    <section id="architecture" class="border-b border-brand-200/80 bg-white py-20">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-14">
-                <h2 class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-3">System Architecture</h2>
-                <h3 class="text-3xl font-bold text-brand-900 tracking-tight">Four Distinct Ecosystem Pillars</h3>
-                <p class="text-brand-600 mt-3 text-sm leading-relaxed">
-                    Clear boundaries govern the Miqu architecture: <span class="font-semibold text-brand-800">miquland</span> operates independently as the Wayland compositor, while <span class="font-semibold text-brand-800">miqutoolkit</span> provides the shared client UI framework powering the desktop applications.
-                </p>
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 border-b border-brand-200 pb-6">
+                <div>
+                    <h2 class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">System Architecture</h2>
+                    <h3 class="text-3xl font-bold text-brand-900 tracking-tight">Four Distinct Ecosystem Pillars</h3>
+                    <p class="text-brand-500 mt-2 text-sm max-w-2xl">
+                        Clear boundaries govern the Miqu architecture: <span class="font-medium text-brand-700">miquland</span> operates independently as the Wayland compositor, while <span class="font-medium text-brand-700">miqutoolkit</span> provides the shared client UI framework powering the desktop applications.
+                    </p>
+                </div>
+                <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border border-brand-200 bg-white hover:bg-brand-50 text-brand-800 transition-colors shadow-2xs self-start md:self-auto">
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -209,20 +215,21 @@
     </section>
 
     <!-- Linux Desktop Applications Section (All 16 Apps) -->
-    <section id="linux-apps" class="max-w-7xl mx-auto px-6 py-20">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 border-b border-brand-200 pb-6">
-            <div>
-                <h2 class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Native Desktop Suite</h2>
-                <h3 class="text-3xl font-bold text-brand-900 tracking-tight">Miqu Linux Applications</h3>
-                <p class="text-brand-500 mt-2 text-sm max-w-xl">
-                    All 16 applications link against <span class="font-medium text-brand-700">miqutoolkit</span> and follow the uniform Two-Tier Single-File Authority configuration lifecycle.
-                </p>
+    <section id="linux-apps" class="border-b border-brand-200/80 bg-white py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 border-b border-brand-200 pb-6">
+                <div>
+                    <h2 class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Native Desktop Suite</h2>
+                    <h3 class="text-3xl font-bold text-brand-900 tracking-tight">Miqu Linux Applications</h3>
+                    <p class="text-brand-500 mt-2 text-sm max-w-2xl">
+                        All 16 applications link against <span class="font-medium text-brand-700">miqutoolkit</span> and follow the uniform Two-Tier Single-File Authority configuration lifecycle.
+                    </p>
+                </div>
+                <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border border-brand-200 bg-white hover:bg-brand-50 text-brand-800 transition-colors shadow-2xs self-start md:self-auto">
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
             </div>
-            <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border border-brand-200 bg-white hover:bg-brand-50 text-brand-800 transition-colors shadow-2xs self-start md:self-auto">
-                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                GitHub
-            </a>
-        </div>
 
         <!-- 16 Linux App Cards Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -567,17 +574,18 @@
                 </div>
             </div>
 
+            </div>
         </div>
     </section>
 
     <!-- Android Applications Section (Real Items) -->
-    <section id="android-apps" class="border-t border-brand-200/80 bg-brand-50/50 py-20">
+    <section id="android-apps" class="border-b border-brand-200/80 bg-brand-50/50 py-20">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 border-b border-brand-200 pb-6">
                 <div>
                     <h2 class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Native Mobile Applications</h2>
                     <h3 class="text-3xl font-bold text-brand-900 tracking-tight">Miqu Android Apps</h3>
-                    <p class="text-brand-500 mt-2 text-sm max-w-xl">
+                    <p class="text-brand-500 mt-2 text-sm max-w-2xl">
                         Standalone and companion mobile applications written in Kotlin and Jetpack Compose.
                     </p>
                 </div>
@@ -634,43 +642,58 @@
     </section>
 
     <!-- Quickstart & Build Section -->
-    <section id="quickstart" class="max-w-7xl mx-auto px-6 py-20">
-        <div class="bg-brand-900 rounded-3xl p-8 lg:p-12 text-white relative overflow-hidden shadow-xl">
-            <div class="relative z-10 max-w-3xl">
-                <span class="text-xs font-bold font-mono tracking-widest text-emerald-400 uppercase">Quickstart</span>
-                <h3 class="text-3xl font-bold mt-2 tracking-tight">Deploy Miqu on Arch Linux</h3>
-                <p class="text-brand-300 mt-3 leading-relaxed text-sm lg:text-base">
-                    Build and install the entire ecosystem in strict dependency sequence using the top-level orchestration script.
-                </p>
+    <section id="quickstart" class="bg-white py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 border-b border-brand-200 pb-6">
+                <div>
+                    <h2 class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Getting Started</h2>
+                    <h3 class="text-3xl font-bold text-brand-900 tracking-tight">Quickstart & Installation</h3>
+                    <p class="text-brand-500 mt-2 text-sm max-w-2xl">
+                        Build and install the entire ecosystem on Arch Linux in strict dependency sequence using the top-level orchestration script.
+                    </p>
+                </div>
+                <a href="https://github.com/miqu-project/miqu-project" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border border-brand-200 bg-white hover:bg-brand-50 text-brand-800 transition-colors shadow-2xs self-start md:self-auto">
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
 
-                <!-- Code Block -->
-                <div class="mt-6 bg-brand-950 rounded-xl border border-brand-800 p-4 font-mono text-sm relative group">
-                    <button onclick="copyCommand()" id="copy-btn" class="absolute top-3 right-3 text-xs bg-brand-800 hover:bg-brand-700 text-brand-300 px-3 py-1.5 rounded transition-colors flex items-center gap-1.5">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                        <span>Copy</span>
-                    </button>
-                    <pre class="text-brand-200 overflow-x-auto"><span class="text-brand-500"># Clone recursive workspace repository</span>
+            <div class="bg-brand-900 rounded-3xl p-8 lg:p-12 text-white relative overflow-hidden shadow-xl">
+                <div class="relative z-10 max-w-3xl">
+                    <h4 class="text-xl font-bold tracking-tight text-white">Automated System Build</h4>
+                    <p class="text-brand-300 mt-2 leading-relaxed text-sm">
+                        Execute <code class="font-mono text-emerald-400 bg-brand-950 px-1.5 py-0.5 rounded">./install_all.sh</code> from the root workspace to compile and install all components.
+                    </p>
+
+                    <!-- Code Block -->
+                    <div class="mt-6 bg-brand-950 rounded-xl border border-brand-800 p-4 font-mono text-sm relative group">
+                        <button onclick="copyCommand()" id="copy-btn" class="absolute top-3 right-3 text-xs bg-brand-800 hover:bg-brand-700 text-brand-300 px-3 py-1.5 rounded transition-colors flex items-center gap-1.5">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span>Copy</span>
+                        </button>
+                        <pre class="text-brand-200 overflow-x-auto"><span class="text-brand-500"># Clone recursive workspace repository</span>
 <span class="text-emerald-400">git clone</span> --recurse-submodules https://github.com/miqu-project/miqu-project.git
 <span class="text-emerald-400">cd</span> miqu-project
 
 <span class="text-brand-500"># Run deterministic multi-stage build</span>
 ./install_all.sh</pre>
-                </div>
+                    </div>
 
-                <div class="mt-6 flex flex-wrap gap-4 items-center">
-                    <a href="https://github.com/miqu-project/miqu-project/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-white text-brand-900 rounded-lg font-medium hover:bg-brand-100 transition-colors text-xs shadow-sm flex items-center gap-1.5">
-                        <span>Read AGENTS.md Architecture Spec</span>
-                        <span>↗</span>
-                    </a>
-                    <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2.5 rounded-lg border border-brand-700 text-brand-200 hover:bg-brand-800 transition-colors">
-                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        GitHub
-                    </a>
+                    <div class="mt-6 flex flex-wrap gap-4 items-center">
+                        <a href="https://github.com/miqu-project/miqu-project/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-white text-brand-900 rounded-lg font-medium hover:bg-brand-100 transition-colors text-xs shadow-sm flex items-center gap-1.5">
+                            <span>Read AGENTS.md Architecture Spec</span>
+                            <span>↗</span>
+                        </a>
+                        <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2.5 rounded-lg border border-brand-700 text-brand-200 hover:bg-brand-800 transition-colors">
+                            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            GitHub
+                        </a>
+                    </div>
                 </div>
+                
+                <!-- Background decorative shape -->
+                <div class="absolute -right-24 -bottom-24 w-96 h-96 bg-brand-800/40 rounded-full blur-3xl pointer-events-none"></div>
             </div>
-            
-            <!-- Background decorative shape -->
-            <div class="absolute -right-24 -bottom-24 w-96 h-96 bg-brand-800/40 rounded-full blur-3xl pointer-events-none"></div>
         </div>
     </section>
 
