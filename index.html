@@ -63,6 +63,7 @@
                 <a href="#linux-apps" class="hover:text-brand-900 transition-colors">Linux Apps (16)</a>
                 <a href="#android-apps" class="hover:text-brand-900 transition-colors">Android Apps (2)</a>
                 <a href="#quickstart" class="hover:text-brand-900 transition-colors">Quickstart</a>
+                <a href="#llm-use" class="hover:text-brand-900 transition-colors">LLM Use</a>
                 <a href="https://github.com/miqu-project/miqu-project/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900 transition-colors flex items-center gap-1">
                     Docs <span class="text-xs text-brand-400">↗</span>
                 </a>
@@ -90,6 +91,7 @@
             <a href="#linux-apps" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 hover:text-brand-900">Linux Apps (16)</a>
             <a href="#android-apps" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 hover:text-brand-900">Android Apps (2)</a>
             <a href="#quickstart" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 hover:text-brand-900">Quickstart</a>
+            <a href="#llm-use" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 hover:text-brand-900">LLM Use</a>
             <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border border-brand-200 bg-white text-brand-800">
                 <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                 GitHub
@@ -703,13 +705,105 @@
 <span class="text-brand-400"># Run deterministic multi-stage build</span>
 <span class="font-semibold text-brand-900">./install_all.sh</span></pre>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <div class="mt-6 flex flex-wrap gap-4 items-center">
-                        <a href="https://github.com/miqu-project/miqu-project/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-brand-900 text-white rounded-lg font-medium hover:bg-brand-800 transition-colors text-xs shadow-2xs flex items-center gap-1.5">
-                            <span>Read AGENTS.md Architecture Spec</span>
+    <!-- LLM Use & AI Collaboration Section -->
+    <section id="llm-use" class="border-t border-brand-200/80 bg-brand-50/50 py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 border-b border-brand-200 pb-6">
+                <div>
+                    <h2 class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Development Philosophy</h2>
+                    <h3 class="text-3xl font-bold text-brand-900 tracking-tight">LLM Use & AI Collaboration</h3>
+                    <p class="text-brand-500 mt-2 text-sm max-w-2xl">
+                        A disciplined case for AI-assisted systems engineering: accelerating desktop development through rigorous, machine-readable architectural contracts.
+                    </p>
+                </div>
+                <a href="https://github.com/miqu-project/miqu-project/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border border-brand-200 bg-white hover:bg-brand-50 text-brand-800 transition-colors shadow-2xs self-start md:self-auto">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    AGENTS.md ↗
+                </a>
+            </div>
+
+            <!-- Two Main Cards: The Case for AI & The Governance Spec -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <!-- Card 1: The Case for AI -->
+                <div class="bg-white rounded-2xl border border-brand-200 p-6 sm:p-8 shadow-2xs flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="w-8 h-8 rounded-lg bg-purple-100 border border-purple-200 flex items-center justify-center text-purple-700">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </div>
+                            <h4 class="text-lg font-bold text-brand-900">The Case for AI in Desktop Systems</h4>
+                        </div>
+                        <p class="text-sm text-brand-700 leading-relaxed">
+                            Authoring an entire modern desktop environment from scratch—spanning a wlroots-based Wayland compositor, a custom C++20 UI framework (<span class="font-semibold text-brand-900">miqutoolkit</span>), 16 specialized desktop applications, and companion mobile apps—demands an immense amount of implementation velocity.
+                        </p>
+                        <p class="text-sm text-brand-700 mt-3 leading-relaxed">
+                            When paired with deliberate human direction, LLMs serve as high-throughput pair-programmers: drafting repetitive UI containers, scaffolding boilerplate, synchronizing API refactors across dozens of repositories simultaneously, and rapidly prototyping ideas. This allows developers to focus on high-level system architecture, protocol boundaries, and ergonomics rather than mechanical repetition.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 2: The Anchor: AGENTS.md -->
+                <div class="bg-white rounded-2xl border border-brand-200 p-6 sm:p-8 shadow-2xs flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="w-8 h-8 rounded-lg bg-blue-100 border border-blue-200 flex items-center justify-center text-blue-700">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            </div>
+                            <h4 class="text-lg font-bold text-brand-900">Rigorous Governance via AGENTS.md</h4>
+                        </div>
+                        <p class="text-sm text-brand-700 leading-relaxed">
+                            AI coding agents without strict boundaries inevitably produce architectural drift, hallucinated APIs, and inconsistent code styles. In Miqu, LLMs are not permitted to guess or improvise design contracts.
+                        </p>
+                        <p class="text-sm text-brand-700 mt-3 leading-relaxed">
+                            Instead, all agentic development is strictly anchored to <a href="https://github.com/miqu-project/miqu-project/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer" class="font-semibold text-brand-900 underline decoration-brand-300 hover:decoration-brand-800">AGENTS.md</a>, the repository's single source of truth. It defines uncompromised architectural rules, lifecycle guarantees, memory safety protocols, and build pipelines that keep our codebase clean, uniform, and production-grade.
+                        </p>
+                    </div>
+                    <div class="mt-5 pt-4 border-t border-brand-100 flex items-center justify-between">
+                        <a href="https://github.com/miqu-project/miqu-project/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 bg-brand-900 text-white rounded-lg hover:bg-brand-800 transition-colors shadow-2xs">
+                            <span>Read AGENTS.md Specification</span>
                             <span>↗</span>
                         </a>
                     </div>
+                </div>
+            </div>
+
+            <!-- What AGENTS.md Contains Breakdown Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-xl border border-brand-200 p-5 shadow-2xs">
+                    <div class="text-xs font-bold uppercase tracking-wider text-brand-400 mb-1.5">Rule 1</div>
+                    <h5 class="text-sm font-bold text-brand-900 mb-2">Two-Tier Configuration Doctrine</h5>
+                    <p class="text-xs text-brand-600 leading-relaxed">
+                        Strict separation: system defaults in <code class="bg-brand-100 px-1 py-0.5 rounded text-[11px]">/usr/share/</code> with zero home pollution, safe timestamped archiving, and explicit <code class="bg-brand-100 px-1 py-0.5 rounded text-[11px]">source =</code> for dynamic theming.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl border border-brand-200 p-5 shadow-2xs">
+                    <div class="text-xs font-bold uppercase tracking-wider text-brand-400 mb-1.5">Rule 2</div>
+                    <h5 class="text-sm font-bold text-brand-900 mb-2">Toolkit Sovereignty & Boundaries</h5>
+                    <p class="text-xs text-brand-600 leading-relaxed">
+                        Downstream applications never bypass <code class="bg-brand-100 px-1 py-0.5 rounded text-[11px]">miqutoolkit</code> to touch raw Cairo/Wayland. Reusable widgets are promoted upstream to eliminate UI fragmentation.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl border border-brand-200 p-5 shadow-2xs">
+                    <div class="text-xs font-bold uppercase tracking-wider text-brand-400 mb-1.5">Rule 3</div>
+                    <h5 class="text-sm font-bold text-brand-900 mb-2">Strict RAII & Lifecycle Safety</h5>
+                    <p class="text-xs text-brand-600 leading-relaxed">
+                        Zero zombie states, main-thread UI confinement, thread isolation via pipes/eventfd, and deterministic destruction paths. No sleep-based synchronization.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl border border-brand-200 p-5 shadow-2xs">
+                    <div class="text-xs font-bold uppercase tracking-wider text-brand-400 mb-1.5">Rule 4</div>
+                    <h5 class="text-sm font-bold text-brand-900 mb-2">Deterministic Build & Roadmaps</h5>
+                    <p class="text-xs text-brand-600 leading-relaxed">
+                        Single-responsibility <code class="bg-brand-100 px-1 py-0.5 rounded text-[11px]">make.sh</code>, strict dependency install ordering, and explicit roadmap tracking for features like <code class="bg-brand-100 px-1 py-0.5 rounded text-[11px]">miquctl</code> and Plugin System v2.0.
+                    </p>
                 </div>
             </div>
         </div>
