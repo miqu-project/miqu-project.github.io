@@ -837,7 +837,47 @@
                 </div>
             </div>
 
-            <!-- Subsection 3: The Closed-Source Asymmetry & Double Standard -->
+            <!-- Subsection 3: The Audit System & Contribution Governance -->
+            <div class="mb-10">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-400 mb-4">Codebase Audits & Contribution Governance</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Audit System -->
+                    <div class="bg-white rounded-xl border border-brand-200 p-6 shadow-2xs flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h5 class="font-bold text-brand-900 text-base">The Continuous Audit Pipeline</h5>
+                                <span class="text-[11px] font-mono text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200">Verification</span>
+                            </div>
+                            <p class="text-xs text-brand-500 mb-3">Vulnerability Scans & Blast-Radius Analysis</p>
+                            <p class="text-xs sm:text-sm text-brand-700 leading-relaxed">
+                                The entire codebase across all repositories undergoes periodic automated scans targeting security vulnerabilities, <a href="https://github.com/miqu-project/.github/blob/main/AGENTS.md" target="_blank" class="font-medium text-brand-900 underline decoration-brand-300">AGENTS.md</a> non-conformance, memory leaks, and dead/junk abstractions.
+                            </p>
+                            <p class="text-xs sm:text-sm text-brand-700 mt-2.5 leading-relaxed">
+                                Findings are cross-checked by independent review agents to author an authentic implementation plan. Before edits are applied, a system-wide <span class="font-semibold text-brand-900">blast-radius analysis</span> models cross-component ripple effects (from the compositor down through <code class="font-mono text-brand-900 bg-brand-100 px-1 py-0.5 rounded text-[11px]">miqutoolkit</code> and applications). Edits are subjected to heavy test compilation with runtime sanitizers (ASan/UBSan), and only committed after explicit human architectural sign-off.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Single-Maintainer Governance -->
+                    <div class="bg-white rounded-xl border border-brand-200 p-6 shadow-2xs flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h5 class="font-bold text-brand-900 text-base">Single-Maintainer Stewardship</h5>
+                                <span class="text-[11px] font-mono text-teal-700 bg-teal-50 px-2 py-0.5 rounded border border-teal-200">Architecture</span>
+                            </div>
+                            <p class="text-xs text-brand-500 mb-3">Preserving Invariant Uniformity</p>
+                            <p class="text-xs sm:text-sm text-brand-700 leading-relaxed">
+                                Building a cohesive 16-app desktop suite requires unyielding adherence to core contracts: the Two-Tier Single-File Authority doctrine, strict RAII, main-thread Wayland confinement, and zero hidden C++ magic. Diverse external PRs frequently introduce fragmented patterns or conflicting long-term visions.
+                            </p>
+                            <p class="text-xs sm:text-sm text-brand-700 mt-2.5 leading-relaxed">
+                                To maintain absolute architectural purity, <span class="font-semibold text-brand-900">miqu-project maintains a single-author commit model</span>. However, the ecosystem deeply values community engagement: volunteers are warmly welcomed to participate as <span class="font-semibold text-brand-900">code reviewers, security auditors, issue reporters, and testers</span> to scrutinize the codebase alongside us.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subsection 4: The Closed-Source Asymmetry & Double Standard -->
             <div class="bg-white rounded-2xl border border-brand-200 p-6 sm:p-8 shadow-2xs">
                 <div class="flex items-center gap-3 mb-4">
                     <div class="w-8 h-8 rounded-lg bg-rose-100 border border-rose-200 flex items-center justify-center text-rose-700 flex-shrink-0">
