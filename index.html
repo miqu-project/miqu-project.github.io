@@ -14,7 +14,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
     <script>
+        // Synchronously check and apply theme before DOM renders to prevent FOUC
+        (function() {
+            try {
+                const storedTheme = localStorage.getItem('theme');
+                const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (storedTheme === 'dark' || ((!storedTheme || storedTheme === 'system') && systemDark)) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            } catch (e) {}
+        })();
+
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
@@ -43,98 +57,194 @@
     <style>
         body {
             background-color: #fafafa;
+            color: #1e293b;
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        }
+        html.dark body {
+            background-color: #0b0f17;
+            color: #e2e8f0;
+        }
+
+        /* Ecosystem dark theme contrast & hierarchical surface tokens */
+        html.dark section.bg-white {
+            background-color: #0b0f17;
+        }
+        html.dark section.bg-brand-50\/50 {
+            background-color: #080c14;
+        }
+        html.dark .bg-white {
+            background-color: #111927;
+        }
+        html.dark .bg-brand-50,
+        html.dark .bg-brand-50\/70 {
+            background-color: #141e2e;
+        }
+        html.dark .bg-brand-100 {
+            background-color: #1e293b;
+        }
+        html.dark .border-brand-100 {
+            border-color: #1e293b;
+        }
+        html.dark .border-brand-200,
+        html.dark .border-brand-200\/70,
+        html.dark .border-brand-200\/80 {
+            border-color: #243247;
+        }
+        html.dark .text-brand-900 {
+            color: #f8fafc;
+        }
+        html.dark .text-brand-800 {
+            color: #f1f5f9;
+        }
+        html.dark .text-brand-700 {
+            color: #cbd5e1;
+        }
+        html.dark .text-brand-600 {
+            color: #94a3b8;
+        }
+        html.dark .text-brand-500 {
+            color: #64748b;
+        }
+        html.dark .text-brand-400 {
+            color: #94a3b8;
+        }
+        html.dark code {
+            color: #f1f5f9;
+        }
+        html.dark pre {
+            color: #f1f5f9;
         }
     </style>
 </head>
-<body class="font-sans text-brand-800 antialiased selection:bg-brand-200 selection:text-brand-900">
+<body class="font-sans text-brand-800 dark:text-brand-200 antialiased selection:bg-brand-200 dark:selection:bg-brand-700 selection:text-brand-900 dark:selection:text-brand-100">
 
-    <!-- Navbar -->
-    <nav class="border-b border-brand-200/70 bg-white/85 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
+    <!-- Navbar with breathing room and theme toggle -->
+    <nav class="border-b border-brand-200/70 dark:border-brand-800/80 bg-white/90 dark:bg-[#0b0f17]/90 backdrop-blur-md sticky top-0 z-50 transition-colors">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 py-4 sm:py-5 min-h-[4.75rem] flex items-center justify-between">
             <!-- Logo -->
-            <a href="#" class="flex items-center gap-3 group">
-                <img src="assets/logo.png" alt="Miqu Logo" class="w-8 h-8 object-contain rounded transition-transform group-hover:scale-105" />
-                <span class="font-bold text-xl tracking-tight text-brand-900">miqu-project</span>
+            <a href="#" class="flex items-center gap-3.5 group">
+                <img src="assets/logo.png" alt="Miqu Logo" class="w-8 h-8 sm:w-9 sm:h-9 object-contain rounded transition-transform group-hover:scale-105" />
+                <span class="font-bold text-xl tracking-tight text-brand-900 dark:text-white">miqu-project</span>
             </a>
 
             <!-- Center Navigation Links -->
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-brand-600">
-                <a href="#architecture" class="hover:text-brand-900 transition-colors">Architecture</a>
-                <a href="#linux-apps" class="hover:text-brand-900 transition-colors">Linux Apps (16)</a>
-                <a href="#android-apps" class="hover:text-brand-900 transition-colors">Android Apps (2)</a>
-                <a href="#quickstart" class="hover:text-brand-900 transition-colors">Quickstart</a>
-                <a href="#llm-use" class="hover:text-brand-900 transition-colors">LLM Use & Safety</a>
-                <a href="https://github.com/miqu-project/.github/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900 transition-colors flex items-center gap-1">
+            <div class="hidden md:flex items-center gap-7 lg:gap-8 text-sm font-medium text-brand-600 dark:text-brand-300">
+                <a href="#architecture" class="hover:text-brand-900 dark:hover:text-white transition-colors">Architecture</a>
+                <a href="#linux-apps" class="hover:text-brand-900 dark:hover:text-white transition-colors">Linux Apps (16)</a>
+                <a href="#android-apps" class="hover:text-brand-900 dark:hover:text-white transition-colors">Android Apps (2)</a>
+                <a href="#quickstart" class="hover:text-brand-900 dark:hover:text-white transition-colors">Quickstart</a>
+                <a href="#llm-use" class="hover:text-brand-900 dark:hover:text-white transition-colors">LLM Use & Safety</a>
+                <a href="https://github.com/miqu-project/.github/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900 dark:hover:text-white transition-colors flex items-center gap-1">
                     Docs <span class="text-xs text-brand-400">↗</span>
                 </a>
             </div>
 
-            <!-- Right GitHub Pill -->
-            <div class="hidden md:flex items-center">
-                <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border border-brand-200 bg-white hover:bg-brand-50 text-brand-800 transition-colors shadow-2xs">
+            <!-- Right Controls: Theme Switcher & GitHub Pill -->
+            <div class="hidden md:flex items-center gap-3">
+                <!-- Theme Mode Toggle (Auto / Light / Dark) -->
+                <button id="theme-toggle" onclick="cycleTheme()" class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-2 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900/90 hover:bg-brand-50 dark:hover:bg-brand-800 text-brand-800 dark:text-brand-200 transition-colors shadow-2xs cursor-pointer" title="Switch theme (System Auto / Light / Dark)" aria-label="Toggle theme">
+                    <span id="theme-toggle-icon" class="flex items-center justify-center"></span>
+                    <span id="theme-toggle-text" class="text-xs font-medium text-brand-600 dark:text-brand-300">Auto</span>
+                </button>
+
+                <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 hover:bg-brand-50 dark:hover:bg-brand-800 text-brand-800 dark:text-brand-200 transition-colors shadow-2xs">
                     <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                     GitHub
                 </a>
             </div>
 
             <!-- Mobile menu button -->
-            <div class="md:hidden flex items-center">
-                <button id="mobile-toggle" onclick="toggleMenu()" class="p-2 text-brand-600 hover:text-brand-900 focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            <div class="md:hidden flex items-center gap-2">
+                <button onclick="cycleTheme()" class="p-2 text-brand-600 dark:text-brand-300 hover:text-brand-900 dark:hover:text-white rounded-lg border border-brand-200 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-900/50 focus:outline-none" aria-label="Toggle theme">
+                    <span id="mobile-theme-icon" class="flex items-center justify-center"></span>
+                </button>
+                <button id="mobile-toggle" onclick="toggleMenu()" class="p-2 text-brand-600 dark:text-brand-300 hover:text-brand-900 dark:hover:text-white rounded-lg border border-brand-200 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-900/50 focus:outline-none" aria-label="Open menu">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Drawer -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-brand-200 px-6 py-4 bg-white/95 space-y-3">
-            <a href="#architecture" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 hover:text-brand-900">Architecture</a>
-            <a href="#linux-apps" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 hover:text-brand-900">Linux Apps (16)</a>
-            <a href="#android-apps" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 hover:text-brand-900">Android Apps (2)</a>
-            <a href="#quickstart" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 hover:text-brand-900">Quickstart</a>
-            <a href="#llm-use" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 hover:text-brand-900">LLM Use & Safety</a>
-            <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border border-brand-200 bg-white text-brand-800">
+        <div id="mobile-menu" class="hidden md:hidden border-t border-brand-200 dark:border-brand-800 px-6 py-5 bg-white/95 dark:bg-[#0b0f17]/95 space-y-4 shadow-lg">
+            <a href="#architecture" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">Architecture</a>
+            <a href="#linux-apps" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">Linux Apps (16)</a>
+            <a href="#android-apps" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">Android Apps (2)</a>
+            <a href="#quickstart" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">Quickstart</a>
+            <a href="#llm-use" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">LLM Use & Safety</a>
+            
+            <div class="pt-3 border-t border-brand-200 dark:border-brand-800 flex items-center justify-between">
+                <span class="text-xs font-medium text-brand-600 dark:text-brand-400">Theme</span>
+                <button onclick="cycleTheme()" class="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 text-brand-800 dark:text-brand-200">
+                    <span id="mobile-theme-text">Auto</span>
+                </button>
+            </div>
+
+            <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full text-xs font-semibold px-4 py-2.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 text-brand-800 dark:text-brand-200 shadow-2xs">
                 <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                GitHub
+                GitHub Organization
             </a>
         </div>
     </nav>
 
-    <!-- Technical Introduction & Workflow Callouts -->
-    <header class="max-w-7xl mx-auto px-6 py-8 border-b border-brand-200/70">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <!-- Left Message: Architecture & Ecosystem Overview -->
-            <div class="bg-white border border-brand-200 rounded-2xl p-6 sm:p-7 shadow-2xs flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center gap-2 mb-3">
-                        <div class="w-6 h-6 rounded-md bg-blue-100 border border-blue-200 flex items-center justify-center text-blue-700">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
-                        <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Ecosystem Overview</span>
+    <!-- At a Glance: Single Wide Section (Overview & Workflow) -->
+    <header class="max-w-7xl mx-auto px-6 sm:px-8 pt-10 pb-12 sm:pt-12 sm:pb-14 border-b border-brand-200/70 dark:border-brand-800/70">
+        <div class="bg-white dark:bg-brand-900/50 border border-brand-200 dark:border-brand-800 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-2xs transition-colors">
+            <!-- Header bar inside the card -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-brand-100 dark:border-brand-800/80 gap-4">
+                <div class="flex items-center gap-3.5">
+                    <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950/80 border border-blue-200 dark:border-blue-800 flex items-center justify-center text-blue-700 dark:text-blue-400 flex-shrink-0 shadow-2xs">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
-                    <p class="text-sm sm:text-base text-brand-700 leading-relaxed">
-                        <span class="font-bold text-brand-900">miqu-project</span> contains its core attraction, <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener noreferrer" class="font-semibold text-brand-900 underline decoration-brand-300 hover:decoration-brand-800">miquland</a>, which is a Wayland compositor featuring animations, blur, and visual effects built with scenefx, wlroots, and C++20. It is paired with a dedicated application development toolkit, <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener noreferrer" class="font-semibold text-brand-900 underline decoration-brand-300 hover:decoration-brand-800">miqutoolkit</a> (built on Cairo & Pango), which powers 16 native desktop applications and tools targeting a complete, unified Linux desktop environment, alongside Android companion applications integrated across the ecosystem.
-                    </p>
-                    <p class="text-xs sm:text-sm text-brand-500 mt-3 leading-relaxed">
-                        The parent organization link is available above on GitHub. Quick intro, documentation, and links to each GitHub repo can be found here. For more details, read the specific README in each repo or consult the <a href="https://github.com/miqu-project/.github/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer" class="font-medium text-brand-700 underline decoration-brand-300 hover:text-brand-900">documentation</a>.
-                    </p>
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-brand-900 dark:text-white tracking-tight">At a glance</h2>
+                        <p class="text-xs sm:text-sm text-brand-500 dark:text-brand-400">Architecture, Ecosystem & Wayland Workflow</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center gap-2 text-xs font-mono font-medium px-3 py-1.5 rounded-full bg-brand-50 dark:bg-brand-800/80 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                        Unified Desktop Ecosystem
+                    </span>
                 </div>
             </div>
 
-            <!-- Right Message: Installation & Launch Workflow -->
-            <div class="bg-white border border-brand-200 rounded-2xl p-6 sm:p-7 shadow-2xs flex flex-col justify-between">
-                <div>
-                    <div class="flex items-center gap-2 mb-3">
-                        <div class="w-6 h-6 rounded-md bg-emerald-100 border border-emerald-200 flex items-center justify-center text-emerald-700">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            <!-- Single Wide Body: Side-by-Side Quick Info and Workflow -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Ecosystem Overview -->
+                <div class="flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">Ecosystem Overview</span>
                         </div>
-                        <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Installation & Launch Workflow</span>
+                        <p class="text-sm sm:text-base text-brand-700 dark:text-brand-300 leading-relaxed">
+                            <span class="font-bold text-brand-900 dark:text-white">miqu-project</span> contains its core attraction, <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener noreferrer" class="font-semibold text-brand-900 dark:text-white underline decoration-brand-300 dark:decoration-brand-600 hover:decoration-brand-800">miquland</a>, which is a Wayland compositor featuring animations, blur, and visual effects built with scenefx, wlroots, and C++20. It is paired with a dedicated application development toolkit, <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener noreferrer" class="font-semibold text-brand-900 dark:text-white underline decoration-brand-300 dark:decoration-brand-600 hover:decoration-brand-800">miqutoolkit</a> (built on Cairo & Pango), which powers 16 native desktop applications and tools targeting a complete, unified Linux desktop environment, alongside Android companion applications integrated across the ecosystem.
+                        </p>
                     </div>
-                    <p class="text-sm sm:text-base text-brand-700 leading-relaxed">
-                        Getting started follows a familiar standalone Wayland workflow: start from a clean <span class="font-semibold text-brand-900">Arch Linux</span> (or Debian / Fedora) base system. From your virtual console (TTY), clone this workspace repository and run the build scripts to compile the entire ecosystem or individual targets.
-                    </p>
-                    <p class="text-xs sm:text-sm text-brand-500 mt-3 leading-relaxed">
-                        Once installed, simply launch <code class="font-mono text-brand-900 bg-brand-100 px-1.5 py-0.5 rounded text-xs font-bold border border-brand-200">miquland</code> directly from your TTY. If you use a graphical display manager (SDDM, GDM, or <span class="font-medium text-brand-700">miqudm</span>), your login manager will also show <strong>miquland</strong> in the session options. If you are switching from Hyprland or Sway, exit to your shell prompt and invoke the compositor—it adheres to the exact same lightweight, display-manager-optional lifecycle.
-                    </p>
+                    <div class="pt-4 border-t border-brand-100 dark:border-brand-800/60">
+                        <p class="text-xs sm:text-sm text-brand-500 dark:text-brand-400 leading-relaxed">
+                            The parent organization link is available above on GitHub. Quick intro, documentation, and links to each GitHub repo can be found here. For more details, read the specific README in each repo or consult the <a href="https://github.com/miqu-project/.github/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer" class="font-medium text-brand-700 dark:text-brand-300 underline decoration-brand-300 dark:decoration-brand-600 hover:text-brand-900 dark:hover:text-white">documentation</a>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Installation & Launch Workflow -->
+                <div class="flex flex-col justify-between space-y-4 lg:border-l lg:border-brand-100 dark:lg:border-brand-800/80 lg:pl-10">
+                    <div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="w-5 h-5 rounded-md bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-200 dark:border-emerald-800 flex items-center justify-center text-emerald-700 dark:text-emerald-400 flex-shrink-0">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            </div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">Installation & Launch Workflow</span>
+                        </div>
+                        <p class="text-sm sm:text-base text-brand-700 dark:text-brand-300 leading-relaxed">
+                            Getting started follows a familiar standalone Wayland workflow: start from a clean <span class="font-semibold text-brand-900 dark:text-white">Arch Linux</span> (or Debian / Fedora) base system. From your virtual console (TTY), clone this workspace repository and run the build scripts to compile the entire ecosystem or individual targets.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-brand-100 dark:border-brand-800/60">
+                        <p class="text-xs sm:text-sm text-brand-500 dark:text-brand-400 leading-relaxed">
+                            Once installed, simply launch <code class="font-mono text-brand-900 dark:text-brand-100 bg-brand-100 dark:bg-brand-800 px-1.5 py-0.5 rounded text-xs font-bold border border-brand-200 dark:border-brand-700">miquland</code> directly from your TTY. If you use a graphical display manager (SDDM, GDM, or <span class="font-medium text-brand-700 dark:text-brand-300">miqudm</span>), your login manager will also show <strong>miquland</strong> in the session options. If you are switching from Hyprland or Sway, exit to your shell prompt and invoke the compositor—it adheres to the exact same lightweight, display-manager-optional lifecycle.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -934,26 +1044,109 @@
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-brand-200/70 bg-white py-10 text-brand-500 text-sm">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <footer class="border-t border-brand-200/70 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-10 text-brand-500 dark:text-brand-400 text-sm transition-colors">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="flex items-center gap-3">
                 <img src="assets/logo.png" alt="Miqu Logo" class="w-6 h-6 object-contain" />
-                <span class="font-bold text-brand-900">Miqu Project</span>
-                <span class="text-brand-400">•</span>
+                <span class="font-bold text-brand-900 dark:text-white">Miqu Project</span>
+                <span class="text-brand-400 dark:text-brand-600">•</span>
                 <span>Wayland Desktop & Native Apps</span>
             </div>
-            <div class="flex items-center gap-6 text-xs text-brand-600">
-                <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900">miquland</a>
-                <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900">miqutoolkit</a>
-                <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900">miqu-linux-apps</a>
-                <a href="https://github.com/miqu-project/miqu-android" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900">miqu-android</a>
-                <a href="https://github.com/miqu-project/.github/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900">AGENTS.md</a>
+            <div class="flex items-center gap-6 text-xs text-brand-600 dark:text-brand-300">
+                <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900 dark:hover:text-white transition-colors">miquland</a>
+                <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900 dark:hover:text-white transition-colors">miqutoolkit</a>
+                <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900 dark:hover:text-white transition-colors">miqu-linux-apps</a>
+                <a href="https://github.com/miqu-project/miqu-android" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900 dark:hover:text-white transition-colors">miqu-android</a>
+                <a href="https://github.com/miqu-project/.github/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900 dark:hover:text-white transition-colors">AGENTS.md</a>
             </div>
-            <p class="text-xs text-brand-400">&copy; 2026 miqu-project. Released under the MIT License.</p>
+            <p class="text-xs text-brand-400 dark:text-brand-500">&copy; 2026 miqu-project. Released under the MIT License.</p>
         </div>
     </footer>
 
     <script>
+        // Theme Management: Auto (System) / Light / Dark with persistence
+        function getThemeMode() {
+            return localStorage.getItem('theme') || 'system';
+        }
+
+        function applyTheme(mode) {
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = mode === 'dark' || (mode === 'system' && systemDark);
+            
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            
+            updateThemeUI(mode, isDark);
+        }
+
+        function cycleTheme() {
+            const current = getThemeMode();
+            let next;
+            if (current === 'system') {
+                next = 'light';
+            } else if (current === 'light') {
+                next = 'dark';
+            } else {
+                next = 'system';
+            }
+            
+            if (next === 'system') {
+                localStorage.removeItem('theme');
+            } else {
+                localStorage.setItem('theme', next);
+            }
+            
+            applyTheme(next);
+        }
+
+        function updateThemeUI(mode, isDark) {
+            const iconEl = document.getElementById('theme-toggle-icon');
+            const textEl = document.getElementById('theme-toggle-text');
+            const mobileIconEl = document.getElementById('mobile-theme-icon');
+            const mobileTextEl = document.getElementById('mobile-theme-text');
+            
+            const systemSvg = `<svg class="w-4 h-4 text-brand-600 dark:text-brand-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" stroke-width="2"></rect><line x1="8" y1="21" x2="16" y2="21" stroke-width="2"></line><line x1="12" y1="17" x2="12" y2="21" stroke-width="2"></line></svg>`;
+            const sunSvg = `<svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>`;
+            const moonSvg = `<svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>`;
+            
+            let iconSvg, label;
+            if (mode === 'system') {
+                iconSvg = systemSvg;
+                label = 'Auto (' + (isDark ? 'Dark' : 'Light') + ')';
+            } else if (mode === 'light') {
+                iconSvg = sunSvg;
+                label = 'Light';
+            } else {
+                iconSvg = moonSvg;
+                label = 'Dark';
+            }
+            
+            if (iconEl) iconEl.innerHTML = iconSvg;
+            if (textEl) textEl.textContent = label;
+            if (mobileIconEl) mobileIconEl.innerHTML = iconSvg;
+            if (mobileTextEl) mobileTextEl.textContent = label;
+        }
+
+        // Listen for OS system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+            const mode = getThemeMode();
+            if (mode === 'system') {
+                applyTheme('system');
+            }
+        });
+
+        // Initialize theme UI once DOM is loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                applyTheme(getThemeMode());
+            });
+        } else {
+            applyTheme(getThemeMode());
+        }
+
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             if (menu) {
