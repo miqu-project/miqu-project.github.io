@@ -1061,118 +1061,133 @@ cd miqu-project
             <article class="max-w-4xl mx-auto px-4 sm:px-8 py-12 sm:py-16 space-y-12 text-brand-800 dark:text-brand-200">
                 <!-- Document Header -->
                 <header class="border-b border-brand-200/80 dark:border-brand-800/80 pb-8">
-                    <div class="text-xs font-mono font-medium text-brand-500 dark:text-brand-400 mb-2">code integrity, authorship & safety</div>
+                    <div class="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-brand-600 dark:text-brand-400 bg-brand-100/70 dark:bg-brand-800/50 px-2.5 py-1 rounded-md mb-3 border border-brand-200/50 dark:border-brand-700/50">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <span>code integrity, authorship & engineering safety</span>
+                    </div>
                     <h1 class="text-2xl sm:text-3xl font-bold text-brand-900 dark:text-white tracking-tight mb-3">ai in software & code safety</h1>
                     <p class="text-sm sm:text-base text-brand-600 dark:text-brand-400 leading-relaxed max-w-2xl">
-                        A factual examination of software authorship, abstraction, and the double standards of modern programming—followed by how Miqu strictly enforces memory safety, offline privacy, and complete transparency.
+                        A rigorous examination of software authorship, abstraction layers, and the double standards of modern programming—followed by how Miqu strictly enforces memory safety, offline privacy, and complete open-source transparency.
                     </p>
                 </header>
 
                 <!-- ========================================================= -->
                 <!-- PART 1: THE UNIVERSAL CASE (GENERAL & MIQU-AGNOSTIC)      -->
                 <!-- ========================================================= -->
-                <div class="space-y-10">
-                    <div class="border-b border-brand-200/60 dark:border-brand-800/60 pb-3">
-                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-brand-100 dark:bg-brand-800 text-brand-800 dark:text-brand-200 text-xs font-bold uppercase tracking-wider">
-                            part 1 &mdash; the case for ai and modern authorship
-                        </span>
-                        <p class="text-xs text-brand-500 dark:text-brand-400 mt-2">
-                            A general, technology-wide perspective on abstractions, software tools, and the double standard of closed-source criticism.
-                        </p>
+                <div class="space-y-12">
+                    <!-- Part 1 Banner -->
+                    <div class="p-4 sm:p-5 rounded-xl bg-gradient-to-r from-brand-50 to-brand-100/40 dark:from-brand-900/40 dark:to-brand-800/20 border border-brand-200/80 dark:border-brand-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+                        <div>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-brand-200/70 dark:bg-brand-800 text-brand-900 dark:text-brand-100 text-xs font-bold uppercase tracking-wider">
+                                part 1 &mdash; universal principles
+                            </span>
+                            <h2 class="text-base sm:text-lg font-bold text-brand-900 dark:text-white mt-1">the epistemology of modern software authorship</h2>
+                            <p class="text-xs text-brand-600 dark:text-brand-400 mt-0.5">
+                                A technology-wide perspective on abstractions, software tools, and the double standards of modern code criticism.
+                            </p>
+                        </div>
                     </div>
 
                     <!-- Section 1: Philosophy & Authorship (id="philosophy") -->
-                    <section id="philosophy" class="space-y-6">
-                        <div class="space-y-2">
-                            <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">is using ai in coding inherently bad?</h2>
+                    <section id="philosophy" class="space-y-8">
+                        <!-- Chapter 1.1 -->
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-2">
+                                <span class="flex items-center justify-center w-6 h-6 rounded-md bg-brand-100 dark:bg-brand-800 text-brand-800 dark:text-brand-200 text-xs font-mono font-bold">01</span>
+                                <h3 class="text-base sm:text-lg font-bold text-brand-900 dark:text-white tracking-tight">is using ai in coding inherently bad?</h3>
+                            </div>
                             <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                When people discuss artificial intelligence in programming, a central question often arises: <em>If you use an AI tool to help write code, are you still the author of your software?</em>
+                                When developers discuss artificial intelligence in programming, a core question arises: <em>If you use an AI tool to assist in writing code, are you still the author of your software?</em>
                             </p>
                             <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                To answer this question objectively, we must look at how software has actually evolved over the past seventy years. Writing software has never been about the physical labor of pressing keys on a keyboard. It has always been about solving problems, structuring logic, managing trade-offs, and directing machines to perform useful tasks.
-                            </p>
-                        </div>
-
-                        <!-- Subheading: Abstractions in History -->
-                        <div class="space-y-3 pt-2">
-                            <h3 class="text-base font-semibold text-brand-900 dark:text-white">the history of computing is a history of abstractions</h3>
-                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                In the early days of computing, programmers punched holes into physical cards or manually toggled binary switches on a front panel. Every single instruction had to be calculated in raw machine code.
-                            </p>
-                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                When assembly language and compilers were first invented, some critics argued that using a compiler was "cheating" and that future programmers would no longer understand how the computer truly worked. Yet without compilers, modern operating systems, web browsers, and scientific computing would be impossible. Each leap in software history—from machine code to assembly, from C to C++, from manual memory management to standard libraries and frameworks—has been an abstraction that automates mechanical work so humans can solve larger problems.
+                                To answer this objectively, we must understand how software has actually evolved over the past seventy years. Writing software has never been about the physical labor of pressing keys on a keyboard. It has always been about <strong>solving problems, structuring logic, managing trade-offs, and directing machines</strong> to perform deterministic tasks.
                             </p>
                         </div>
 
-                        <!-- Subheading: The TextView Test -->
-                        <div class="space-y-3 pt-2">
-                            <h3 class="text-base font-semibold text-brand-900 dark:text-white">the textview test: are you writing code to the bottom layer?</h3>
+                        <!-- Chapter 1.2: Abstractions in History -->
+                        <div class="space-y-3 pl-0 sm:pl-4 border-l-0 sm:border-l-2 border-brand-200/80 dark:border-brand-800/80">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">the history of computing is a history of abstractions</h4>
                             <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                Consider a modern example: an Android developer creating an application. To display a line of text, they instantiate a <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">TextView</code>.
+                                In the earliest days of computing, programming required punching holes into paper cards or toggling front-panel switches in raw binary. Every single opcode had to be calculated by hand.
                             </p>
                             <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                Did that developer write the HarfBuzz font shaping engine? Did they write the FreeType glyph rasterizer, the Skia 2D rendering pipeline, the Wayland or SurfaceFlinger compositor protocol, the Linux kernel framebuffers, or the GPU graphics drivers?
-                            </p>
-                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                Of course not. If using pre-existing code, libraries, and tools meant you were not an author, then almost no one alive today could be called a software developer. Unless you personally smelt the silicon, design the CPU instruction set, write the hardware drivers, and interact directly with hardware registers without any runtime library, you are always building on top of someone else's work.
+                                When assembly language and the first compilers were invented, critics argued that using a compiler was "cheating" and that future engineers would no longer understand the machine. Yet without compilers, modern operating systems, web browsers, and scientific computing would be impossible. Every major milestone in software history—from machine code to assembly, from C to C++, from manual memory tracking to standard libraries, garbage collectors, and high-level frameworks—is an abstraction that automates mechanical labor so human developers can tackle larger, more ambitious architectures.
                             </p>
                         </div>
 
-                        <!-- Subheading: Code Convergence on Constrained Protocols -->
-                        <div class="space-y-3 pt-2">
-                            <h3 class="text-base font-semibold text-brand-900 dark:text-white">code convergence on constrained protocols: similar does not mean copied</h3>
+                        <!-- Chapter 1.3: The TextView Test -->
+                        <div class="space-y-3 pl-0 sm:pl-4 border-l-0 sm:border-l-2 border-brand-200/80 dark:border-brand-800/80">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">the textview test: nobody codes to the bottom layer</h4>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Consider a modern example: an Android developer creating an application. To display a simple line of text, they instantiate a <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">TextView</code>.
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Did that developer write the HarfBuzz font shaping engine? Did they write the FreeType glyph rasterizer, the Skia 2D rendering pipeline, the SurfaceFlinger compositor protocol, the Linux kernel framebuffers, or the GPU graphics drivers?
+                            </p>
+                            <div class="p-4 rounded-xl bg-brand-50/70 dark:bg-brand-900/30 border border-brand-200/70 dark:border-brand-800/70 text-sm text-brand-800 dark:text-brand-200 leading-relaxed">
+                                <strong>The Abstraction Reality:</strong> If using pre-existing code, libraries, and tools meant you were not an author, then almost no one alive today could be called a software developer. Unless you personally smelt the silicon, design the CPU instruction set, write the hardware drivers, and interact directly with hardware registers without any runtime library, you are always building upon someone else's work.
+                            </div>
+                        </div>
+
+                        <!-- Chapter 1.4: Assembling vs Building -->
+                        <div class="space-y-3 pl-0 sm:pl-4 border-l-0 sm:border-l-2 border-brand-200/80 dark:border-brand-800/80">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">assembling vs. building: a crucial technical distinction</h4>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                There is a vital difference between <strong>assembling</strong> finished pieces and <strong>building</strong> components from the ground up:
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Suppose someone downloads Arch Linux, installs Hyprland and Quickshell, configures dotfiles, adds a custom theme, and bundles the setup into a downloadable ISO. Are they the developer of that ISO?
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                They are the author and curator of that <em>distribution ISO bundle</em>. But they did not write Hyprland, the Wayland protocol bindings, or Quickshell. They orchestrated existing tools. In contrast, building the compositor itself, developing an independent UI toolkit, and programming native applications requires designing internal state machines, memory ownership, and low-level protocol lifecycles.
+                            </p>
+                        </div>
+
+                        <!-- Chapter 1.5: The Boundary & Infinite Regress -->
+                        <div class="space-y-3 pl-0 sm:pl-4 border-l-0 sm:border-l-2 border-brand-200/80 dark:border-brand-800/80">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">where is the boundary between an assembler and a developer?</h4>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                This leads to a critical philosophical question: <em>Where exactly is the boundary between a "developer" and an "assembler"?</em>
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                If using an abstraction or automated assistance makes someone "just an assembler," then the purist argument immediately collapses into an <strong>infinite regress</strong>. Does a C++ engineer become an assembler because they use <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">std::vector</code>, libc, and an optimizing compiler? Does a Linux kernel maintainer become an assembler because they build on top of CPU microcode and hardware specifications they did not design?
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 my-2">
+                                <div class="p-3.5 rounded-lg bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                    <div class="text-xs font-bold uppercase tracking-wider text-brand-500 mb-1">mere orchestration (assembly)</div>
+                                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                                        Taking finished, pre-compiled black-box applications and gluing them together using text configuration files, shell scripts, and themes. No new internal state machines, algorithms, or execution loops are authored.
+                                    </p>
+                                </div>
+                                <div class="p-3.5 rounded-lg bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                    <div class="text-xs font-bold uppercase tracking-wider text-brand-900 dark:text-brand-100 mb-1">system creation (development)</div>
+                                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                                        Designing new domain logic, data models, memory ownership lifecycles, and protocol state machines. Even when built upon lower-level primitives, the developer authors the logic that governs system behavior.
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Using an AI assistant to accelerate typing boilerplate syntax does not turn a software engineer into an assembler—any more than using an IDE autocomplete or a compiler does. The developer remains the author because they define the system, govern its logic, and bear full technical accountability for its execution.
+                            </p>
+                        </div>
+
+                        <!-- Chapter 1.6: Code Convergence -->
+                        <div class="space-y-3 pl-0 sm:pl-4 border-l-0 sm:border-l-2 border-brand-200/80 dark:border-brand-800/80">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">code convergence on constrained protocols: similar does not mean copied</h4>
                             <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
                                 Another frequent misunderstanding is the phenomenon of <strong>code convergence</strong>. When developers write software against strict system protocols and graphics APIs, their code will often look remarkably similar to existing projects on GitHub.
                             </p>
                             <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
                                 Consider implementing dual-kawase background blur in a Wayland compositor using SceneFX or wlroots. The graphics pipeline dictates an exact sequence: bind the scene buffer, query the damaged bounding box, allocate offscreen framebuffers, dispatch shader passes with specific parameters (blur radius, iterations, noise), sample texture coordinates, and composite back to the screen.
                             </p>
-                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                There are only one or two mathematically correct and performant ways to execute this pipeline. Whether written by a human or generated with the help of an AI, the resulting code will naturally converge with other implementations across the open-source ecosystem. This convergence is not copying or plagiarism&mdash;it is the inevitable outcome of constrained APIs and optimal engineering. In computer science and copyright law, this is recognized as functional convergence: when a protocol allows only one optimal solution, similar code is both natural and expected.
-                            </p>
+                            <div class="p-4 rounded-xl bg-brand-50/70 dark:bg-brand-900/30 border border-brand-200/70 dark:border-brand-800/70 text-sm text-brand-800 dark:text-brand-200 leading-relaxed">
+                                <strong>The Merger Doctrine in Code:</strong> There are only one or two mathematically optimal ways to execute this pipeline. Whether written by a human or generated with the help of an AI, the code will naturally converge with other implementations across the open-source ecosystem. In computer science and copyright law, this is recognized as functional convergence: when a protocol allows only one optimal solution, similar code is the inevitable result of correct engineering, not plagiarism.
+                            </div>
                         </div>
 
-                        <!-- Subheading: Assembling vs Building -->
-                        <div class="space-y-3 pt-2">
-                            <h3 class="text-base font-semibold text-brand-900 dark:text-white">assembling vs. building: a crucial difference</h3>
-                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                There is an important technical distinction between <strong>assembling</strong> existing pieces and <strong>building</strong> components from scratch:
-                            </p>
-                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                Suppose someone downloads Arch Linux, installs Hyprland and Quickshell, adds a custom color theme, configures dotfiles, and packages the entire setup into a downloadable ISO. Are they the developer of that ISO?
-                            </p>
-                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                They are indeed the author and maintainer of that <em>distribution ISO bundle</em>. But they are not the developer of Hyprland, the Wayland protocol, or Quickshell. They assembled pre-existing tools together. In contrast, building the compositor, writing the UI toolkit, and programming the native applications from the ground up requires designing the internal mechanics of each component.
-                            </p>
-                        </div>
-
-                        <!-- Subheading: The Assembler vs Coder Boundary -->
-                        <div class="space-y-3 pt-2">
-                            <h3 class="text-base font-semibold text-brand-900 dark:text-white">where is the boundary between an assembler and a developer?</h3>
-                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                This leads to a critical question often overlooked by critics: <em>Where exactly is the boundary between a "developer" and an "assembler"?</em>
-                            </p>
-                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                If using an abstraction or automated assistance makes someone "just an assembler," then the purist argument immediately collapses into an infinite regress. Does a C++ engineer become an assembler because they use <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">std::vector</code>, standard libc, and an optimizing compiler? Does a Linux kernel contributor become an assembler because they build on top of CPU microcode and hardware specifications they did not design?
-                            </p>
-                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                If pure authorship requires writing every single layer from bare silicon to the user interface without any abstraction, then software development has never existed. Every programmer in human history has assembled abstractions.
-                            </p>
-                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                The real boundary does not depend on whether you use libraries, compilers, or AI tools. The true distinction lies between <strong>mere orchestration</strong> and <strong>system creation</strong>:
-                            </p>
-                            <ul class="list-disc list-inside space-y-2 text-sm sm:text-base text-brand-700 dark:text-brand-300 pl-2">
-                                <li><strong>Orchestration (Mere Assembly):</strong> Taking finished, pre-compiled black-box applications and gluing them together using text configuration files, themes, and packaging scripts. No new internal state machines, algorithms, or execution loops are invented.</li>
-                                <li><strong>System Creation (Development):</strong> Designing new domain logic, data structures, memory ownership models, and protocol lifecycles to solve an unsolved problem. Even when built upon foundational primitives (such as Wayland wire protocols or Cairo graphics), the developer authors the logic that governs how the system behaves.</li>
-                            </ul>
-                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                Using an AI assistant to accelerate typing boilerplate syntax does not turn a software engineer into an assembler—any more than using an IDE or a compiler does. The developer remains the author because they define the system, govern its logic, and bear full technical accountability for its execution.
-                            </p>
-                        </div>
-
-                        <!-- Subheading: The Reality of AI Code: Detection, Context Loss, and the Half-Done Trap -->
-                        <div class="space-y-3 pt-2">
-                            <h3 class="text-base font-semibold text-brand-900 dark:text-white">the reality of ai code: detection, context loss, and the &ldquo;half-done&rdquo; trap</h3>
+                        <!-- Chapter 1.7: The Reality of AI Code -->
+                        <div class="space-y-3 pl-0 sm:pl-4 border-l-0 sm:border-l-2 border-brand-200/80 dark:border-brand-800/80">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">the reality of ai code: detection, context loss, and the &ldquo;half-done&rdquo; trap</h4>
                             <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
                                 In the early days of generative AI, detecting machine-written code was trivial. Early models produced obvious patterns, hallucinated libraries, and repetitive boilerplate. Today, with modern reasoning models and agentic workflows, detecting AI-generated code has become virtually impossible. On basic or isolated problems, an AI can produce clean, idiomatic code that matches or even outperforms senior developers.
                             </p>
@@ -1190,20 +1205,41 @@ cd miqu-project
                             </p>
                         </div>
 
-                        <!-- Subheading: What True Authorship Means -->
+                        <!-- Chapter 1.8: What True Authorship Means -->
                         <div class="space-y-3 pt-2">
-                            <h3 class="text-base font-semibold text-brand-900 dark:text-white">what true software authorship actually means</h3>
+                            <div class="flex items-center gap-2">
+                                <span class="flex items-center justify-center w-6 h-6 rounded-md bg-brand-100 dark:bg-brand-800 text-brand-800 dark:text-brand-200 text-xs font-mono font-bold">02</span>
+                                <h3 class="text-base sm:text-lg font-bold text-brand-900 dark:text-white tracking-tight">what true software authorship actually means</h3>
+                            </div>
                             <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
                                 Keystrokes are cheap. An AI model can generate thousands of lines of syntax in seconds, but it has no intent, no understanding of system constraints, no real-world experience, and no ability to test software on real hardware.
                             </p>
                             <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                True authorship in software engineering consists of three things:
+                                True authorship in software engineering consists of three non-delegable pillars:
                             </p>
-                            <ul class="list-disc list-inside space-y-2 text-sm sm:text-base text-brand-700 dark:text-brand-300 pl-2">
-                                <li><strong>Intent:</strong> Deciding what needs to be built, why it should exist, and what problem it solves.</li>
-                                <li><strong>Architecture:</strong> Designing data structures, component boundaries, memory ownership models, and lifecycle contracts.</li>
-                                <li><strong>Accountability:</strong> Reviewing every line, running compiler diagnostics, verifying memory safety, testing on physical devices, and taking total responsibility for bugs and security vulnerabilities.</li>
-                            </ul>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-2">
+                                <div class="p-4 rounded-xl bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                    <div class="text-xs font-mono font-bold text-brand-600 dark:text-brand-400 mb-1">PILLAR 1</div>
+                                    <h5 class="font-bold text-sm text-brand-900 dark:text-white mb-1">Intent</h5>
+                                    <p class="text-xs text-brand-600 dark:text-brand-400 leading-relaxed">
+                                        Deciding what needs to be built, why it must exist, and what problem it solves for users.
+                                    </p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                    <div class="text-xs font-mono font-bold text-brand-600 dark:text-brand-400 mb-1">PILLAR 2</div>
+                                    <h5 class="font-bold text-sm text-brand-900 dark:text-white mb-1">Architecture</h5>
+                                    <p class="text-xs text-brand-600 dark:text-brand-400 leading-relaxed">
+                                        Designing data structures, component boundaries, memory ownership models, and lifecycle contracts.
+                                    </p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                    <div class="text-xs font-mono font-bold text-brand-600 dark:text-brand-400 mb-1">PILLAR 3</div>
+                                    <h5 class="font-bold text-sm text-brand-900 dark:text-white mb-1">Accountability</h5>
+                                    <p class="text-xs text-brand-600 dark:text-brand-400 leading-relaxed">
+                                        Auditing every line, verifying memory safety, testing on physical devices, and taking total responsibility for bugs.
+                                    </p>
+                                </div>
+                            </div>
                             <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
                                 An architect designs the structural blueprint, load calculations, and safety exits of a building without pouring every bucket of concrete by hand. The human software engineer who directs, verifies, and debugs an AI-assisted codebase is that architect.
                             </p>
@@ -1212,15 +1248,18 @@ cd miqu-project
 
                     <!-- Section 2: The Double Standard (id="double-standard") -->
                     <section id="double-standard" class="space-y-6 pt-6 border-t border-brand-200/60 dark:border-brand-800/60">
-                        <div class="space-y-2">
-                            <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">the double standard of closed-source software</h2>
-                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                There is a glaring contradiction in how AI-assisted software is judged across the tech industry today.
-                            </p>
+                        <div class="flex items-center gap-2">
+                            <span class="flex items-center justify-center w-6 h-6 rounded-md bg-brand-100 dark:bg-brand-800 text-brand-800 dark:text-brand-200 text-xs font-mono font-bold">03</span>
+                            <h3 class="text-base sm:text-lg font-bold text-brand-900 dark:text-white tracking-tight">the double standard of closed-source software</h3>
                         </div>
 
-                        <div class="space-y-3">
-                            <h3 class="text-base font-semibold text-brand-900 dark:text-white">big tech companies already generate massive amounts of ai code</h3>
+                        <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                            There is a glaring contradiction in how AI-assisted software is judged across the tech industry today.
+                        </p>
+
+                        <!-- Big Tech -->
+                        <div class="space-y-3 pl-0 sm:pl-4 border-l-0 sm:border-l-2 border-brand-200/80 dark:border-brand-800/80">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">big tech companies already generate massive amounts of ai code</h4>
                             <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
                                 Major proprietary tech companies now openly state that 25% to over 50% of their new internal codebase is written by artificial intelligence models. Their commercial products, cloud backends, and desktop operating systems are saturated with machine-generated code.
                             </p>
@@ -1229,21 +1268,23 @@ cd miqu-project
                             </p>
                         </div>
 
-                        <div class="space-y-3">
-                            <h3 class="text-base font-semibold text-brand-900 dark:text-white">even the linux kernel has ai commits: where are critics hiding?</h3>
+                        <!-- Linux Kernel Commits -->
+                        <div class="space-y-3 pl-0 sm:pl-4 border-l-0 sm:border-l-2 border-brand-200/80 dark:border-brand-800/80">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">even the linux kernel has ai commits: where are critics hiding?</h4>
                             <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
                                 This reality extends far beyond proprietary tech giants. Even inside the most scrutinized, mission-critical open-source project in human history&mdash;the <strong>Linux kernel itself</strong>&mdash;maintainers and corporate contributors from Intel, Google, Red Hat, and AMD actively use LLMs to write drivers, refactor subsystems, and draft patch commits.
                             </p>
                             <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
                                 As Linus Torvalds and senior kernel maintainers have pointed out, AI is simply an inevitable evolution in developer toolchains. The kernel community does not reject a patch because a modern tool assisted in writing it; they evaluate whether the code is correct, memory-safe, and rigorously tested.
                             </p>
-                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                If the very kernel powering every Android smartphone, cloud datacenter, internet router, and Linux workstation contains LLM-assisted code, where exactly are critics planning to hide? What operating system, server, or digital device can they use that is completely free of machine-assisted software? The debate is no longer about whether AI tools are used; it is about whether the resulting software is <strong>open, auditable, and safe</strong>.
-                            </p>
+                            <div class="p-4 rounded-xl bg-brand-50/70 dark:bg-brand-900/30 border border-brand-200/70 dark:border-brand-800/70 text-sm text-brand-800 dark:text-brand-200 leading-relaxed">
+                                <strong>The Reality Check:</strong> If the very kernel powering every Android smartphone, cloud datacenter, internet router, and Linux workstation contains LLM-assisted code, where exactly are critics planning to hide? What operating system, server, or digital device can they use that is completely free of machine-assisted software? The debate is no longer about whether AI tools are used; it is about whether the resulting software is <strong>open, auditable, and safe</strong>.
+                            </div>
                         </div>
 
-                        <div class="space-y-3">
-                            <h3 class="text-base font-semibold text-brand-900 dark:text-white">the asymmetry of scrutiny</h3>
+                        <!-- Asymmetry of Scrutiny -->
+                        <div class="space-y-3 pl-0 sm:pl-4 border-l-0 sm:border-l-2 border-brand-200/80 dark:border-brand-800/80">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">the asymmetry of scrutiny</h4>
                             <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
                                 Closed-source companies avoid public criticism simply because they hide their code behind binary blobs and legal agreements. You cannot inspect whether their AI-generated code has memory leaks, security backdoors, or telemetry scripts harvesting your personal files, keystrokes, and browsing habits.
                             </p>
@@ -1252,8 +1293,9 @@ cd miqu-project
                             </p>
                         </div>
 
-                        <div class="space-y-3">
-                            <h3 class="text-base font-semibold text-brand-900 dark:text-white">the universal rule for trusting software</h3>
+                        <!-- Universal Rule -->
+                        <div class="space-y-3 pl-0 sm:pl-4 border-l-0 sm:border-l-2 border-brand-200/80 dark:border-brand-800/80">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">the universal rule for trusting software</h4>
                             <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
                                 Code quality and security are not determined by whether a human finger physically tapped every key or whether an AI autocomplete suggested a loop. Security is determined by whether the software is <strong>provably constrained, memory-safe, completely auditable, and incapable of violating your privacy</strong>.
                             </p>
@@ -1264,90 +1306,160 @@ cd miqu-project
                 <!-- ========================================================= -->
                 <!-- PART 2: HOW MIQU MEETS THESE STANDARDS                    -->
                 <!-- ========================================================= -->
-                <div class="space-y-10 pt-4">
-                    <div class="border-b border-brand-200/60 dark:border-brand-800/60 pb-3">
-                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-brand-900 text-white dark:bg-white dark:text-brand-950 text-xs font-bold uppercase tracking-wider">
-                            part 2 &mdash; how miqu meets these standards
-                        </span>
-                        <p class="text-xs text-brand-500 dark:text-brand-400 mt-2">
-                            How our engineering, memory management, offline privacy, and open-source practices guarantee safety and reliability.
-                        </p>
+                <div class="space-y-12 pt-6 border-t border-brand-200/80 dark:border-brand-800/80">
+                    <!-- Part 2 Banner -->
+                    <div class="p-4 sm:p-5 rounded-xl bg-gradient-to-r from-brand-900/90 to-brand-800 text-white dark:from-white/10 dark:to-white/5 border border-brand-700/50 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+                        <div>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-white/20 dark:bg-white/20 text-white text-xs font-bold uppercase tracking-wider">
+                                part 2 &mdash; miqu's guarantees
+                            </span>
+                            <h2 class="text-base sm:text-lg font-bold text-white mt-1">how miqu meets the highest engineering standards</h2>
+                            <p class="text-xs text-brand-200 dark:text-brand-300 mt-0.5">
+                                How our architecture, strict C++20 memory safety, offline privacy, and open-source practices fulfill these principles.
+                            </p>
+                        </div>
                     </div>
 
                     <!-- Section 3: Safety, Real Engineering & Memory Safety (id="safety") -->
-                    <section id="safety" class="space-y-6">
-                        <div class="space-y-2">
-                            <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">real engineering: built from the ground up</h2>
+                    <section id="safety" class="space-y-8">
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-2">
+                                <span class="flex items-center justify-center w-6 h-6 rounded-md bg-brand-900 text-white dark:bg-white dark:text-brand-950 text-xs font-mono font-bold">04</span>
+                                <h3 class="text-base sm:text-lg font-bold text-brand-900 dark:text-white tracking-tight">real engineering: built from the ground up</h3>
+                            </div>
                             <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                Miqu is not an assembled configuration, a collection of scripts, or a reskinned Linux ISO. We engineered an entire Wayland desktop environment from scratch across 18 specialized repositories:
+                                Miqu is not an assembled configuration, a collection of dotfiles, or a reskinned Linux ISO. We engineered an entire Wayland desktop environment from scratch across 18 specialized repositories:
                             </p>
                         </div>
 
-                        <ul class="list-disc list-inside space-y-2 text-sm sm:text-base text-brand-700 dark:text-brand-300 pl-2">
-                            <li><strong><code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">miquland</code>:</strong> A native Wayland compositor written in C++20 on wlroots, handling output rendering, tiling and floating window placement, layer-shell protocols, and IPC plugins.</li>
-                            <li><strong><code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">miqutoolkit</code>:</strong> An independent Cairo, Pango, and Wayland UI framework providing design tokens, layout containers, and live theme propagation across all applications.</li>
-                            <li><strong>16 Native Applications:</strong> Complete standalone C++20 apps—including the status bar (<code class="font-mono text-xs">miqubar</code>), desktop canvas (<code class="font-mono text-xs">miqudesk</code>), firewall & privacy center (<code class="font-mono text-xs">miqusecure</code>), music player (<code class="font-mono text-xs">miqumusic</code>), application launcher (<code class="font-mono text-xs">miqulauncher</code>), live exposé (<code class="font-mono text-xs">miquoverview</code>), and lockscreen (<code class="font-mono text-xs">miqulock</code>).</li>
-                        </ul>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                            <div class="p-4 rounded-xl bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                <div class="text-xs font-mono font-bold text-brand-500 mb-1">CORE COMPOSITOR</div>
+                                <h5 class="font-bold text-sm text-brand-900 dark:text-white mb-1">miquland</h5>
+                                <p class="text-xs text-brand-600 dark:text-brand-400 leading-relaxed">
+                                    Native Wayland compositor written in C++20 on wlroots, handling output rendering, tiling/floating window management, layer-shell protocols, and IPC plugins.
+                                </p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                <div class="text-xs font-mono font-bold text-brand-500 mb-1">SHARED UI TOOLKIT</div>
+                                <h5 class="font-bold text-sm text-brand-900 dark:text-white mb-1">miqutoolkit</h5>
+                                <p class="text-xs text-brand-600 dark:text-brand-400 leading-relaxed">
+                                    Custom Cairo, Pango, and Wayland UI framework providing design tokens, layout containers, and live theme propagation across all applications.
+                                </p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                <div class="text-xs font-mono font-bold text-brand-500 mb-1">DESKTOP SUITE</div>
+                                <h5 class="font-bold text-sm text-brand-900 dark:text-white mb-1">16 Native Apps</h5>
+                                <p class="text-xs text-brand-600 dark:text-brand-400 leading-relaxed">
+                                    Standalone apps: status bar (<code class="font-mono text-xs">miqubar</code>), desktop canvas (<code class="font-mono text-xs">miqudesk</code>), firewall center (<code class="font-mono text-xs">miqusecure</code>), music player (<code class="font-mono text-xs">miqumusic</code>), launcher (<code class="font-mono text-xs">miqulauncher</code>), and lockscreen (<code class="font-mono text-xs">miqulock</code>).
+                                </p>
+                            </div>
+                        </div>
 
                         <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
                             We use AI as a rapid typing tool and syntax assistant. But every architectural contract, memory boundary, and Wayland event loop is designed, directed, and verified by human engineering.
                         </p>
 
                         <!-- Subheading: Memory Safety & Technical Discipline -->
-                        <div class="space-y-3 pt-3 border-t border-brand-200/40 dark:border-brand-800/40">
-                            <h3 class="text-base font-semibold text-brand-900 dark:text-white">strict memory safety and technical discipline</h3>
+                        <div class="space-y-4 pt-4 border-t border-brand-200/60 dark:border-brand-800/60">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">strict memory safety and technical discipline</h4>
                             <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
                                 Unconstrained AI-generated code is prone to memory leaks, dangling pointers, and undefined behavior. In Miqu, this is strictly prevented through non-negotiable technical rules:
                             </p>
-                            <ul class="list-disc list-inside space-y-2.5 text-sm sm:text-base text-brand-700 dark:text-brand-300 pl-2">
-                                <li><strong>Deterministic cleanup (strict C++20 RAII):</strong> Raw owning pointers are prohibited. Every file descriptor, Wayland protocol surface, and Cairo context is wrapped in smart pointers or scope-bound RAII guards. Memory leaks are structurally impossible.</li>
-                                <li><strong>Zero compiler warnings policy:</strong> All code compiles under strict compiler flags (<code class="font-mono text-xs">-Wall -Wextra -Werror</code>). A single compiler warning is treated as a fatal build error.</li>
-                                <li><strong>Automated runtime sanitizers:</strong> We run Clang/GCC AddressSanitizer (ASan) and UndefinedBehaviorSanitizer (UBSan) to proactively catch buffer overflows, alignment faults, and hidden memory bugs before code reaches users.</li>
-                                <li><strong>Zero idle CPU usage:</strong> Miqu applications never spin in continuous polling loops. The entire stack is strictly event-driven; when there is no user input or screen damage, processes sleep completely in the Wayland event loop at 0.0% CPU.</li>
-                            </ul>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                                <div class="p-4 rounded-xl bg-brand-50/70 dark:bg-brand-900/30 border border-brand-200/70 dark:border-brand-800/70">
+                                    <h5 class="font-bold text-xs uppercase tracking-wider text-brand-900 dark:text-white mb-1">strict c++20 raii</h5>
+                                    <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-400 leading-relaxed">
+                                        Raw owning pointers are prohibited. Every file descriptor, Wayland protocol surface, and Cairo context is wrapped in smart pointers or scope-bound RAII guards. Memory leaks are structurally impossible.
+                                    </p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-brand-50/70 dark:bg-brand-900/30 border border-brand-200/70 dark:border-brand-800/70">
+                                    <h5 class="font-bold text-xs uppercase tracking-wider text-brand-900 dark:text-white mb-1">zero compiler warnings</h5>
+                                    <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-400 leading-relaxed">
+                                        All code compiles under strict compiler flags (<code class="font-mono text-xs">-Wall -Wextra -Werror</code>). A single compiler warning is treated as a fatal build error and rejected.
+                                    </p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-brand-50/70 dark:bg-brand-900/30 border border-brand-200/70 dark:border-brand-800/70">
+                                    <h5 class="font-bold text-xs uppercase tracking-wider text-brand-900 dark:text-white mb-1">runtime sanitizers</h5>
+                                    <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-400 leading-relaxed">
+                                        We run AddressSanitizer (ASan) and UndefinedBehaviorSanitizer (UBSan) to proactively catch buffer overflows, alignment faults, and hidden memory bugs before code reaches users.
+                                    </p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-brand-50/70 dark:bg-brand-900/30 border border-brand-200/70 dark:border-brand-800/70">
+                                    <h5 class="font-bold text-xs uppercase tracking-wider text-brand-900 dark:text-white mb-1">0.0% idle cpu usage</h5>
+                                    <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-400 leading-relaxed">
+                                        Miqu applications never spin in continuous polling loops. The stack is strictly event-driven; when there is no user input or screen damage, processes sleep completely in the event loop at 0.0% CPU.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </section>
 
                     <!-- Section 4: Governance & Audits (id="governance") -->
                     <section id="governance" class="space-y-6 pt-6 border-t border-brand-200/60 dark:border-brand-800/60">
-                        <div class="space-y-2">
-                            <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">testing, audits, and a single rulebook</h2>
-                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                                Maintaining 18 repositories with high reliability requires strict governance:
-                            </p>
+                        <div class="flex items-center gap-2">
+                            <span class="flex items-center justify-center w-6 h-6 rounded-md bg-brand-900 text-white dark:bg-white dark:text-brand-950 text-xs font-mono font-bold">05</span>
+                            <h3 class="text-base sm:text-lg font-bold text-brand-900 dark:text-white tracking-tight">testing, audits, and a single rulebook</h3>
                         </div>
 
-                        <ul class="list-disc list-inside space-y-2.5 text-sm sm:text-base text-brand-700 dark:text-brand-300 pl-2">
-                            <li><strong>The <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">AGENTS.md</code> single rulebook:</strong> Every repository follows the identical architectural doctrine. This document enforces the uniform two-tier configuration model, zero source-code appearance defaults, strict thread isolation, and lifecycle safety. Both AI tools and human developers operate under these exact constraints.</li>
-                            <li><strong>Automated static analysis & checks:</strong> Continuous automated tools inspect code for Wayland protocol lifecycle violations, iterator invalidation hazards, and resource leaks.</li>
-                            <li><strong>Main-thread UI confinement:</strong> Background tasks (MPD connections, system telemetry, socket I/O) are isolated to worker threads and communicate only through non-blocking event loops (<code class="font-mono text-xs">eventfd</code>, pipes)—never mutating UI widgets directly.</li>
-                        </ul>
+                        <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                            Maintaining 18 repositories with high reliability requires strict governance:
+                        </p>
+
+                        <div class="space-y-3">
+                            <div class="p-4 rounded-xl bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                <h4 class="font-bold text-sm text-brand-900 dark:text-white mb-1">The AGENTS.md Single Rulebook</h4>
+                                <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-400 leading-relaxed">
+                                    Every repository follows the identical architectural doctrine. This document enforces the uniform two-tier configuration model, zero source-code appearance defaults, strict thread isolation, and lifecycle safety. Both AI tools and human developers operate under these exact constraints.
+                                </p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                <h4 class="font-bold text-sm text-brand-900 dark:text-white mb-1">Automated Static Analysis & Lifecycle Verification</h4>
+                                <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-400 leading-relaxed">
+                                    Continuous automated tools inspect code for Wayland protocol lifecycle violations, iterator invalidation hazards, and resource leaks across all 18 repositories.
+                                </p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                <h4 class="font-bold text-sm text-brand-900 dark:text-white mb-1">Main-Thread UI Confinement & Worker Isolation</h4>
+                                <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-400 leading-relaxed">
+                                    Background tasks (MPD connections, system telemetry, socket I/O) are isolated to worker threads and communicate only through non-blocking event loops (<code class="font-mono text-xs">eventfd</code>, pipes)—never mutating UI widgets directly.
+                                </p>
+                            </div>
+                        </div>
                     </section>
 
                     <!-- Section 5: Trust Verdict (id="trust-verdict") -->
                     <section id="trust-verdict" class="space-y-6 pt-6 border-t border-brand-200/60 dark:border-brand-800/60">
-                        <div class="space-y-2">
-                            <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">our two non-negotiable guarantees</h2>
-                            <div class="border-l-2 border-brand-400 dark:border-brand-500 pl-4 py-1 text-sm sm:text-base text-brand-700 dark:text-brand-300 italic">
-                                &ldquo;You should never have to take a developer's word for security. True trust is built on two verifiable pillars: complete offline independence and fully public source code.&rdquo;
-                            </div>
+                        <div class="flex items-center gap-2">
+                            <span class="flex items-center justify-center w-6 h-6 rounded-md bg-brand-900 text-white dark:bg-white dark:text-brand-950 text-xs font-mono font-bold">06</span>
+                            <h3 class="text-base sm:text-lg font-bold text-brand-900 dark:text-white tracking-tight">our two non-negotiable guarantees</h3>
+                        </div>
+
+                        <div class="border-l-2 border-brand-400 dark:border-brand-500 pl-4 py-1.5 text-sm sm:text-base text-brand-700 dark:text-brand-300 italic bg-brand-50/50 dark:bg-brand-900/20 rounded-r-lg">
+                            &ldquo;You should never have to take a developer's word for security. True trust is built on two verifiable pillars: complete offline independence and fully public source code.&rdquo;
                         </div>
 
                         <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
                             Miqu delivers this trust through two structural guarantees:
                         </p>
 
-                        <div class="space-y-4 text-sm sm:text-base text-brand-700 dark:text-brand-300">
-                            <div class="p-4 rounded-xl bg-brand-50 dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80">
-                                <h3 class="font-bold text-brand-900 dark:text-white mb-1">1. 100% offline isolation (zero telemetry)</h3>
-                                <p class="leading-relaxed">
-                                    Miqu contains no tracking scripts, no telemetry pings, no analytics, and no background cloud connections. The compositor, toolkit, and desktop apps do not even include network communication libraries. Miqu runs with complete functionality on a computer that has no internet connection whatsoever. Your private files, activity, and keystrokes never leave your machine.
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-5 rounded-xl bg-gradient-to-b from-brand-50 to-white dark:from-brand-900/40 dark:to-brand-950/60 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                <div class="w-8 h-8 rounded-lg bg-brand-100 dark:bg-brand-800 flex items-center justify-center text-brand-700 dark:text-brand-300 mb-3">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 4.243a9 9 0 01-12.728 0m0 0l2.829-2.829m-2.829 2.829L3 21m2.829-5.636a5 5 0 010-7.072m0 0l2.829 2.829"></path></svg>
+                                </div>
+                                <h4 class="font-bold text-sm text-brand-900 dark:text-white mb-2">1. 100% Offline Isolation (Zero Telemetry)</h4>
+                                <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-400 leading-relaxed">
+                                    Miqu contains no tracking scripts, no telemetry pings, no analytics, and no background cloud connections. The compositor, toolkit, and desktop apps do not even link to network communication libraries. Miqu runs identically on a computer with no internet connection whatsoever. Your files, activity, and keystrokes never leave your machine.
                                 </p>
                             </div>
 
-                            <div class="p-4 rounded-xl bg-brand-50 dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80">
-                                <h3 class="font-bold text-brand-900 dark:text-white mb-1">2. 100% open-source under the MIT license</h3>
-                                <p class="leading-relaxed">
+                            <div class="p-5 rounded-xl bg-gradient-to-b from-brand-50 to-white dark:from-brand-900/40 dark:to-brand-950/60 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                <div class="w-8 h-8 rounded-lg bg-brand-100 dark:bg-brand-800 flex items-center justify-center text-brand-700 dark:text-brand-300 mb-3">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                </div>
+                                <h4 class="font-bold text-sm text-brand-900 dark:text-white mb-2">2. 100% Open-Source Under the MIT License</h4>
+                                <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-400 leading-relaxed">
                                     Every single line of C++20, Wayland protocol bindings, and CMake build logic across all 18 repositories is publicly available on GitHub under the permissive MIT license. Anyone in the world can inspect the code, verify the build process, audit memory management, and run the software independently.
                                 </p>
                             </div>
