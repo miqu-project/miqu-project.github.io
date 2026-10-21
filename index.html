@@ -150,7 +150,7 @@
                     docs
                 </button>
                 <button onclick="onTabClick('llm')" id="tab-btn-llm" class="tab-btn text-xs font-medium px-3 py-1.5 rounded-lg text-brand-600 dark:text-brand-400 hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/70 dark:hover:bg-brand-800/60 transition-all">
-                    llm & safety
+                    LLM Use
                 </button>
             </nav>
 
@@ -184,7 +184,7 @@
                 <svg class="w-3.5 h-3.5 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </button>
             <button onclick="onTabClick('llm')" id="mobile-tab-btn-llm" class="mobile-tab-btn w-full flex items-center justify-between px-3.5 py-2.5 text-xs font-medium rounded-lg transition-all text-brand-700 dark:text-brand-300 hover:bg-brand-100/70 dark:hover:bg-brand-800/60">
-                <span>llm & safety</span>
+                <span>LLM Use</span>
                 <svg class="w-3.5 h-3.5 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </button>
         </div>
@@ -196,681 +196,332 @@
     <main>
         <!-- Tab: Home -->
         <div id="tab-home" class="tab-panel">
-            <section id="at-a-glance" class="w-full border-b border-brand-200/80 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-16 transition-colors">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8">
-            <div class="flex items-center justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
-                <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">at a glance</h2>
-            </div>
 
-            <!-- At a Glance Features Bullet Points -->
-            <div class="bg-brand-50/70 dark:bg-brand-900/40 border border-brand-200 dark:border-brand-800 rounded-2xl p-6 sm:p-8 shadow-2xs">
-                <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-                    <li class="flex items-start gap-3">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 mt-2 flex-shrink-0"></span>
-                        <div class="text-sm">
-                            <strong class="font-semibold text-brand-900 dark:text-white">Core Compositor (miquland):</strong>
-                            <span class="text-brand-600 dark:text-brand-300"> Flagship Wayland compositor featuring smooth animations, dual-kawase blur, and scenefx visual effects built with wlroots and C++20.</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 mt-2 flex-shrink-0"></span>
-                        <div class="text-sm">
-                            <strong class="font-semibold text-brand-900 dark:text-white">Base Linux Distribution:</strong>
-                            <span class="text-brand-600 dark:text-brand-300"> Follows a familiar Wayland workflow starting from a clean <strong class="font-semibold text-brand-900 dark:text-white">Arch Linux</strong> (or Debian / Fedora) base system with standard graphics drivers.</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 mt-2 flex-shrink-0"></span>
-                        <div class="text-sm">
-                            <strong class="font-semibold text-brand-900 dark:text-white">Toolkit & Client Applications:</strong>
-                            <span class="text-brand-600 dark:text-brand-300"> Paired with <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener noreferrer" class="font-semibold text-brand-900 dark:text-white underline decoration-brand-300 dark:decoration-brand-600 hover:decoration-brand-800">miqutoolkit</a> (Cairo & Pango), powering 16 native desktop applications and tools targeting a unified Linux desktop environment, alongside Android companion apps.</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 mt-2 flex-shrink-0"></span>
-                        <div class="text-sm">
-                            <strong class="font-semibold text-brand-900 dark:text-white">Cloning & Compilation:</strong>
-                            <span class="text-brand-600 dark:text-brand-300"> From your virtual console (TTY), clone this workspace repository and run the build scripts to compile the entire ecosystem or individual targets.</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 mt-2 flex-shrink-0"></span>
-                        <div class="text-sm">
-                            <strong class="font-semibold text-brand-900 dark:text-white">Single-Source Documentation:</strong>
-                            <span class="text-brand-600 dark:text-brand-300"> Quick intro and links to each GitHub repo and individual READMEs, governed by the comprehensive ecosystem doctrine in <a href="https://github.com/miqu-project/.github/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer" class="font-semibold text-brand-900 dark:text-white underline decoration-brand-300 dark:decoration-brand-600 hover:decoration-brand-800">AGENTS.md</a>.</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 mt-2 flex-shrink-0"></span>
-                        <div class="text-sm">
-                            <strong class="font-semibold text-brand-900 dark:text-white">TTY & Display Manager Launch:</strong>
-                            <span class="text-brand-600 dark:text-brand-300"> Launch <code class="font-mono text-xs">miquland</code> directly from your TTY or select it in your login manager (<code class="font-mono text-xs">miqudm</code>, SDDM, GDM)—adhering to the same lightweight, display-manager-optional lifecycle when switching from Hyprland or Sway.</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Architecture & Foundation Section: Big Concise Graphical Flow Pipeline -->
-    <section id="architecture" class="w-full border-b border-brand-200/80 dark:border-brand-800/80 bg-brand-50/50 dark:bg-[#080c14] py-16 transition-colors">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8">
-            <div class="flex items-center justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
-                <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">architecture</h2>
-            </div>
-
-            <!-- Big Graphical Architecture Flow Pipeline -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
-                <!-- Step 1: Base -->
-                <div class="relative bg-white dark:bg-brand-900/60 border border-brand-200 dark:border-brand-800 rounded-2xl p-6 shadow-2xs hover:border-slate-400 dark:hover:border-slate-600 transition-all flex flex-col justify-between">
-                    <div>
-                        <h4 class="text-base font-bold text-brand-900 dark:text-white mb-1.5">Linux Base Distro</h4>
-                        <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300">Vanilla Arch Linux, Debian, or Fedora base system.</p>
-                    </div>
-                    <!-- Flow indicator for desktop -->
-                    <div class="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-brand-900 border border-brand-200 dark:border-brand-700 items-center justify-center text-brand-400 shadow-2xs">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
-                    </div>
-                </div>
-
-                <!-- Step 2: Compositor -->
-                <div class="relative bg-white dark:bg-brand-900/60 border border-blue-200 dark:border-blue-900/80 rounded-2xl p-6 shadow-2xs hover:border-blue-400 dark:hover:border-blue-600 transition-all flex flex-col justify-between">
-                    <div>
-                        <h4 class="text-base font-bold text-brand-900 dark:text-white mb-1.5">miquland Compositor</h4>
-                        <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300">Dynamic tiling compositor, scenefx GPU visual effects, and 0% idle CPU.</p>
-                    </div>
-                    <!-- Flow indicator for desktop -->
-                    <div class="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-brand-900 border border-brand-200 dark:border-brand-700 items-center justify-center text-brand-400 shadow-2xs">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
-                    </div>
-                </div>
-
-                <!-- Step 3: Toolkit -->
-                <div class="relative bg-white dark:bg-brand-900/60 border border-purple-200 dark:border-purple-900/80 rounded-2xl p-6 shadow-2xs hover:border-purple-400 dark:hover:border-purple-600 transition-all flex flex-col justify-between">
-                    <div>
-                        <h4 class="text-base font-bold text-brand-900 dark:text-white mb-1.5">miqutoolkit Framework</h4>
-                        <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300">Cairo/Pango vector widget engine and Two-Tier configuration doctrine.</p>
-                    </div>
-                    <!-- Flow indicator for desktop -->
-                    <div class="hidden md:flex absolute -right-3.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white dark:bg-brand-900 border border-brand-200 dark:border-brand-700 items-center justify-center text-brand-400 shadow-2xs">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
-                    </div>
-                </div>
-
-                <!-- Step 4: Applications -->
-                <div class="relative bg-white dark:bg-brand-900/60 border border-emerald-200 dark:border-emerald-900/80 rounded-2xl p-6 shadow-2xs hover:border-emerald-400 dark:hover:border-emerald-600 transition-all flex flex-col justify-between">
-                    <div>
-                        <h4 class="text-base font-bold text-brand-900 dark:text-white mb-1.5">Client Applications</h4>
-                        <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300">16 native Linux desktop applications and 2 Android mobile companion tools.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Dedicated miquland Compositor Section -->
-    <section id="miquland" class="w-full border-b border-brand-200/80 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-16 transition-colors">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8">
-            <div class="flex items-center justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
-                <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">miquland</h2>
-                <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 hover:bg-brand-50 dark:hover:bg-brand-800 text-brand-800 dark:text-brand-200 transition-colors shadow-2xs">
-                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    GitHub
-                </a>
-            </div>
-
-            <!-- miquland Features Bullet Points -->
-            <div class="bg-brand-50/70 dark:bg-brand-900/40 border border-brand-200 dark:border-brand-800 rounded-2xl p-6 sm:p-8 shadow-2xs">
-                <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-                    <li class="flex items-start gap-3">
-                        <span class="w-2 h-2 rounded-full bg-blue-500 mt-2 flex-shrink-0"></span>
-                        <div class="text-sm">
-                            <strong class="font-semibold text-brand-900 dark:text-white">Dynamic Tiling & Floating:</strong>
-                            <span class="text-brand-600 dark:text-brand-300"> Full binary dynamic tiling, floating window rules, and multi-monitor output tracking.</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="w-2 h-2 rounded-full bg-blue-500 mt-2 flex-shrink-0"></span>
-                        <div class="text-sm">
-                            <strong class="font-semibold text-brand-900 dark:text-white">C++20 & Scenefx Visuals:</strong>
-                            <span class="text-brand-600 dark:text-brand-300"> Hardware dual-kawase blur, rounded window corners, soft drop shadows, and gradient borders built on wlroots and scenefx.</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="w-2 h-2 rounded-full bg-blue-500 mt-2 flex-shrink-0"></span>
-                        <div class="text-sm">
-                            <strong class="font-semibold text-brand-900 dark:text-white">Wayland Protocol Suite:</strong>
-                            <span class="text-brand-600 dark:text-brand-300"> Native support for <code class="font-mono text-xs">xdg-shell</code>, <code class="font-mono text-xs">wlr-layer-shell-v1</code>, <code class="font-mono text-xs">ext-session-lock-v1</code>, and <code class="font-mono text-xs">ext-idle-notify-v1</code>.</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="w-2 h-2 rounded-full bg-blue-500 mt-2 flex-shrink-0"></span>
-                        <div class="text-sm">
-                            <strong class="font-semibold text-brand-900 dark:text-white">Absolute 0% Idle CPU:</strong>
-                            <span class="text-brand-600 dark:text-brand-300"> Strictly damage-driven repaints (<code class="font-mono text-xs">wlr_output_schedule_frame</code>), instant animation timer teardown, and zero busy polling.</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="w-2 h-2 rounded-full bg-blue-500 mt-2 flex-shrink-0"></span>
-                        <div class="text-sm">
-                            <strong class="font-semibold text-brand-900 dark:text-white">Compositor IPC Socket:</strong>
-                            <span class="text-brand-600 dark:text-brand-300"> High-speed Unix domain socket controller (<code class="font-mono text-xs">miquctl</code>) for runtime queries, window manipulation, and dynamic dispatching.</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="w-2 h-2 rounded-full bg-blue-500 mt-2 flex-shrink-0"></span>
-                        <div class="text-sm">
-                            <strong class="font-semibold text-brand-900 dark:text-white">TTY & Display Manager Ready:</strong>
-                            <span class="text-brand-600 dark:text-brand-300"> Direct invocation from virtual terminal (TTY) or standard session registration with <code class="font-mono text-xs">miqudm</code>, SDDM, or GDM.</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Dedicated miqutoolkit UI Framework Section -->
-    <section id="miqutoolkit" class="w-full border-b border-brand-200/80 dark:border-brand-800/80 bg-brand-50/50 dark:bg-[#080c14] py-16 transition-colors">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8">
-            <div class="flex items-center justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
-                <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">miqutoolkit</h2>
-                <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 hover:bg-brand-50 dark:hover:bg-brand-800 text-brand-800 dark:text-brand-200 transition-colors shadow-2xs">
-                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    GitHub
-                </a>
-            </div>
-
-            <!-- miqutoolkit Features Bullet Points -->
-            <div class="bg-white dark:bg-brand-900/60 border border-brand-200 dark:border-brand-800 rounded-2xl p-6 sm:p-8 shadow-2xs">
-                <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-                    <li class="flex items-start gap-3">
-                        <span class="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></span>
-                        <div class="text-sm">
-                            <strong class="font-semibold text-brand-900 dark:text-white">C++20, Cairo & Pango Engine:</strong>
-                            <span class="text-brand-600 dark:text-brand-300"> Clean object-oriented vector drawing and layout widgets (<code class="font-mono text-xs">ViewGroup</code>, <code class="font-mono text-xs">CardView</code>, <code class="font-mono text-xs">Label</code>).</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></span>
-                        <div class="text-sm">
-                            <strong class="font-semibold text-brand-900 dark:text-white">Two-Tier Single-File Authority:</strong>
-                            <span class="text-brand-600 dark:text-brand-300"> System baseline in <code class="font-mono text-xs">/usr/share/</code> with on-demand user configs via <code class="font-mono text-xs">--init-config</code> and safe timestamped backups.</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></span>
-                        <div class="text-sm">
-                            <strong class="font-semibold text-brand-900 dark:text-white">Decoupled Dynamic Theming:</strong>
-                            <span class="text-brand-600 dark:text-brand-300"> Transparent <code class="font-mono text-xs">source =</code> directives with automatic inotify file watchers for instant live reload.</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></span>
-                        <div class="text-sm">
-                            <strong class="font-semibold text-brand-900 dark:text-white">Strict RAII & Pointer Safety:</strong>
-                            <span class="text-brand-600 dark:text-brand-300"> Scope-bound smart pointers with custom deleters; zero raw owning pointers or memory leaks.</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></span>
-                        <div class="text-sm">
-                            <strong class="font-semibold text-brand-900 dark:text-white">Thread Safety & Event Isolation:</strong>
-                            <span class="text-brand-600 dark:text-brand-300"> UI rendering strictly confined to main thread; background workers communicate safely via <code class="font-mono text-xs">eventfd</code> and pipes.</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></span>
-                        <div class="text-sm">
-                            <strong class="font-semibold text-brand-900 dark:text-white">Zero UI Fragmentation:</strong>
-                            <span class="text-brand-600 dark:text-brand-300"> Shared widgets, metrics, and styling tokens unifying all 16 ecosystem applications.</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Linux Desktop Applications Section (All 16 Apps) -->
-    <section id="linux-apps" class="border-b border-brand-200/80 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-16 transition-colors">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8">
-            <div class="flex items-center justify-between mb-8 sm:mb-10 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
-                <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">linux applications</h2>
-                <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 hover:bg-brand-50 dark:hover:bg-brand-800 text-brand-800 dark:text-brand-200 transition-colors shadow-2xs">
-                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    GitHub
-                </a>
-            </div>
-
-        <!-- 16 Linux App Cards Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-
-            <!-- 1. miqubar -->
-            <div class="bg-white rounded-xl border border-brand-200/80 p-5 hover:border-brand-400 hover:shadow-md transition-all flex flex-col">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3.5">
-                        <img src="assets/apps/miqubar.png" alt="miqubar" class="w-10 h-10 rounded-lg object-contain bg-brand-50 border border-brand-100 p-1" />
-                    <div>
-                        <h4 class="font-bold text-brand-900">miqubar</h4>
-                        <span class="text-[11px] font-medium text-brand-500 bg-brand-100 px-2 py-0.5 rounded">Status Bar</span>
-                    </div>
-                    </div>
-                    <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqubar" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0" title="View on GitHub">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                </div>
-                <p class="text-xs text-brand-600 leading-relaxed flex-1">
-                    Wayland status bar & taskbar featuring workspace indicators, window lists, system tray, battery/network telemetry, and interactive flyouts.
-                </p>
-            </div>
-
-            <!-- 2. miqudesk -->
-            <div class="bg-white rounded-xl border border-brand-200/80 p-5 hover:border-brand-400 hover:shadow-md transition-all flex flex-col">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3.5">
-                        <div class="w-10 h-10 rounded-lg bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-700">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"></rect><path d="M3 9h18M9 21V9" stroke-width="2"></path></svg>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-brand-900">miqudesk</h4>
-                        <span class="text-[11px] font-medium text-brand-500 bg-brand-100 px-2 py-0.5 rounded">Desktop Canvas</span>
-                    </div>
-                    </div>
-                    <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqudesk" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0" title="View on GitHub">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                </div>
-                <p class="text-xs text-brand-600 leading-relaxed flex-1">
-                    Interactive desktop canvas and widget layer bringing classic desktop ergonomics (shortcuts, widgets, icons) to Wayland tiling.
-                </p>
-            </div>
-
-            <!-- 3. miqutheme -->
-            <div class="bg-white rounded-xl border border-brand-200/80 p-5 hover:border-brand-400 hover:shadow-md transition-all flex flex-col">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3.5">
-                        <img src="assets/apps/miqutheme.png" alt="miqutheme" class="w-10 h-10 rounded-lg object-contain bg-brand-50 border border-brand-100 p-1" />
-                    <div>
-                        <h4 class="font-bold text-brand-900">miqutheme</h4>
-                        <span class="text-[11px] font-medium text-brand-500 bg-brand-100 px-2 py-0.5 rounded">Theming</span>
-                    </div>
-                    </div>
-                    <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqutheme" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0" title="View on GitHub">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                </div>
-                <p class="text-xs text-brand-600 leading-relaxed flex-1">
-                    Visual theme and appearance manager with dynamic Material You wallpaper color extraction and live inotify reload propagation.
-                </p>
-            </div>
-
-            <!-- 4. miqusecure -->
-            <div class="bg-white rounded-xl border border-brand-200/80 p-5 hover:border-brand-400 hover:shadow-md transition-all flex flex-col">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3.5">
-                        <img src="assets/apps/miqusecure.png" alt="miqusecure" class="w-10 h-10 rounded-lg object-contain bg-brand-50 border border-brand-100 p-1" />
-                    <div>
-                        <h4 class="font-bold text-brand-900">miqusecure</h4>
-                        <span class="text-[11px] font-medium text-brand-500 bg-brand-100 px-2 py-0.5 rounded">Security Center</span>
-                    </div>
-                    </div>
-                    <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqusecure" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0" title="View on GitHub">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                </div>
-                <p class="text-xs text-brand-600 leading-relaxed flex-1">
-                    Privacy and firewall command center offering native management for Tor routing, OpenSnitch application firewall rules, and LUKS status.
-                </p>
-            </div>
-
-            <!-- 5. miqumusic -->
-            <div class="bg-white rounded-xl border border-brand-200/80 p-5 hover:border-brand-400 hover:shadow-md transition-all flex flex-col">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3.5">
-                        <img src="assets/apps/miqumusic.png" alt="miqumusic" class="w-10 h-10 rounded-lg object-contain bg-brand-50 border border-brand-100 p-1" />
-                    <div>
-                        <h4 class="font-bold text-brand-900">miqumusic</h4>
-                        <span class="text-[11px] font-medium text-brand-500 bg-brand-100 px-2 py-0.5 rounded">Audio / MPD</span>
-                    </div>
-                    </div>
-                    <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqumusic" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0" title="View on GitHub">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                </div>
-                <p class="text-xs text-brand-600 leading-relaxed flex-1">
-                    Fast, lightweight native MPD (Music Player Daemon) client, playlist manager, and audio playback controller.
-                </p>
-            </div>
-
-            <!-- 6. miqulauncher -->
-            <div class="bg-white rounded-xl border border-brand-200/80 p-5 hover:border-brand-400 hover:shadow-md transition-all flex flex-col">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3.5">
-                        <div class="w-10 h-10 rounded-lg bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-700">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke-width="2"></circle><line x1="21" y1="21" x2="16.65" y2="16.65" stroke-width="2"></line></svg>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-brand-900">miqulauncher</h4>
-                        <span class="text-[11px] font-medium text-brand-500 bg-brand-100 px-2 py-0.5 rounded">App Launcher</span>
-                    </div>
-                    </div>
-                    <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqulauncher" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0" title="View on GitHub">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                </div>
-                <p class="text-xs text-brand-600 leading-relaxed flex-1">
-                    Fast application launcher, fuzzy dmenu alternative, workspace navigator, and active window switcher with keyboard navigation.
-                </p>
-            </div>
-
-            <!-- 7. miquoverview -->
-            <div class="bg-white rounded-xl border border-brand-200/80 p-5 hover:border-brand-400 hover:shadow-md transition-all flex flex-col">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3.5">
-                        <div class="w-10 h-10 rounded-lg bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-700">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-brand-900">miquoverview</h4>
-                        <span class="text-[11px] font-medium text-brand-500 bg-brand-100 px-2 py-0.5 rounded">Exposé Plugin</span>
-                    </div>
-                    </div>
-                    <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miquoverview" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0" title="View on GitHub">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                </div>
-                <p class="text-xs text-brand-600 leading-relaxed flex-1">
-                    GPU-accelerated live workspace exposé and overview plugin providing fluid visual window management for miquland.
-                </p>
-            </div>
-
-            <!-- 8. miqunotify -->
-            <div class="bg-white rounded-xl border border-brand-200/80 p-5 hover:border-brand-400 hover:shadow-md transition-all flex flex-col">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3.5">
-                        <div class="w-10 h-10 rounded-lg bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-700">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke-width="2"></path><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke-width="2"></path></svg>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-brand-900">miqunotify</h4>
-                        <span class="text-[11px] font-medium text-brand-500 bg-brand-100 px-2 py-0.5 rounded">Notification</span>
-                    </div>
-                    </div>
-                    <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqunotify" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0" title="View on GitHub">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                </div>
-                <p class="text-xs text-brand-600 leading-relaxed flex-1">
-                    Native desktop notification daemon and slide-out notification history center implementing standard desktop notification specs.
-                </p>
-            </div>
-
-            <!-- 9. miqugallery -->
-            <div class="bg-white rounded-xl border border-brand-200/80 p-5 hover:border-brand-400 hover:shadow-md transition-all flex flex-col">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3.5">
-                        <img src="assets/apps/miqugallery.png" alt="miqugallery" class="w-10 h-10 rounded-lg object-contain bg-brand-50 border border-brand-100 p-1" />
-                    <div>
-                        <h4 class="font-bold text-brand-900">miqugallery</h4>
-                        <span class="text-[11px] font-medium text-brand-500 bg-brand-100 px-2 py-0.5 rounded">Image Gallery</span>
-                    </div>
-                    </div>
-                    <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqugallery" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0" title="View on GitHub">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                </div>
-                <p class="text-xs text-brand-600 leading-relaxed flex-1">
-                    High-performance, minimalist image viewer and media gallery application optimized for fluid pan, zoom, and transitions.
-                </p>
-            </div>
-
-            <!-- 10. miquinfo -->
-            <div class="bg-white rounded-xl border border-brand-200/80 p-5 hover:border-brand-400 hover:shadow-md transition-all flex flex-col">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3.5">
-                        <img src="assets/apps/miquinfo.png" alt="miquinfo" class="w-10 h-10 rounded-lg object-contain bg-brand-50 border border-brand-100 p-1" />
-                    <div>
-                        <h4 class="font-bold text-brand-900">miquinfo</h4>
-                        <span class="text-[11px] font-medium text-brand-500 bg-brand-100 px-2 py-0.5 rounded">Telemetry</span>
-                    </div>
-                    </div>
-                    <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miquinfo" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0" title="View on GitHub">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                </div>
-                <p class="text-xs text-brand-600 leading-relaxed flex-1">
-                    Hardware monitoring, CPU/GPU system telemetry, and diagnostic resource utility with real-time graphical graphs.
-                </p>
-            </div>
-
-            <!-- 11. miqudm -->
-            <div class="bg-white rounded-xl border border-brand-200/80 p-5 hover:border-brand-400 hover:shadow-md transition-all flex flex-col">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3.5">
-                        <div class="w-10 h-10 rounded-lg bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-700">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" stroke-width="2"></path><polyline points="10 17 15 12 10 7" stroke-width="2"></polyline><line x1="15" y1="12" x2="3" y2="12" stroke-width="2"></line></svg>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-brand-900">miqudm</h4>
-                        <span class="text-[11px] font-medium text-brand-500 bg-brand-100 px-2 py-0.5 rounded">Display Manager</span>
-                    </div>
-                    </div>
-                    <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqudm" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0" title="View on GitHub">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                </div>
-                <p class="text-xs text-brand-600 leading-relaxed flex-1">
-                    Wayland-native Display Manager and login greeter with PAM and systemd-logind user session management.
-                </p>
-            </div>
-
-            <!-- 12. miqubg -->
-            <div class="bg-white rounded-xl border border-brand-200/80 p-5 hover:border-brand-400 hover:shadow-md transition-all flex flex-col">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3.5">
-                        <div class="w-10 h-10 rounded-lg bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-700">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"></rect><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"></circle><polyline points="21 15 16 10 5 21" stroke-width="2"></polyline></svg>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-brand-900">miqubg</h4>
-                        <span class="text-[11px] font-medium text-brand-500 bg-brand-100 px-2 py-0.5 rounded">Wallpaper Daemon</span>
-                    </div>
-                    </div>
-                    <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqubg" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0" title="View on GitHub">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                </div>
-                <p class="text-xs text-brand-600 leading-relaxed flex-1">
-                    Independent wallpaper daemon responsible for rendering, multi-monitor scaling, and transitioning desktop background images.
-                </p>
-            </div>
-
-            <!-- 13. miqulock -->
-            <div class="bg-white rounded-xl border border-brand-200/80 p-5 hover:border-brand-400 hover:shadow-md transition-all flex flex-col">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3.5">
-                        <div class="w-10 h-10 rounded-lg bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-700">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" stroke-width="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4" stroke-width="2"></path></svg>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-brand-900">miqulock</h4>
-                        <span class="text-[11px] font-medium text-brand-500 bg-brand-100 px-2 py-0.5 rounded">Screen Lock</span>
-                    </div>
-                    </div>
-                    <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqulock" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0" title="View on GitHub">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                </div>
-                <p class="text-xs text-brand-600 leading-relaxed flex-1">
-                    Secure session locking utility strictly implementing the standard Wayland <code class="font-mono text-[10px]">ext-session-lock-v1</code> protocol.
-                </p>
-            </div>
-
-            <!-- 14. miquidle -->
-            <div class="bg-white rounded-xl border border-brand-200/80 p-5 hover:border-brand-400 hover:shadow-md transition-all flex flex-col">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3.5">
-                        <div class="w-10 h-10 rounded-lg bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-700">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"></circle><polyline points="12 6 12 12 16 14" stroke-width="2"></polyline></svg>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-brand-900">miquidle</h4>
-                        <span class="text-[11px] font-medium text-brand-500 bg-brand-100 px-2 py-0.5 rounded">Idle Daemon</span>
-                    </div>
-                    </div>
-                    <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miquidle" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0" title="View on GitHub">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                </div>
-                <p class="text-xs text-brand-600 leading-relaxed flex-1">
-                    Idle management daemon monitoring user activity and power events via the Wayland <code class="font-mono text-[10px]">ext-idle-notify-v1</code> protocol.
-                </p>
-            </div>
-
-            <!-- 15. miqupolkit -->
-            <div class="bg-white rounded-xl border border-brand-200/80 p-5 hover:border-brand-400 hover:shadow-md transition-all flex flex-col">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3.5">
-                        <div class="w-10 h-10 rounded-lg bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-700">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-width="2"></path><polyline points="9 12 11 14 15 10" stroke-width="2"></polyline></svg>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-brand-900">miqupolkit</h4>
-                        <span class="text-[11px] font-medium text-brand-500 bg-brand-100 px-2 py-0.5 rounded">Polkit Agent</span>
-                    </div>
-                    </div>
-                    <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqupolkit" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0" title="View on GitHub">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                </div>
-                <p class="text-xs text-brand-600 leading-relaxed flex-1">
-                    Native graphical Polkit authentication agent handling desktop privilege escalation prompts cleanly without external GTK/Qt dependencies.
-                </p>
-            </div>
-
-            <!-- 16. miqutest -->
-            <div class="bg-white rounded-xl border border-brand-200/80 p-5 hover:border-brand-400 hover:shadow-md transition-all flex flex-col">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3.5">
-                        <div class="w-10 h-10 rounded-lg bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-700">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2" stroke-width="2"></path><line x1="8.5" y1="2" x2="15.5" y2="2" stroke-width="2"></line></svg>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-brand-900">miqutest</h4>
-                        <span class="text-[11px] font-medium text-brand-500 bg-brand-100 px-2 py-0.5 rounded">UI Sandbox</span>
-                    </div>
-                    </div>
-                    <a href="https://github.com/miqu-project/miqu-linux-apps/tree/main/miqutest" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0" title="View on GitHub">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                </div>
-                <p class="text-xs text-brand-600 leading-relaxed flex-1">
-                    Component testing sandbox and interactive widget showcase for developing, stressing, and verifying miqutoolkit controls.
-                </p>
-            </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Android Applications Section (Real Items) -->
-    <section id="android-apps" class="border-b border-brand-200/80 dark:border-brand-800/80 bg-brand-50/50 dark:bg-[#080c14] py-16 transition-colors">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8">
-            <div class="flex items-center justify-between mb-8 sm:mb-10 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
-                <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">android applications</h2>
-                <a href="https://github.com/miqu-project/miqu-android" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 hover:bg-brand-50 dark:hover:bg-brand-800 text-brand-800 dark:text-brand-200 transition-colors shadow-2xs">
-                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    GitHub
-                </a>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- App 1: Doctor -->
-                <div class="bg-white dark:bg-brand-900/60 rounded-xl border border-brand-200/80 dark:border-brand-800 p-5 hover:border-brand-400 dark:hover:border-brand-600 hover:shadow-md transition-all flex flex-col">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3.5">
-                        <img src="assets/apps/doctor.png" alt="Doctor" class="w-10 h-10 rounded-lg object-contain bg-brand-50 dark:bg-brand-900 border border-brand-100 dark:border-brand-800 p-1" />
-                        <div>
-                            <h4 class="font-bold text-brand-900 dark:text-white">Doctor</h4>
+            <!-- ═══════════════════════════════════════════════════ -->
+            <!-- HERO SECTION                                        -->
+            <!-- ═══════════════════════════════════════════════════ -->
+            <section class="w-full border-b border-brand-200/80 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-20 sm:py-28 transition-colors">
+                <div class="max-w-7xl mx-auto px-6 sm:px-8">
+                    <div class="max-w-3xl">
+                        <p class="text-xs font-mono font-semibold tracking-widest text-brand-500 dark:text-brand-400 uppercase mb-4">miqu-project</p>
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-900 dark:text-white tracking-tight leading-tight mb-5">
+                            Wayland Dynamic Tiling<br class="hidden sm:block"> Window Manager &amp; Compositor<br class="hidden sm:block">
+                            <span class="text-brand-500 dark:text-brand-400">and more.</span>
+                        </h1>
+                        <p class="text-sm sm:text-base text-brand-600 dark:text-brand-300 leading-relaxed max-w-2xl">
+                            A cohesive, high-performance Wayland desktop ecosystem — a compositor, a native UI toolkit, 16 Linux desktop applications, and companion Android apps. Built from the ground up in C++20.
+                        </p>
+                        <div class="flex flex-wrap gap-3 mt-8">
+                            <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer"
+                               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-900 dark:bg-white text-white dark:text-brand-950 text-sm font-semibold hover:opacity-90 transition-opacity shadow-sm">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                GitHub
+                            </a>
+                            <button onclick="onTabClick('docs')"
+                               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-brand-200 dark:border-brand-700 bg-brand-50/80 dark:bg-brand-900/60 text-brand-800 dark:text-brand-200 text-sm font-semibold hover:bg-brand-100 dark:hover:bg-brand-800 transition-colors shadow-sm">
+                                Documentation
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            </button>
                         </div>
                     </div>
-                    <a href="https://github.com/miqu-project/miqu-android/tree/main/doctor" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0" title="View on GitHub">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>GitHub</span>
-                    </a>
                 </div>
-                <p class="text-xs text-brand-600 dark:text-brand-300 leading-relaxed flex-1">
-                        Native Android healthcare diagnostic tool and clinical companion application designed for reliable patient tracking and medical utility.
-                    </p>
-            </div>
+            </section>
 
-                <!-- App 2: Recitation -->
-                <div class="bg-white dark:bg-brand-900/60 rounded-xl border border-brand-200/80 dark:border-brand-800 p-5 hover:border-brand-400 dark:hover:border-brand-600 hover:shadow-md transition-all flex flex-col">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3.5">
-                        <img src="assets/apps/recitation.png" alt="Recitation" class="w-10 h-10 rounded-lg object-contain bg-brand-50 dark:bg-brand-900 border border-brand-100 dark:border-brand-800 p-1" />
-                        <div>
-                            <h4 class="font-bold text-brand-900 dark:text-white">Recitation</h4>
+            <!-- ═══════════════════════════════════════════════════ -->
+            <!-- WHERE IT SITS — ARCHITECTURAL STACK                -->
+            <!-- ═══════════════════════════════════════════════════ -->
+            <section id="where-it-sits" class="w-full border-b border-brand-200/80 dark:border-brand-800/80 bg-brand-50/50 dark:bg-[#080c14] py-16 transition-colors">
+                <div class="max-w-7xl mx-auto px-6 sm:px-8">
+                    <div class="flex items-center justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
+                        <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">Where it sits?</h2>
+                    </div>
+
+                    <div class="max-w-3xl mx-auto">
+                        <!-- Architecture Hierarchy Table Card -->
+                        <div class="overflow-hidden rounded-2xl border border-brand-200 dark:border-brand-800 bg-white dark:bg-brand-900/60 shadow-sm">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="border-b border-brand-200 dark:border-brand-800 bg-brand-50/80 dark:bg-brand-950/60 text-[11px] font-mono uppercase tracking-wider text-brand-500 dark:text-brand-400">
+                                        <th class="py-3.5 px-6 font-semibold w-1/3">Component / Layer</th>
+                                        <th class="py-3.5 px-6 font-semibold">Role &amp; Scope</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-brand-100 dark:divide-brand-800/60 text-sm">
+                                    <!-- Level 5: Miquapps. (Top application layer) -->
+                                    <tr class="hover:bg-emerald-50/40 dark:hover:bg-emerald-950/20 transition-colors bg-emerald-50/20 dark:bg-emerald-950/10">
+                                        <td class="py-4 px-6 font-bold text-emerald-800 dark:text-emerald-300 flex items-center gap-2.5">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 flex-shrink-0"></span>
+                                            Miquapps.
+                                        </td>
+                                        <td class="py-4 px-6 text-brand-700 dark:text-brand-200 font-medium">
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 mr-2">
+                                                Native apps and tools
+                                            </span>
+                                            <span class="text-xs text-brand-500 dark:text-brand-400">16 Linux desktop apps &amp; mobile companions</span>
+                                        </td>
+                                    </tr>
+                                    <!-- Level 4: Miqutoolkit -->
+                                    <tr class="hover:bg-purple-50/40 dark:hover:bg-purple-950/20 transition-colors bg-purple-50/20 dark:bg-purple-950/10">
+                                        <td class="py-4 px-6 font-bold text-purple-800 dark:text-purple-300 flex items-center gap-2.5">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-purple-500 flex-shrink-0"></span>
+                                            Miqutoolkit
+                                        </td>
+                                        <td class="py-4 px-6 text-brand-700 dark:text-brand-200 font-medium">
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300 mr-2">
+                                                Developer kit
+                                            </span>
+                                            <span class="text-xs text-brand-500 dark:text-brand-400">Cairo, Pango &amp; OpenGL UI framework</span>
+                                        </td>
+                                    </tr>
+                                    <!-- Level 3: Miquland -->
+                                    <tr class="hover:bg-blue-50/40 dark:hover:bg-blue-950/20 transition-colors bg-blue-50/20 dark:bg-blue-950/10">
+                                        <td class="py-4 px-6 font-bold text-blue-800 dark:text-blue-300 flex items-center gap-2.5">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-blue-500 flex-shrink-0"></span>
+                                            Miquland
+                                        </td>
+                                        <td class="py-4 px-6 text-brand-700 dark:text-brand-200 font-medium">
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300 mr-2">
+                                                Compositor
+                                            </span>
+                                            <span class="text-xs text-brand-500 dark:text-brand-400">Dynamic tiling Wayland compositor &amp; window manager</span>
+                                        </td>
+                                    </tr>
+                                    <!-- Level 2: Base Distro -->
+                                    <tr class="hover:bg-brand-50/60 dark:hover:bg-brand-800/30 transition-colors">
+                                        <td class="py-4 px-6 font-bold text-brand-900 dark:text-white flex items-center gap-2.5">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-slate-400 dark:bg-slate-500 flex-shrink-0"></span>
+                                            Base Distro
+                                        </td>
+                                        <td class="py-4 px-6 text-brand-700 dark:text-brand-300">
+                                            Arch, Debian etc.
+                                        </td>
+                                    </tr>
+                                    <!-- Level 1: GNU Linux (Foundation) -->
+                                    <tr class="hover:bg-brand-50/60 dark:hover:bg-brand-800/30 transition-colors bg-brand-50/40 dark:bg-brand-950/30">
+                                        <td class="py-4 px-6 font-bold text-brand-900 dark:text-white flex items-center gap-2.5">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-slate-600 dark:bg-slate-400 flex-shrink-0"></span>
+                                            GNU Linux
+                                        </td>
+                                        <td class="py-4 px-6 text-brand-700 dark:text-brand-300">
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-brand-200/70 dark:bg-brand-800 text-brand-800 dark:text-brand-200 mr-2">
+                                                God
+                                            </span>
+                                            <span class="text-xs text-brand-500 dark:text-brand-400">Operating system kernel &amp; core runtime base</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
-                    <a href="https://github.com/miqu-project/miqu-android/tree/main/recitation" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0" title="View on GitHub">
-                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                </div>
-                <p class="text-xs text-brand-600 dark:text-brand-300 leading-relaxed flex-1">
-                        Distraction-free Quran memorization, audio recitation, and study companion mobile application built for seamless listening and retention.
-                    </p>
-            </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Quickstart & Build Section -->
-    <section id="quickstart" class="border-b border-brand-200/80 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-16 transition-colors">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8">
-            <div class="flex items-center justify-between mb-8 sm:mb-10 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
-                <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">quickstart</h2>
-            </div>
-
-            <div class="bg-brand-50/70 dark:bg-brand-900/40 border border-brand-200 dark:border-brand-800 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-2xs">
-                <div class="max-w-3xl">
-                    <p class="text-brand-700 dark:text-brand-300 leading-relaxed text-sm">
-                        Execute <code class="font-mono text-brand-900 dark:text-brand-100 bg-brand-200/70 dark:bg-brand-800 px-1.5 py-0.5 rounded text-xs font-semibold">./install_all.sh</code> from the root workspace to compile and install all components.
-                    </p>
-
-                    <!-- Code Block -->
-                    <div class="mt-6 bg-white dark:bg-brand-950/80 rounded-xl border border-brand-200 dark:border-brand-800 p-4 font-mono text-sm relative group shadow-2xs">
-                        <button onclick="copyCommand()" id="copy-btn" class="absolute top-3 right-3 text-xs bg-brand-50 dark:bg-brand-800 hover:bg-brand-100 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-200 border border-brand-200 dark:border-brand-700 px-3 py-1.5 rounded-md transition-colors flex items-center gap-1.5">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                            <span>Copy</span>
-                        </button>
-                        <pre class="text-brand-800 overflow-x-auto"><span class="text-brand-400"># Clone recursive workspace repository</span>
-<span class="font-semibold text-brand-900">git clone</span> --recurse-submodules https://github.com/miqu-project/miqu-project.git
-<span class="font-semibold text-brand-900">cd</span> miqu-project
-
-<span class="text-brand-400"># Run deterministic multi-stage build</span>
-<span class="font-semibold text-brand-900">./install_all.sh</span></pre>
+                        <!-- Stack note -->
+                        <p class="mt-6 text-center text-xs text-brand-500 dark:text-brand-400 leading-relaxed">
+                            Each layer is independent. Miquland operates smoothly with any Waybar/Rofi setup without miqutoolkit. Conversely, apps built with miqutoolkit run natively on any Wayland compositor (Hyprland, Sway, etc.).
+                        </p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════ -->
+            <!-- COMPONENTS OF MIQU-PROJECT                         -->
+            <!-- ═══════════════════════════════════════════════════ -->
+            <section class="w-full border-b border-brand-200/80 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-16 transition-colors">
+                <div class="max-w-7xl mx-auto px-6 sm:px-8">
+                    <div class="flex items-center justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
+                        <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">Components of miqu-project</h2>
+                    </div>
+
+                    <!-- Plug-and-play description -->
+                    <div class="bg-brand-50/70 dark:bg-brand-900/30 border border-brand-200 dark:border-brand-800 rounded-2xl p-6 sm:p-7 mb-10 shadow-2xs">
+                        <p class="text-sm sm:text-base text-brand-700 dark:text-brand-200 leading-relaxed">
+                            All components are plug and play. <strong class="font-bold text-brand-900 dark:text-white">Miquland</strong> is independent of miqutoolkit, and <strong class="font-bold text-brand-900 dark:text-white">miqutoolkit</strong> is independent of miquland. If miqutoolkit is installed in any wayland compositor e.g. hyprland, all the miqu-linux apps will run natively. Alternatively one can only use Miquland and not install miqutoolkit and miqu-linux apps rather may use waybar, rofi etc. Miquland treats them all the same.
+                        </p>
+                    </div>
+
+                    <!-- 4 Component Cards (2x2 Grid) -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                        <!-- Card 1: Miquland -->
+                        <div class="flex flex-col bg-white dark:bg-brand-900/60 border border-blue-200 dark:border-blue-900/70 rounded-2xl p-6 hover:border-blue-400 dark:hover:border-blue-600 hover:shadow-md transition-all">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-900 flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-base font-bold text-brand-900 dark:text-white">Miquland</h3>
+                                        <span class="text-[11px] font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50 border border-blue-200 dark:border-blue-900/50 px-2 py-0.5 rounded-md">Compositor</span>
+                                    </div>
+                                </div>
+                                <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                    GitHub
+                                </a>
+                            </div>
+                            <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 leading-relaxed flex-1">
+                                Flagship wayland dynamic tiling window manager and compositor using wlroots and scenfx.
+                            </p>
+                        </div>
+
+                        <!-- Card 2: Miqutoolkit -->
+                        <div class="flex flex-col bg-white dark:bg-brand-900/60 border border-purple-200 dark:border-purple-900/70 rounded-2xl p-6 hover:border-purple-400 dark:hover:border-purple-600 hover:shadow-md transition-all">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-950/60 border border-purple-200 dark:border-purple-900 flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-base font-bold text-brand-900 dark:text-white">Miqutoolkit</h3>
+                                        <span class="text-[11px] font-semibold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/50 border border-purple-200 dark:border-purple-900/50 px-2 py-0.5 rounded-md">Developer Kit</span>
+                                    </div>
+                                </div>
+                                <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                    GitHub
+                                </a>
+                            </div>
+                            <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 leading-relaxed flex-1">
+                                The app development UI kit using pango, cairo, openGL.
+                            </p>
+                        </div>
+
+                        <!-- Card 3: Miqu Linux Apps -->
+                        <div class="flex flex-col bg-white dark:bg-brand-900/60 border border-emerald-200 dark:border-emerald-900/70 rounded-2xl p-6 hover:border-emerald-400 dark:hover:border-emerald-600 hover:shadow-md transition-all">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-900 flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-base font-bold text-brand-900 dark:text-white">Miqu Linux Apps</h3>
+                                        <span class="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-900/50 px-2 py-0.5 rounded-md">Native Apps &amp; Tools</span>
+                                    </div>
+                                </div>
+                                <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                    GitHub
+                                </a>
+                            </div>
+                            <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 leading-relaxed flex-1">
+                                Apps made using miqutoolkit which includes plugins, login manager, authentication agent, gallery app etc.
+                            </p>
+                        </div>
+
+                        <!-- Card 4: Miqu Android Apps -->
+                        <div class="flex flex-col bg-white dark:bg-brand-900/60 border border-orange-200 dark:border-orange-900/70 rounded-2xl p-6 hover:border-orange-400 dark:hover:border-orange-600 hover:shadow-md transition-all">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-950/60 border border-orange-200 dark:border-orange-900 flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-5 h-5 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-base font-bold text-brand-900 dark:text-white">Miqu Android Apps</h3>
+                                        <span class="text-[11px] font-semibold text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/50 border border-orange-200 dark:border-orange-900/50 px-2 py-0.5 rounded-md">Android</span>
+                                    </div>
+                                </div>
+                                <a href="https://github.com/miqu-project/miqu-android" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-md bg-brand-50 hover:bg-brand-100 dark:bg-brand-800 dark:hover:bg-brand-700 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 transition-colors flex-shrink-0">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                    GitHub
+                                </a>
+                            </div>
+                            <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-300 leading-relaxed flex-1">
+                                JetPack Compose + Kotlin apps under miqu-project with ecosystem integration where needed.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════ -->
+            <!-- QUICK INSTALLATION                                  -->
+            <!-- ═══════════════════════════════════════════════════ -->
+            <section id="quickstart" class="w-full border-b border-brand-200/80 dark:border-brand-800/80 bg-brand-50/50 dark:bg-[#080c14] py-16 transition-colors">
+                <div class="max-w-7xl mx-auto px-6 sm:px-8">
+                    <div class="flex items-center justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
+                        <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">Quick Installation</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl">
+
+                        <!-- Option 1: Full ecosystem clone -->
+                        <div class="bg-white dark:bg-brand-900/60 border border-brand-200 dark:border-brand-800 rounded-2xl p-6 shadow-2xs flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="w-5 h-5 rounded-md bg-emerald-100 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-900 flex items-center justify-center text-[10px] font-bold text-emerald-700 dark:text-emerald-400 flex-shrink-0">1</span>
+                                    <h3 class="text-sm font-semibold text-brand-900 dark:text-white">Clone full ecosystem &amp; install all</h3>
+                                </div>
+                                <p class="text-xs text-brand-600 dark:text-brand-300 mb-3 leading-relaxed">
+                                    Clone full ecosystem and run <code class="font-mono bg-brand-100 dark:bg-brand-800 px-1 py-0.5 rounded text-brand-900 dark:text-brand-100">install_all.sh</code> in main folder.
+                                </p>
+                            </div>
+                            <div class="relative bg-brand-950 dark:bg-[#050911] rounded-xl border border-brand-800 dark:border-brand-900 p-4 font-mono text-xs overflow-x-auto">
+                                <button onclick="copyCodeBlock(this)" class="absolute top-2.5 right-2.5 text-[10px] bg-brand-800 hover:bg-brand-700 text-brand-300 hover:text-white border border-brand-700 px-2.5 py-1 rounded-md transition-colors flex items-center gap-1.5">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                                    Copy
+                                </button>
+                                <pre class="text-brand-300 leading-relaxed pr-16"><span class="text-brand-500"># Clone recursive workspace repository</span>
+<span class="text-emerald-400">git clone</span> --recurse-submodules \
+  https://github.com/miqu-project/miqu-project.git
+<span class="text-emerald-400">cd</span> miqu-project
+
+<span class="text-brand-500"># Execute topological ecosystem installer</span>
+<span class="text-emerald-400">sudo ./install_all.sh</span></pre>
+                            </div>
+                        </div>
+
+                        <!-- Option 2: Individual component -->
+                        <div class="bg-white dark:bg-brand-900/60 border border-brand-200 dark:border-brand-800 rounded-2xl p-6 shadow-2xs flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="w-5 h-5 rounded-md bg-blue-100 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-900 flex items-center justify-center text-[10px] font-bold text-blue-700 dark:text-blue-400 flex-shrink-0">2</span>
+                                    <h3 class="text-sm font-semibold text-brand-900 dark:text-white">Clone individually &amp; run make.sh or cmake</h3>
+                                </div>
+                                <p class="text-xs text-brand-600 dark:text-brand-300 mb-3 leading-relaxed">
+                                    Clone individually and run <code class="font-mono bg-brand-100 dark:bg-brand-800 px-1 py-0.5 rounded text-brand-900 dark:text-brand-100">make.sh</code> in individual folder, or write cmake command.
+                                </p>
+                            </div>
+                            <div class="relative bg-brand-950 dark:bg-[#050911] rounded-xl border border-brand-800 dark:border-brand-900 p-4 font-mono text-xs overflow-x-auto">
+                                <button onclick="copyCodeBlock(this)" class="absolute top-2.5 right-2.5 text-[10px] bg-brand-800 hover:bg-brand-700 text-brand-300 hover:text-white border border-brand-700 px-2.5 py-1 rounded-md transition-colors flex items-center gap-1.5">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                                    Copy
+                                </button>
+                                <pre class="text-brand-300 leading-relaxed pr-16"><span class="text-brand-500"># 1. Using standard make.sh script</span>
+<span class="text-emerald-400">git clone</span> https://github.com/miqu-project/miquland.git
+<span class="text-emerald-400">cd</span> miquland
+<span class="text-emerald-400">./make.sh</span>        <span class="text-brand-500"># local build</span>
+<span class="text-emerald-400">sudo ./make.sh</span>   <span class="text-brand-500"># system install (/usr)</span>
+
+<span class="text-brand-500"># 2. Or using direct cmake command</span>
+<span class="text-emerald-400">cmake</span> -B build -DCMAKE_INSTALL_PREFIX="/usr"
+<span class="text-emerald-400">cmake</span> --build build -j"$(nproc)"
+<span class="text-emerald-400">sudo cmake</span> --install build</pre>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════════════ -->
+            <!-- LICENSE                                             -->
+            <!-- ═══════════════════════════════════════════════════ -->
+            <section class="w-full bg-white dark:bg-[#0b0f17] py-12 transition-colors">
+                <div class="max-w-7xl mx-auto px-6 sm:px-8">
+                    <div class="flex items-center justify-between mb-6 gap-4 border-b border-brand-200 dark:border-brand-800 pb-5">
+                        <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">license</h2>
+                    </div>
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-brand-200 dark:border-brand-700 bg-brand-50 dark:bg-brand-900/50 text-sm font-semibold text-brand-800 dark:text-brand-200 w-fit">
+                            <svg class="w-4 h-4 text-brand-500 dark:text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                            MIT License
+                        </div>
+                        <p class="text-sm text-brand-500 dark:text-brand-400 leading-relaxed">
+                            miqu-project and all its components are open source and freely available. See each repository's <code class="font-mono text-xs bg-brand-100 dark:bg-brand-800 px-1.5 py-0.5 rounded">LICENSE</code> file for the full terms.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
         </div>
 
         <!-- Tab: Docs -->
@@ -1543,6 +1194,17 @@ cd miqu-project
                         if (span) span.textContent = 'Copy';
                     }, 2000);
                 }
+            });
+        }
+
+        function copyCodeBlock(btn) {
+            const pre = btn.parentElement.querySelector('pre');
+            if (!pre) return;
+            const text = pre.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const original = btn.innerHTML;
+                btn.innerHTML = 'Copied!';
+                setTimeout(() => { btn.innerHTML = original; }, 2000);
             });
         }
 
