@@ -1062,98 +1062,109 @@ cd miqu-project
             <article class="max-w-4xl mx-auto px-4 sm:px-8 py-12 sm:py-16 space-y-12 text-brand-800 dark:text-brand-200">
                 <!-- Document Header -->
                 <header class="border-b border-brand-200/80 dark:border-brand-800/80 pb-8">
-                    <div class="text-xs font-mono font-medium text-brand-500 dark:text-brand-400 mb-2">code integrity & engineering transparency</div>
+                    <div class="text-xs font-mono font-medium text-brand-500 dark:text-brand-400 mb-2">code integrity & transparency</div>
                     <h1 class="text-2xl sm:text-3xl font-bold text-brand-900 dark:text-white tracking-tight mb-3">ai use & code safety</h1>
                     <p class="text-sm sm:text-base text-brand-600 dark:text-brand-400 leading-relaxed max-w-2xl">
-                        A completely honest disclosure on how AI tools are used in Miqu, why human architectural leadership matters, and the strict safety boundaries that keep our software 100% offline, auditable, and secure.
+                        A clear, honest look at how AI tools are used in Miqu, what software authorship actually means, and the safety rules that keep our code secure, offline, and auditable.
                     </p>
                 </header>
 
                 <!-- Section 1: Philosophy & Authorship -->
-                <section id="philosophy" class="space-y-5">
-                    <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">what does it mean to be the author of a software project?</h2>
-                    
-                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                        When you build an Android application and drop in a <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">TextView</code>, did you write the text layout engine? Did you write the font rasterizer, the Skia graphics pipeline, the Linux kernel binder driver, or the display controller? Of course not. You relied on existing layers of abstraction to express your higher-level idea.
-                    </p>
+                <section id="philosophy" class="space-y-6">
+                    <div class="space-y-2">
+                        <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">ai use and software authorship</h2>
+                        <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                            A common question today is: <em>If you use an AI assistant to write code, are you still the author of the project?</em> To answer this honestly, we have to look at how software has always been built.
+                        </p>
+                    </div>
 
-                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                        If relying on pre-existing abstractions invalidates authorship, then virtually nobody in modern computing is an author. Unless you personally etch the silicon, write the microcode, author the Linux kernel drivers, and hand-craft assembly directly against raw hardware registers, you are always building on layers created by others. Every software developer in history is, to some degree, an assembler of existing foundations.
-                    </p>
+                    <div class="space-y-3">
+                        <h3 class="text-base font-semibold text-brand-900 dark:text-white">layers of abstraction in modern programming</h3>
+                        <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                            When you create an Android app and use a <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">TextView</code>, you did not write the text rendering engine, the font rasterizer, or the graphics drivers. You used existing tools to build your idea.
+                        </p>
+                        <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                            If using pre-existing tools meant you were not an author, then almost no one today could be called a software developer. Unless you personally design the computer chip, write the kernel drivers, and type raw assembly instructions directly to the hardware, you are always building on top of someone else's work.
+                        </p>
+                    </div>
 
-                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                        Consider another example: if someone bundles Arch Linux, Hyprland, and Quickshell into a customized desktop ISO, are they the developer of that ISO? Yes, as a curator, integrator, and distribution maintainer. But they did not write the compositor, the widget toolkit, or the underlying applications.
-                    </p>
+                    <div class="space-y-3">
+                        <h3 class="text-base font-semibold text-brand-900 dark:text-white">assembling an iso vs. building from scratch</h3>
+                        <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                            Consider the difference between assembling and building. If someone takes Arch Linux, adds Hyprland and Quickshell, configures a nice theme, and packages it into an ISO, they are the curator and maintainer of that ISO. But they did not write the window manager, the toolkit, or the core apps.
+                        </p>
+                        <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                            In Miqu, we did not just package existing tools. We wrote our own Wayland compositor (<code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">miquland</code>), developed our own C++20 graphics toolkit (<code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">miqutoolkit</code>), and built 16 native applications. We use AI as a tool to speed up typing repetitive boilerplate, event handlers, and protocol bindings.
+                        </p>
+                    </div>
 
-                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                        In Miqu, we took the hard road: we did not just rice or re-bundle someone else's desktop. We built our own compositor (<code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">miquland</code>), wrote our own C++20 UI framework (<code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">miqutoolkit</code>), and developed 16 native applications from scratch. Yet when an engineer uses an AI coding agent to generate repetitive event listener boilerplate, syntax scaffolding, or protocol bindings, critics suddenly claim: <em>&ldquo;You did not write every single character by hand, so you are not the author!&rdquo;</em>
-                    </p>
-
-                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                        This double standard collapses under scrutiny. Keystrokes are not authorship. Authorship is <strong>architectural intent, system design, quality governance, and end-to-end accountability</strong>. An architect designs a building's load-bearing walls, structural steel layout, and emergency exits without pouring every bucket of cement by hand. In Miqu, the human developer acts as that architect: defining every public API, enforcing strict C++20 RAII safety, ensuring zero telemetry, and verifying every commit on real hardware.
-                    </p>
-
-                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                        AI is simply the latest chapter in the history of abstraction—from punch cards to assembly, from assembly to C, from raw syscalls to shared libraries, and now from libraries to model-assisted synthesis. True engineering has never been about manual typing speed; it has always been about what you choose to build, how reliably it runs, and taking full responsibility for the system you deliver.
-                    </p>
+                    <div class="space-y-3">
+                        <h3 class="text-base font-semibold text-brand-900 dark:text-white">authorship is architecture and accountability</h3>
+                        <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                            Typing characters on a keyboard is not what makes someone an engineer. Authorship is about <strong>design, architecture, and taking full responsibility</strong> for the system:
+                        </p>
+                        <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                            An architect designs a building's foundations, load-bearing walls, and fire exits without pouring every bucket of concrete by hand. In Miqu, the human developer is that architect: deciding every interface, choosing the algorithms, setting memory safety rules, and testing every commit on physical hardware.
+                        </p>
+                    </div>
                 </section>
 
                 <!-- Section 2: Security & Memory Safety -->
                 <section id="safety" class="space-y-4 pt-6 border-t border-brand-200/60 dark:border-brand-800/60">
-                    <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">security & memory safety</h2>
+                    <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">code safety and memory management</h2>
                     <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                        AI assistance is only as trustworthy as the engineering constraints surrounding it. In Miqu, we enforce strict architectural rules that prevent typical AI coding mistakes:
+                        AI tools can make mistakes if left unchecked. To prevent bugs and security issues, every piece of code in Miqu must follow strict technical rules:
                     </p>
 
                     <ul class="list-disc list-inside space-y-2.5 text-sm sm:text-base text-brand-700 dark:text-brand-300 pl-2">
-                        <li><strong>Strict RAII memory management:</strong> Raw owning pointers are completely banned. File descriptors, Cairo drawing contexts, Pango layouts, and Wayland listeners are wrapped in scope-bound RAII handles or smart pointers, guaranteeing that resources are cleaned up deterministically even if an error occurs.</li>
-                        <li><strong>Absolute network isolation:</strong> Miqu contains zero telemetry, zero analytics, and zero background cloud calls. The desktop operates 100% offline. Network operations occur strictly when you explicitly launch a network tool or client.</li>
-                        <li><strong>Multi-tier verification pipeline:</strong> Code synthesized with AI assistance is never committed blindly. Every change passes through strict compiler diagnostics (<code class="font-mono text-xs">-Wall -Wextra -Werror</code>), static analysis (<code class="font-mono text-xs">cppcheck</code>), runtime sanitizers (AddressSanitizer and UndefinedBehaviorSanitizer), and direct human review on real hardware.</li>
-                        <li><strong>Event-driven 0% idle CPU:</strong> Continuous tick loops or busy-waiting polling loops are strictly forbidden. The compositor and all native apps sleep in the Wayland event loop until an actual user event, scene damage, or frame callback occurs.</li>
+                        <li><strong>Automatic cleanup (strict RAII):</strong> Raw pointers are not allowed to manage memory. Every file handle, graphics context, and system resource is wrapped in modern C++ smart pointers or automatic cleanup guards. This guarantees no memory leaks.</li>
+                        <li><strong>Completely offline (zero telemetry):</strong> Miqu never phones home. There are no tracking scripts, analytics, or background internet connections. The desktop works 100% offline.</li>
+                        <li><strong>Strict compiler checks:</strong> Code must compile without warnings using strict flags (<code class="font-mono text-xs">-Wall -Wextra -Werror</code>). We also run memory safety tools (AddressSanitizer and UndefinedBehaviorSanitizer) to catch hidden bugs before anything is merged.</li>
+                        <li><strong>Zero idle CPU usage:</strong> Applications sleep completely when not in use. There are no background polling loops wasting battery or heating up your processor.</li>
                     </ul>
                 </section>
 
                 <!-- Section 3: Audits & Governance -->
                 <section id="governance" class="space-y-4 pt-6 border-t border-brand-200/60 dark:border-brand-800/60">
-                    <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">audits & governance</h2>
+                    <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">testing, audits, and consistency</h2>
                     <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                        Trust requires continuous verification. Our governance model ensures that every repository in the ecosystem remains consistent, secure, and faithful to our architecture:
+                        Because Miqu consists of 18 repositories, keeping code uniform is essential:
                     </p>
                     <ul class="list-disc list-inside space-y-2.5 text-sm sm:text-base text-brand-700 dark:text-brand-300 pl-2">
-                        <li><strong>Automated codebase audits:</strong> We run automated security audits and contract checks across all 18 repositories, verifying that no zombie memory states, missing headers, or undocumented configuration loopholes exist.</li>
-                        <li><strong>Single architectural authority:</strong> Every pull request and commit is reviewed under the authoritative ecosystem doctrine defined in <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">AGENTS.md</code>, ensuring uniform standards and preventing fragmented patterns from creeping in.</li>
+                        <li><strong>Automated code audits:</strong> We run automated scans to check for security flaws, memory leaks, and protocol errors across all repositories.</li>
+                        <li><strong>One single rulebook:</strong> Every application follows the exact same architecture guidelines documented in our public <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">AGENTS.md</code> file. This ensures every app behaves consistently.</li>
                     </ul>
                 </section>
 
                 <!-- Section 4: Closed-Source Asymmetry -->
                 <section id="double-standard" class="space-y-4 pt-6 border-t border-brand-200/60 dark:border-brand-800/60">
-                    <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">closed-source asymmetry & the double standard of ai scrutiny</h2>
+                    <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">transparency and closed-source software</h2>
                     <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                        Today, major tech corporations publicly acknowledge that a substantial portion of their internal code is generated by AI assistants. Yet proprietary operating systems (such as Windows, macOS, and mobile service frameworks) are completely closed-source—users have zero ability to inspect how that code was generated, how it handles their data, or what hidden telemetry runs in the background.
+                        Today, most major tech companies publicly admit that a large portion of their code is generated by AI. However, their operating systems (like Windows and macOS) are closed-source. You cannot inspect their code, see how it was written, or verify what it does with your private data.
                     </p>
                     <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                        Closed-source platforms escape scrutiny solely because of their opacity. In Miqu, we believe in radical honesty: we openly disclose our use of AI tools, and in return, we give you <strong>100% open-source sovereignty</strong>. Every single line of C++20 and Wayland code is completely public, readable, and auditable by anyone in the world.
+                        Proprietary software avoids scrutiny simply by hiding its source code. In Miqu, we believe in complete transparency: we openly explain how we use AI tools, and every single line of our code is <strong>100% open-source</strong>. Anyone can read, audit, and verify our work on GitHub.
                     </p>
                 </section>
 
                 <!-- Section 5: Trust Verdict -->
                 <section id="trust-verdict" class="space-y-4 pt-6 border-t border-brand-200/60 dark:border-brand-800/60">
-                    <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">when can you trust agent-assisted code?</h2>
+                    <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">how to trust ai-assisted software</h2>
                     
                     <div class="border-l-2 border-brand-400 dark:border-brand-500 pl-4 py-1 text-sm sm:text-base text-brand-700 dark:text-brand-300 italic">
-                        &ldquo;I will personally use an agent-assisted project only if it never connects to the internet on its own, and if I have the full freedom to inspect and audit every line of code.&rdquo;
+                        &ldquo;You should only trust AI-assisted software if it never connects to the internet on its own, and if you have the full freedom to read and audit every line of code.&rdquo;
                     </div>
 
                     <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                        We built Miqu around two foundational guarantees to meet that exact standard:
+                        We designed Miqu to meet this standard with two simple, factual guarantees:
                     </p>
 
                     <div class="space-y-3 text-sm sm:text-base text-brand-700 dark:text-brand-300">
                         <p>
-                            <strong>1. Complete network independence:</strong> The desktop environment never connects to the internet on its own. There are no automatic updates, cloud telemetry, analytics pings, or background data transmissions. Network activity happens only when you launch a network-enabled app.
+                            <strong>1. Complete network independence:</strong> The desktop never connects to the internet on its own. There are no background telemetry pings, hidden analytics, or automatic cloud connections. Network activity happens only when you intentionally open an internet application.
                         </p>
                         <p>
-                            <strong>2. 100% Audited, Open-Source Code:</strong> Every single line of C++20 and Wayland code is hosted publicly on GitHub. You have the total freedom to read, audit, compile, and modify everything on your own terms.
+                            <strong>2. Fully public source code:</strong> Every line of C++20 and Wayland code is public under the MIT license. You have the right to audit, build, and modify the code yourself.
                         </p>
                     </div>
                 </section>
