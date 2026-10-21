@@ -130,76 +130,103 @@
 </head>
 <body class="font-sans text-brand-800 dark:text-brand-200 antialiased selection:bg-brand-200 dark:selection:bg-brand-700 selection:text-brand-900 dark:selection:text-brand-100">
 
-    <!-- Two-Tier Navigation Header -->
+    <!-- Unified Navigation Header (56px) -->
     <header class="border-b border-brand-200/70 dark:border-brand-800/80 bg-white/90 dark:bg-[#0b0f17]/90 backdrop-blur-md sticky top-0 z-50 transition-colors">
-        <!-- Tier 1: Main Header (Branding & Global Controls) -->
-        <div class="max-w-7xl mx-auto px-6 sm:px-8 py-3 sm:py-3.5 flex items-center justify-between border-b border-brand-100 dark:border-brand-800/50">
-            <!-- Logo -->
-            <a href="index.html" class="flex items-center gap-3 group">
-                <img src="assets/logo.png" alt="Miqu Logo" class="w-7 h-7 sm:w-8 sm:h-8 object-contain rounded transition-transform group-hover:scale-105" />
-                <span class="font-bold text-lg sm:text-xl tracking-tight text-brand-900 dark:text-white">miqu-project</span>
-            </a>
-
-            <!-- Right Controls: Home, Docs Link, LLM & Safety Link & GitHub Button -->
-            <div class="hidden md:flex items-center gap-1.5 lg:gap-2.5">
-                <a href="index.html" class="text-xs font-semibold text-brand-900 dark:text-white bg-brand-100 dark:bg-brand-800/80 px-3 py-1.5 rounded-lg border border-brand-200 dark:border-brand-700">
-                    Home
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+            <!-- Left: Branding & Status Badge -->
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="flex items-center gap-2.5 group">
+                    <img src="assets/logo.png" alt="Miqu Logo" class="w-7 h-7 object-contain rounded transition-transform group-hover:scale-105" />
+                    <span class="font-bold text-base sm:text-lg tracking-tight text-brand-900 dark:text-white">miqu-project</span>
                 </a>
-                <a href="docs.html" class="text-xs font-semibold text-brand-600 dark:text-brand-300 hover:text-brand-900 dark:hover:text-white transition-colors px-3 py-1.5 rounded-lg hover:bg-brand-50 dark:hover:bg-brand-800/60">
-                    Docs
-                </a>
-                <a href="llm.html" class="text-xs font-semibold text-brand-600 dark:text-brand-300 hover:text-brand-900 dark:hover:text-white transition-colors px-3 py-1.5 rounded-lg hover:bg-brand-50 dark:hover:bg-brand-800/60">
-                    LLM & Safety
-                </a>
-
-                <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-1.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 hover:bg-brand-50 dark:hover:bg-brand-800 text-brand-800 dark:text-brand-200 transition-colors shadow-2xs ml-1">
-                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    GitHub
-                </a>
+                <span class="hidden sm:inline-flex items-center text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-brand-100 dark:bg-brand-800/80 text-brand-600 dark:text-brand-300 border border-brand-200 dark:border-brand-700">Arch Linux</span>
             </div>
 
-            <!-- Mobile menu button -->
-            <div class="md:hidden flex items-center gap-2">
-                <button id="mobile-toggle" onclick="toggleMenu()" class="p-2 text-brand-600 dark:text-brand-300 hover:text-brand-900 dark:hover:text-white rounded-lg border border-brand-200 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-900/50 focus:outline-none" aria-label="Open menu">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            <!-- Center: Primary Page Tabs (Home, Docs, LLM & Safety) -->
+            <nav class="hidden md:flex items-center gap-1 p-1 rounded-xl bg-brand-50/80 dark:bg-brand-900/40 border border-brand-200/60 dark:border-brand-800/60" aria-label="Main navigation">
+                <a href="index.html" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-brand-900 text-white dark:bg-white dark:text-brand-950 shadow-xs transition-all">
+                    Home
+                </a>
+                <a href="docs.html" class="text-xs font-medium px-3 py-1.5 rounded-lg text-brand-600 dark:text-brand-400 hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/70 dark:hover:bg-brand-800/60 transition-all">
+                    Docs
+                </a>
+                <a href="llm.html" class="text-xs font-medium px-3 py-1.5 rounded-lg text-brand-600 dark:text-brand-400 hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/70 dark:hover:bg-brand-800/60 transition-all">
+                    LLM & Safety
+                </a>
+            </nav>
+
+            <!-- Right: GitHub Link & Mobile Menu Toggle -->
+            <div class="flex items-center gap-2">
+                <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white/80 dark:bg-brand-900/80 hover:bg-brand-50 dark:hover:bg-brand-800 text-brand-700 dark:text-brand-300 transition-colors shadow-2xs">
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    <span>GitHub</span>
+                </a>
+
+                <!-- Mobile menu button -->
+                <button id="mobile-toggle" onclick="toggleMenu()" class="md:hidden p-2 text-brand-600 dark:text-brand-300 hover:text-brand-900 dark:hover:text-white rounded-lg border border-brand-200 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-900/50 focus:outline-none transition-colors" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <svg id="burger-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
         </div>
+    </header>
 
-        <!-- Tier 2: Sticky Section Sub-nav Bar -->
-        <nav class="hidden md:block overflow-x-auto no-scrollbar" aria-label="Section navigation">
-            <div class="max-w-7xl mx-auto px-6 sm:px-8 py-2 flex items-center gap-1 lg:gap-2 text-xs font-semibold text-brand-600 dark:text-brand-300 whitespace-nowrap">
-                <a href="#at-a-glance" class="px-3 py-1.5 rounded-md hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/60 dark:hover:bg-brand-800/50 transition-colors">Overview</a>
-                <a href="#architecture" class="px-3 py-1.5 rounded-md hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/60 dark:hover:bg-brand-800/50 transition-colors">Architecture</a>
-                <a href="#miquland" class="px-3 py-1.5 rounded-md hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/60 dark:hover:bg-brand-800/50 transition-colors">miquland</a>
-                <a href="#miqutoolkit" class="px-3 py-1.5 rounded-md hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/60 dark:hover:bg-brand-800/50 transition-colors">miqutoolkit</a>
-                <a href="#linux-apps" class="px-3 py-1.5 rounded-md hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/60 dark:hover:bg-brand-800/50 transition-colors">Linux Apps (16)</a>
-                <a href="#android-apps" class="px-3 py-1.5 rounded-md hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/60 dark:hover:bg-brand-800/50 transition-colors">Android Apps (2)</a>
-                <a href="#quickstart" class="px-3 py-1.5 rounded-md hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/60 dark:hover:bg-brand-800/50 transition-colors">Quickstart</a>
+    <!-- Mobile Backdrop & Drawer -->
+    <div id="mobile-backdrop" onclick="toggleMenu(false)" class="hidden fixed inset-0 bg-brand-950/40 dark:bg-black/60 backdrop-blur-xs z-40 transition-opacity"></div>
+    <div id="mobile-menu" class="hidden fixed top-14 left-0 right-0 max-h-[calc(100vh-3.5rem)] overflow-y-auto bg-white/95 dark:bg-[#0b0f17]/95 border-b border-brand-200 dark:border-brand-800 px-6 py-5 z-40 shadow-xl space-y-5 transition-all">
+        <!-- Primary Pages -->
+        <div>
+            <div class="text-[11px] font-mono uppercase tracking-wider text-brand-400 dark:text-brand-500 mb-2">Navigation</div>
+            <div class="grid grid-cols-3 gap-2">
+                <a href="index.html" onclick="toggleMenu(false)" class="flex items-center justify-center px-3 py-2 text-xs font-semibold text-white bg-brand-900 dark:bg-white dark:text-brand-950 rounded-lg shadow-xs">Home</a>
+                <a href="docs.html" onclick="toggleMenu(false)" class="flex items-center justify-center px-3 py-2 text-xs font-medium text-brand-700 dark:text-brand-200 rounded-lg bg-brand-50 dark:bg-brand-900 border border-brand-200 dark:border-brand-700 hover:bg-brand-100">Docs</a>
+                <a href="llm.html" onclick="toggleMenu(false)" class="flex items-center justify-center px-3 py-2 text-xs font-medium text-brand-700 dark:text-brand-200 rounded-lg bg-brand-50 dark:bg-brand-900 border border-brand-200 dark:border-brand-700 hover:bg-brand-100">LLM & Safety</a>
             </div>
-        </nav>
+        </div>
 
-        <!-- Mobile Drawer -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-brand-200 dark:border-brand-800 px-6 py-5 bg-white/95 dark:bg-[#0b0f17]/95 space-y-4 shadow-lg">
-            <div class="grid grid-cols-3 gap-2 pb-3 border-b border-brand-200 dark:border-brand-800">
-                <a href="index.html" class="flex items-center justify-center px-2 py-2 text-xs font-semibold text-brand-900 dark:text-white rounded-lg bg-brand-100 dark:bg-brand-800/80 border border-brand-200 dark:border-brand-700">Home</a>
-                <a href="docs.html" class="flex items-center justify-center px-2 py-2 text-xs font-semibold text-brand-700 dark:text-brand-200 rounded-lg bg-brand-50 dark:bg-brand-900 border border-brand-200 dark:border-brand-700">Docs</a>
-                <a href="llm.html" class="flex items-center justify-center px-2 py-2 text-xs font-semibold text-brand-700 dark:text-brand-200 rounded-lg bg-brand-50 dark:bg-brand-900 border border-brand-200 dark:border-brand-700">LLM & Safety</a>
+        <!-- On This Page Sections -->
+        <div class="pt-3 border-t border-brand-100 dark:border-brand-800/80">
+            <div class="text-[11px] font-mono uppercase tracking-wider text-brand-400 dark:text-brand-500 mb-2.5">On This Page</div>
+            <div class="space-y-1">
+                <a href="#at-a-glance" onclick="toggleMenu(false)" class="block px-3 py-2 rounded-lg text-sm text-brand-700 dark:text-brand-200 hover:bg-brand-50 dark:hover:bg-brand-900 transition-colors">Overview</a>
+                <a href="#architecture" onclick="toggleMenu(false)" class="block px-3 py-2 rounded-lg text-sm text-brand-700 dark:text-brand-200 hover:bg-brand-50 dark:hover:bg-brand-900 transition-colors">Architecture</a>
+                <a href="#miquland" onclick="toggleMenu(false)" class="block px-3 py-2 rounded-lg text-sm text-brand-700 dark:text-brand-200 hover:bg-brand-50 dark:hover:bg-brand-900 transition-colors">miquland</a>
+                <a href="#miqutoolkit" onclick="toggleMenu(false)" class="block px-3 py-2 rounded-lg text-sm text-brand-700 dark:text-brand-200 hover:bg-brand-50 dark:hover:bg-brand-900 transition-colors">miqutoolkit</a>
+                <a href="#linux-apps" onclick="toggleMenu(false)" class="block px-3 py-2 rounded-lg text-sm text-brand-700 dark:text-brand-200 hover:bg-brand-50 dark:hover:bg-brand-900 transition-colors">Linux Apps (16)</a>
+                <a href="#android-apps" onclick="toggleMenu(false)" class="block px-3 py-2 rounded-lg text-sm text-brand-700 dark:text-brand-200 hover:bg-brand-50 dark:hover:bg-brand-900 transition-colors">Android Apps (2)</a>
+                <a href="#quickstart" onclick="toggleMenu(false)" class="block px-3 py-2 rounded-lg text-sm text-brand-700 dark:text-brand-200 hover:bg-brand-50 dark:hover:bg-brand-900 transition-colors">Quickstart</a>
             </div>
-            <a href="#at-a-glance" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">Overview</a>
-            <a href="#architecture" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">Architecture</a>
-            <a href="#miquland" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">miquland</a>
-            <a href="#miqutoolkit" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">miqutoolkit</a>
-            <a href="#linux-apps" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">Linux Apps (16)</a>
-            <a href="#android-apps" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">Android Apps (2)</a>
-            <a href="#quickstart" onclick="toggleMenu()" class="block text-sm font-medium text-brand-700 dark:text-brand-200 hover:text-brand-900 dark:hover:text-white">Quickstart</a>
+        </div>
 
+        <!-- External Link -->
+        <div class="pt-3 border-t border-brand-100 dark:border-brand-800/80">
             <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 w-full text-xs font-semibold px-4 py-2.5 rounded-lg border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 text-brand-800 dark:text-brand-200 shadow-2xs">
                 <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                GitHub Organization
+                GitHub Organization ↗
             </a>
         </div>
-    </header>
+    </div>
+
+    <!-- Sticky Section Sub-nav Bar (Docked under Header with Live Scrollspy) -->
+    <nav class="sticky top-14 z-30 bg-brand-50/70 dark:bg-[#080c14]/70 backdrop-blur-md border-b border-brand-200/50 dark:border-brand-800/60 py-1.5 transition-colors" aria-label="Section navigation">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+            <div class="flex items-center gap-1 overflow-x-auto no-scrollbar py-0.5 whitespace-nowrap">
+                <a href="#at-a-glance" data-nav-link="at-a-glance" class="nav-pill px-3 py-1 rounded-full text-xs font-medium text-brand-600 dark:text-brand-400 hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/70 dark:hover:bg-brand-800/60 transition-all">Overview</a>
+                <a href="#architecture" data-nav-link="architecture" class="nav-pill px-3 py-1 rounded-full text-xs font-medium text-brand-600 dark:text-brand-400 hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/70 dark:hover:bg-brand-800/60 transition-all">Architecture</a>
+                <a href="#miquland" data-nav-link="miquland" class="nav-pill px-3 py-1 rounded-full text-xs font-medium text-brand-600 dark:text-brand-400 hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/70 dark:hover:bg-brand-800/60 transition-all">miquland</a>
+                <a href="#miqutoolkit" data-nav-link="miqutoolkit" class="nav-pill px-3 py-1 rounded-full text-xs font-medium text-brand-600 dark:text-brand-400 hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/70 dark:hover:bg-brand-800/60 transition-all">miqutoolkit</a>
+                <a href="#linux-apps" data-nav-link="linux-apps" class="nav-pill px-3 py-1 rounded-full text-xs font-medium text-brand-600 dark:text-brand-400 hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/70 dark:hover:bg-brand-800/60 transition-all">Linux Apps (16)</a>
+                <a href="#android-apps" data-nav-link="android-apps" class="nav-pill px-3 py-1 rounded-full text-xs font-medium text-brand-600 dark:text-brand-400 hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/70 dark:hover:bg-brand-800/60 transition-all">Android Apps (2)</a>
+                <a href="#quickstart" data-nav-link="quickstart" class="nav-pill px-3 py-1 rounded-full text-xs font-medium text-brand-600 dark:text-brand-400 hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/70 dark:hover:bg-brand-800/60 transition-all">Quickstart</a>
+            </div>
+            <div class="hidden lg:flex items-center text-xs">
+                <a href="docs.html" class="inline-flex items-center gap-1 font-medium text-brand-500 hover:text-brand-900 dark:text-brand-400 dark:hover:text-white transition-colors">
+                    <span>Docs & Specification</span>
+                    <span>↗</span>
+                </a>
+            </div>
+        </div>
+    </nav>
 
     <!-- At a Glance Section -->
     <section id="at-a-glance" class="w-full border-b border-brand-200/80 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-16 transition-colors">
@@ -925,12 +952,87 @@
             }
         });
 
-        function toggleMenu() {
+        function toggleMenu(forceState) {
             const menu = document.getElementById('mobile-menu');
-            if (menu) {
-                menu.classList.toggle('hidden');
+            const backdrop = document.getElementById('mobile-backdrop');
+            const burgerIcon = document.getElementById('burger-icon');
+            const closeIcon = document.getElementById('close-icon');
+            const toggleBtn = document.getElementById('mobile-toggle');
+            
+            const isCurrentlyOpen = menu && !menu.classList.contains('hidden');
+            const shouldOpen = typeof forceState === 'boolean' ? forceState : !isCurrentlyOpen;
+            
+            if (shouldOpen) {
+                if (menu) menu.classList.remove('hidden');
+                if (backdrop) backdrop.classList.remove('hidden');
+                if (burgerIcon) burgerIcon.classList.add('hidden');
+                if (closeIcon) closeIcon.classList.remove('hidden');
+                if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                if (menu) menu.classList.add('hidden');
+                if (backdrop) backdrop.classList.add('hidden');
+                if (burgerIcon) burgerIcon.classList.remove('hidden');
+                if (closeIcon) closeIcon.classList.add('hidden');
+                if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('overflow-hidden');
             }
         }
+
+        // Close mobile drawer on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') toggleMenu(false);
+        });
+
+        // Live Scrollspy with IntersectionObserver
+        (function initScrollspy() {
+            const sections = document.querySelectorAll('section[id]');
+            const pills = document.querySelectorAll('.nav-pill');
+            if (!sections.length || !pills.length) return;
+
+            function setActivePill(id) {
+                pills.forEach(pill => {
+                    const isMatch = pill.getAttribute('data-nav-link') === id;
+                    if (isMatch) {
+                        pill.classList.remove('text-brand-600', 'dark:text-brand-400', 'hover:bg-brand-100/70', 'dark:hover:bg-brand-800/60');
+                        pill.classList.add('bg-brand-900', 'text-white', 'dark:bg-white', 'dark:text-brand-950', 'font-semibold', 'shadow-xs');
+                        pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+                    } else {
+                        pill.classList.remove('bg-brand-900', 'text-white', 'dark:bg-white', 'dark:text-brand-950', 'font-semibold', 'shadow-xs');
+                        pill.classList.add('text-brand-600', 'dark:text-brand-400', 'hover:bg-brand-100/70', 'dark:hover:bg-brand-800/60');
+                    }
+                });
+            }
+
+            // Set default active pill
+            if (sections[0]) setActivePill(sections[0].id);
+
+            let currentActiveId = sections[0]?.id || '';
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        currentActiveId = entry.target.id;
+                        setActivePill(currentActiveId);
+                    }
+                });
+            }, {
+                rootMargin: '-20% 0px -65% 0px',
+                threshold: 0
+            });
+
+            sections.forEach(sec => observer.observe(sec));
+
+            // Edge case: scroll at bottom of document
+            window.addEventListener('scroll', () => {
+                if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60) {
+                    const lastSec = sections[sections.length - 1];
+                    if (lastSec && currentActiveId !== lastSec.id) {
+                        currentActiveId = lastSec.id;
+                        setActivePill(lastSec.id);
+                    }
+                }
+            }, { passive: true });
+        })();
 
         function copyCommand() {
             const cmd = "git clone --recurse-submodules https://github.com/miqu-project/miqu-project.git\ncd miqu-project\n./install_all.sh";
