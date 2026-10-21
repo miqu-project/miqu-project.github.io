@@ -1170,6 +1170,26 @@ cd miqu-project
                             </p>
                         </div>
 
+                        <!-- Subheading: The Reality of AI Code: Detection, Context Loss, and the Half-Done Trap -->
+                        <div class="space-y-3 pt-2">
+                            <h3 class="text-base font-semibold text-brand-900 dark:text-white">the reality of ai code: detection, context loss, and the &ldquo;half-done&rdquo; trap</h3>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                In the early days of generative AI, detecting machine-written code was trivial. Early models produced obvious patterns, hallucinated libraries, and repetitive boilerplate. Today, with modern reasoning models and agentic workflows, detecting AI-generated code has become virtually impossible. On basic or isolated problems, an AI can produce clean, idiomatic code that matches or even outperforms senior developers.
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                However, when applied to <strong>massive, multi-repository projects</strong>, AI hits a fundamental wall: <strong>it rapidly loses global context</strong>.
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                An AI model does not have the entire project architecture internalized. In a real-world desktop ecosystem with centralized theming, window management protocols, and custom UI components, asking an AI to simply &ldquo;add an About Us window&rdquo; will fail. The AI will rarely explore the codebase deeply enough to understand how global theming is implemented; instead, it will invent an ad-hoc layout with hardcoded colors and custom margins that completely breaks visual consistency. Even with comprehensive doctrine (such as an <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">AGENTS.md</code> file), LLM-powered IDEs frequently skip rules or lose focus unless actively guided by the developer on where to look and what contracts to enforce.
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Furthermore, AI models suffer from a pervasive <strong>&ldquo;minimum-viable&rdquo; bias</strong>. If you prompt an AI to create a <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">TextView</code> widget, it will generate the absolute minimum code to draw a single line of text. It will routinely omit critical real-world requirements: multiline wrapping, text alignment, ellipsis truncation, bi-directional text, and DPI scaling. It delivers a superficial, &ldquo;half-done&rdquo; implementation that compiles but immediately fails in production.
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                The human developer must hold the mental map of every class, dependency, and design token in their head. The developer must anticipate missing edge cases, seal every functional gap in the prompt, direct the model's focus, and audit every line of output. When a developer performs this immense cognitive labor, criticizing them simply because they did not physically stroke the keys for repetitive builder syntax is completely futile.
+                            </p>
+                        </div>
+
                         <!-- Subheading: What True Authorship Means -->
                         <div class="space-y-3 pt-2">
                             <h3 class="text-base font-semibold text-brand-900 dark:text-white">what true software authorship actually means</h3>
