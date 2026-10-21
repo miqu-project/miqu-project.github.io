@@ -1070,16 +1070,31 @@ cd miqu-project
                 </header>
 
                 <!-- Section 1: Philosophy & Authorship -->
-                <section id="philosophy" class="space-y-4">
-                    <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">engineering philosophy & authorship</h2>
+                <section id="philosophy" class="space-y-5">
+                    <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">what does it mean to be the author of a software project?</h2>
+                    
                     <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                        In the early days of computing, engineers wrote assembly by hand. When high-level compilers arrived, some claimed it was not &ldquo;real programming.&rdquo; In reality, compilers simply raised the level of abstraction so engineers could build larger, more ambitious systems.
+                        When you build an Android application and drop in a <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">TextView</code>, did you write the text layout engine? Did you write the font rasterizer, the Skia graphics pipeline, the Linux kernel binder driver, or the display controller? Of course not. You relied on existing layers of abstraction to express your higher-level idea.
                     </p>
+
                     <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                        We view modern AI coding agents in the exact same way: as high-leverage power tools. An architect designs structural blueprints, defines load-bearing boundaries, and ensures safety codes are met—without personally pouring every single bag of concrete. In Miqu, the human developer acts as the architect and systems designer: defining every API contract, verifying Wayland protocols, setting configuration doctrine, and reviewing every line of code.
+                        If relying on pre-existing abstractions invalidates authorship, then virtually nobody in modern computing is an author. Unless you personally etch the silicon, write the microcode, author the Linux kernel drivers, and hand-craft assembly directly against raw hardware registers, you are always building on layers created by others. Every software developer in history is, to some degree, an assembler of existing foundations.
                     </p>
+
                     <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
-                        We also believe in architectural pragmatism. Instead of needlessly rewriting decades-old infrastructure from scratch, Miqu builds on battle-tested Linux backends—leveraging Linux PAM for <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">miqudm</code> login authentication, systemd-logind for session locking in <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">miqulock</code>, and standard Wayland protocols (<code class="font-mono text-xs">xdg-shell</code>, <code class="font-mono text-xs">wlr-layer-shell-v1</code>, <code class="font-mono text-xs">ext-session-lock-v1</code>) for component interchangeability.
+                        Consider another example: if someone bundles Arch Linux, Hyprland, and Quickshell into a customized desktop ISO, are they the developer of that ISO? Yes, as a curator, integrator, and distribution maintainer. But they did not write the compositor, the widget toolkit, or the underlying applications.
+                    </p>
+
+                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                        In Miqu, we took the hard road: we did not just rice or re-bundle someone else's desktop. We built our own compositor (<code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">miquland</code>), wrote our own C++20 UI framework (<code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">miqutoolkit</code>), and developed 16 native applications from scratch. Yet when an engineer uses an AI coding agent to generate repetitive event listener boilerplate, syntax scaffolding, or protocol bindings, critics suddenly claim: <em>&ldquo;You did not write every single character by hand, so you are not the author!&rdquo;</em>
+                    </p>
+
+                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                        This double standard collapses under scrutiny. Keystrokes are not authorship. Authorship is <strong>architectural intent, system design, quality governance, and end-to-end accountability</strong>. An architect designs a building's load-bearing walls, structural steel layout, and emergency exits without pouring every bucket of cement by hand. In Miqu, the human developer acts as that architect: defining every public API, enforcing strict C++20 RAII safety, ensuring zero telemetry, and verifying every commit on real hardware.
+                    </p>
+
+                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                        AI is simply the latest chapter in the history of abstraction—from punch cards to assembly, from assembly to C, from raw syscalls to shared libraries, and now from libraries to model-assisted synthesis. True engineering has never been about manual typing speed; it has always been about what you choose to build, how reliably it runs, and taking full responsibility for the system you deliver.
                     </p>
                 </section>
 
