@@ -1059,198 +1059,90 @@ cd miqu-project
 
         <!-- Tab: LLM & Safety -->
         <div id="tab-llm" class="tab-panel hidden">
-            <section class="border-b border-brand-200/70 dark:border-brand-800/80 bg-brand-50/50 dark:bg-[#080c14] py-12 sm:py-14 transition-colors">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8">
-            <h1 class="text-xl sm:text-2xl font-bold text-brand-900 dark:text-white tracking-tight mb-3">ai use & code safety</h1>
-            <p class="text-sm sm:text-base text-brand-600 dark:text-brand-400 max-w-3xl leading-relaxed">
-                How Miqu combines human architectural leadership with agentic synthesis under strict C++20 RAII, 100% offline isolation, and zero telemetry.
-            </p>
-        </div>
-    </section>
+            <article class="max-w-4xl mx-auto px-4 sm:px-8 py-12 sm:py-16 space-y-12 text-brand-800 dark:text-brand-200">
+                <!-- Document Header -->
+                <header class="border-b border-brand-200/80 dark:border-brand-800/80 pb-8">
+                    <div class="text-xs font-mono font-medium text-brand-500 dark:text-brand-400 mb-2">code integrity & engineering transparency</div>
+                    <h1 class="text-2xl sm:text-3xl font-bold text-brand-900 dark:text-white tracking-tight mb-3">ai use & code safety</h1>
+                    <p class="text-sm sm:text-base text-brand-600 dark:text-brand-400 leading-relaxed max-w-2xl">
+                        A completely honest disclosure on how AI tools are used in Miqu, why human architectural leadership matters, and the strict safety boundaries that keep our software 100% offline, auditable, and secure.
+                    </p>
+                </header>
 
-    <!-- Section 1: Philosophy & Authorship -->
-    <section id="philosophy" class="border-b border-brand-200/80 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-14 transition-colors">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8">
-            <div class="flex items-center justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-4">
-                <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">engineering philosophy</h2>
-                <span class="text-xs font-mono px-2.5 py-1 rounded bg-brand-100 dark:bg-brand-800 text-brand-700 dark:text-brand-300">Authorship Model</span>
-            </div>
+                <!-- Section 1: Philosophy & Authorship -->
+                <section id="philosophy" class="space-y-4">
+                    <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">engineering philosophy & authorship</h2>
+                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                        In the early days of computing, engineers wrote assembly by hand. When high-level compilers arrived, some claimed it was not &ldquo;real programming.&rdquo; In reality, compilers simply raised the level of abstraction so engineers could build larger, more ambitious systems.
+                    </p>
+                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                        We view modern AI coding agents in the exact same way: as high-leverage power tools. An architect designs structural blueprints, defines load-bearing boundaries, and ensures safety codes are met—without personally pouring every single bag of concrete. In Miqu, the human developer acts as the architect and systems designer: defining every API contract, verifying Wayland protocols, setting configuration doctrine, and reviewing every line of code.
+                    </p>
+                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                        We also believe in architectural pragmatism. Instead of needlessly rewriting decades-old infrastructure from scratch, Miqu builds on battle-tested Linux backends—leveraging Linux PAM for <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">miqudm</code> login authentication, systemd-logind for session locking in <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">miqulock</code>, and standard Wayland protocols (<code class="font-mono text-xs">xdg-shell</code>, <code class="font-mono text-xs">wlr-layer-shell-v1</code>, <code class="font-mono text-xs">ext-session-lock-v1</code>) for component interchangeability.
+                    </p>
+                </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl border border-brand-200 dark:border-brand-800 p-5">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="font-bold text-brand-900 dark:text-white text-sm">Continuum of Abstraction</h3>
-                        <span class="text-[11px] font-mono text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-950/60 px-2 py-0.5 rounded border border-purple-200 dark:border-purple-800">Scaffolding</span>
+                <!-- Section 2: Security & Memory Safety -->
+                <section id="safety" class="space-y-4 pt-6 border-t border-brand-200/60 dark:border-brand-800/60">
+                    <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">security & memory safety</h2>
+                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                        AI assistance is only as trustworthy as the engineering constraints surrounding it. In Miqu, we enforce strict architectural rules that prevent typical AI coding mistakes:
+                    </p>
+
+                    <ul class="list-disc list-inside space-y-2.5 text-sm sm:text-base text-brand-700 dark:text-brand-300 pl-2">
+                        <li><strong>Strict RAII memory management:</strong> Raw owning pointers are completely banned. File descriptors, Cairo drawing contexts, Pango layouts, and Wayland listeners are wrapped in scope-bound RAII handles or smart pointers, guaranteeing that resources are cleaned up deterministically even if an error occurs.</li>
+                        <li><strong>Absolute network isolation:</strong> Miqu contains zero telemetry, zero analytics, and zero background cloud calls. The desktop operates 100% offline. Network operations occur strictly when you explicitly launch a network tool or client.</li>
+                        <li><strong>Multi-tier verification pipeline:</strong> Code synthesized with AI assistance is never committed blindly. Every change passes through strict compiler diagnostics (<code class="font-mono text-xs">-Wall -Wextra -Werror</code>), static analysis (<code class="font-mono text-xs">cppcheck</code>), runtime sanitizers (AddressSanitizer and UndefinedBehaviorSanitizer), and direct human review on real hardware.</li>
+                        <li><strong>Event-driven 0% idle CPU:</strong> Continuous tick loops or busy-waiting polling loops are strictly forbidden. The compositor and all native apps sleep in the Wayland event loop until an actual user event, scene damage, or frame callback occurs.</li>
+                    </ul>
+                </section>
+
+                <!-- Section 3: Audits & Governance -->
+                <section id="governance" class="space-y-4 pt-6 border-t border-brand-200/60 dark:border-brand-800/60">
+                    <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">audits & governance</h2>
+                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                        Trust requires continuous verification. Our governance model ensures that every repository in the ecosystem remains consistent, secure, and faithful to our architecture:
+                    </p>
+                    <ul class="list-disc list-inside space-y-2.5 text-sm sm:text-base text-brand-700 dark:text-brand-300 pl-2">
+                        <li><strong>Automated codebase audits:</strong> We run automated security audits and contract checks across all 18 repositories, verifying that no zombie memory states, missing headers, or undocumented configuration loopholes exist.</li>
+                        <li><strong>Single architectural authority:</strong> Every pull request and commit is reviewed under the authoritative ecosystem doctrine defined in <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">AGENTS.md</code>, ensuring uniform standards and preventing fragmented patterns from creeping in.</li>
+                    </ul>
+                </section>
+
+                <!-- Section 4: Closed-Source Asymmetry -->
+                <section id="double-standard" class="space-y-4 pt-6 border-t border-brand-200/60 dark:border-brand-800/60">
+                    <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">closed-source asymmetry & the double standard of ai scrutiny</h2>
+                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                        Today, major tech corporations publicly acknowledge that a substantial portion of their internal code is generated by AI assistants. Yet proprietary operating systems (such as Windows, macOS, and mobile service frameworks) are completely closed-source—users have zero ability to inspect how that code was generated, how it handles their data, or what hidden telemetry runs in the background.
+                    </p>
+                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                        Closed-source platforms escape scrutiny solely because of their opacity. In Miqu, we believe in radical honesty: we openly disclose our use of AI tools, and in return, we give you <strong>100% open-source sovereignty</strong>. Every single line of C++20 and Wayland code is completely public, readable, and auditable by anyone in the world.
+                    </p>
+                </section>
+
+                <!-- Section 5: Trust Verdict -->
+                <section id="trust-verdict" class="space-y-4 pt-6 border-t border-brand-200/60 dark:border-brand-800/60">
+                    <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">when can you trust agent-assisted code?</h2>
+                    
+                    <div class="border-l-2 border-brand-400 dark:border-brand-500 pl-4 py-1 text-sm sm:text-base text-brand-700 dark:text-brand-300 italic">
+                        &ldquo;I will personally use an agent-assisted project only if it never connects to the internet on its own, and if I have the full freedom to inspect and audit every line of code.&rdquo;
                     </div>
-                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
-                        Compilers automated assembly code without diminishing engineering authorship. Directing an LLM to generate listener boilerplate and Cairo geometry is context-aware scaffolding; true engineering remains state machine verification, event synchronization, and lifecycle discipline.
-                    </p>
-                </div>
 
-                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl border border-brand-200 dark:border-brand-800 p-5">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="font-bold text-brand-900 dark:text-white text-sm">Architect vs. Synthesizer</h3>
-                        <span class="text-[11px] font-mono text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/60 px-2 py-0.5 rounded border border-blue-200 dark:border-blue-800">Authorship</span>
+                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                        We built Miqu around two foundational guarantees to meet that exact standard:
+                    </p>
+
+                    <div class="space-y-3 text-sm sm:text-base text-brand-700 dark:text-brand-300">
+                        <p>
+                            <strong>1. Complete network independence:</strong> The desktop environment never connects to the internet on its own. There are no automatic updates, cloud telemetry, analytics pings, or background data transmissions. Network activity happens only when you launch a network-enabled app.
+                        </p>
+                        <p>
+                            <strong>2. 100% Audited, Open-Source Code:</strong> Every single line of C++20 and Wayland code is hosted publicly on GitHub. You have the total freedom to read, audit, compile, and modify everything on your own terms.
+                        </p>
                     </div>
-                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
-                        An architect designs load-bearing structural plans without pouring every yard of concrete. The LLM is the modern power tool; the developer is the system architect authoring contracts, enforcing the Two-Tier Configuration doctrine, and guaranteeing protocol invariants.
-                    </p>
-                </div>
-
-                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl border border-brand-200 dark:border-brand-800 p-5">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="font-bold text-brand-900 dark:text-white text-sm">Architectural Pragmatism</h3>
-                        <span class="text-[11px] font-mono text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800">The Sweet Spot</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
-                        Miqu integrates battle-tested Linux backends instead of reinventing them: Linux PAM in <span class="font-medium text-brand-900 dark:text-white">miqudm</span>, <code class="font-mono text-[11px] bg-brand-100 dark:bg-brand-800 px-1 py-0.5 rounded">systemd-logind</code> in <span class="font-medium text-brand-900 dark:text-white">miqulock</span>, <code class="font-mono text-[11px] bg-brand-100 dark:bg-brand-800 px-1 py-0.5 rounded">ufw/nftables</code> in <span class="font-medium text-brand-900 dark:text-white">miqusecure</span>, and standard NetworkManager D-Bus interfaces.
-                    </p>
-                </div>
-
-                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl border border-brand-200 dark:border-brand-800 p-5">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="font-bold text-brand-900 dark:text-white text-sm">Open Wayland Standards</h3>
-                        <span class="text-[11px] font-mono text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/60 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800">Anti-Lock-In</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
-                        Universal protocol adherence (<code class="font-mono text-[11px] bg-brand-100 dark:bg-brand-800 px-1 py-0.5 rounded">xdg-shell</code>, <code class="font-mono text-[11px] bg-brand-100 dark:bg-brand-800 px-1 py-0.5 rounded">wlr-layer-shell-v1</code>, <code class="font-mono text-[11px] bg-brand-100 dark:bg-brand-800 px-1 py-0.5 rounded">ext-session-lock-v1</code>) guarantees component interchangeability. You can freely swap in <code class="font-mono text-[11px]">waybar</code>, <code class="font-mono text-[11px]">rofi</code>, or <code class="font-mono text-[11px]">swaylock</code> with zero lock-in.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 2: Security & Memory Safety -->
-    <section id="safety" class="border-b border-brand-200/80 dark:border-brand-800/80 bg-brand-50/50 dark:bg-[#080c14] py-14 transition-colors">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8">
-            <div class="flex items-center justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-4">
-                <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">security & memory safety</h2>
-                <span class="text-xs font-mono px-2.5 py-1 rounded bg-brand-100 dark:bg-brand-800 text-brand-700 dark:text-brand-300">Strict RAII</span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
-                <div class="bg-white dark:bg-brand-900/60 rounded-xl border border-brand-200 dark:border-brand-800 p-5">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="font-bold text-brand-900 dark:text-white text-sm">Zero Cloud & Telemetry</h3>
-                        <span class="text-[11px] font-mono text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-200 dark:border-emerald-800">100% Local</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
-                        Zero analytics, zero telemetry, and zero mandatory cloud services. The desktop runs completely offline. Network operations occur strictly upon explicit user request.
-                    </p>
-                </div>
-
-                <div class="bg-white dark:bg-brand-900/60 rounded-xl border border-brand-200 dark:border-brand-800 p-5">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="font-bold text-brand-900 dark:text-white text-sm">Strict C++20 RAII</h3>
-                        <span class="text-[11px] font-mono text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/60 px-2 py-0.5 rounded border border-blue-200 dark:border-blue-800">Memory Safety</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
-                        Raw owning pointers are banned. File descriptors, Cairo contexts, and Wayland listeners are wrapped in scope-bound RAII guards with custom deleters.
-                    </p>
-                </div>
-
-                <div class="bg-white dark:bg-brand-900/60 rounded-xl border border-brand-200 dark:border-brand-800 p-5">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="font-bold text-brand-900 dark:text-white text-sm">Tri-Tier Verification</h3>
-                        <span class="text-[11px] font-mono text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-950/60 px-2 py-0.5 rounded border border-purple-200 dark:border-purple-800">Pipeline</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
-                        Code moves through Model Synthesis &rarr; Deterministic Tooling (<code class="font-mono text-[11px] bg-brand-100 dark:bg-brand-800 px-1 py-0.5 rounded">-Wall -Wextra</code>, ASan, UBSan, cppcheck) &rarr; Human Review on physical Wayland hardware.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Zero Idle CPU Rule Card -->
-            <div class="bg-white dark:bg-brand-900/60 rounded-xl border border-brand-200 dark:border-brand-800 p-5 flex items-center gap-4">
-                <span class="w-9 h-9 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 flex items-center justify-center font-bold text-xs flex-shrink-0">0.0%</span>
-                <div>
-                    <h4 class="font-bold text-brand-900 dark:text-white text-sm">Strict Event-Driven Inactivity</h4>
-                    <p class="text-xs text-brand-700 dark:text-brand-300 leading-relaxed mt-0.5">
-                        Compositor and apps sleep completely in the Wayland event loop when idle. No continuous tick loops; frame repaints are strictly damage-driven.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 3: Auditing & Governance -->
-    <section id="governance" class="border-b border-brand-200/80 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-14 transition-colors">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8">
-            <div class="flex items-center justify-between mb-8 gap-4 border-b border-brand-200 dark:border-brand-800 pb-4">
-                <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">audits & governance</h2>
-                <span class="text-xs font-mono px-2.5 py-1 rounded bg-brand-100 dark:bg-brand-800 text-brand-700 dark:text-brand-300">Continuous Review</span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl border border-brand-200 dark:border-brand-800 p-5">
-                    <h3 class="font-bold text-brand-900 dark:text-white text-sm mb-2">Continuous Audit Pipeline</h3>
-                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
-                        The entire codebase undergoes automated scans for security issues, contract non-conformance, and memory leaks. System-wide blast-radius analysis models ripple effects across the compositor, toolkit, and applications before any change is merged.
-                    </p>
-                </div>
-
-                <div class="bg-brand-50/50 dark:bg-brand-900/40 rounded-xl border border-brand-200 dark:border-brand-800 p-5">
-                    <h3 class="font-bold text-brand-900 dark:text-white text-sm mb-2">Single-Maintainer Stewardship</h3>
-                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
-                        A single-author commit model ensures absolute architectural purity and zero fragmented patterns across all 18 repositories. Community members are warmly invited to participate as code reviewers, security auditors, and testers.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 4: The AI Double Standard -->
-    <section id="double-standard" class="border-b border-brand-200/80 dark:border-brand-800/80 bg-brand-50/50 dark:bg-[#080c14] py-14 transition-colors">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8">
-            <div class="bg-white dark:bg-brand-900/60 rounded-xl border border-brand-200 dark:border-brand-800 p-6 shadow-2xs">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-7 h-7 rounded-lg bg-rose-100 dark:bg-rose-950/80 border border-rose-200 dark:border-rose-800 flex items-center justify-center text-rose-700 dark:text-rose-400 flex-shrink-0">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    </div>
-                    <h2 class="text-base sm:text-lg font-bold text-brand-900 dark:text-white">closed-source asymmetry & the double standard of ai scrutiny</h2>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed border-t border-brand-100 dark:border-brand-800/80 pt-4">
-                    <p>
-                        Industry leaders have publicly confirmed that an enormous percentage of their internal code is synthesized by AI models. Yet users cannot inspect proprietary software (Windows, macOS, Google Play Services) to verify how it was generated or what it does.
-                    </p>
-                    <p>
-                        Closed-source giants escape scrutiny purely through opacity. In Miqu, we choose <span class="font-semibold text-brand-900 dark:text-white">radical honesty and total sovereignty</span>: every single line of C++20 and Wayland code is 100% open, auditable, and verifiable by you.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 5: Trust Verdict -->
-    <section id="trust-verdict" class="border-b border-brand-200/80 dark:border-brand-800/80 bg-white dark:bg-[#0b0f17] py-14 transition-colors">
-        <div class="max-w-7xl mx-auto px-6 sm:px-8">
-            <div class="bg-gradient-to-br from-white dark:from-brand-900/60 to-brand-50 dark:to-brand-900/30 border border-brand-200 dark:border-brand-800 rounded-xl p-6 sm:p-7 shadow-2xs">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-7 h-7 rounded-lg bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-200 dark:border-emerald-800 flex items-center justify-center text-emerald-700 dark:text-emerald-400 flex-shrink-0">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <h2 class="text-base sm:text-lg font-bold text-brand-900 dark:text-white">when can you trust agent-assisted code?</h2>
-                </div>
-
-                <div class="space-y-3 text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed border-t border-brand-100 dark:border-brand-800/80 pt-4">
-                    <p class="italic text-brand-800 dark:text-brand-200 font-medium">
-                        "I will personally use an agent-assisted project <span class="text-brand-900 dark:text-white font-bold not-italic">only if</span> it never connects to the internet on its own, and if I have the full freedom to audit every line of code."
-                    </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-                        <div class="bg-white dark:bg-brand-950/80 rounded-lg p-3.5 border border-brand-200/80 dark:border-brand-800">
-                            <span class="font-bold text-brand-900 dark:text-white text-xs block mb-1">1. Absolute Network Isolation</span>
-                            <span class="text-xs text-brand-600 dark:text-brand-300">The desktop never connects to the internet on its own. Network activity is strictly under your system's control.</span>
-                        </div>
-                        <div class="bg-white dark:bg-brand-950/80 rounded-lg p-3.5 border border-brand-200/80 dark:border-brand-800">
-                            <span class="font-bold text-brand-900 dark:text-white text-xs block mb-1">2. 100% Audited Open Source</span>
-                            <span class="text-xs text-brand-600 dark:text-brand-300">Every single line of C++20 and Wayland code is completely public and reviewed on hardware.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                </section>
+            </article>
         </div>
     </main>
 
