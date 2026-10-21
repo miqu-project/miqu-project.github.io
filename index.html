@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>miqu-project - Wayland Desktop Ecosystem</title>
+    <title>miqu-project — Wayland Desktop Ecosystem & Native Applications</title>
     <link rel="icon" type="image/png" href="assets/logo.png" />
-    
+    <meta name="description" content="A cohesive, high-performance Wayland desktop ecosystem: miquland compositor, miqutoolkit UI framework, 16 native Linux desktop apps, and companion Android apps.">
+
     <!-- Automatic Theme Detection Script (runs before render to prevent flash) -->
     <script>
         (function() {
@@ -34,6 +35,22 @@
                         miqubg: '#09090b',
                         miqucard: '#121217',
                         miquborder: '#22222e',
+                        miqucoral: '#fb4f5f',
+                        miqupeach: '#f97f68',
+                        miquviolet: '#c026d3',
+                        brand: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -43,23 +60,33 @@
             }
         }
     </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        .gradient-text {
-            background: linear-gradient(135deg, #ff7b7b 0%, #d946ef 50%, #8b5cf6 100%);
+        .gradient-brand-text {
+            background: linear-gradient(135deg, #f97f68 0%, #fb4f5f 45%, #c026d3 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .gradient-bg {
-            background: linear-gradient(135deg, #ff6b6b 0%, #a855f7 100%);
+        .gradient-brand-bg {
+            background: linear-gradient(135deg, #f97f68 0%, #fb4f5f 50%, #c026d3 100%);
         }
-        /* Connecting tree lines for hierarchical flowchart */
+        .gradient-brand-subtle {
+            background: linear-gradient(135deg, rgba(249, 127, 104, 0.12) 0%, rgba(251, 79, 95, 0.12) 50%, rgba(192, 38, 211, 0.12) 100%);
+        }
+        .glass {
+            background: rgba(18, 18, 23, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        /* Connecting tree lines for hierarchical flowchart using logo gradient */
         .tree-node-line {
             position: relative;
         }
@@ -70,44 +97,44 @@
             left: 24px;
             width: 2px;
             height: 24px;
-            background: linear-gradient(to bottom, rgba(168, 85, 247, 0.35), rgba(168, 85, 247, 0.85));
+            background: linear-gradient(to bottom, rgba(249, 127, 104, 0.4), rgba(251, 79, 95, 0.9));
         }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-[#09090b] text-slate-800 dark:text-gray-100 font-sans antialiased selection:bg-purple-500 selection:text-white min-h-screen flex flex-col justify-between transition-colors duration-200">
+<body class="bg-slate-50 dark:bg-[#09090b] text-slate-800 dark:text-gray-100 font-sans antialiased selection:bg-[#fb4f5f] selection:text-white min-h-screen flex flex-col justify-between transition-colors duration-200">
 
     <!-- Notification Toast -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900/90 dark:bg-gray-900/90 border border-purple-400/30 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 backdrop-blur-md">
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900/90 dark:bg-gray-900/90 border border-[#fb4f5f]/40 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 backdrop-blur-md">
         <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
         <span id="toast-message" class="text-sm font-medium">Copied to clipboard!</span>
     </div>
 
-    <!-- Header / Navbar with Top Right GitHub Button -->
-    <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-white/10 bg-white/80 dark:bg-[#121217]/85 backdrop-blur-md transition-colors duration-200">
-        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+    <!-- Header / Navbar with Original Logo & Top Right GitHub Button -->
+    <header class="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-white/10 bg-white/85 dark:bg-[#121217]/85 backdrop-blur-md transition-colors duration-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
             <!-- Brand Logo & Name -->
-            <a href="#home" class="flex items-center gap-3 group">
-                <div class="w-9 h-9 rounded-xl flex items-center justify-center p-1 bg-gradient-to-tr from-[#ff6b6b] to-[#a855f7] shadow-md shadow-purple-500/20">
-                    <svg viewBox="0 0 500 500" class="w-full h-full fill-white" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 400 C 100 250, 150 150, 220 220 C 270 270, 280 350, 320 320 C 370 280, 400 120, 450 400 C 420 400, 380 350, 350 250 C 320 150, 280 200, 250 280 C 210 380, 150 400, 50 400 Z" />
-                    </svg>
-                </div>
-                <span class="font-bold text-base tracking-tight text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">miqu-project</span>
+            <a href="#home" onclick="onTabClick('home')" class="flex items-center gap-3 group">
+                <img src="assets/logo.png" alt="Miqu Logo" class="w-8 h-8 object-contain rounded-lg transition-transform group-hover:scale-105" />
+                <span class="font-bold text-base tracking-tight text-slate-900 dark:text-white group-hover:text-[#fb4f5f] transition-colors">miqu-project</span>
             </a>
 
-            <!-- Document Navigation Links -->
-            <div class="flex items-center gap-4">
-                <nav class="flex items-center bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-medium text-slate-600 dark:text-gray-300 gap-3 sm:gap-6 transition-colors">
-                    <a href="#home" class="hover:text-purple-600 dark:hover:text-white transition-colors">Home</a>
-                    <span class="text-slate-300 dark:text-white/20">|</span>
-                    <a href="#docs" class="hover:text-purple-600 dark:hover:text-white transition-colors">Docs</a>
-                    <span class="text-slate-300 dark:text-white/20">|</span>
-                    <a href="#llm" class="hover:text-purple-600 dark:hover:text-white transition-colors">LLM Use</a>
+            <!-- Document Navigation Links (Tab Switcher) -->
+            <div class="flex items-center gap-3 sm:gap-4">
+                <nav class="flex items-center bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl p-1 text-xs sm:text-sm font-medium gap-1 sm:gap-1.5 transition-colors">
+                    <button onclick="onTabClick('home')" id="tab-btn-home" class="tab-btn px-3 sm:px-3.5 py-1.5 rounded-lg transition-all font-semibold text-white bg-gradient-to-r from-[#f97f68] via-[#fb4f5f] to-[#c026d3] shadow-xs">
+                        Home
+                    </button>
+                    <button onclick="onTabClick('docs')" id="tab-btn-docs" class="tab-btn px-3 sm:px-3.5 py-1.5 rounded-lg transition-all text-slate-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-white/10">
+                        Docs
+                    </button>
+                    <button onclick="onTabClick('llm')" id="tab-btn-llm" class="tab-btn px-3 sm:px-3.5 py-1.5 rounded-lg transition-all text-slate-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-white/10">
+                        LLM Use
+                    </button>
                 </nav>
 
                 <!-- GitHub Top Right Button -->
                 <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white dark:bg-white/10 dark:hover:bg-white/20 dark:border dark:border-white/10 font-medium text-xs sm:text-sm transition-all shadow-xs">
-                    <i class="fa-brands fa-github text-base"></i>
+                    <i class="fa-brands fa-github text-sm sm:text-base"></i>
                     <span>GitHub</span>
                 </a>
             </div>
@@ -115,221 +142,278 @@
     </header>
 
     <!-- Main Content -->
-    <main class="flex-grow max-w-4xl mx-auto px-6 py-12 w-full space-y-16">
+    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-10 w-full">
         
-        <!-- Hero Section -->
-        <section id="home" class="text-center pt-6 space-y-4">
-            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-                miqu-project
-            </h1>
-            <p class="text-base sm:text-lg text-slate-600 dark:text-gray-300 font-normal max-w-2xl mx-auto leading-relaxed">
-                Wayland Dynamic Tiling Window Manager & Compositor and more.
-            </p>
-        </section>
+        <!-- ========================================================= -->
+        <!-- TAB 1: HOME                                               -->
+        <!-- ========================================================= -->
+        <div id="tab-home" class="tab-panel space-y-16">
+            
+            <!-- Hero Section -->
+            <section id="home" class="text-center pt-6 space-y-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium text-[#fb4f5f] bg-[#fb4f5f]/10 border border-[#fb4f5f]/20">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#fb4f5f] animate-pulse"></span>
+                    Ecosystem Overview
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                    <span class="gradient-brand-text">miqu-project</span>
+                </h1>
+                <p class="text-base sm:text-lg text-slate-600 dark:text-gray-300 font-normal max-w-2xl mx-auto leading-relaxed">
+                    Wayland Dynamic Tiling Window Manager &amp; Compositor and more.
+                </p>
+                <div class="flex flex-wrap justify-center gap-3 pt-2">
+                    <button onclick="onTabClick('docs')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#f97f68] via-[#fb4f5f] to-[#c026d3] hover:opacity-95 shadow-sm transition-opacity">
+                        <i class="fa-solid fa-book-open text-xs"></i>
+                        <span>Read Documentation</span>
+                    </button>
+                    <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 dark:text-gray-200 bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 border border-slate-200 dark:border-white/10 shadow-xs transition-all">
+                        <i class="fa-brands fa-github text-xs"></i>
+                        <span>Explore on GitHub</span>
+                    </a>
+                </div>
+            </section>
 
-        <!-- "Where it sits?" Hierarchical Flowchart Section -->
-        <section id="docs" class="space-y-6">
-            <div class="border-b border-slate-200 dark:border-white/10 pb-3 flex items-center justify-between">
-                <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                    <i class="fa-solid fa-sitemap text-purple-600 dark:text-purple-400"></i> Where it sits?
-                </h2>
-            </div>
+            <!-- "Where it sits?" Hierarchical Flowchart Section -->
+            <section id="where-it-sits" class="space-y-6">
+                <div class="border-b border-slate-200 dark:border-white/10 pb-3 flex items-center justify-between">
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+                        <i class="fa-solid fa-sitemap text-[#fb4f5f]"></i> Where it sits?
+                    </h2>
+                </div>
 
-            <!-- Flowchart Container -->
-            <div class="p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm dark:shadow-none flex flex-col items-center relative overflow-hidden transition-colors">
-                <div class="absolute -right-12 -top-12 w-56 h-56 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <!-- Flowchart Container -->
+                <div class="p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm dark:shadow-none flex flex-col items-center relative overflow-hidden transition-colors">
+                    <div class="absolute -right-12 -top-12 w-56 h-56 bg-[#fb4f5f]/10 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="absolute -left-12 -bottom-12 w-56 h-56 bg-[#c026d3]/10 rounded-full blur-3xl pointer-events-none"></div>
 
-                <div class="w-full max-w-md space-y-6">
-                    
-                    <!-- Node 1: GNU Linux -->
-                    <div class="w-full p-4 rounded-xl bg-gradient-to-r from-purple-100/90 to-indigo-100/90 dark:from-purple-900/40 dark:to-indigo-900/40 border border-purple-200 dark:border-purple-500/30 shadow-sm flex items-center justify-between transition-colors">
-                        <div class="flex items-center gap-3">
-                            <div class="w-9 h-9 rounded-lg bg-purple-500/20 text-purple-700 dark:text-purple-300 flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-server"></i>
-                            </div>
-                            <div>
-                                <span class="text-xs uppercase tracking-wider text-purple-700 dark:text-purple-300 font-semibold block">Base OS</span>
-                                <span class="text-sm font-bold text-slate-900 dark:text-white">GNU Linux</span>
-                            </div>
-                        </div>
-                        <span class="text-xs px-2.5 py-1 rounded-full bg-white/80 dark:bg-black/40 text-purple-900 dark:text-gray-300 border border-purple-200 dark:border-white/10 font-mono font-semibold dark:font-normal">God</span>
-                    </div>
-
-                    <!-- Node 2: Base Distro -->
-                    <div class="w-full pl-6 tree-node-line">
-                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-purple-400 dark:hover:border-purple-500/40 transition-all flex items-center justify-between">
+                    <div class="w-full max-w-md space-y-6">
+                        
+                        <!-- Node 1: GNU Linux -->
+                        <div class="w-full p-4 rounded-xl bg-gradient-to-r from-rose-500/10 via-pink-500/10 to-purple-500/10 dark:from-rose-950/40 dark:via-pink-950/40 dark:to-purple-950/40 border border-[#fb4f5f]/30 shadow-sm flex items-center justify-between transition-colors">
                             <div class="flex items-center gap-3">
-                                <div class="w-7 h-7 rounded-md bg-slate-200 dark:bg-white/10 text-slate-600 dark:text-gray-300 flex items-center justify-center text-xs">
-                                    <i class="fa-solid fa-layer-group"></i>
+                                <div class="w-9 h-9 rounded-lg bg-[#fb4f5f]/20 text-[#fb4f5f] flex items-center justify-center font-bold">
+                                    <i class="fa-solid fa-server"></i>
                                 </div>
                                 <div>
-                                    <span class="text-xs text-slate-500 dark:text-gray-400 block font-mono">Distribution</span>
-                                    <span class="text-sm font-medium text-slate-900 dark:text-white">Base Distro (Arch, Debian etc)</span>
+                                    <span class="text-xs uppercase tracking-wider text-[#fb4f5f] font-semibold block">Base OS</span>
+                                    <span class="text-sm font-bold text-slate-900 dark:text-white">GNU Linux</span>
+                                </div>
+                            </div>
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-white/90 dark:bg-black/50 text-[#fb4f5f] dark:text-rose-300 border border-[#fb4f5f]/30 font-mono font-semibold">God</span>
+                        </div>
+
+                        <!-- Node 2: Base Distro -->
+                        <div class="w-full pl-6 tree-node-line">
+                            <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-[#fb4f5f]/40 transition-all flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-7 h-7 rounded-md bg-slate-200 dark:bg-white/10 text-slate-600 dark:text-gray-300 flex items-center justify-center text-xs">
+                                        <i class="fa-solid fa-layer-group"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs text-slate-500 dark:text-gray-400 block font-mono">Distribution</span>
+                                        <span class="text-sm font-medium text-slate-900 dark:text-white">Base Distro (Arch, Debian etc)</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Node 3: Miquland -->
-                    <div class="w-full pl-6 tree-node-line">
-                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-purple-400 dark:hover:border-purple-500/40 transition-all flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <div class="w-7 h-7 rounded-md bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300 flex items-center justify-center text-xs">
-                                    <i class="fa-solid fa-window-maximize"></i>
+                        <!-- Node 3: Miquland -->
+                        <div class="w-full pl-6 tree-node-line">
+                            <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-[#fb4f5f]/40 transition-all flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-7 h-7 rounded-md bg-[#fb4f5f]/20 text-[#fb4f5f] flex items-center justify-center text-xs">
+                                        <i class="fa-solid fa-window-maximize"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs text-[#fb4f5f] block font-mono">Compositor Layer</span>
+                                        <span class="text-sm font-medium text-slate-900 dark:text-white">Miquland (Compositor)</span>
+                                    </div>
                                 </div>
-                                <div>
-                                    <span class="text-xs text-purple-600 dark:text-purple-400 block font-mono">Compositor Layer</span>
-                                    <span class="text-sm font-medium text-slate-900 dark:text-white">Miquland (Compositor)</span>
-                                </div>
+                                <span class="text-xs px-2 py-0.5 rounded bg-[#fb4f5f]/10 text-[#fb4f5f] font-mono">wlroots + scenfx</span>
                             </div>
-                            <span class="text-xs px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-500/10 text-purple-700 dark:text-purple-300 font-mono">wlroots + scenfx</span>
                         </div>
-                    </div>
 
-                    <!-- Node 4: Miqutoolkit -->
-                    <div class="w-full pl-6 tree-node-line">
-                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-purple-400 dark:hover:border-purple-500/40 transition-all flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <div class="w-7 h-7 rounded-md bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300 flex items-center justify-center text-xs">
-                                    <i class="fa-solid fa-code"></i>
+                        <!-- Node 4: Miqutoolkit -->
+                        <div class="w-full pl-6 tree-node-line">
+                            <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-[#fb4f5f]/40 transition-all flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-7 h-7 rounded-md bg-[#fb4f5f]/20 text-[#fb4f5f] flex items-center justify-center text-xs">
+                                        <i class="fa-solid fa-code"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs text-[#fb4f5f] block font-mono">Toolkit Layer</span>
+                                        <span class="text-sm font-medium text-slate-900 dark:text-white">Miqutoolkit (Developer kit)</span>
+                                    </div>
                                 </div>
-                                <div>
-                                    <span class="text-xs text-purple-600 dark:text-purple-400 block font-mono">Toolkit Layer</span>
-                                    <span class="text-sm font-medium text-slate-900 dark:text-white">Miqutoolkit (Developer kit)</span>
-                                </div>
+                                <span class="text-xs px-2 py-0.5 rounded bg-[#fb4f5f]/10 text-[#fb4f5f] font-mono">pango, cairo, openGL</span>
                             </div>
-                            <span class="text-xs px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-500/10 text-purple-700 dark:text-purple-300 font-mono">pango, cairo, openGL</span>
                         </div>
-                    </div>
 
-                    <!-- Node 5: Miquapps -->
-                    <div class="w-full pl-6 tree-node-line">
-                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-purple-400 dark:hover:border-purple-500/40 transition-all flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <div class="w-7 h-7 rounded-md bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300 flex items-center justify-center text-xs">
-                                    <i class="fa-solid fa-cube"></i>
+                        <!-- Node 5: Miquapps -->
+                        <div class="w-full pl-6 tree-node-line">
+                            <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-[#fb4f5f]/40 transition-all flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-7 h-7 rounded-md bg-[#fb4f5f]/20 text-[#fb4f5f] flex items-center justify-center text-xs">
+                                        <i class="fa-solid fa-cube"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs text-[#fb4f5f] block font-mono">Application Layer</span>
+                                        <span class="text-sm font-medium text-slate-900 dark:text-white">Miquapps (Native apps and tools)</span>
+                                    </div>
                                 </div>
-                                <div>
-                                    <span class="text-xs text-purple-600 dark:text-purple-400 block font-mono">Application Layer</span>
-                                    <span class="text-sm font-medium text-slate-900 dark:text-white">Miquapps (Native apps and tools)</span>
-                                </div>
+                                <span class="text-xs px-2 py-0.5 rounded bg-[#fb4f5f]/10 text-[#fb4f5f] font-mono">User Space</span>
                             </div>
-                            <span class="text-xs px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-500/10 text-purple-700 dark:text-purple-300 font-mono">User Space</span>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Components of miqu-project Section -->
+            <section class="space-y-6">
+                <div class="border-b border-slate-200 dark:border-white/10 pb-3 flex items-center justify-between">
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+                        <i class="fa-solid fa-puzzle-piece text-[#fb4f5f]"></i> Components of miqu-project
+                    </h2>
+                    <span class="text-xs text-slate-500 dark:text-gray-400 font-mono hidden sm:inline">Click any box to view details</span>
+                </div>
+
+                <div class="text-sm text-slate-700 dark:text-gray-300 leading-relaxed bg-slate-100 dark:bg-white/5 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-white/10">
+                    All components are plug and play. <strong class="font-bold text-slate-900 dark:text-white">Miquland</strong> is independent of miqutoolkit, and <strong class="font-bold text-slate-900 dark:text-white">miqutoolkit</strong> is independent of miquland. If miqutoolkit is installed in any wayland compositor e.g. hyprland, all the miqu-linux apps will run natively. Alternatively one can only use Miquland and not install miqutoolkit and miqu-linux apps rather may use waybar, rofi etc. Miquland treats them all the same.
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Component 1: Miquland -->
+                    <div onclick="openComponentModal('miquland')" class="group p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard hover:border-[#fb4f5f]/50 shadow-xs dark:shadow-none transition-all flex flex-col justify-between cursor-pointer">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 rounded-lg bg-[#fb4f5f]/15 text-[#fb4f5f] flex items-center justify-center text-xs">
+                                        <i class="fa-solid fa-window-maximize"></i>
+                                    </div>
+                                    <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-[#fb4f5f] transition-colors">Miquland</h3>
+                                </div>
+                                <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-[#fb4f5f]/10 hover:bg-[#fb4f5f]/20 text-[#fb4f5f] border border-[#fb4f5f]/20 flex items-center gap-1.5 transition-all shadow-2xs">
+                                    <i class="fa-brands fa-github text-xs"></i>
+                                    <span>GitHub</span>
+                                </a>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                                Flagship wayland dynamic tiling window manager and compositor using wlroots and scenfx.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-xs text-[#fb4f5f] font-medium">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-microchip text-xs"></i> Compositor architecture</span>
+                            <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
                         </div>
                     </div>
 
+                    <!-- Component 2: Miqutoolkit -->
+                    <div onclick="openComponentModal('miqutoolkit')" class="group p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard hover:border-[#fb4f5f]/50 shadow-xs dark:shadow-none transition-all flex flex-col justify-between cursor-pointer">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 rounded-lg bg-[#fb4f5f]/15 text-[#fb4f5f] flex items-center justify-center text-xs">
+                                        <i class="fa-solid fa-code"></i>
+                                    </div>
+                                    <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-[#fb4f5f] transition-colors">Miqutoolkit</h3>
+                                </div>
+                                <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-[#fb4f5f]/10 hover:bg-[#fb4f5f]/20 text-[#fb4f5f] border border-[#fb4f5f]/20 flex items-center gap-1.5 transition-all shadow-2xs">
+                                    <i class="fa-brands fa-github text-xs"></i>
+                                    <span>GitHub</span>
+                                </a>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                                The app development UI kit using pango, cairo, openGL.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-xs text-[#fb4f5f] font-medium">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-cubes text-xs"></i> Toolkit specifications</span>
+                            <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Component 3: Miqu Linux Apps -->
+                    <div onclick="openComponentModal('linux')" class="group p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard hover:border-[#fb4f5f]/50 shadow-xs dark:shadow-none transition-all flex flex-col justify-between cursor-pointer">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 rounded-lg bg-[#fb4f5f]/15 text-[#fb4f5f] flex items-center justify-center text-xs">
+                                        <i class="fa-solid fa-layer-group"></i>
+                                    </div>
+                                    <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-[#fb4f5f] transition-colors">Miqu Linux Apps</h3>
+                                </div>
+                                <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-[#fb4f5f]/10 hover:bg-[#fb4f5f]/20 text-[#fb4f5f] border border-[#fb4f5f]/20 flex items-center gap-1.5 transition-all shadow-2xs">
+                                    <i class="fa-brands fa-github text-xs"></i>
+                                    <span>GitHub</span>
+                                </a>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                                Apps made using miqutoolkit which includes plugins, login manager, authentication agent, gallery app etc.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-xs text-[#fb4f5f] font-medium">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-table-cells text-xs"></i> Click to view all 16 applications</span>
+                            <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Component 4: Miqu Android Apps -->
+                    <div onclick="openComponentModal('android')" class="group p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard hover:border-[#fb4f5f]/50 shadow-xs dark:shadow-none transition-all flex flex-col justify-between cursor-pointer">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 rounded-lg bg-[#fb4f5f]/15 text-[#fb4f5f] flex items-center justify-center text-xs">
+                                        <i class="fa-solid fa-mobile-screen"></i>
+                                    </div>
+                                    <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-[#fb4f5f] transition-colors">Miqu Android Apps</h3>
+                                </div>
+                                <a href="https://github.com/miqu-project/miqu-android" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-[#fb4f5f]/10 hover:bg-[#fb4f5f]/20 text-[#fb4f5f] border border-[#fb4f5f]/20 flex items-center gap-1.5 transition-all shadow-2xs">
+                                    <i class="fa-brands fa-github text-xs"></i>
+                                    <span>GitHub</span>
+                                </a>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                                JetPack Compose + Kotlin apps under miqu-project with ecosystem integration where needed.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-xs text-[#fb4f5f] font-medium">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-mobile text-xs"></i> Click to view companion apps</span>
+                            <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Components of miqu-project Section -->
-        <section class="space-y-6">
-            <div class="border-b border-slate-200 dark:border-white/10 pb-3">
-                <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                    <i class="fa-solid fa-puzzle-piece text-purple-600 dark:text-purple-400"></i> Components of miqu-project
-                </h2>
-            </div>
+            <!-- Quick Installation Section -->
+            <section class="space-y-6">
+                <div class="border-b border-slate-200 dark:border-white/10 pb-3">
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+                        <i class="fa-solid fa-terminal text-[#fb4f5f]"></i> Quick Installation
+                    </h2>
+                </div>
 
-            <p class="text-sm text-slate-700 dark:text-gray-300 leading-relaxed bg-slate-100 dark:bg-white/5 p-4 rounded-xl border border-slate-200 dark:border-white/10">
-                All components are plug and play. Miquland is independent of miqutoolkit and miqutoolkit is independent of miquland. If miqutoolkit is installed in any wayland compositor e.g. hyprland, all the miqu-linux apps will run natively. Alternatively one can only use Miquland and not install miqutoolkit and miqu-linux apps rather may use waybar, rofi etc. Miquland treats them all the same.
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- Miquland -->
-                <div class="p-5 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard hover:border-purple-400 dark:hover:border-purple-500/50 shadow-xs dark:shadow-none transition-all flex flex-col justify-between">
-                    <div>
+                <div class="space-y-4">
+                    <div class="rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard p-5 shadow-xs dark:shadow-none">
                         <div class="flex items-center justify-between mb-3">
-                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Miquland</h3>
-                            <a href="https://github.com/miqu-project/miquland" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-purple-50 hover:bg-purple-100 dark:bg-purple-500/10 dark:hover:bg-purple-500/20 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-500/20 flex items-center gap-1.5 transition-all shadow-2xs">
-                                <i class="fa-brands fa-github text-xs"></i>
-                                <span>GitHub</span>
-                            </a>
+                            <span class="text-xs font-mono text-[#fb4f5f] bg-[#fb4f5f]/10 px-2.5 py-1 rounded-lg border border-[#fb4f5f]/20">Option 1: Recursive Workspace</span>
+                            <button onclick="copyCode('code-opt1', this)" class="px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-white/5 dark:hover:bg-white/10 text-xs font-medium text-slate-700 dark:text-gray-300 flex items-center gap-1.5 transition-all border border-slate-200 dark:border-transparent">
+                                <i class="fa-regular fa-copy"></i> Copy
+                            </button>
                         </div>
-                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
-                            Flagship wayland dynamic tiling window manager and compositor using wlroots and scenfx.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Miqutoolkit -->
-                <div class="p-5 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard hover:border-purple-400 dark:hover:border-purple-500/50 shadow-xs dark:shadow-none transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Miqutoolkit</h3>
-                            <a href="https://github.com/miqu-project/miqutoolkit" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-purple-50 hover:bg-purple-100 dark:bg-purple-500/10 dark:hover:bg-purple-500/20 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-500/20 flex items-center gap-1.5 transition-all shadow-2xs">
-                                <i class="fa-brands fa-github text-xs"></i>
-                                <span>GitHub</span>
-                            </a>
-                        </div>
-                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
-                            The app development UI kit using pango, cairo, openGL.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Miqu Linux Apps -->
-                <div class="p-5 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard hover:border-purple-400 dark:hover:border-purple-500/50 shadow-xs dark:shadow-none transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Miqu Linux Apps</h3>
-                            <a href="https://github.com/miqu-project/miqu-linux-apps" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-purple-50 hover:bg-purple-100 dark:bg-purple-500/10 dark:hover:bg-purple-500/20 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-500/20 flex items-center gap-1.5 transition-all shadow-2xs">
-                                <i class="fa-brands fa-github text-xs"></i>
-                                <span>GitHub</span>
-                            </a>
-                        </div>
-                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
-                            Apps made using miqutoolkit which includes plugins, login manager, authentication agent, gallery app etc.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Miqu Android Apps -->
-                <div class="p-5 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard hover:border-purple-400 dark:hover:border-purple-500/50 shadow-xs dark:shadow-none transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Miqu Android Apps</h3>
-                            <a href="https://github.com/miqu-project/miqu-android" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-purple-50 hover:bg-purple-100 dark:bg-purple-500/10 dark:hover:bg-purple-500/20 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-500/20 flex items-center gap-1.5 transition-all shadow-2xs">
-                                <i class="fa-brands fa-github text-xs"></i>
-                                <span>GitHub</span>
-                            </a>
-                        </div>
-                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
-                            JetPack Compose + Kotlin apps under miqu-project with ecosystem integration where needed.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Quick Installation Section -->
-        <section class="space-y-6">
-            <div class="border-b border-slate-200 dark:border-white/10 pb-3">
-                <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                    <i class="fa-solid fa-terminal text-purple-600 dark:text-purple-400"></i> Quick Installation
-                </h2>
-            </div>
-
-            <div class="space-y-4">
-                <div class="rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard p-5 shadow-xs dark:shadow-none">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="text-xs font-mono text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-500/10 px-2.5 py-1 rounded border border-purple-200 dark:border-purple-500/20">Option 1: Recursive Workspace</span>
-                        <button onclick="copyCode('code-opt1', this)" class="px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-white/5 dark:hover:bg-white/10 text-xs font-medium text-slate-700 dark:text-gray-300 flex items-center gap-1.5 transition-all border border-slate-200 dark:border-transparent">
-                            <i class="fa-regular fa-copy"></i> Copy
-                        </button>
-                    </div>
-                    <pre class="bg-[#0e1117] p-4 rounded-lg font-mono text-xs sm:text-sm text-gray-200 overflow-x-auto border border-slate-200/50 dark:border-transparent"><code id="code-opt1">git clone --recurse-submodules https://github.com/miqu-project/miqu-project.git
+                        <pre class="bg-[#0e1117] p-4 rounded-xl font-mono text-xs sm:text-sm text-gray-200 overflow-x-auto border border-slate-200/50 dark:border-transparent"><code id="code-opt1">git clone --recurse-submodules https://github.com/miqu-project/miqu-project.git
 cd miqu-project
 sudo ./install_all.sh</code></pre>
-                </div>
-
-                <div class="rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard p-5 shadow-xs dark:shadow-none">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="text-xs font-mono text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-500/10 px-2.5 py-1 rounded border border-purple-200 dark:border-purple-500/20">Option 2: Individual Build / CMake</span>
-                        <button onclick="copyCode('code-opt2', this)" class="px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-white/5 dark:hover:bg-white/10 text-xs font-medium text-slate-700 dark:text-gray-300 flex items-center gap-1.5 transition-all border border-slate-200 dark:border-transparent">
-                            <i class="fa-regular fa-copy"></i> Copy
-                        </button>
                     </div>
-                    <pre class="bg-[#0e1117] p-4 rounded-lg font-mono text-xs sm:text-sm text-gray-200 overflow-x-auto border border-slate-200/50 dark:border-transparent"><code id="code-opt2">git clone https://github.com/miqu-project/miquland.git
+
+                    <div class="rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard p-5 shadow-xs dark:shadow-none">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-[#fb4f5f] bg-[#fb4f5f]/10 px-2.5 py-1 rounded-lg border border-[#fb4f5f]/20">Option 2: Individual Build / CMake</span>
+                            <button onclick="copyCode('code-opt2', this)" class="px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-white/5 dark:hover:bg-white/10 text-xs font-medium text-slate-700 dark:text-gray-300 flex items-center gap-1.5 transition-all border border-slate-200 dark:border-transparent">
+                                <i class="fa-regular fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre class="bg-[#0e1117] p-4 rounded-xl font-mono text-xs sm:text-sm text-gray-200 overflow-x-auto border border-slate-200/50 dark:border-transparent"><code id="code-opt2">git clone https://github.com/miqu-project/miquland.git
 cd miquland
 ./make.sh         # local build
 sudo ./make.sh   # system install (/usr)
@@ -337,43 +421,966 @@ sudo ./make.sh   # system install (/usr)
 cmake -B build -DCMAKE_INSTALL_PREFIX="/usr"
 cmake --build build -j"$(nproc)"
 sudo cmake --install build</code></pre>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- License Section -->
-        <section id="llm" class="space-y-6 pt-4">
-            <div class="border-b border-slate-200 dark:border-white/10 pb-3">
-                <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                    <i class="fa-solid fa-scale-balanced text-purple-600 dark:text-purple-400"></i> License
-                </h2>
-            </div>
-            <p class="text-sm text-slate-600 dark:text-gray-300">
-                Open-source software licensed under the MIT License. Contributions and ecosystem extensions are welcome.
-            </p>
-        </section>
+            <!-- License Section -->
+            <section class="space-y-6 pt-2">
+                <div class="border-b border-slate-200 dark:border-white/10 pb-3">
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+                        <i class="fa-solid fa-scale-balanced text-[#fb4f5f]"></i> License
+                    </h2>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:items-center gap-4 p-5 rounded-2xl bg-white dark:bg-miqucard border border-slate-200 dark:border-white/10">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#fb4f5f]/10 border border-[#fb4f5f]/20 text-xs font-semibold text-[#fb4f5f] w-fit">
+                        <i class="fa-solid fa-certificate"></i>
+                        MIT License
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-gray-300">
+                        Open-source software licensed under the MIT License. Contributions and ecosystem extensions are welcome.
+                    </p>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- TAB 2: DOCS                                               -->
+        <!-- ========================================================= -->
+        <div id="tab-docs" class="tab-panel hidden">
+            <article class="max-w-4xl mx-auto px-4 sm:px-8 py-12 sm:py-16 space-y-12 text-brand-800 dark:text-brand-200">
+                <!-- Document Header -->
+                <header class="border-b border-brand-200/80 dark:border-brand-800/80 pb-8">
+                    <div class="text-xs font-mono font-medium text-brand-500 dark:text-brand-400 mb-2">ecosystem guide & architecture</div>
+                    <h1 class="text-2xl sm:text-3xl font-bold text-brand-900 dark:text-white tracking-tight mb-3">documentation</h1>
+                    <p class="text-sm sm:text-base text-brand-600 dark:text-brand-400 leading-relaxed max-w-2xl">
+                        Welcome to Miqu. This guide walks you through how Miqu is designed, how configuration works, how components communicate, and how to build and extend the desktop environment.
+                    </p>
+                </header>
+
+                <!-- Section 1: Overview & Platform Base -->
+                <section id="overview" class="space-y-4">
+                    <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">overview & platform base</h2>
+                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                        Our goal with Miqu is simple: build a complete, cohesive, and modern Wayland desktop environment from the ground up. Instead of gluing together disparate tools with conflicting styles and heavy background services, Miqu gives you a unified ecosystem where every application shares the exact same design language, configuration model, and lightweight performance philosophy.
+                    </p>
+                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                        We develop and test Miqu primarily on Arch Linux. Because everything is built on open Wayland standards via <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">wlroots</code>, Cairo, and Pango, the entire desktop compiles and runs cleanly across other modern Linux distributions without vendor lock-in.
+                    </p>
+                    <div class="border-l-2 border-[#fb4f5f] dark:border-[#fb4f5f] pl-4 py-1 text-sm text-brand-600 dark:text-brand-400 italic">
+                        &ldquo;A fully functional desktop environment is our goal, and we make steady progress by adhering to clean code, clear boundaries, and zero hidden magic.&rdquo;
+                    </div>
+                </section>
+
+                <!-- Section 2: How Configuration Works -->
+                <section id="config-doctrine" class="space-y-6 pt-6 border-t border-brand-200/60 dark:border-brand-800/60">
+                    <div class="space-y-2">
+                        <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">how configuration works</h2>
+                        <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                            Configuration management can easily become messy if not carefully planned. Many desktops scatter settings across hidden databases, layered overrides, or opaque background daemons. In Miqu, we follow a straightforward two-tier model that keeps your configuration predictable, safe, and completely transparent.
+                        </p>
+                    </div>
+
+                    <div class="space-y-5">
+                        <div class="space-y-1.5">
+                            <h3 class="text-base font-semibold text-brand-900 dark:text-white">1. Zero-config out of the box</h3>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                When you install Miqu, every application works immediately out of the box. Applications read directly from authoritative system defaults in <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">/usr/share/&lt;app&gt;/&lt;app&gt;.conf</code>. We never pollute your home directory or auto-create files in <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">~/.config/</code> until you explicitly ask for them.
+                            </p>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <h3 class="text-base font-semibold text-brand-900 dark:text-white">2. On-demand initialization with safe archiving</h3>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Whenever you are ready to customize an application, simply run:
+                            </p>
+                            <pre class="bg-brand-50/70 dark:bg-brand-900/50 border border-brand-200/80 dark:border-brand-800 rounded-lg p-3 text-xs font-mono text-brand-800 dark:text-brand-200 overflow-x-auto"><code>&lt;app-name&gt; --init-config</code></pre>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                This writes a fresh, fully documented configuration template to <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">~/.config/&lt;app&gt;/&lt;app&gt;.conf</code>. If you already have an existing configuration, it is never silently overwritten—it is safely backed up with a timestamp (<code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">.bak.YYYYMMDD-HHMMSS</code>) before the new template is written.
+                            </p>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <h3 class="text-base font-semibold text-brand-900 dark:text-white">3. Single-file authority</h3>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Once your user configuration exists, the application reads <em>only</em> from that file. There is no silent fallback merging in C++ code where missing values secretly revert to hardcoded values. What you see in your configuration file is exactly what gets applied.
+                            </p>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <h3 class="text-base font-semibold text-brand-900 dark:text-white">4. Decoupled dynamic theming</h3>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Dynamic theming is completely decoupled from our C++ UI toolkit. If you want dynamic color palettes generated from your wallpaper via <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">miqutheme</code>, you include this line in your config:
+                            </p>
+                            <pre class="bg-brand-50/70 dark:bg-brand-900/50 border border-brand-200/80 dark:border-brand-800 rounded-lg p-3 text-xs font-mono text-brand-800 dark:text-brand-200 overflow-x-auto"><code>source = ~/.config/miqutheme/current/miqutoolkit.conf</code></pre>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Sourced files are automatically watched via inotify. Whenever your wallpaper or theme changes, all running apps reload colors live without needing a restart. If you prefer fixed, static colors, you can simply remove or comment out the source line and define colors directly.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 3: Ecosystem Components -->
+                <section id="components" class="space-y-6 pt-6 border-t border-brand-200/60 dark:border-brand-800/60">
+                    <div class="space-y-2">
+                        <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">ecosystem components</h2>
+                        <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                            Miqu is structured cleanly into three tiers: the compositor, the shared toolkit, and client applications. Each layer has a focused responsibility:
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h3 class="text-base font-semibold text-brand-900 dark:text-white">Core Compositor & Framework</h3>
+                        <dl class="space-y-3 text-sm sm:text-base">
+                            <div>
+                                <dt class="font-bold text-brand-900 dark:text-white">miquland</dt>
+                                <dd class="text-brand-700 dark:text-brand-300 leading-relaxed">Our flagship Wayland compositor based on wlroots. Handles tiling and floating layouts, workspace switching, multi-monitor setups, layer-shell integration, and GPU visual effects—sleeping completely in the event loop at 0% idle CPU.</dd>
+                            </div>
+                            <div>
+                                <dt class="font-bold text-brand-900 dark:text-white">miqutoolkit</dt>
+                                <dd class="text-brand-700 dark:text-brand-300 leading-relaxed">The shared C++20 UI framework used by every native Miqu app. Provides Cairo/Pango vector rendering, layout containers, reusable widgets, and live theme synchronization.</dd>
+                            </div>
+                        </dl>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h3 class="text-base font-semibold text-brand-900 dark:text-white">Native Linux Applications</h3>
+                        <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                            Rather than relying on inconsistent third-party utilities, Miqu provides a full desktop suite built natively on <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">miqutoolkit</code>:
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-sm">
+                            <div><strong class="text-brand-900 dark:text-white">miqubar:</strong> <span class="text-brand-600 dark:text-brand-400">Status bar with workspaces, system tray, battery/network telemetry, and flyouts.</span></div>
+                            <div><strong class="text-brand-900 dark:text-white">miqudesk:</strong> <span class="text-brand-600 dark:text-brand-400">Desktop canvas bringing desktop icons, shortcuts, and widgets to Wayland.</span></div>
+                            <div><strong class="text-brand-900 dark:text-white">miqumusic:</strong> <span class="text-brand-600 dark:text-brand-400">Fast, lightweight native MPD client and audio playback interface.</span></div>
+                            <div><strong class="text-brand-900 dark:text-white">miqulauncher:</strong> <span class="text-brand-600 dark:text-brand-400">Fast fuzzy application launcher, dmenu alternative, and window switcher.</span></div>
+                            <div><strong class="text-brand-900 dark:text-white">miquoverview:</strong> <span class="text-brand-600 dark:text-brand-400">Live workspace overview and window management expose utility.</span></div>
+                            <div><strong class="text-brand-900 dark:text-white">miqunotify:</strong> <span class="text-brand-600 dark:text-brand-400">Desktop notification daemon with slide-out history center.</span></div>
+                            <div><strong class="text-brand-900 dark:text-white">miqutheme:</strong> <span class="text-brand-600 dark:text-brand-400">Visual theme and appearance manager for wallpapers, palettes, and tokens.</span></div>
+                            <div><strong class="text-brand-900 dark:text-white">miqusecure:</strong> <span class="text-brand-600 dark:text-brand-400">Privacy and security center managing Tor, OpenSnitch firewall, and LUKS status.</span></div>
+                            <div><strong class="text-brand-900 dark:text-white">miqugallery:</strong> <span class="text-brand-600 dark:text-brand-400">High-performance image viewer and media gallery application.</span></div>
+                            <div><strong class="text-brand-900 dark:text-white">miquinfo:</strong> <span class="text-brand-600 dark:text-brand-400">Hardware monitoring, system telemetry, and diagnostic resource utility.</span></div>
+                            <div><strong class="text-brand-900 dark:text-white">miqudm:</strong> <span class="text-brand-600 dark:text-brand-400">Native Wayland display manager and login greeter with PAM integration.</span></div>
+                            <div><strong class="text-brand-900 dark:text-white">miqubg:</strong> <span class="text-brand-600 dark:text-brand-400">Wallpaper daemon for rendering, scaling, and transitioning background images.</span></div>
+                            <div><strong class="text-brand-900 dark:text-white">miqulock:</strong> <span class="text-brand-600 dark:text-brand-400">Session locking utility implementing ext-session-lock-v1 protocol.</span></div>
+                            <div><strong class="text-brand-900 dark:text-white">miquidle:</strong> <span class="text-brand-600 dark:text-brand-400">Idle management daemon monitoring activity via ext-idle-notify-v1.</span></div>
+                            <div><strong class="text-brand-900 dark:text-white">miqupolkit:</strong> <span class="text-brand-600 dark:text-brand-400">Graphical Polkit authentication agent for privilege escalation prompts.</span></div>
+                            <div><strong class="text-brand-900 dark:text-white">miqutest:</strong> <span class="text-brand-600 dark:text-brand-400">Interactive widget showcase and sandbox for testing toolkit controls.</span></div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h3 class="text-base font-semibold text-brand-900 dark:text-white">Companion Android Apps</h3>
+                        <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                            Alongside our Linux desktop apps, we maintain companion mobile applications including <strong>doctor</strong> (clinical healthcare tracking companion) and <strong>recitation</strong> (distraction-free audio recitation and memorization companion).
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Section 4: Building & Installing -->
+                <section id="build-install" class="space-y-4 pt-6 border-t border-brand-200/60 dark:border-brand-800/60">
+                    <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">build system & installation</h2>
+                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                        Building software should never be a mystery. Every repository in Miqu includes a standardized ~20-line <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">make.sh</code> script so the workflow is identical across all components:
+                    </p>
+
+                    <div class="space-y-3 text-sm sm:text-base text-brand-700 dark:text-brand-300">
+                        <p><strong>Building locally:</strong> Run <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">./make.sh</code> as a normal user. It configures CMake and builds into a local <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">build/</code> directory without touching your system.</p>
+                        
+                        <p><strong>Installing system-wide:</strong> Run <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">sudo ./make.sh</code>. It automatically compiles and installs binaries, assets, desktop entries, and icons directly to <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">/usr</code>.</p>
+
+                        <p><strong>One-command full ecosystem install:</strong> In the root workspace repository, running <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">./install_all.sh</code> compiles and installs everything in correct topological order:</p>
+                    </div>
+
+                    <pre class="bg-brand-50/70 dark:bg-brand-900/50 border border-brand-200/80 dark:border-brand-800 rounded-lg p-3 text-xs font-mono text-brand-800 dark:text-brand-200 overflow-x-auto"><code>git clone --recurse-submodules https://github.com/miqu-project/miqu-project.git
+cd miqu-project
+./install_all.sh</code></pre>
+                </section>
+
+                <!-- Section 5: Core Craftsmanship -->
+                <section id="craftsmanship" class="space-y-4 pt-6 border-t border-brand-200/60 dark:border-brand-800/60">
+                    <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">core craftsmanship standards</h2>
+                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                        We adhere to strict engineering disciplines across our C++20 codebase to make sure the desktop remains stable, performant, and maintainable:
+                    </p>
+
+                    <ul class="list-disc list-inside space-y-2.5 text-sm sm:text-base text-brand-700 dark:text-brand-300 pl-2">
+                        <li><strong>Small, single-responsibility functions:</strong> Functions stay around 40–50 lines. Geometry math, state validation, and rendering routines are broken into clear helpers rather than monolithic blocks.</li>
+                        <li><strong>Strict RAII and pointer safety:</strong> Raw allocations, file descriptors, Cairo contexts, and Pango layouts are immediately bound to RAII guards or <code class="font-mono text-xs">std::unique_ptr</code>. No resource leaks, no zombie states.</li>
+                        <li><strong>Zero idle CPU usage:</strong> Everything is event-driven. When there are no input events, damaged scene buffers, or running animations, the compositor and apps sleep completely in the Wayland event loop at 0.0% CPU.</li>
+                        <li><strong>Main-thread UI confinement:</strong> Wayland protocols and rendering run strictly on the main event-loop thread. Background worker threads communicate cleanly via pipes or eventfd rather than touching UI widgets directly.</li>
+                        <li><strong>Toolkit sovereignty:</strong> Client applications never bypass <code class="font-mono text-xs">miqutoolkit</code> to draw raw surfaces directly. When an app needs a new UI control, we build it directly inside the toolkit for everyone to use.</li>
+                    </ul>
+                </section>
+
+                <!-- Section 6: Active Roadmap -->
+                <section id="roadmap" class="space-y-4 pt-6 border-t border-brand-200/60 dark:border-brand-800/60">
+                    <h2 class="text-lg sm:text-xl font-bold text-brand-900 dark:text-white tracking-tight">active ecosystem roadmap</h2>
+                    <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                        We are steadily evolving the Miqu desktop environment. Here is our active focus for upcoming releases:
+                    </p>
+
+                    <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-brand-700 dark:text-brand-300 pl-2">
+                        <li><strong>miquctl IPC CLI:</strong> First-party command-line controller communicating over a Unix domain socket for workspace switching, window dispatching, monitor configuration, and runtime diagnostics.</li>
+                        <li><strong>Plugin System v2.0:</strong> An event bus for window and workspace lifecycle hooks, multi-finger gesture callbacks, and custom tiling layout engines (spiral, dwindle, monocle).</li>
+                        <li><strong>Next Desktop Utilities:</strong> Screenshot tool (<code class="font-mono text-xs">miqushot</code>), blue light filter (<code class="font-mono text-xs">miqusunset</code>), centralized settings (<code class="font-mono text-xs">miqusettings</code>), and power dialog (<code class="font-mono text-xs">miqupower</code>).</li>
+                        <li><strong>Native Toolkit Animations:</strong> First-class frame-driven physics, easing curves, and geometry interpolations built directly into <code class="font-mono text-xs">miqutoolkit</code>.</li>
+                        <li><strong>Multi-Touch Gestures:</strong> Multi-finger gesture recognition for touchscreens and touchpads (swipes, pinch-to-zoom, edge gestures).</li>
+                    </ol>
+                </section>
+            </article>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- TAB 3: LLM USE & SAFETY                                   -->
+        <!-- ========================================================= -->
+        <div id="tab-llm" class="tab-panel hidden">
+            <article class="max-w-4xl mx-auto px-4 sm:px-8 py-12 sm:py-16 space-y-12 text-brand-800 dark:text-brand-200">
+                <!-- Document Header -->
+                <header class="border-b border-brand-200/80 dark:border-brand-800/80 pb-8">
+                    <div class="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-[#fb4f5f] bg-[#fb4f5f]/10 px-2.5 py-1 rounded-md mb-3 border border-brand-200/50 dark:border-brand-700/50">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <span>code integrity, authorship & engineering safety</span>
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl font-bold text-brand-900 dark:text-white tracking-tight mb-3">ai in software & code safety</h1>
+                    <p class="text-sm sm:text-base text-brand-600 dark:text-brand-400 leading-relaxed max-w-2xl">
+                        A rigorous examination of software authorship, abstraction layers, and the double standards of modern programming—followed by how Miqu strictly enforces memory safety, offline privacy, and complete open-source transparency.
+                    </p>
+                </header>
+
+                <!-- ========================================================= -->
+                <!-- PART 1: THE UNIVERSAL CASE (GENERAL & MIQU-AGNOSTIC)      -->
+                <!-- ========================================================= -->
+                <div class="space-y-12">
+                    <!-- Part 1 Banner -->
+                    <div class="p-4 sm:p-5 rounded-xl bg-gradient-to-r from-brand-50 to-brand-100/40 dark:from-brand-900/40 dark:to-brand-800/20 border border-brand-200/80 dark:border-brand-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+                        <div>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-gradient-to-r from-[#f97f68] to-[#fb4f5f] text-white text-xs font-bold uppercase tracking-wider">
+                                part 1 &mdash; universal principles
+                            </span>
+                            <h2 class="text-base sm:text-lg font-bold text-brand-900 dark:text-white mt-1">the epistemology of modern software authorship</h2>
+                            <p class="text-xs text-brand-600 dark:text-brand-400 mt-0.5">
+                                A technology-wide perspective on abstractions, software tools, and the double standards of modern code criticism.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Section 1: Philosophy & Authorship (id="philosophy") -->
+                    <section id="philosophy" class="space-y-8">
+                        <!-- Chapter 1.1 -->
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-2">
+                                <span class="flex items-center justify-center w-6 h-6 rounded-md bg-brand-100 dark:bg-brand-800 text-brand-800 dark:text-brand-200 text-xs font-mono font-bold">01</span>
+                                <h3 class="text-base sm:text-lg font-bold text-brand-900 dark:text-white tracking-tight">is using ai in coding inherently bad?</h3>
+                            </div>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                When developers discuss artificial intelligence in programming, a core question arises: <em>If you use an AI tool to assist in writing code, are you still the author of your software?</em>
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                To answer this objectively, we must understand how software has actually evolved over the past seventy years. Writing software has never been about the physical labor of pressing keys on a keyboard. It has always been about <strong>solving problems, structuring logic, managing trade-offs, and directing machines</strong> to perform deterministic tasks.
+                            </p>
+                        </div>
+
+                        <!-- Chapter 1.2: Abstractions in History -->
+                        <div class="space-y-3 pl-0 sm:pl-4 border-l-0 sm:border-l-2 border-brand-200/80 dark:border-brand-800/80">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">the history of computing is a history of abstractions</h4>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                In the earliest days of computing, programming required punching holes into paper cards or toggling front-panel switches in raw binary. Every single opcode had to be calculated by hand.
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                When assembly language and the first compilers were invented, critics argued that using a compiler was "cheating" and that future engineers would no longer understand the machine. Yet without compilers, modern operating systems, web browsers, and scientific computing would be impossible. Every major milestone in software history—from machine code to assembly, from C to C++, from manual memory tracking to standard libraries, garbage collectors, and high-level frameworks—is an abstraction that automates mechanical labor so human developers can tackle larger, more ambitious architectures.
+                            </p>
+                        </div>
+
+                        <!-- Chapter 1.3: The TextView Test -->
+                        <div class="space-y-3 pl-0 sm:pl-4 border-l-0 sm:border-l-2 border-brand-200/80 dark:border-brand-800/80">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">the textview test: nobody codes to the bottom layer</h4>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Consider a modern example: an Android developer creating an application. To display a simple line of text, they instantiate a <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">TextView</code>.
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Did that developer write the HarfBuzz font shaping engine? Did they write the FreeType glyph rasterizer, the Skia 2D rendering pipeline, the SurfaceFlinger compositor protocol, the Linux kernel framebuffers, or the GPU graphics drivers?
+                            </p>
+                            <div class="p-4 rounded-xl bg-brand-50/70 dark:bg-brand-900/30 border border-brand-200/70 dark:border-brand-800/70 text-sm text-brand-800 dark:text-brand-200 leading-relaxed">
+                                <strong>The Abstraction Reality:</strong> If using pre-existing code, libraries, and tools meant you were not an author, then almost no one alive today could be called a software developer. Unless you personally smelt the silicon, design the CPU instruction set, write the hardware drivers, and interact directly with hardware registers without any runtime library, you are always building upon someone else's work.
+                            </div>
+                        </div>
+
+                        <!-- Chapter 1.4: Assembling vs Building -->
+                        <div class="space-y-3 pl-0 sm:pl-4 border-l-0 sm:border-l-2 border-brand-200/80 dark:border-brand-800/80">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">assembling vs. building: a crucial technical distinction</h4>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                There is a vital difference between <strong>assembling</strong> finished pieces and <strong>building</strong> components from the ground up:
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Suppose someone downloads Arch Linux, installs Hyprland and Quickshell, configures dotfiles, adds a custom theme, and bundles the setup into a downloadable ISO. Are they the developer of that ISO?
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                They are the author and curator of that <em>distribution ISO bundle</em>. But they did not write Hyprland, the Wayland protocol bindings, or Quickshell. They orchestrated existing tools. In contrast, building the compositor itself, developing an independent UI toolkit, and programming native applications requires designing internal state machines, memory ownership, and low-level protocol lifecycles.
+                            </p>
+                        </div>
+
+                        <!-- Chapter 1.5: The Boundary & Infinite Regress -->
+                        <div class="space-y-3 pl-0 sm:pl-4 border-l-0 sm:border-l-2 border-brand-200/80 dark:border-brand-800/80">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">where is the boundary between an assembler and a developer?</h4>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                This leads to a critical philosophical question: <em>Where exactly is the boundary between a "developer" and an "assembler"?</em>
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                If using an abstraction or automated assistance makes someone "just an assembler," then the purist argument immediately collapses into an <strong>infinite regress</strong>. Does a C++ engineer become an assembler because they use <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">std::vector</code>, libc, and an optimizing compiler? Does a Linux kernel maintainer become an assembler because they build on top of CPU microcode and hardware specifications they did not design?
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 my-2">
+                                <div class="p-3.5 rounded-lg bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                    <div class="text-xs font-bold uppercase tracking-wider text-brand-500 mb-1">mere orchestration (assembly)</div>
+                                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                                        Taking finished, pre-compiled black-box applications and gluing them together using text configuration files, shell scripts, and themes. No new internal state machines, algorithms, or execution loops are authored.
+                                    </p>
+                                </div>
+                                <div class="p-3.5 rounded-lg bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                    <div class="text-xs font-bold uppercase tracking-wider text-brand-900 dark:text-brand-100 mb-1">system creation (development)</div>
+                                    <p class="text-xs sm:text-sm text-brand-700 dark:text-brand-300 leading-relaxed">
+                                        Designing new domain logic, data models, memory ownership lifecycles, and protocol state machines. Even when built upon lower-level primitives, the developer authors the logic that governs system behavior.
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Using an AI assistant to accelerate typing boilerplate syntax does not turn a software engineer into an assembler—any more than using an IDE autocomplete or a compiler does. The developer remains the author because they define the system, govern its logic, and bear full technical accountability for its execution.
+                            </p>
+                        </div>
+
+                        <!-- Chapter 1.6: Code Convergence -->
+                        <div class="space-y-3 pl-0 sm:pl-4 border-l-0 sm:border-l-2 border-brand-200/80 dark:border-brand-800/80">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">code convergence on constrained protocols: similar does not mean copied</h4>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Another frequent misunderstanding is the phenomenon of <strong>code convergence</strong>. When developers write software against strict system protocols and graphics APIs, their code will often look remarkably similar to existing projects on GitHub.
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Consider implementing dual-kawase background blur in a Wayland compositor using SceneFX or wlroots. The graphics pipeline dictates an exact sequence: bind the scene buffer, query the damaged bounding box, allocate offscreen framebuffers, dispatch shader passes with specific parameters (blur radius, iterations, noise), sample texture coordinates, and composite back to the screen.
+                            </p>
+                            <div class="p-4 rounded-xl bg-brand-50/70 dark:bg-brand-900/30 border border-brand-200/70 dark:border-brand-800/70 text-sm text-brand-800 dark:text-brand-200 leading-relaxed">
+                                <strong>The Merger Doctrine in Code:</strong> There are only one or two mathematically optimal ways to execute this pipeline. Whether written by a human or generated with the help of an AI, the code will naturally converge with other implementations across the open-source ecosystem. In computer science and copyright law, this is recognized as functional convergence: when a protocol allows only one optimal solution, similar code is the inevitable result of correct engineering, not plagiarism.
+                            </div>
+                        </div>
+
+                        <!-- Chapter 1.7: The Reality of AI Code -->
+                        <div class="space-y-3 pl-0 sm:pl-4 border-l-0 sm:border-l-2 border-brand-200/80 dark:border-brand-800/80">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">the reality of ai code: detection, context loss, and the &ldquo;half-done&rdquo; trap</h4>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                In the early days of generative AI, detecting machine-written code was trivial. Early models produced obvious patterns, hallucinated libraries, and repetitive boilerplate. Today, with modern reasoning models and agentic workflows, detecting AI-generated code has become virtually impossible. On basic or isolated problems, an AI can produce clean, idiomatic code that matches or even outperforms senior developers.
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                However, when applied to <strong>massive, multi-repository projects</strong>, AI hits a fundamental wall: <strong>it rapidly loses global context</strong>.
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                An AI model does not have the entire project architecture internalized. In a real-world desktop ecosystem with centralized theming, window management protocols, and custom UI components, asking an AI to simply &ldquo;add an About Us window&rdquo; will fail. The AI will rarely explore the codebase deeply enough to understand how global theming is implemented; instead, it will invent an ad-hoc layout with hardcoded colors and custom margins that completely breaks visual consistency. Even with comprehensive doctrine (such as an <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">AGENTS.md</code> file), LLM-powered IDEs frequently skip rules or lose focus unless actively guided by the developer on where to look and what contracts to enforce.
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Furthermore, AI models suffer from a pervasive <strong>&ldquo;minimum-viable&rdquo; bias</strong>. If you prompt an AI to create a <code class="px-1.5 py-0.5 rounded bg-brand-100 dark:bg-brand-800 font-mono text-xs">TextView</code> widget, it will generate the absolute minimum code to draw a single line of text. It will routinely omit critical real-world requirements: multiline wrapping, text alignment, ellipsis truncation, bi-directional text, and DPI scaling. It delivers a superficial, &ldquo;half-done&rdquo; implementation that compiles but immediately fails in production.
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                The human developer must hold the mental map of every class, dependency, and design token in their head. The developer must anticipate missing edge cases, seal every functional gap in the prompt, direct the model's focus, and audit every line of output. When a developer performs this immense cognitive labor, criticizing them simply because they did not physically stroke the keys for repetitive builder syntax is completely futile.
+                            </p>
+                        </div>
+
+                        <!-- Chapter 1.8: What True Authorship Means -->
+                        <div class="space-y-3 pt-2">
+                            <div class="flex items-center gap-2">
+                                <span class="flex items-center justify-center w-6 h-6 rounded-md bg-brand-100 dark:bg-brand-800 text-brand-800 dark:text-brand-200 text-xs font-mono font-bold">02</span>
+                                <h3 class="text-base sm:text-lg font-bold text-brand-900 dark:text-white tracking-tight">what true software authorship actually means</h3>
+                            </div>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Keystrokes are cheap. An AI model can generate thousands of lines of syntax in seconds, but it has no intent, no understanding of system constraints, no real-world experience, and no ability to test software on real hardware.
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                True authorship in software engineering consists of three non-delegable pillars:
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-2">
+                                <div class="p-4 rounded-xl bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                    <div class="text-xs font-mono font-bold text-brand-600 dark:text-brand-400 mb-1">PILLAR 1</div>
+                                    <h5 class="font-bold text-sm text-brand-900 dark:text-white mb-1">Intent</h5>
+                                    <p class="text-xs text-brand-600 dark:text-brand-400 leading-relaxed">
+                                        Deciding what needs to be built, why it must exist, and what problem it solves for users.
+                                    </p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                    <div class="text-xs font-mono font-bold text-brand-600 dark:text-brand-400 mb-1">PILLAR 2</div>
+                                    <h5 class="font-bold text-sm text-brand-900 dark:text-white mb-1">Architecture</h5>
+                                    <p class="text-xs text-brand-600 dark:text-brand-400 leading-relaxed">
+                                        Designing data structures, component boundaries, memory ownership models, and lifecycle contracts.
+                                    </p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                    <div class="text-xs font-mono font-bold text-brand-600 dark:text-brand-400 mb-1">PILLAR 3</div>
+                                    <h5 class="font-bold text-sm text-brand-900 dark:text-white mb-1">Accountability</h5>
+                                    <p class="text-xs text-brand-600 dark:text-brand-400 leading-relaxed">
+                                        Auditing every line, verifying memory safety, testing on physical devices, and taking total responsibility for bugs.
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                An architect designs the structural blueprint, load calculations, and safety exits of a building without pouring every bucket of concrete by hand. The human software engineer who directs, verifies, and debugs an AI-assisted codebase is that architect.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Section 2: The Double Standard (id="double-standard") -->
+                    <section id="double-standard" class="space-y-6 pt-6 border-t border-brand-200/60 dark:border-brand-800/60">
+                        <div class="flex items-center gap-2">
+                            <span class="flex items-center justify-center w-6 h-6 rounded-md bg-brand-100 dark:bg-brand-800 text-brand-800 dark:text-brand-200 text-xs font-mono font-bold">03</span>
+                            <h3 class="text-base sm:text-lg font-bold text-brand-900 dark:text-white tracking-tight">the double standard of closed-source software</h3>
+                        </div>
+
+                        <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                            There is a glaring contradiction in how AI-assisted software is judged across the tech industry today.
+                        </p>
+
+                        <!-- Big Tech -->
+                        <div class="space-y-3 pl-0 sm:pl-4 border-l-0 sm:border-l-2 border-brand-200/80 dark:border-brand-800/80">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">big tech companies already generate massive amounts of ai code</h4>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Major proprietary tech companies now openly state that 25% to over 50% of their new internal codebase is written by artificial intelligence models. Their commercial products, cloud backends, and desktop operating systems are saturated with machine-generated code.
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Yet their operating systems (such as Windows and macOS) and commercial apps remain <strong>100% closed-source</strong>. Millions of users and businesses run this software every day without ever being allowed to view a single line of the source code.
+                            </p>
+                        </div>
+
+                        <!-- Linux Kernel Commits -->
+                        <div class="space-y-3 pl-0 sm:pl-4 border-l-0 sm:border-l-2 border-brand-200/80 dark:border-brand-800/80">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">even the linux kernel has ai commits: where are critics hiding?</h4>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                This reality extends far beyond proprietary tech giants. Even inside the most scrutinized, mission-critical open-source project in human history&mdash;the <strong>Linux kernel itself</strong>&mdash;maintainers and corporate contributors from Intel, Google, Red Hat, and AMD actively use LLMs to write drivers, refactor subsystems, and draft patch commits.
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                As Linus Torvalds and senior kernel maintainers have pointed out, AI is simply an inevitable evolution in developer toolchains. The kernel community does not reject a patch because a modern tool assisted in writing it; they evaluate whether the code is correct, memory-safe, and rigorously tested.
+                            </p>
+                            <div class="p-4 rounded-xl bg-brand-50/70 dark:bg-brand-900/30 border border-brand-200/70 dark:border-brand-800/70 text-sm text-brand-800 dark:text-brand-200 leading-relaxed">
+                                <strong>The Reality Check:</strong> If the very kernel powering every Android smartphone, cloud datacenter, internet router, and Linux workstation contains LLM-assisted code, where exactly are critics planning to hide? What operating system, server, or digital device can they use that is completely free of machine-assisted software? The debate is no longer about whether AI tools are used; it is about whether the resulting software is <strong>open, auditable, and safe</strong>.
+                            </div>
+                        </div>
+
+                        <!-- Asymmetry of Scrutiny -->
+                        <div class="space-y-3 pl-0 sm:pl-4 border-l-0 sm:border-l-2 border-brand-200/80 dark:border-brand-800/80">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">the asymmetry of scrutiny</h4>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Closed-source companies avoid public criticism simply because they hide their code behind binary blobs and legal agreements. You cannot inspect whether their AI-generated code has memory leaks, security backdoors, or telemetry scripts harvesting your personal files, keystrokes, and browsing habits.
+                            </p>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                In contrast, open-source developers who are completely honest and transparent about using AI tools often face intense scrutiny—even though their entire codebase is public, reproducible, and verifiable by anyone on the planet. This is a clear double standard.
+                            </p>
+                        </div>
+
+                        <!-- Universal Rule -->
+                        <div class="space-y-3 pl-0 sm:pl-4 border-l-0 sm:border-l-2 border-brand-200/80 dark:border-brand-800/80">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">the universal rule for trusting software</h4>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Code quality and security are not determined by whether a human finger physically tapped every key or whether an AI autocomplete suggested a loop. Security is determined by whether the software is <strong>provably constrained, memory-safe, completely auditable, and incapable of violating your privacy</strong>.
+                            </p>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- ========================================================= -->
+                <!-- PART 2: HOW MIQU MEETS THESE STANDARDS                    -->
+                <!-- ========================================================= -->
+                <div class="space-y-12 pt-6 border-t border-brand-200/80 dark:border-brand-800/80">
+                    <!-- Part 2 Banner -->
+                    <div class="p-4 sm:p-5 rounded-xl bg-gradient-to-r from-brand-900/90 to-brand-800 text-white dark:from-white/10 dark:to-white/5 border border-brand-700/50 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+                        <div>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-white/20 dark:bg-white/20 text-white text-xs font-bold uppercase tracking-wider">
+                                part 2 &mdash; miqu's guarantees
+                            </span>
+                            <h2 class="text-base sm:text-lg font-bold text-white mt-1">how miqu meets the highest engineering standards</h2>
+                            <p class="text-xs text-brand-200 dark:text-brand-300 mt-0.5">
+                                How our architecture, strict C++20 memory safety, offline privacy, and open-source practices fulfill these principles.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Safety, Real Engineering & Memory Safety (id="safety") -->
+                    <section id="safety" class="space-y-8">
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-2">
+                                <span class="flex items-center justify-center w-6 h-6 rounded-md bg-brand-900 text-white dark:bg-white dark:text-brand-950 text-xs font-mono font-bold">04</span>
+                                <h3 class="text-base sm:text-lg font-bold text-brand-900 dark:text-white tracking-tight">real engineering: built from the ground up</h3>
+                            </div>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Miqu is not an assembled configuration, a collection of dotfiles, or a reskinned Linux ISO. We engineered an entire Wayland desktop environment from scratch across 18 specialized repositories:
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                            <div class="p-4 rounded-xl bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                <div class="text-xs font-mono font-bold text-brand-500 mb-1">CORE COMPOSITOR</div>
+                                <h5 class="font-bold text-sm text-brand-900 dark:text-white mb-1">miquland</h5>
+                                <p class="text-xs text-brand-600 dark:text-brand-400 leading-relaxed">
+                                    Native Wayland compositor written in C++20 on wlroots, handling output rendering, tiling/floating window management, layer-shell protocols, and IPC plugins.
+                                </p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                <div class="text-xs font-mono font-bold text-brand-500 mb-1">SHARED UI TOOLKIT</div>
+                                <h5 class="font-bold text-sm text-brand-900 dark:text-white mb-1">miqutoolkit</h5>
+                                <p class="text-xs text-brand-600 dark:text-brand-400 leading-relaxed">
+                                    Custom Cairo, Pango, and Wayland UI framework providing design tokens, layout containers, and live theme propagation across all applications.
+                                </p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                <div class="text-xs font-mono font-bold text-brand-500 mb-1">DESKTOP SUITE</div>
+                                <h5 class="font-bold text-sm text-brand-900 dark:text-white mb-1">16 Native Apps</h5>
+                                <p class="text-xs text-brand-600 dark:text-brand-400 leading-relaxed">
+                                    Standalone apps: status bar (<code class="font-mono text-xs">miqubar</code>), desktop canvas (<code class="font-mono text-xs">miqudesk</code>), firewall center (<code class="font-mono text-xs">miqusecure</code>), music player (<code class="font-mono text-xs">miqumusic</code>), launcher (<code class="font-mono text-xs">miqulauncher</code>), and lockscreen (<code class="font-mono text-xs">miqulock</code>).
+                                </p>
+                            </div>
+                        </div>
+
+                        <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                            We use AI as a rapid typing tool and syntax assistant. But every architectural contract, memory boundary, and Wayland event loop is designed, directed, and verified by human engineering.
+                        </p>
+
+                        <!-- Subheading: Memory Safety & Technical Discipline -->
+                        <div class="space-y-4 pt-4 border-t border-brand-200/60 dark:border-brand-800/60">
+                            <h4 class="text-sm sm:text-base font-semibold text-brand-900 dark:text-white">strict memory safety and technical discipline</h4>
+                            <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                                Unconstrained AI-generated code is prone to memory leaks, dangling pointers, and undefined behavior. In Miqu, this is strictly prevented through non-negotiable technical rules:
+                            </p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                                <div class="p-4 rounded-xl bg-brand-50/70 dark:bg-brand-900/30 border border-brand-200/70 dark:border-brand-800/70">
+                                    <h5 class="font-bold text-xs uppercase tracking-wider text-brand-900 dark:text-white mb-1">strict c++20 raii</h5>
+                                    <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-400 leading-relaxed">
+                                        Raw owning pointers are prohibited. Every file descriptor, Wayland protocol surface, and Cairo context is wrapped in smart pointers or scope-bound RAII guards. Memory leaks are structurally impossible.
+                                    </p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-brand-50/70 dark:bg-brand-900/30 border border-brand-200/70 dark:border-brand-800/70">
+                                    <h5 class="font-bold text-xs uppercase tracking-wider text-brand-900 dark:text-white mb-1">zero compiler warnings</h5>
+                                    <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-400 leading-relaxed">
+                                        All code compiles under strict compiler flags (<code class="font-mono text-xs">-Wall -Wextra -Werror</code>). A single compiler warning is treated as a fatal build error and rejected.
+                                    </p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-brand-50/70 dark:bg-brand-900/30 border border-brand-200/70 dark:border-brand-800/70">
+                                    <h5 class="font-bold text-xs uppercase tracking-wider text-brand-900 dark:text-white mb-1">runtime sanitizers</h5>
+                                    <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-400 leading-relaxed">
+                                        We run AddressSanitizer (ASan) and UndefinedBehaviorSanitizer (UBSan) to proactively catch buffer overflows, alignment faults, and hidden memory bugs before code reaches users.
+                                    </p>
+                                </div>
+                                <div class="p-4 rounded-xl bg-brand-50/70 dark:bg-brand-900/30 border border-brand-200/70 dark:border-brand-800/70">
+                                    <h5 class="font-bold text-xs uppercase tracking-wider text-brand-900 dark:text-white mb-1">0.0% idle cpu usage</h5>
+                                    <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-400 leading-relaxed">
+                                        Miqu applications never spin in continuous polling loops. The stack is strictly event-driven; when there is no user input or screen damage, processes sleep completely in the event loop at 0.0% CPU.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Section 4: Governance & Audits (id="governance") -->
+                    <section id="governance" class="space-y-6 pt-6 border-t border-brand-200/60 dark:border-brand-800/60">
+                        <div class="flex items-center gap-2">
+                            <span class="flex items-center justify-center w-6 h-6 rounded-md bg-brand-900 text-white dark:bg-white dark:text-brand-950 text-xs font-mono font-bold">05</span>
+                            <h3 class="text-base sm:text-lg font-bold text-brand-900 dark:text-white tracking-tight">testing, audits, and a single rulebook</h3>
+                        </div>
+
+                        <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                            Maintaining 18 repositories with high reliability requires strict governance:
+                        </p>
+
+                        <div class="space-y-3">
+                            <div class="p-4 rounded-xl bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                <h4 class="font-bold text-sm text-brand-900 dark:text-white mb-1">The AGENTS.md Single Rulebook</h4>
+                                <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-400 leading-relaxed">
+                                    Every repository follows the identical architectural doctrine. This document enforces the uniform two-tier configuration model, zero source-code appearance defaults, strict thread isolation, and lifecycle safety. Both AI tools and human developers operate under these exact constraints.
+                                </p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                <h4 class="font-bold text-sm text-brand-900 dark:text-white mb-1">Automated Static Analysis & Lifecycle Verification</h4>
+                                <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-400 leading-relaxed">
+                                    Continuous automated tools inspect code for Wayland protocol lifecycle violations, iterator invalidation hazards, and resource leaks across all 18 repositories.
+                                </p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white dark:bg-brand-900/40 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                <h4 class="font-bold text-sm text-brand-900 dark:text-white mb-1">Main-Thread UI Confinement & Worker Isolation</h4>
+                                <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-400 leading-relaxed">
+                                    Background tasks (MPD connections, system telemetry, socket I/O) are isolated to worker threads and communicate only through non-blocking event loops (<code class="font-mono text-xs">eventfd</code>, pipes)—never mutating UI widgets directly.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Section 5: Trust Verdict (id="trust-verdict") -->
+                    <section id="trust-verdict" class="space-y-6 pt-6 border-t border-brand-200/60 dark:border-brand-800/60">
+                        <div class="flex items-center gap-2">
+                            <span class="flex items-center justify-center w-6 h-6 rounded-md bg-brand-900 text-white dark:bg-white dark:text-brand-950 text-xs font-mono font-bold">06</span>
+                            <h3 class="text-base sm:text-lg font-bold text-brand-900 dark:text-white tracking-tight">our two non-negotiable guarantees</h3>
+                        </div>
+
+                        <div class="border-l-2 border-brand-400 dark:border-brand-500 pl-4 py-1.5 text-sm sm:text-base text-brand-700 dark:text-brand-300 italic bg-brand-50/50 dark:bg-brand-900/20 rounded-r-lg">
+                            &ldquo;You should never have to take a developer's word for security. True trust is built on two verifiable pillars: complete offline independence and fully public source code.&rdquo;
+                        </div>
+
+                        <p class="text-sm sm:text-base leading-relaxed text-brand-700 dark:text-brand-300">
+                            Miqu delivers this trust through two structural guarantees:
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-5 rounded-xl bg-gradient-to-b from-brand-50 to-white dark:from-brand-900/40 dark:to-brand-950/60 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                <div class="w-8 h-8 rounded-lg bg-brand-100 dark:bg-brand-800 flex items-center justify-center text-brand-700 dark:text-brand-300 mb-3">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 4.243a9 9 0 01-12.728 0m0 0l2.829-2.829m-2.829 2.829L3 21m2.829-5.636a5 5 0 010-7.072m0 0l2.829 2.829"></path></svg>
+                                </div>
+                                <h4 class="font-bold text-sm text-brand-900 dark:text-white mb-2">1. 100% Offline Isolation (Zero Telemetry)</h4>
+                                <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-400 leading-relaxed">
+                                    Miqu contains no tracking scripts, no telemetry pings, no analytics, and no background cloud connections. The compositor, toolkit, and desktop apps do not even link to network communication libraries. Miqu runs identically on a computer with no internet connection whatsoever. Your files, activity, and keystrokes never leave your machine.
+                                </p>
+                            </div>
+
+                            <div class="p-5 rounded-xl bg-gradient-to-b from-brand-50 to-white dark:from-brand-900/40 dark:to-brand-950/60 border border-brand-200/80 dark:border-brand-800/80 shadow-2xs">
+                                <div class="w-8 h-8 rounded-lg bg-brand-100 dark:bg-brand-800 flex items-center justify-center text-brand-700 dark:text-brand-300 mb-3">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                </div>
+                                <h4 class="font-bold text-sm text-brand-900 dark:text-white mb-2">2. 100% Open-Source Under the MIT License</h4>
+                                <p class="text-xs sm:text-sm text-brand-600 dark:text-brand-400 leading-relaxed">
+                                    Every single line of C++20, Wayland protocol bindings, and CMake build logic across all 18 repositories is publicly available on GitHub under the permissive MIT license. Anyone in the world can inspect the code, verify the build process, audit memory management, and run the software independently.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </article>
+        </div>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-slate-200 dark:border-white/10 py-8 bg-slate-100 dark:bg-[#070709] text-sm text-slate-500 dark:text-gray-400 text-center transition-colors">
-        <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-2">
-                <div class="w-6 h-6 rounded-lg flex items-center justify-center p-0.5 bg-gradient-to-tr from-[#ff6b6b] to-[#a855f7]">
-                    <svg viewBox="0 0 500 500" class="w-full h-full fill-white" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 400 C 100 250, 150 150, 220 220 C 270 270, 280 350, 320 320 C 370 280, 400 120, 450 400 C 420 400, 380 350, 350 250 C 320 150, 280 200, 250 280 C 210 380, 150 400, 50 400 Z" />
-                    </svg>
+    <!-- ========================================================= -->
+    <!-- FLOATING POPUP MODAL (Component Detail & Apps Showcase)   -->
+    <!-- ========================================================= -->
+    <div id="component-modal" onclick="onModalBackdropClick(event)" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 opacity-0 pointer-events-none transition-all duration-200">
+        <div id="component-modal-dialog" class="bg-white dark:bg-[#121217] border border-slate-200 dark:border-white/15 rounded-2xl max-w-4xl w-full max-h-[88vh] flex flex-col shadow-2xl overflow-hidden scale-95 transition-all duration-200">
+            <!-- Modal Header -->
+            <div class="p-5 sm:p-6 border-b border-slate-200 dark:border-white/10 flex items-start justify-between gap-4 bg-slate-50/80 dark:bg-white/[0.02]">
+                <div class="flex items-center gap-3">
+                    <div id="modal-icon-box" class="w-10 h-10 rounded-xl bg-[#fb4f5f]/15 text-[#fb4f5f] flex items-center justify-center text-lg flex-shrink-0">
+                        <i id="modal-icon" class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h3 id="modal-title" class="font-bold text-slate-900 dark:text-white text-lg sm:text-xl">Component Showcase</h3>
+                            <span id="modal-count-badge" class="text-[11px] font-mono px-2 py-0.5 rounded-full bg-[#fb4f5f]/15 text-[#fb4f5f] font-semibold border border-[#fb4f5f]/20">16 Apps</span>
+                        </div>
+                        <p id="modal-subtitle" class="text-xs sm:text-sm text-slate-500 dark:text-gray-400 mt-0.5">Explore the native components in this suite</p>
+                    </div>
                 </div>
-                <span class="font-bold text-slate-900 dark:text-white text-xs">miqu-project</span>
+                <div class="flex items-center gap-2">
+                    <span class="hidden sm:inline-block text-[10px] font-mono text-slate-400 dark:text-gray-500 px-2 py-1 rounded bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10">ESC</span>
+                    <button onclick="closeComponentModal()" class="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-600 dark:text-gray-300 flex items-center justify-center transition-colors">
+                        <i class="fa-solid fa-xmark text-sm"></i>
+                    </button>
+                </div>
             </div>
-            <p class="text-xs text-slate-500 dark:text-gray-400">Wayland Dynamic Tiling Window Manager &amp; Compositor</p>
+
+            <!-- Modal Scrollable Content -->
+            <div id="modal-body" class="p-5 sm:p-6 overflow-y-auto space-y-4">
+                <!-- Dynamically injected items -->
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 border-t border-slate-200 dark:border-white/10 bg-slate-50/80 dark:bg-white/[0.02] flex items-center justify-between text-xs text-slate-500 dark:text-gray-400">
+                <span id="modal-footer-text">Built natively using miqutoolkit and Wayland protocols</span>
+                <button onclick="closeComponentModal()" class="px-3.5 py-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 dark:bg-white/10 dark:hover:bg-white/20 text-slate-700 dark:text-gray-200 font-medium transition-colors">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-white/10 py-8 bg-slate-100 dark:bg-[#070709] text-xs sm:text-sm text-slate-500 dark:text-gray-400 text-center transition-colors">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2.5">
+                <img src="assets/logo.png" alt="Miqu Logo" class="w-6 h-6 object-contain rounded" />
+                <span class="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">miqu-project</span>
+                <span class="text-slate-300 dark:text-white/20">|</span>
+                <span class="text-xs text-slate-500 dark:text-gray-400">Wayland Dynamic Tiling Window Manager &amp; Compositor</span>
+            </div>
+            <div class="flex items-center gap-4 text-xs">
+                <button onclick="onTabClick('home')" class="hover:text-slate-900 dark:hover:text-white transition-colors">Home</button>
+                <button onclick="onTabClick('docs')" class="hover:text-slate-900 dark:hover:text-white transition-colors">Docs</button>
+                <button onclick="onTabClick('llm')" class="hover:text-slate-900 dark:hover:text-white transition-colors">LLM Use</button>
+                <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="hover:text-slate-900 dark:hover:text-white transition-colors">GitHub</a>
+            </div>
         </div>
     </footer>
 
-    <!-- Script for copy & toast -->
+    <!-- Scripts: Theme, Single-Page Tab Router, Popup Modal, Code Copy -->
     <script>
+        // Applications & Components Data Store
+        const modalData = {
+            linux: {
+                title: "Miqu Linux Desktop Suite",
+                subtitle: "16 native applications and tools built with miqutoolkit for a unified Wayland desktop",
+                icon: "fa-solid fa-layer-group",
+                count: "16 Apps",
+                footer: "All 16 apps share uniform C++20 toolkit widgets and two-tier live configuration.",
+                items: [
+                    { name: "miqubar", tag: "Status Bar", desc: "Wayland status bar & taskbar featuring workspace indicators, window lists, system tray, battery/network telemetry, and interactive flyouts.", icon: "assets/apps/miqubar.png", is_img: true, repo: "https://github.com/miqu-project/miqu-linux-apps/tree/main/miqubar" },
+                    { name: "miqudesk", tag: "Desktop Canvas", desc: "Interactive desktop canvas and widget layer bringing classic desktop ergonomics (shortcuts, widgets, icons) to Wayland.", icon: "fa-solid fa-table-columns", is_img: false, repo: "https://github.com/miqu-project/miqu-linux-apps/tree/main/miqudesk" },
+                    { name: "miqutheme", tag: "Theme Manager", desc: "Visual theme and appearance manager with dynamic Material You wallpaper color extraction and live inotify reload.", icon: "assets/apps/miqutheme.png", is_img: true, repo: "https://github.com/miqu-project/miqu-linux-apps/tree/main/miqutheme" },
+                    { name: "miqusecure", tag: "Security Center", desc: "Privacy and firewall command center offering native management for Tor routing, OpenSnitch firewall rules, and LUKS status.", icon: "assets/apps/miqusecure.png", is_img: true, repo: "https://github.com/miqu-project/miqu-linux-apps/tree/main/miqusecure" },
+                    { name: "miqumusic", tag: "Audio Player", desc: "Fast, lightweight native MPD (Music Player Daemon) client, playlist manager, and audio playback controller.", icon: "assets/apps/miqumusic.png", is_img: true, repo: "https://github.com/miqu-project/miqu-linux-apps/tree/main/miqumusic" },
+                    { name: "miqulauncher", tag: "App Launcher", desc: "Fast application launcher, fuzzy dmenu alternative, workspace navigator, and active window switcher with keyboard navigation.", icon: "fa-solid fa-magnifying-glass", is_img: false, repo: "https://github.com/miqu-project/miqu-linux-apps/tree/main/miqulauncher" },
+                    { name: "miquoverview", tag: "Exposé Plugin", desc: "GPU-accelerated live workspace exposé and overview plugin providing fluid visual window management for miquland.", icon: "fa-solid fa-table-cells-large", is_img: false, repo: "https://github.com/miqu-project/miqu-linux-apps/tree/main/miquoverview" },
+                    { name: "miqunotify", tag: "Notification Daemon", desc: "Native desktop notification daemon and slide-out notification history center implementing standard desktop notification specs.", icon: "fa-solid fa-bell", is_img: false, repo: "https://github.com/miqu-project/miqu-linux-apps/tree/main/miqunotify" },
+                    { name: "miqugallery", tag: "Media Gallery", desc: "High-performance, minimalist image viewer and media gallery application optimized for fluid pan, zoom, and transitions.", icon: "assets/apps/miqugallery.png", is_img: true, repo: "https://github.com/miqu-project/miqu-linux-apps/tree/main/miqugallery" },
+                    { name: "miquinfo", tag: "System Telemetry", desc: "Hardware monitoring, CPU/GPU system telemetry, and diagnostic resource utility with real-time graphical graphs.", icon: "assets/apps/miquinfo.png", is_img: true, repo: "https://github.com/miqu-project/miqu-linux-apps/tree/main/miquinfo" },
+                    { name: "miqudm", tag: "Display Manager", desc: "Wayland-native Display Manager and login greeter with PAM and systemd-logind user session management.", icon: "fa-solid fa-right-to-bracket", is_img: false, repo: "https://github.com/miqu-project/miqu-linux-apps/tree/main/miqudm" },
+                    { name: "miqubg", tag: "Wallpaper Daemon", desc: "Independent wallpaper daemon responsible for rendering, multi-monitor scaling, and transitioning desktop background images.", icon: "fa-solid fa-image", is_img: false, repo: "https://github.com/miqu-project/miqu-linux-apps/tree/main/miqubg" },
+                    { name: "miqulock", tag: "Screen Lock", desc: "Secure session locking utility strictly implementing the standard Wayland ext-session-lock-v1 protocol.", icon: "fa-solid fa-lock", is_img: false, repo: "https://github.com/miqu-project/miqu-linux-apps/tree/main/miqulock" },
+                    { name: "miquidle", tag: "Idle Daemon", desc: "Idle management daemon monitoring user activity and power events via the Wayland ext-idle-notify-v1 protocol.", icon: "fa-solid fa-clock", is_img: false, repo: "https://github.com/miqu-project/miqu-linux-apps/tree/main/miquidle" },
+                    { name: "miqupolkit", tag: "Polkit Agent", desc: "Native graphical Polkit authentication agent handling desktop privilege escalation prompts cleanly without external GTK/Qt dependencies.", icon: "fa-solid fa-shield-halved", is_img: false, repo: "https://github.com/miqu-project/miqu-linux-apps/tree/main/miqupolkit" },
+                    { name: "miqutest", tag: "UI Sandbox", desc: "Component testing sandbox and interactive widget showcase for developing, stressing, and verifying miqutoolkit controls.", icon: "fa-solid fa-vial", is_img: false, repo: "https://github.com/miqu-project/miqu-linux-apps/tree/main/miqutest" }
+                ]
+            },
+            android: {
+                title: "Miqu Android Companion Suite",
+                subtitle: "Jetpack Compose + Kotlin mobile applications integrated with the Miqu ecosystem",
+                icon: "fa-solid fa-mobile-screen",
+                count: "2 Mobile Apps",
+                footer: "Built with modern Jetpack Compose for distraction-free mobile ergonomics.",
+                items: [
+                    { name: "Doctor", tag: "Healthcare Diagnostic", desc: "Native Android healthcare diagnostic tool and clinical companion application designed for reliable patient tracking and medical utility.", icon: "assets/apps/doctor.png", is_img: true, repo: "https://github.com/miqu-project/miqu-android/tree/main/doctor" },
+                    { name: "Recitation", tag: "Audio Recitation Companion", desc: "Distraction-free Quran memorization, audio recitation, and study companion mobile application built for seamless listening and retention.", icon: "assets/apps/recitation.png", is_img: true, repo: "https://github.com/miqu-project/miqu-android/tree/main/recitation" }
+                ]
+            },
+            miquland: {
+                title: "Miquland Wayland Compositor",
+                subtitle: "Flagship dynamic tiling compositor built on wlroots, scenefx, and C++20",
+                icon: "fa-solid fa-window-maximize",
+                count: "Compositor",
+                footer: "Damage-driven repaints guarantee absolute 0.0% CPU usage at idle.",
+                specs: [
+                    { title: "Dynamic Tiling & Floating", desc: "Binary tiling window engine with custom rules, multi-monitor tracking, and floating window support." },
+                    { title: "Dual-Kawase Blur & Visuals", desc: "Hardware-accelerated scenefx GPU blur, rounded window corners, soft drop shadows, and border gradients." },
+                    { title: "Wayland Protocol Suite", desc: "Native support for xdg-shell, wlr-layer-shell-v1, ext-session-lock-v1, and ext-idle-notify-v1." },
+                    { title: "0% Idle CPU Discipline", desc: "Damage-driven repaint scheduling (wlr_output_schedule_frame) and instant timer teardown." },
+                    { title: "Compositor IPC Socket", desc: "Unix domain socket controller (miquctl) for runtime querying, window manipulation, and plugin dispatch." },
+                    { title: "Session Independence", desc: "Runs directly from virtual terminal (TTY) or via display managers (miqudm, SDDM, GDM)." }
+                ],
+                repo: "https://github.com/miqu-project/miquland"
+            },
+            miqutoolkit: {
+                title: "Miqutoolkit UI Framework",
+                subtitle: "Shared C++20 UI framework and application development toolkit",
+                icon: "fa-solid fa-code",
+                count: "Framework",
+                footer: "Decoupled dynamic theming with inotify live reload across all client apps.",
+                specs: [
+                    { title: "Cairo & Pango Vector Engine", desc: "Object-oriented vector drawing and layout widgets (ViewGroup, CardView, Label) with hardware acceleration." },
+                    { title: "Two-Tier Configuration Model", desc: "System baseline in /usr/share/ and on-demand user configs (~/.config/) with safe timestamped archiving." },
+                    { title: "Decoupled Dynamic Theming", desc: "Transparent 'source = ' directives watched by inotify for instantaneous theme updates without restarts." },
+                    { title: "Scope-Bound Strict RAII", desc: "Smart pointers with custom deleters for Cairo contexts, buffers, and Wayland surfaces; zero memory leaks." },
+                    { title: "Thread-Safe Event Isolation", desc: "UI rendering confined to main thread; background workers communicate safely via pipes and eventfd." },
+                    { title: "Zero UI Fragmentation", desc: "Unifies design tokens, fonts, metrics, and icon themes across all 16 downstream desktop applications." }
+                ],
+                repo: "https://github.com/miqu-project/miqutoolkit"
+            }
+        };
+
+        // Open Modal Function
+        function openComponentModal(type) {
+            const data = modalData[type];
+            if (!data) return;
+
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-subtitle').textContent = data.subtitle;
+            document.getElementById('modal-count-badge').textContent = data.count;
+            document.getElementById('modal-footer-text').textContent = data.footer;
+            
+            const iconElem = document.getElementById('modal-icon');
+            iconElem.className = data.icon;
+
+            const bodyElem = document.getElementById('modal-body');
+            bodyElem.innerHTML = '';
+
+            if (data.items) {
+                const grid = document.createElement('div');
+                grid.className = 'grid grid-cols-1 sm:grid-cols-2 gap-4';
+
+                data.items.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'p-4 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50/60 dark:bg-white/[0.03] hover:border-[#fb4f5f]/40 transition-all flex flex-col justify-between';
+                    
+                    let iconHtml = '';
+                    if (item.is_img) {
+                        iconHtml = `<img src="${item.icon}" alt="${item.name}" class="w-8 h-8 rounded-lg object-contain bg-white dark:bg-white/10 p-1 border border-slate-200 dark:border-white/10" />`;
+                    } else {
+                        iconHtml = `<div class="w-8 h-8 rounded-lg bg-[#fb4f5f]/15 text-[#fb4f5f] flex items-center justify-center text-xs"><i class="${item.icon}"></i></div>`;
+                    }
+
+                    card.innerHTML = `
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center gap-2.5">
+                                    ${iconHtml}
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 dark:text-white text-sm">${item.name}</h4>
+                                        <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-200/70 dark:bg-white/10 text-slate-600 dark:text-gray-300">${item.tag}</span>
+                                    </div>
+                                </div>
+                                <a href="${item.repo}" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded-md text-[11px] font-mono font-medium bg-[#fb4f5f]/10 hover:bg-[#fb4f5f]/20 text-[#fb4f5f] border border-[#fb4f5f]/20 flex items-center gap-1 transition-all">
+                                    <i class="fa-brands fa-github text-xs"></i>
+                                    <span>Code</span>
+                                </a>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-gray-300 leading-relaxed mt-2">${item.desc}</p>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+                bodyElem.appendChild(grid);
+            } else if (data.specs) {
+                const grid = document.createElement('div');
+                grid.className = 'grid grid-cols-1 sm:grid-cols-2 gap-4';
+
+                data.specs.forEach(spec => {
+                    const card = document.createElement('div');
+                    card.className = 'p-4 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50/60 dark:bg-white/[0.03] flex flex-col justify-between';
+                    card.innerHTML = `
+                        <h4 class="font-bold text-slate-900 dark:text-white text-sm mb-1.5 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-[#fb4f5f]"></span>
+                            ${spec.title}
+                        </h4>
+                        <p class="text-xs text-slate-600 dark:text-gray-300 leading-relaxed">${spec.desc}</p>
+                    `;
+                    grid.appendChild(card);
+                });
+                bodyElem.appendChild(grid);
+
+                if (data.repo) {
+                    const repoBox = document.createElement('div');
+                    repoBox.className = 'mt-4 pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between';
+                    repoBox.innerHTML = `
+                        <span class="text-xs text-slate-500 dark:text-gray-400">View source code and build documentation:</span>
+                        <a href="${data.repo}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg text-xs font-mono font-medium bg-[#fb4f5f]/15 hover:bg-[#fb4f5f]/25 text-[#fb4f5f] border border-[#fb4f5f]/30 flex items-center gap-1.5 transition-all">
+                            <i class="fa-brands fa-github text-sm"></i>
+                            <span>View on GitHub</span>
+                        </a>
+                    `;
+                    bodyElem.appendChild(repoBox);
+                }
+            }
+
+            const modal = document.getElementById('component-modal');
+            const dialog = document.getElementById('component-modal-dialog');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.classList.add('opacity-100');
+            dialog.classList.remove('scale-95');
+            dialog.classList.add('scale-100');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeComponentModal() {
+            const modal = document.getElementById('component-modal');
+            const dialog = document.getElementById('component-modal-dialog');
+            if (!modal) return;
+            dialog.classList.remove('scale-100');
+            dialog.classList.add('scale-95');
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        function onModalBackdropClick(e) {
+            if (e.target.id === 'component-modal') {
+                closeComponentModal();
+            }
+        }
+
+        // Close modal on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeComponentModal();
+            }
+        });
+
+        // Single-Page Tab Router
+        const pageTitles = {
+            home: 'miqu project — Wayland Desktop Ecosystem & Native Apps',
+            docs: 'miqu docs — Architecture & Specification Doctrine',
+            llm: 'miqu llm & safety — Code Integrity, Authorship & Safety'
+        };
+
+        const docsSections = ['overview', 'config-doctrine', 'components', 'build-install', 'craftsmanship', 'roadmap'];
+        const llmSections = ['philosophy', 'safety', 'governance', 'double-standard', 'trust-verdict'];
+
+        function switchTab(tabName, shouldScrollToTop = true, targetAnchorId = null) {
+            const tabs = ['home', 'docs', 'llm'];
+            if (!tabs.includes(tabName)) tabName = 'home';
+
+            if (pageTitles[tabName]) {
+                document.title = pageTitles[tabName];
+            }
+
+            tabs.forEach(t => {
+                const panel = document.getElementById('tab-' + t);
+                const btn = document.getElementById('tab-btn-' + t);
+
+                if (t === tabName) {
+                    if (panel) panel.classList.remove('hidden');
+                    if (btn) {
+                        btn.className = 'tab-btn px-3 sm:px-3.5 py-1.5 rounded-lg transition-all font-semibold text-white bg-gradient-to-r from-[#f97f68] via-[#fb4f5f] to-[#c026d3] shadow-xs';
+                    }
+                } else {
+                    if (panel) panel.classList.add('hidden');
+                    if (btn) {
+                        btn.className = 'tab-btn px-3 sm:px-3.5 py-1.5 rounded-lg transition-all text-slate-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-white/10';
+                    }
+                }
+            });
+
+            if (targetAnchorId) {
+                setTimeout(() => {
+                    const el = document.getElementById(targetAnchorId);
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }, 30);
+                return;
+            }
+
+            if (shouldScrollToTop) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function onTabClick(tabName) {
+            history.pushState(null, '', '#' + tabName);
+            switchTab(tabName, true);
+        }
+
+        function handleHash() {
+            const rawHash = (window.location.hash || '').replace(/^#/, '');
+            if (!rawHash) {
+                switchTab('home', false);
+                return;
+            }
+            if (rawHash === 'docs') {
+                switchTab('docs', false);
+            } else if (rawHash === 'llm') {
+                switchTab('llm', false);
+            } else if (rawHash === 'home') {
+                switchTab('home', false);
+            } else if (docsSections.includes(rawHash)) {
+                switchTab('docs', false, rawHash);
+            } else if (llmSections.includes(rawHash)) {
+                switchTab('llm', false, rawHash);
+            } else {
+                switchTab('home', false, rawHash);
+            }
+        }
+
+        window.addEventListener('hashchange', handleHash);
+        window.addEventListener('popstate', handleHash);
+        window.addEventListener('DOMContentLoaded', handleHash);
+
+        // Code Copy & Toast Notification
         function copyCode(elementId, btnElement) {
             const codeElement = document.getElementById(elementId);
+            if (!codeElement) return;
             const textToCopy = codeElement.innerText;
 
             const textarea = document.createElement('textarea');
