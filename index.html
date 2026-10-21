@@ -139,7 +139,6 @@
                     <img src="assets/logo.png" alt="Miqu Logo" class="w-7 h-7 object-contain rounded transition-transform group-hover:scale-105" />
                     <span class="font-bold text-base sm:text-lg tracking-tight text-brand-900 dark:text-white">miqu-project</span>
                 </a>
-                <span class="hidden sm:inline-flex items-center text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-brand-100 dark:bg-brand-800/80 text-brand-600 dark:text-brand-300 border border-brand-200 dark:border-brand-700">Arch Linux</span>
             </div>
 
             <!-- Center: Primary Page Tabs (Home, Docs, LLM & Safety) -->
@@ -175,10 +174,19 @@
     <div id="mobile-backdrop" onclick="toggleMenu(false)" class="hidden fixed inset-0 bg-brand-950/40 dark:bg-black/60 backdrop-blur-xs z-40 transition-opacity"></div>
     <div id="mobile-menu" class="hidden fixed top-14 left-0 right-0 bg-white/95 dark:bg-[#0b0f17]/95 border-b border-brand-200/80 dark:border-brand-800/80 px-4 py-3 sm:px-6 sm:py-4 z-40 shadow-xl transition-all">
         <!-- Primary Pages -->
-        <div class="grid grid-cols-3 gap-2" id="mobile-nav">
-            <button onclick="onTabClick('home')" id="mobile-tab-btn-home" class="mobile-tab-btn flex items-center justify-center px-3 py-2 text-xs font-semibold text-white bg-brand-900 dark:bg-white dark:text-brand-950 rounded-lg shadow-xs transition-all">home</button>
-            <button onclick="onTabClick('docs')" id="mobile-tab-btn-docs" class="mobile-tab-btn flex items-center justify-center px-3 py-2 text-xs font-medium text-brand-700 dark:text-brand-200 rounded-lg bg-brand-50 dark:bg-brand-900 border border-brand-200 dark:border-brand-700 hover:bg-brand-100 transition-all">docs</button>
-            <button onclick="onTabClick('llm')" id="mobile-tab-btn-llm" class="mobile-tab-btn flex items-center justify-center px-3 py-2 text-xs font-medium text-brand-700 dark:text-brand-200 rounded-lg bg-brand-50 dark:bg-brand-900 border border-brand-200 dark:border-brand-700 hover:bg-brand-100 transition-all">llm & safety</button>
+        <div class="flex flex-col space-y-1.5" id="mobile-nav">
+            <button onclick="onTabClick('home')" id="mobile-tab-btn-home" class="mobile-tab-btn w-full flex items-center justify-between px-3.5 py-2.5 text-xs font-semibold rounded-lg transition-all text-white bg-brand-900 dark:bg-white dark:text-brand-950 shadow-xs">
+                <span>home</span>
+                <svg class="w-3.5 h-3.5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <button onclick="onTabClick('docs')" id="mobile-tab-btn-docs" class="mobile-tab-btn w-full flex items-center justify-between px-3.5 py-2.5 text-xs font-medium rounded-lg transition-all text-brand-700 dark:text-brand-300 hover:bg-brand-100/70 dark:hover:bg-brand-800/60">
+                <span>docs</span>
+                <svg class="w-3.5 h-3.5 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <button onclick="onTabClick('llm')" id="mobile-tab-btn-llm" class="mobile-tab-btn w-full flex items-center justify-between px-3.5 py-2.5 text-xs font-medium rounded-lg transition-all text-brand-700 dark:text-brand-300 hover:bg-brand-100/70 dark:hover:bg-brand-800/60">
+                <span>llm & safety</span>
+                <svg class="w-3.5 h-3.5 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
         </div>
     </div>
 
@@ -1522,8 +1530,8 @@ sudo ./make.sh</pre>
 
             <!-- Center: Links (About Us, GitHub) -->
             <div class="flex items-center gap-5 text-xs text-brand-600 dark:text-brand-300">
-                <a href="#at-a-glance" onclick="switchTab('home', false, 'at-a-glance')" class="hover:text-brand-900 dark:hover:text-white transition-colors">about us</a>
                 <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="hover:text-brand-900 dark:hover:text-white transition-colors">github</a>
+                <a href="#at-a-glance" onclick="switchTab('home', false, 'at-a-glance')" class="hover:text-brand-900 dark:hover:text-white transition-colors">about us</a>
             </div>
 
             <!-- Right: Copyright & License -->
@@ -1617,7 +1625,7 @@ sudo ./make.sh</pre>
                         deskBtn.className = 'tab-btn text-xs font-semibold px-3 py-1.5 rounded-lg bg-brand-900 text-white dark:bg-white dark:text-brand-950 shadow-xs transition-all';
                     }
                     if (mobBtn) {
-                        mobBtn.className = 'mobile-tab-btn flex items-center justify-center px-3 py-2 text-xs font-semibold text-white bg-brand-900 dark:bg-white dark:text-brand-950 rounded-lg shadow-xs transition-all';
+                        mobBtn.className = 'mobile-tab-btn w-full flex items-center justify-between px-3.5 py-2.5 text-xs rounded-lg transition-all font-semibold text-white bg-brand-900 dark:bg-white dark:text-brand-950 shadow-xs';
                     }
                 } else {
                     if (panel) panel.classList.add('hidden');
@@ -1625,7 +1633,7 @@ sudo ./make.sh</pre>
                         deskBtn.className = 'tab-btn text-xs font-medium px-3 py-1.5 rounded-lg text-brand-600 dark:text-brand-400 hover:text-brand-900 dark:hover:text-white hover:bg-brand-100/70 dark:hover:bg-brand-800/60 transition-all';
                     }
                     if (mobBtn) {
-                        mobBtn.className = 'mobile-tab-btn flex items-center justify-center px-3 py-2 text-xs font-medium text-brand-700 dark:text-brand-200 rounded-lg bg-brand-50 dark:bg-brand-900 border border-brand-200 dark:border-brand-700 hover:bg-brand-100 transition-all';
+                        mobBtn.className = 'mobile-tab-btn w-full flex items-center justify-between px-3.5 py-2.5 text-xs rounded-lg transition-all font-medium text-brand-700 dark:text-brand-300 hover:bg-brand-100/70 dark:hover:bg-brand-800/60';
                     }
                 }
             });
