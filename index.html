@@ -276,18 +276,40 @@
                                 </div>
                             </div>
 
-                            <!-- Node 5: Miqu Applications (Bottom-Left & Center, col 1-2 row 2) -->
-                            <div onclick="openComponentModal('linux')" class="md:col-start-1 md:col-span-2 md:row-start-2 relative p-4 rounded-2xl bg-neutral-100/90 dark:bg-white/[0.04] border border-neutral-300/90 dark:border-white/15 hover:border-black dark:hover:border-white cursor-pointer group transition-all flex items-center justify-between shadow-2xs">
+                            <!-- Node 5: Miqu Linux Apps (Bottom-Middle, col 2 row 2) -->
+                            <div onclick="openComponentModal('linux')" class="md:col-start-2 md:row-start-2 relative p-4 rounded-2xl bg-neutral-100/90 dark:bg-white/[0.04] border border-neutral-300/90 dark:border-white/15 hover:border-black dark:hover:border-white cursor-pointer group transition-all flex items-center justify-between shadow-2xs">
                                 <div class="flex items-center gap-3">
                                     <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white dark:bg-emerald-500 dark:text-black flex items-center justify-center text-sm flex-shrink-0 group-hover:scale-105 transition-transform">
                                         <i class="fa-solid fa-layer-group"></i>
                                     </div>
                                     <div>
-                                        <div class="flex items-center gap-2">
-                                            <span class="text-sm font-bold text-slate-900 dark:text-white group-hover:opacity-75 transition-opacity">Miqu Applications</span>
-                                            <span class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20 font-semibold">16 Apps</span>
-                                        </div>
-                                        <span class="text-xs text-slate-500 dark:text-gray-400 italic block mt-0.5">Native apps using toolkit</span>
+                                        <span class="text-sm font-bold text-slate-900 dark:text-white group-hover:opacity-75 transition-opacity block">Miqu Linux Apps</span>
+                                        <span class="text-xs text-slate-500 dark:text-gray-400 italic block mt-0.5">16 native desktop apps</span>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-arrow-right text-xs text-neutral-400 dark:text-neutral-500 group-hover:text-black dark:group-hover:text-white group-hover:translate-x-1 transition-all mr-1"></i>
+                                <!-- Desktop Connector 5 -> 6 (Left) -->
+                                <div class="hidden md:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-white/20 items-center justify-center text-[9px] text-neutral-500 dark:text-neutral-400 shadow-2xs pointer-events-none">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                </div>
+                            </div>
+
+                            <!-- Mobile Connector 5 -> 6 -->
+                            <div class="flex md:hidden items-center justify-center -my-2.5">
+                                <div class="w-5 h-5 rounded-full bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-white/20 flex items-center justify-center text-[8px] text-neutral-500 dark:text-neutral-400">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                            </div>
+
+                            <!-- Node 6: Miqu Android Apps (Bottom-Left, col 1 row 2) -->
+                            <div onclick="openComponentModal('android')" class="md:col-start-1 md:row-start-2 relative p-4 rounded-2xl bg-neutral-100/90 dark:bg-white/[0.04] border border-neutral-300/90 dark:border-white/15 hover:border-black dark:hover:border-white cursor-pointer group transition-all flex items-center justify-between shadow-2xs">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white dark:bg-emerald-500 dark:text-black flex items-center justify-center text-sm flex-shrink-0 group-hover:scale-105 transition-transform">
+                                        <i class="fa-solid fa-mobile-screen"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-sm font-bold text-slate-900 dark:text-white group-hover:opacity-75 transition-opacity block">Miqu Android Apps</span>
+                                        <span class="text-xs text-slate-500 dark:text-gray-400 italic block mt-0.5">Companion mobile apps</span>
                                     </div>
                                 </div>
                                 <i class="fa-solid fa-arrow-right text-xs text-neutral-400 dark:text-neutral-500 group-hover:text-black dark:group-hover:text-white group-hover:translate-x-1 transition-all mr-1"></i>
