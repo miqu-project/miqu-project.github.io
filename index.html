@@ -117,6 +117,13 @@
             height: 24px;
             background: rgba(120, 120, 120, 0.35);
         }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 <body class="bg-white dark:bg-black text-neutral-900 dark:text-neutral-100 font-sans antialiased selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black min-h-screen flex flex-col justify-between transition-colors duration-200">
@@ -129,32 +136,32 @@
 
     <!-- Header / Navbar with Original Logo & Top Right GitHub Button -->
     <header class="sticky top-0 z-40 w-full border-b border-neutral-200/80 dark:border-white/10 bg-white/85 dark:bg-black/85 backdrop-blur-md transition-colors duration-200">
-        <div class="max-w-5xl mx-auto px-3 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
+        <div class="max-w-5xl mx-auto px-3 sm:px-6 h-14 sm:h-16 flex items-center justify-between flex-nowrap whitespace-nowrap overflow-x-auto no-scrollbar">
             <!-- Brand Logo & Name -->
-            <a href="#home" onclick="onTabClick('home')" class="flex items-center gap-2 sm:gap-3 group flex-shrink-0">
-                <img src="assets/logo.png" alt="Miqu Logo" class="w-7 h-7 sm:w-8 sm:h-8 object-contain rounded-lg transition-transform group-hover:scale-105" />
-                <span class="font-bold text-sm sm:text-base tracking-tight text-black dark:text-white group-hover:opacity-75 transition-opacity">miqu-project</span>
+            <a href="#home" onclick="onTabClick('home')" class="flex items-center gap-2 sm:gap-3 group flex-shrink-0 whitespace-nowrap">
+                <img src="assets/logo.png" alt="Miqu Logo" class="w-7 h-7 sm:w-8 sm:h-8 object-contain rounded-lg transition-transform group-hover:scale-105 flex-shrink-0" />
+                <span class="font-bold text-sm sm:text-base tracking-tight text-black dark:text-white group-hover:opacity-75 transition-opacity whitespace-nowrap flex-shrink-0">miqu-project</span>
             </a>
 
             <!-- Document Navigation Links (Tab Switcher) -->
-            <div class="flex items-center gap-1.5 sm:gap-3">
-                <nav class="flex items-center bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/10 rounded-xl p-0.5 sm:p-1 text-xs sm:text-sm font-medium gap-0.5 sm:gap-1.5 transition-colors">
-                    <button onclick="onTabClick('home')" id="tab-btn-home" class="tab-btn px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg transition-all font-semibold text-white bg-emerald-600 dark:bg-emerald-500 dark:text-black shadow-xs">
+            <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0 flex-nowrap">
+                <nav class="flex items-center bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/10 rounded-xl p-0.5 sm:p-1 text-xs sm:text-sm font-medium gap-0.5 sm:gap-1.5 transition-colors flex-nowrap flex-shrink-0 whitespace-nowrap">
+                    <button onclick="onTabClick('home')" id="tab-btn-home" class="tab-btn px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg transition-all font-semibold text-white bg-emerald-600 dark:bg-emerald-500 dark:text-black shadow-xs whitespace-nowrap flex-shrink-0">
                         Home
                     </button>
-                    <button onclick="onTabClick('docs')" id="tab-btn-docs" class="tab-btn px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg transition-all text-neutral-600 dark:text-neutral-400 hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-neutral-200/60 dark:hover:bg-white/10">
+                    <button onclick="onTabClick('docs')" id="tab-btn-docs" class="tab-btn px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg transition-all text-neutral-600 dark:text-neutral-400 hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-neutral-200/60 dark:hover:bg-white/10 whitespace-nowrap flex-shrink-0">
                         Docs
                     </button>
-                    <button onclick="onTabClick('llm')" id="tab-btn-llm" class="tab-btn px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg transition-all text-neutral-600 dark:text-neutral-400 hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-neutral-200/60 dark:hover:bg-white/10">
-                        <span class="sm:hidden">LLM</span>
-                        <span class="hidden sm:inline">LLM Use</span>
+                    <button onclick="onTabClick('llm')" id="tab-btn-llm" class="tab-btn px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg transition-all text-neutral-600 dark:text-neutral-400 hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-neutral-200/60 dark:hover:bg-white/10 whitespace-nowrap flex-shrink-0">
+                        <span class="sm:hidden whitespace-nowrap">LLM</span>
+                        <span class="hidden sm:inline whitespace-nowrap">LLM Use</span>
                     </button>
                 </nav>
 
                 <!-- GitHub Top Right Button -->
-                <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1.5 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-black hover:bg-neutral-800 text-white dark:bg-white dark:text-black dark:hover:bg-neutral-200 font-medium text-xs sm:text-sm transition-all shadow-xs" title="GitHub">
-                    <i class="fa-brands fa-github text-sm sm:text-base"></i>
-                    <span class="hidden sm:inline">GitHub</span>
+                <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-1.5 px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-black hover:bg-neutral-800 text-white dark:bg-white dark:text-black dark:hover:bg-neutral-200 font-medium text-xs sm:text-sm transition-all shadow-xs flex-shrink-0 whitespace-nowrap" title="GitHub">
+                    <i class="fa-brands fa-github text-sm sm:text-base flex-shrink-0"></i>
+                    <span class="hidden sm:inline whitespace-nowrap">GitHub</span>
                 </a>
             </div>
         </div>
@@ -1360,12 +1367,12 @@ cd miqu-project
                 if (t === tabName) {
                     if (panel) panel.classList.remove('hidden');
                     if (btn) {
-                        btn.className = 'tab-btn px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg transition-all font-semibold text-white bg-emerald-600 dark:bg-emerald-500 dark:text-black shadow-xs';
+                        btn.className = 'tab-btn px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg transition-all font-semibold text-white bg-emerald-600 dark:bg-emerald-500 dark:text-black shadow-xs whitespace-nowrap flex-shrink-0';
                     }
                 } else {
                     if (panel) panel.classList.add('hidden');
                     if (btn) {
-                        btn.className = 'tab-btn px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg transition-all text-neutral-600 dark:text-neutral-400 hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-neutral-200/60 dark:hover:bg-white/10';
+                        btn.className = 'tab-btn px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg transition-all text-neutral-600 dark:text-neutral-400 hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-neutral-200/60 dark:hover:bg-white/10 whitespace-nowrap flex-shrink-0';
                     }
                 }
             });
