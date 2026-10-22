@@ -449,10 +449,10 @@ sudo cmake --install build</code></pre>
                 </p>
             </header>
 
-            <!-- 1. AI Coding Issues -->
+            <!-- 1. Genuine, Documented Issues with LLM Coding -->
             <section class="space-y-4">
                 <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
-                    <i class="fa-solid fa-triangle-exclamation text-emerald-600 dark:text-emerald-500"></i> AI Coding Issues
+                    <i class="fa-solid fa-triangle-exclamation text-emerald-600 dark:text-emerald-500"></i> Genuine, Documented Issues with LLM Coding
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     <!-- 1. Hidden Vulnerabilities -->
@@ -565,68 +565,98 @@ sudo cmake --install build</code></pre>
                 </div>
             </section>
 
-            <!-- 2. The Hypocrisy -->
+            <!-- 2. Weighing the Criticisms of AI Code Generation -->
             <section class="space-y-4">
                 <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
-                    <i class="fa-solid fa-masks-theater text-emerald-600 dark:text-emerald-500"></i> The Industry Double Standard
+                    <i class="fa-solid fa-scale-balanced text-emerald-600 dark:text-emerald-500"></i> Weighing the Criticisms of AI Code Generation
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- 1. The Historical Precedent -->
+                    <div class="p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm flex flex-col gap-2">
+                        <h3 class="font-bold text-slate-900 dark:text-white text-sm">The Historical Precedent</h3>
+                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                            Every evolution in tooling was once attacked as "not real programming." Assembly programmers claimed high-level compilers produced lazy bloat; later critics attacked IDE autocompletion and Stack Overflow. Theoretical purism always concedes to pragmatic leverage.
+                        </p>
+                    </div>
+
+                    <!-- 2. The Purity Trap -->
+                    <div class="p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm flex flex-col gap-2">
+                        <h3 class="font-bold text-slate-900 dark:text-white text-sm">The Purity Trap</h3>
+                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                            Purists confuse keystrokes with engineering. Typing syntax by hand is manual labor; engineering is defining architecture, memory boundaries, and state machines. Discrediting software merely because an accelerator typed the boilerplate is gatekeeping, not craftsmanship.
+                        </p>
+                    </div>
+
+                    <!-- 3. If Boilerplate Is Not the Issue, What Is Its Extent? (Full Width) -->
+                    <div class="p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm flex flex-col gap-2 md:col-span-2">
+                        <h3 class="font-bold text-slate-900 dark:text-white text-sm">If Boilerplate Is Not the Issue, What Is Its Extent?</h3>
+                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                            Critics often concede that using AI for "mere boilerplate" is fine. But where does boilerplate end? When an IDE like Android Studio scaffolds an entire complex Activity with lifecycles and navigation—leaving a developer to merely fill in text and image assets—the entire application is boilerplate. If that is acceptable, can a window manager's protocol loops and event dispatches also be framed as boilerplate and handed to an LLM? The boundary is completely arbitrary.
+                        </p>
+                    </div>
+
+                    <!-- 4. Big Tech's Black Boxes -->
                     <div class="p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm flex flex-col gap-2">
                         <h3 class="font-bold text-slate-900 dark:text-white text-sm">Big Tech's Black Boxes</h3>
                         <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
-                            Big Tech openly admits 50%+ of their new code is written by AI. Yet, they avoid criticism because their apps are closed-source binaries. Open-source devs use the exact same tools but get attacked simply because their code is visible to the public. 
+                            Proprietary software giants openly write 50%+ of their code with AI, shielded behind closed-source binaries without public scrutiny. Open-source builders use the exact same accelerators but face performative outrage simply because their git history is transparent.
                         </p>
                     </div>
 
+                    <!-- 5. The Open-Source Irony -->
                     <div class="p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm flex flex-col gap-2">
-                        <h3 class="font-bold text-slate-900 dark:text-white text-sm">The Linux Irony</h3>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-sm">The Open-Source Irony</h3>
                         <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
-                            The Linux kernel itself merges AI-assisted patches from top maintainers. The loudest critics demanding "pure" hand-typed code are usually posting from Linux servers and Android phones running the exact machine-assisted logic they claim to hate.
+                            Major ecosystems, including the Linux kernel, routinely merge machine-assisted patches as long as they survive human review and strict test suites. The loudest critics demanding "pure hand-typed" code are actively relying on software built with machine assistance.
+                        </p>
+                    </div>
+
+                    <!-- 6. The "Clean Code" Double Standard -->
+                    <div class="p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm flex flex-col gap-2">
+                        <h3 class="font-bold text-slate-900 dark:text-white text-sm">The "Clean Code" Double Standard</h3>
+                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                            Human-written code has always been famously messy, held together by the age-old rule: <em>"If it works, don't touch it."</em> Multi-million-dollar cult games and foundational tools have shipped on giant ladders of nested <code>if</code> statements and duct-taped scripts without outcry. Yet critics hold AI code to a superhuman purity test—demanding textbook design patterns and pristine refactorability that most production human code never met in the first place.
+                        </p>
+                    </div>
+
+                    <!-- 7. The "Omarchy" Adoption Hypocrisy -->
+                    <div class="p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm flex flex-col gap-2">
+                        <h3 class="font-bold text-slate-900 dark:text-white text-sm">The "Omarchy" Adoption Hypocrisy</h3>
+                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                            Pioneers of anti-AI rhetoric quickly rushed to praise and hype distributions like Omarchy—a desktop openly driven by vibecoded plugins and deep agentic AI modifying system dotfiles and diagnosing crashed processes. When packaged attractively, even vocal critics quietly embrace agentic automation directly inside their OS. How many purists are genuinely surviving their own standards?
+                        </p>
+                    </div>
+
+                    <!-- 8. The Calculator Dilemma: Purity vs. Sovereignty -->
+                    <div class="p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm flex flex-col gap-2 md:col-span-2">
+                        <h3 class="font-bold text-slate-900 dark:text-white text-sm">The Calculator Dilemma: Purity vs. Sovereignty</h3>
+                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                            Which would you prefer: an AI-assisted offline calculator, or a closed-source Big Tech calculator that phones home and connects to the internet? An artisanal, human-written offline tool is ideal in theory—but what if its design clashes with your desktop, fails to sync with your system theme, or lacks modern Wayland ergonomics? When off-the-shelf software doesn't fit your environment, using AI to curate a lightweight, 100% offline utility tailored precisely to your own system is the most pragmatic, privacy-respecting choice available.
                         </p>
                     </div>
                 </div>
             </section>
 
-            <!-- 3. The Verdict -->
+            <!-- 3. Who Is a Developer? -->
             <section class="space-y-4">
                 <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
-                    <i class="fa-solid fa-gavel text-emerald-600 dark:text-emerald-500"></i> The Verdict: Is it Justified in Miqu?
+                    <i class="fa-solid fa-code-fork text-emerald-600 dark:text-emerald-500"></i> Who Is a Developer?
                 </h2>
-                <div class="p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.02] shadow-sm">
-                    <p class="text-sm sm:text-base text-slate-700 dark:text-gray-300 leading-relaxed font-medium">
-                        Yes, but only as a high-speed typing tool. Generating syntax is not engineering. Engineering is defining the state machines, Wayland protocol lifecycles, and memory boundaries. The AI types the boilerplate; the human acts as the architect and takes 100% accountability for the bugs. But to survive the "half-done trap", you need ruthless rules.
-                    </p>
-                </div>
-            </section>
-
-            <!-- 4. The Abstraction Question -->
-            <section class="space-y-4">
-                <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
-                    <i class="fa-solid fa-code-fork text-emerald-600 dark:text-emerald-500"></i> The Abstraction Question
-                </h2>
-                
-                <div class="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.02] shadow-sm space-y-4">
-                    <h3 class="font-bold text-slate-900 dark:text-white text-base">
-                        Where does the boundary of a "developer" lie?
-                    </h3>
-                    
-                    <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
-                        How much abstraction is allowed before someone stops being a developer? Where is the line actually drawn?
-                    </p>
-
-                    <div class="space-y-2 text-sm text-slate-600 dark:text-gray-300 leading-relaxed pl-3.5 border-l-2 border-emerald-500/60 dark:border-emerald-400/60">
-                        <p>Does it require writing raw C code against kernel syscalls?</p>
-                        <p>Is it authoring the window manager from scratch?</p>
-                        <p>Or does scripting an installer that downloads prebuilt compositors, status bars, and widgets—and stitches them all together—still count?</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- 1. The Boundaries of Abstraction -->
+                    <div class="p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm flex flex-col gap-3 md:col-span-2">
+                        <h3 class="font-bold text-slate-900 dark:text-white text-sm">Where Does the Boundary Lie?</h3>
+                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                            How much abstraction is allowed before someone stops being a developer? Where is the line actually drawn? Does it require writing raw C code against kernel syscalls? Is it authoring the window manager from scratch? Or does scripting an installer that downloads prebuilt compositors, status bars, and widgets—and stitches them all together—still count?
+                        </p>
+                        <p class="text-sm text-slate-700 dark:text-slate-300 font-medium leading-relaxed pt-2 border-t border-slate-100 dark:border-white/5">
+                            Every developer stands on someone else's abstraction. The question is: where does using tools end, and building software begin?
+                        </p>
                     </div>
-
-                    <p class="text-sm text-slate-700 dark:text-slate-300 font-medium leading-relaxed pt-2 border-t border-slate-200 dark:border-white/10">
-                        Every developer stands on someone else's abstraction. The question is: where does using tools end, and building software begin?
-                    </p>
                 </div>
             </section>
 
-            <!-- 5. The Hard Rules -->
+            <!-- 4. How We Keep It Safe -->
             <section class="space-y-4">
                 <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
                     <i class="fa-solid fa-shield-halved text-emerald-600 dark:text-emerald-500"></i> How We Keep It Safe
