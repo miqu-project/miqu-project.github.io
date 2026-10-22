@@ -505,63 +505,30 @@ sudo cmake --install build</code></pre>
                 </div>
             </section>
 
-            <!-- 4. The Abstraction Dilemma -->
+            <!-- 4. The Abstraction Question -->
             <section class="space-y-4">
                 <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
-                    <i class="fa-solid fa-code-fork text-emerald-600 dark:text-emerald-500"></i> The Abstraction Dilemma: Where Is the Boundary Drawn?
+                    <i class="fa-solid fa-code-fork text-emerald-600 dark:text-emerald-500"></i> The Abstraction Question
                 </h2>
                 
-                <div class="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50/70 dark:bg-white/[0.02] shadow-sm space-y-5">
-                    <div>
-                        <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">How much abstraction is allowed before you cease being a developer?</h3>
-                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
-                            Where is the line drawn? Does writing raw C against the kernel count, but scripting CLI commands does not? Does authoring a window manager make someone a developer, while scripting an install script that downloads prebuilt window managers, status bars, and desktop widgets and stitches them together mean they are merely a consumer? Where does the boundary truly lie?
-                        </p>
+                <div class="p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.02] shadow-sm space-y-4">
+                    <h3 class="font-bold text-slate-900 dark:text-white text-base">
+                        Where does the boundary of a "developer" lie?
+                    </h3>
+                    
+                    <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                        How much abstraction is allowed before someone stops being a developer? Where is the line actually drawn?
+                    </p>
+
+                    <div class="space-y-2 text-sm text-slate-600 dark:text-gray-300 leading-relaxed pl-3.5 border-l-2 border-emerald-500/60 dark:border-emerald-400/60">
+                        <p>Does it require writing raw C code against kernel syscalls?</p>
+                        <p>Is it authoring the window manager from scratch?</p>
+                        <p>Or does scripting an installer that downloads prebuilt compositors, status bars, and widgets—and stitches them all together—still count?</p>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 pt-1">
-                        <!-- Level 1 -->
-                        <div class="p-4 rounded-xl bg-white dark:bg-miqucard border border-slate-200 dark:border-white/10 flex flex-col justify-between">
-                            <div>
-                                <span class="text-[10px] font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400 font-bold block mb-1">Level 1: Hardware &amp; Wire</span>
-                                <h4 class="font-bold text-slate-900 dark:text-white text-xs mb-1.5">Direct C &amp; Protocol Core</h4>
-                                <p class="text-xs text-slate-600 dark:text-gray-400 leading-relaxed">
-                                    Writing raw C code directly against POSIX syscalls, Wayland wire protocols, DRM/KMS buffers, and Cairo/OpenGL contexts without third-party cushions.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Level 2 -->
-                        <div class="p-4 rounded-xl bg-white dark:bg-miqucard border border-slate-200 dark:border-white/10 flex flex-col justify-between">
-                            <div>
-                                <span class="text-[10px] font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400 font-bold block mb-1">Level 2: Engine &amp; Compositor</span>
-                                <h4 class="font-bold text-slate-900 dark:text-white text-xs mb-1.5">Window Managers &amp; UI Toolkits</h4>
-                                <p class="text-xs text-slate-600 dark:text-gray-400 leading-relaxed">
-                                    Authoring the window manager from scratch, structuring scene trees, managing seat focus, and implementing native shared UI toolkits.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Level 3 -->
-                        <div class="p-4 rounded-xl bg-white dark:bg-miqucard border border-slate-200 dark:border-white/10 flex flex-col justify-between">
-                            <div>
-                                <span class="text-[10px] font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-400 font-bold block mb-1">Level 3: Orchestration &amp; Glue</span>
-                                <h4 class="font-bold text-slate-900 dark:text-white text-xs mb-1.5">Scripts, CLIs &amp; Integration</h4>
-                                <p class="text-xs text-slate-600 dark:text-gray-400 leading-relaxed">
-                                    Authoring bash installer scripts, wiring CLI commands through Unix pipes, and configuring disparate third-party elements into a cohesive system.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pt-3 border-t border-slate-200 dark:border-white/10 text-xs sm:text-sm text-slate-600 dark:text-gray-300 leading-relaxed space-y-2">
-                        <p>
-                            The reality is that <em>all</em> software is abstraction. Compilers abstract assembly; assembly abstracts microcode; microcode abstracts logic gates. Stitching existing applications together via shell scripts solves real orchestration problems, just as writing a compositor solves real display server problems.
-                        </p>
-                        <p class="font-medium text-slate-900 dark:text-white">
-                            The difference is depth of control: when you write the compositor (<code class="font-mono text-xs px-1 py-0.5 rounded bg-slate-200/80 dark:bg-white/10">miquland</code>), the UI framework (<code class="font-mono text-xs px-1 py-0.5 rounded bg-slate-200/80 dark:bg-white/10">miqutoolkit</code>), and the 16 native applications in C++20 yourself, there are no hidden black boxes. You own every frame, every protocol event, and every byte of memory.
-                        </p>
-                    </div>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 font-medium leading-relaxed pt-2 border-t border-slate-200 dark:border-white/10">
+                        Every developer stands on someone else's abstraction. The question is: where does using tools end, and building software begin?
+                    </p>
                 </div>
             </section>
 
