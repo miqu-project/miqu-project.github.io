@@ -449,24 +449,82 @@ sudo cmake --install build</code></pre>
                 </p>
             </header>
 
-            <!-- 1. The Reality of AI -->
+            <!-- 1. AI Coding Issues -->
             <section class="space-y-4">
                 <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
-                    <i class="fa-solid fa-bolt text-emerald-600 dark:text-emerald-500"></i> The Brutal Reality of AI Coding
+                    <i class="fa-solid fa-triangle-exclamation text-emerald-600 dark:text-emerald-500"></i> AI Coding Issues
                 </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm flex flex-col gap-2">
-                        <h3 class="font-bold text-slate-900 dark:text-white text-sm">The "Compiler" Myth</h3>
-                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
-                            People say using AI is just like using a compiler. That's false. Compilers are perfectly deterministic; they do exactly what you tell them. AI is probabilistic. It guesses tokens. It's a glorified autocomplete that frequently hallucinates libraries and logic.
-                        </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- 1. Hidden Vulnerabilities -->
+                    <div class="p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm flex flex-col justify-between gap-2">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1.5 flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-500"></span> Hidden Vulnerabilities
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                                LLMs frequently generate plausible-looking code that omits basic input validation or memory-safety checks, introducing subtle bugs like integer overflows, off-by-one errors, and deprecated cryptographic suites.
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm flex flex-col gap-2">
-                        <h3 class="font-bold text-slate-900 dark:text-white text-sm">The "Half-Done" Trap</h3>
-                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
-                            AI is lazy. Ask it for a UI widget, and it writes the absolute minimum to compile. It ignores DPI scaling, multiline wrapping, and memory edge-cases. It completely loses global context in a multi-repo project. Left unsupervised, AI code breaks in production immediately.
-                        </p>
+                    <!-- 2. Hallucinated Dependencies -->
+                    <div class="p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm flex flex-col justify-between gap-2">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1.5 flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-500"></span> Hallucinated Dependencies
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                                Models occasionally fabricate package names and function signatures. Attackers actively register these hallucinated package names on public registries to inject malicious code directly into automated build pipelines.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 3. Flow Disruption -->
+                    <div class="p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm flex flex-col justify-between gap-2">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1.5 flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-500"></span> Flow Disruption
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                                Meticulously verifying confident but subtly flawed code often takes more time than authoring it from scratch. This forces engineers into a passive reviewer/auditor role, breaking the deep focus of active programming.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 4. Licensing & Data Leaks -->
+                    <div class="p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm flex flex-col justify-between gap-2">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1.5 flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-500"></span> Licensing &amp; Data Leaks
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                                Models regularly output verbatim memorized code without attribution, risking unintended GPL or MIT license violations. They can also surface configuration tokens and private identifiers embedded in public training datasets.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 5. Skill Degradation -->
+                    <div class="p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm flex flex-col justify-between gap-2">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1.5 flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-500"></span> Skill Degradation
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                                Excessive reliance on AI deprives developers of the iterative problem-solving and debugging struggles needed to build deep first-principles intuition, reducing their ability to critically evaluate software.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 6. Data Starvation -->
+                    <div class="p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm flex flex-col justify-between gap-2">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm mb-1.5 flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-500"></span> Data Starvation
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                                Widespread AI adoption has caused a noticeable drop in organic questions on public developer forums. This deprives future models of fresh human knowledge, raising the risk of recursive model collapse.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
