@@ -410,70 +410,20 @@ sudo cmake --install build</code></pre>
                 </div>
             </section>
 
-            <!-- Architectural Note & Inspiration -->
+            <!-- How to Criticize This Project: Hyprland Inspiration & An Honest Steelman -->
             <section class="space-y-4">
                 <div class="border-b border-slate-200 dark:border-white/10 pb-3">
                     <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
-                        <i class="fa-solid fa-lightbulb text-emerald-600 dark:text-emerald-400"></i> Architectural Inspiration: A Note on Hyprland
+                        <i class="fa-solid fa-bullhorn text-emerald-600 dark:text-emerald-400"></i> How to Criticize This Project: Hyprland Inspiration &amp; An Honest Steelman
                     </h2>
                 </div>
 
                 <div class="p-6 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm space-y-4">
                     <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
-                        If you have used or configured <a href="https://hyprland.org" target="_blank" rel="noopener noreferrer" class="text-emerald-600 dark:text-emerald-400 font-medium hover:underline">Hyprland</a>, you may notice that Miqu's overall project structure and philosophy feel familiar. In fact, Hyprland is our primary architectural inspiration: a Wayland-native foundation (bypassing legacy X11), dynamic fluid tiling, and an uncompromising focus on modern desktop ergonomics.
+                        If you have used or configured <a href="https://hyprland.org" target="_blank" rel="noopener noreferrer" class="text-emerald-600 dark:text-emerald-400 font-medium hover:underline">Hyprland</a>, you will immediately recognize its imprint on Miqu. In fact, Hyprland is our primary architectural inspiration: a Wayland-native foundation (bypassing legacy X11), dynamic fluid tiling, and an uncompromising focus on modern desktop ergonomics.
                     </p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
-                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/5 space-y-1">
-                            <span class="text-xs font-bold text-slate-900 dark:text-white block flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Compositor Backend
-                            </span>
-                            <p class="text-xs text-slate-600 dark:text-gray-400 leading-relaxed">
-                                While Hyprland engineered its own custom backend abstraction (<em>Aquamarine</em>), we chose not to reinvent that wheel, building directly on top of battle-tested <strong>wlroots</strong>.
-                            </p>
-                        </div>
-
-                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/5 space-y-1">
-                            <span class="text-xs font-bold text-slate-900 dark:text-white block flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Effects &amp; Scene Pipeline
-                            </span>
-                            <p class="text-xs text-slate-600 dark:text-gray-400 leading-relaxed">
-                                Hyprland authored its own bespoke rendering effects pipeline; Miqu leverages the mature <strong>scenefx</strong> scene-graph pipeline for hardware-accelerated blur, shadows, and rounded corners.
-                            </p>
-                        </div>
-
-                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/5 space-y-1">
-                            <span class="text-xs font-bold text-slate-900 dark:text-white block flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Toolkit &amp; Plugin Architecture
-                            </span>
-                            <p class="text-xs text-slate-600 dark:text-gray-400 leading-relaxed">
-                                Both projects implement native C++ plugin systems. While Hyprland pushes its internal toolkits into system installations alongside the compositor, Miqu keeps <strong>miqutoolkit</strong> completely decoupled as a standalone shared library.
-                            </p>
-                        </div>
-
-                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/5 space-y-1">
-                            <span class="text-xs font-bold text-slate-900 dark:text-white block flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Desktop to Mobile Ecosystem
-                            </span>
-                            <p class="text-xs text-slate-600 dark:text-gray-400 leading-relaxed">
-                                Hyprland inspired dedicated companion daemons. Miqu expanded this into 16 full-fledged Linux desktop applications and pushed the boundary further with native companion <strong>Android apps</strong>.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- How to Criticize This Project -->
-            <section class="space-y-4">
-                <div class="border-b border-slate-200 dark:border-white/10 pb-3">
-                    <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
-                        <i class="fa-solid fa-bullhorn text-emerald-600 dark:text-emerald-400"></i> How to Criticize This Project: An Honest Steelman
-                    </h2>
-                </div>
-
-                <div class="p-6 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm space-y-4">
                     <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
-                        If you want to criticize Miqu, you don't need to look hard. We believe in intellectual honesty and radical transparency, so here is the most honest, unflinching steelman of the case against this project:
+                        Because of this, if you want to criticize Miqu, the case practically writes itself. We believe in intellectual honesty and radical transparency, so here is the most honest, unflinching steelman of the case against this project:
                     </p>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
@@ -510,11 +460,34 @@ sudo cmake --install build</code></pre>
                         <!-- 4. Standing on Upstream Giants -->
                         <div class="p-4 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/5 space-y-1.5">
                             <span class="text-xs font-bold text-slate-900 dark:text-white block flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span> "Upstream Crutches"
+                                <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span> "Upstream Crutches vs. Bespoke Engines"
                             </span>
                             <p class="text-xs text-slate-600 dark:text-gray-400 leading-relaxed">
-                                While Hyprland wrote custom backends like Aquamarine, Miqu relies on <code>wlroots</code> and <code>scenefx</code> to do the heavy lifting. If upstream libraries break or shift their paradigms, Miqu inherits their limitations.
+                                While Hyprland engineered its own backend (<em>Aquamarine</em>) and bespoke effects pipeline, we did not dare reinvent those wheels—building directly on battle-tested <strong>wlroots</strong> and <strong>scenefx</strong>. If upstream libraries break or shift paradigms, Miqu inherits their limitations.
                             </p>
+                        </div>
+                    </div>
+
+                    <!-- Architectural Divergences Mini-Grid -->
+                    <div class="pt-3 border-t border-slate-100 dark:border-white/5 space-y-2">
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-gray-400 block">Where We Deliberately Diverge from Hyprland</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 text-xs text-slate-600 dark:text-gray-400">
+                            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/5">
+                                <span class="font-bold text-slate-800 dark:text-slate-200 block mb-0.5">Backend</span>
+                                Hyprland: Aquamarine<br/>Miqu: Stock wlroots
+                            </div>
+                            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/5">
+                                <span class="font-bold text-slate-800 dark:text-slate-200 block mb-0.5">Effects</span>
+                                Hyprland: Custom renderer<br/>Miqu: Mature scenefx
+                            </div>
+                            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/5">
+                                <span class="font-bold text-slate-800 dark:text-slate-200 block mb-0.5">Toolkit Installation</span>
+                                Hyprland: Bundles toolkits<br/>Miqu: Decoupled miqutoolkit
+                            </div>
+                            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/5">
+                                <span class="font-bold text-slate-800 dark:text-slate-200 block mb-0.5">Scope</span>
+                                Hyprland: Desktop utilities<br/>Miqu: 16 apps + Android
+                            </div>
                         </div>
                     </div>
 
