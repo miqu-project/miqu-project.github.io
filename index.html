@@ -85,7 +85,7 @@
 
     <!-- Header / Navbar -->
     <header class="sticky top-0 z-40 w-full border-b border-neutral-200/80 dark:border-white/10 bg-white/85 dark:bg-black/85 backdrop-blur-md transition-colors duration-200">
-        <div class="max-w-5xl mx-auto px-3 sm:px-6 h-14 sm:h-16 flex items-center justify-between flex-nowrap whitespace-nowrap overflow-x-auto no-scrollbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between flex-nowrap whitespace-nowrap overflow-x-auto no-scrollbar">
             
             <!-- Brand Logo -->
             <a href="#home" onclick="onTabClick('home')" class="flex items-center gap-2 sm:gap-3 group flex-shrink-0 whitespace-nowrap">
@@ -118,7 +118,7 @@
     </header>
 
     <!-- Main Content -->
-    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 py-10 w-full">
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 w-full">
         
         <!-- ========================================================= -->
         <!-- TAB 1: HOME                                               -->
@@ -133,7 +133,7 @@
                     <div class="absolute -right-16 -top-16 w-64 h-64 bg-neutral-300/20 dark:bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
                     <div class="absolute -left-16 -bottom-16 w-64 h-64 bg-neutral-300/10 dark:bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
 
-                    <div class="w-full max-w-4xl">
+                    <div class="w-full max-w-5xl">
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-y-5 md:gap-y-6 md:gap-x-6 relative">
                             
                             <!-- Node 1: GNU/Linux (Top-Left) -->
@@ -281,7 +281,7 @@
                     All components are modular and fully decoupled. <strong>Miquland</strong> operates independently of miqutoolkit, and <strong>miqutoolkit</strong> does not require Miquland. If miqutoolkit is installed under any other Wayland compositor, all Miqu Linux applications will run natively.
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     
                     <!-- Card 1: Miquland -->
                     <div onclick="openComponentModal('miquland')" class="group p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard hover:border-black dark:hover:border-white hover:shadow-md transition-all flex flex-col justify-between cursor-pointer">
@@ -390,7 +390,7 @@
                     </h2>
                 </div>
 
-                <div class="space-y-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                     <!-- Option 1 -->
                     <div class="rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard p-5 shadow-xs dark:shadow-none">
                         <div class="flex items-center justify-between mb-3">
@@ -927,7 +927,7 @@ sudo cmake --install build</code></pre>
 
     <!-- Modal Infrastructure -->
     <div id="component-modal" onclick="onModalBackdropClick(event)" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 opacity-0 pointer-events-none transition-all duration-200">
-        <div id="component-modal-dialog" class="bg-white dark:bg-[#121217] border border-slate-200 dark:border-white/15 rounded-2xl max-w-4xl w-full max-h-[88vh] flex flex-col shadow-2xl overflow-hidden scale-95 transition-all duration-200">
+        <div id="component-modal-dialog" class="bg-white dark:bg-[#121217] border border-slate-200 dark:border-white/15 rounded-2xl max-w-5xl xl:max-w-6xl w-full max-h-[88vh] flex flex-col shadow-2xl overflow-hidden scale-95 transition-all duration-200">
             <div class="p-5 sm:p-6 border-b border-slate-200 dark:border-white/10 flex items-start justify-between gap-4 bg-slate-50/80 dark:bg-white/[0.02]">
                 <div class="flex items-center gap-3">
                     <div id="modal-icon-box" class="w-10 h-10 rounded-xl bg-emerald-600 text-white dark:bg-emerald-500 dark:text-black flex items-center justify-center text-lg flex-shrink-0">
@@ -965,7 +965,7 @@ sudo cmake --install build</code></pre>
 
     <!-- Footer -->
     <footer class="border-t border-slate-200 dark:border-white/10 py-6 bg-slate-100 dark:bg-[#070709] text-xs text-slate-500 dark:text-gray-400 transition-colors mt-auto">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-center gap-2.5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center gap-2.5">
             <img src="assets/logo.png" alt="Miqu Logo" class="w-5 h-5 object-contain rounded" />
             <span class="font-bold text-slate-900 dark:text-white">miqu-project</span>
             <span class="text-slate-300 dark:text-white/20">&bull;</span>
@@ -1063,7 +1063,7 @@ sudo cmake --install build</code></pre>
 
             if (data.items) {
                 const grid = document.createElement('div');
-                grid.className = 'grid grid-cols-1 sm:grid-cols-2 gap-4';
+                grid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4';
 
                 data.items.forEach(item => {
                     const card = document.createElement('div');
@@ -1093,7 +1093,7 @@ sudo cmake --install build</code></pre>
                 bodyElem.appendChild(grid);
             } else if (data.specs) {
                 const grid = document.createElement('div');
-                grid.className = 'grid grid-cols-1 sm:grid-cols-2 gap-4';
+                grid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4';
 
                 data.specs.forEach(spec => {
                     const card = document.createElement('div');
