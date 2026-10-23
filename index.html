@@ -470,23 +470,37 @@ sudo cmake --install build</code></pre>
 
                     <!-- Architectural Divergences Mini-Grid -->
                     <div class="pt-3 border-t border-slate-100 dark:border-white/5 space-y-2">
-                        <span class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-gray-400 block">Where We Deliberately Diverge from Hyprland</span>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 text-xs text-slate-600 dark:text-gray-400">
-                            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/5">
-                                <span class="font-bold text-slate-800 dark:text-slate-200 block mb-0.5">Backend</span>
-                                Hyprland: Aquamarine<br/>Miqu: Stock wlroots
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-gray-400 block">Notable Architectural Divergences (Non-Exhaustive)</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 text-xs text-slate-600 dark:text-gray-400">
+                            <div class="p-3 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/5 space-y-1">
+                                <span class="font-bold text-slate-800 dark:text-slate-200 block">Compositor Backend</span>
+                                <span class="block text-slate-500 dark:text-gray-500">Hyprland: Custom Aquamarine</span>
+                                <span class="block text-emerald-600 dark:text-emerald-400 font-medium">Miqu: Upstream wlroots</span>
                             </div>
-                            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/5">
-                                <span class="font-bold text-slate-800 dark:text-slate-200 block mb-0.5">Effects</span>
-                                Hyprland: Custom renderer<br/>Miqu: Mature scenefx
+                            <div class="p-3 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/5 space-y-1">
+                                <span class="font-bold text-slate-800 dark:text-slate-200 block">Effects Pipeline</span>
+                                <span class="block text-slate-500 dark:text-gray-500">Hyprland: Custom renderer</span>
+                                <span class="block text-emerald-600 dark:text-emerald-400 font-medium">Miqu: Mature scenefx</span>
                             </div>
-                            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/5">
-                                <span class="font-bold text-slate-800 dark:text-slate-200 block mb-0.5">Toolkit Installation</span>
-                                Hyprland: Bundles toolkits<br/>Miqu: Decoupled miqutoolkit
+                            <div class="p-3 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/5 space-y-1">
+                                <span class="font-bold text-slate-800 dark:text-slate-200 block">Configuration Doctrine</span>
+                                <span class="block text-slate-500 dark:text-gray-500">Hyprland: Auto-seeds ~/.config on launch</span>
+                                <span class="block text-emerald-600 dark:text-emerald-400 font-medium">Miqu: Zero-config baseline &amp; --init-config</span>
                             </div>
-                            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/5">
-                                <span class="font-bold text-slate-800 dark:text-slate-200 block mb-0.5">Scope</span>
-                                Hyprland: Desktop utilities<br/>Miqu: 16 apps + Android
+                            <div class="p-3 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/5 space-y-1">
+                                <span class="font-bold text-slate-800 dark:text-slate-200 block">Toolkit Integration</span>
+                                <span class="block text-slate-500 dark:text-gray-500">Hyprland: Bundles toolkits system-wide</span>
+                                <span class="block text-emerald-600 dark:text-emerald-400 font-medium">Miqu: Decoupled standalone miqutoolkit</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/5 space-y-1">
+                                <span class="font-bold text-slate-800 dark:text-slate-200 block">Ecosystem Scope</span>
+                                <span class="block text-slate-500 dark:text-gray-500">Hyprland: Focused desktop daemons</span>
+                                <span class="block text-emerald-600 dark:text-emerald-400 font-medium">Miqu: 16 Linux apps + companion Android</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/5 space-y-1">
+                                <span class="font-bold text-slate-800 dark:text-slate-200 block">And Further Divergences...</span>
+                                <span class="block text-slate-500 dark:text-gray-500">Decoupled dynamic theming via source</span>
+                                <span class="block text-emerald-600 dark:text-emerald-400 font-medium">Strict 0.0% idle CPU event-loop contracts</span>
                             </div>
                         </div>
                     </div>
