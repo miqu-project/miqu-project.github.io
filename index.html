@@ -423,6 +423,33 @@ sudo cmake --install build</code></pre>
                     </div>
                 </div>
             </section>
+
+            <!-- Screenshots Section -->
+            <section class="space-y-6">
+                <div class="border-b border-slate-200 dark:border-white/10 pb-3 flex items-center justify-between">
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+                        <i class="fa-solid fa-camera text-emerald-600 dark:text-emerald-400"></i> Screenshots
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                    <div class="md:col-span-2 group relative overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-[#0c0d12] shadow-sm cursor-pointer" onclick="openLightbox('assets/screenshots/sc1.png')">
+                        <img src="assets/screenshots/sc1.png" alt="Screenshot 1" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.01]" loading="lazy" />
+                    </div>
+                    <div class="group relative overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-[#0c0d12] shadow-sm cursor-pointer" onclick="openLightbox('assets/screenshots/sc2.png')">
+                        <img src="assets/screenshots/sc2.png" alt="Screenshot 2" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.01]" loading="lazy" />
+                    </div>
+                    <div class="group relative overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-[#0c0d12] shadow-sm cursor-pointer" onclick="openLightbox('assets/screenshots/sc3.png')">
+                        <img src="assets/screenshots/sc3.png" alt="Screenshot 3" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.01]" loading="lazy" />
+                    </div>
+                    <div class="group relative overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-[#0c0d12] shadow-sm cursor-pointer" onclick="openLightbox('assets/screenshots/sc4.png')">
+                        <img src="assets/screenshots/sc4.png" alt="Screenshot 4" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.01]" loading="lazy" />
+                    </div>
+                    <div class="group relative overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-[#0c0d12] shadow-sm cursor-pointer" onclick="openLightbox('assets/screenshots/sc5.png')">
+                        <img src="assets/screenshots/sc5.png" alt="Screenshot 5" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.01]" loading="lazy" />
+                    </div>
+                </div>
+            </section>
         </div>
 
         <!-- ========================================================= -->
@@ -963,6 +990,16 @@ sudo cmake --install build</code></pre>
         </div>
     </div>
 
+    <!-- Image Lightbox Modal -->
+    <div id="image-lightbox" onclick="onLightboxBackdropClick(event)" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 opacity-0 pointer-events-none transition-all duration-200">
+        <div class="relative max-w-6xl w-full max-h-[92vh] flex items-center justify-center">
+            <button onclick="closeLightbox()" class="absolute -top-12 right-0 sm:top-3 sm:right-3 z-10 w-9 h-9 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center transition-colors border border-white/20">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+            <img id="lightbox-img" src="" alt="Screenshot" class="max-w-full max-h-[88vh] rounded-2xl object-contain shadow-2xl border border-white/10" />
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="border-t border-slate-200 dark:border-white/10 py-6 bg-slate-100 dark:bg-[#070709] text-xs text-slate-500 dark:text-gray-400 transition-colors mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center gap-2.5">
@@ -1144,8 +1181,31 @@ sudo cmake --install build</code></pre>
             if (e.target.id === 'component-modal') closeComponentModal();
         }
 
+        function openLightbox(src) {
+            const lightbox = document.getElementById('image-lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lightbox.classList.remove('opacity-0', 'pointer-events-none');
+            lightbox.classList.add('opacity-100');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('image-lightbox');
+            lightbox.classList.remove('opacity-100');
+            lightbox.classList.add('opacity-0', 'pointer-events-none');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        function onLightboxBackdropClick(e) {
+            if (e.target.id === 'image-lightbox') closeLightbox();
+        }
+
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeComponentModal();
+            if (e.key === 'Escape') {
+                closeComponentModal();
+                closeLightbox();
+            }
         });
 
         // Tab Routing
