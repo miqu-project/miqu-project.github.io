@@ -644,13 +644,31 @@ sudo cmake --install build</code></pre>
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- 1. The Boundaries of Abstraction -->
-                    <div class="p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm flex flex-col gap-3 md:col-span-2">
-                        <h3 class="font-bold text-slate-900 dark:text-white text-sm">Where Does the Boundary Lie?</h3>
-                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
-                            How much abstraction is allowed before someone stops being a developer? Where is the line actually drawn? Does it require writing raw C code against kernel syscalls? Is it authoring the window manager from scratch? Or does scripting an installer that downloads prebuilt compositors, status bars, and widgets—and stitches them all together—still count?
-                        </p>
+                    <div class="p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm flex flex-col justify-between gap-3">
+                        <div class="space-y-2">
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm">Where Does the Boundary Lie?</h3>
+                            <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                                How much abstraction is allowed before someone stops being a developer? Where is the line actually drawn? Does it require writing raw C code against kernel syscalls? Is it authoring the window manager from scratch? Or does scripting an installer that downloads prebuilt compositors, status bars, and widgets—and stitches them all together—still count?
+                            </p>
+                        </div>
                         <p class="text-sm text-slate-700 dark:text-slate-300 font-medium leading-relaxed pt-2 border-t border-slate-100 dark:border-white/5">
                             Every developer stands on someone else's abstraction. The question is: where does using tools end, and building software begin?
+                        </p>
+                    </div>
+
+                    <!-- 2. The Nested Boilerplate Paradox -->
+                    <div class="p-5 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm flex flex-col justify-between gap-3">
+                        <div class="space-y-2">
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm">The "Rice in an ISO" Paradox</h3>
+                            <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                                Consider a familiar scenario: someone takes Arch Linux as an OS base, Hyprland as compositor boilerplate, Quickshell as shell boilerplate, a community riced config as UI boilerplate, and packages it all into an ISO. Are they a software developer, a desktop environment creator, or a distribution maintainer?
+                            </p>
+                            <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                                If assembling layers of existing binaries and riced configurations into an installer is celebrated as building an OS or desktop, why should engineering native C++20 daemons and custom Wayland protocols be questioned simply because an LLM assisted with boilerplate?
+                            </p>
+                        </div>
+                        <p class="text-sm text-slate-700 dark:text-slate-300 font-medium leading-relaxed pt-2 border-t border-slate-100 dark:border-white/5">
+                            When boilerplate is layered on top of boilerplate, who decides which layer confers the title of "developer"?
                         </p>
                     </div>
                 </div>
