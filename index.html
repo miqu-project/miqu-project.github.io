@@ -770,13 +770,55 @@ sudo cmake --install build</code></pre>
   }
 ]</code></pre>
                         </div>
+
+                        <!-- Query 4: Active Window & Active Workspace -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-sm font-bold text-slate-900 dark:text-white font-mono flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400"></span> miquctl activewindow
+                                    </h3>
+                                    <button onclick="copyCode('code-ipc-actwin', this)" class="text-xs text-slate-500 hover:text-black dark:hover:text-white flex items-center gap-1">
+                                        <i class="fa-regular fa-copy"></i> <span>Copy</span>
+                                    </button>
+                                </div>
+                                <pre class="bg-slate-100 dark:bg-[#0c0d12] p-4 rounded-xl font-mono text-xs text-slate-800 dark:text-slate-200 overflow-x-auto border border-slate-200 dark:border-white/10"><code id="code-ipc-actwin">{
+  "id": 1,
+  "title": "kitty: fish shell",
+  "app_id": "kitty",
+  "workspace_id": 1,
+  "focused": true,
+  "floating": false,
+  "fullscreen": false,
+  "geometry": { "x": 0, "y": 36, "width": 960, "height": 1044 }
+}</code></pre>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-sm font-bold text-slate-900 dark:text-white font-mono flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400"></span> miquctl activeworkspace
+                                    </h3>
+                                    <button onclick="copyCode('code-ipc-actws', this)" class="text-xs text-slate-500 hover:text-black dark:hover:text-white flex items-center gap-1">
+                                        <i class="fa-regular fa-copy"></i> <span>Copy</span>
+                                    </button>
+                                </div>
+                                <pre class="bg-slate-100 dark:bg-[#0c0d12] p-4 rounded-xl font-mono text-xs text-slate-800 dark:text-slate-200 overflow-x-auto border border-slate-200 dark:border-white/10"><code id="code-ipc-actws">{
+  "id": 1,
+  "active": true,
+  "visible": true,
+  "view_count": 2,
+  "tiled_view_count": 2,
+  "floating_view_count": 0
+}</code></pre>
+                            </div>
+                        </div>
                     </section>
 
                     <!-- 4. WINDOW & WORKSPACE DISPATCHERS -->
                     <section id="doc-ipc-dispatch" class="p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard space-y-4">
                         <div class="flex items-center justify-between">
                             <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
-                                <span class="w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400"></span> 4. Window & Workspace Dispatchers
+                                <span class="w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400"></span> 4. Comprehensive Window & Workspace Dispatchers
                             </h2>
                             <a href="#doc-ipc-dispatch" class="text-xs text-slate-400 hover:text-emerald-500"><i class="fa-solid fa-link"></i></a>
                         </div>
@@ -794,40 +836,76 @@ sudo cmake --install build</code></pre>
                                 </thead>
                                 <tbody class="text-slate-600 dark:text-gray-300">
                                     <tr>
-                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch close [win_id]</code></td>
-                                        <td class="p-3 border border-slate-200 dark:border-white/10">Sends an XDG polite close request to targeted window (or focused window)</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch close [id]</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Sends an XDG polite close request to targeted window (or active focused window)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch kill [id]</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Forcefully destroys Wayland client connection for target window</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch focus &lt;left|right|up|down&gt;</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Moves keyboard focus directionally using 2D Euclidean geometry bounding box calculations</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch focus &lt;next|prev|id&gt;</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Cycles keyboard focus to next/prev window or directly focuses window by numeric ID</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch move &lt;dx&gt; &lt;dy&gt; [id]</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Moves floating window by delta pixels relative to current position</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch moveto &lt;x&gt; &lt;y&gt; [id]</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Moves floating window to absolute coordinates</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch resize &lt;dw&gt; &lt;dh&gt; [id]</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Resizes floating window by delta pixels, or adjusts tiling split ratio on active workspace</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch resizeto &lt;w&gt; &lt;h&gt; [id]</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Sets floating window to absolute dimensions (minimum 100x80)</td>
                                     </tr>
                                     <tr>
                                         <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch workspace &lt;id&gt;</code></td>
                                         <td class="p-3 border border-slate-200 dark:border-white/10">Switches the active workspace to workspace <code>&lt;id&gt;</code></td>
                                     </tr>
                                     <tr>
-                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch movetoworkspace &lt;id&gt; [win]</code></td>
-                                        <td class="p-3 border border-slate-200 dark:border-white/10">Moves focused window (or target window ID) to workspace <code>&lt;id&gt;</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch movetoworkspace &lt;id&gt; [id]</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Moves focused window (or specified window ID) to workspace <code>&lt;id&gt;</code></td>
                                     </tr>
                                     <tr>
-                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch toggle_floating</code></td>
-                                        <td class="p-3 border border-slate-200 dark:border-white/10">Toggles floating/tiling state of the active window</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch toggle_floating [id]</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Toggles floating/tiling state of target or active window</td>
                                     </tr>
                                     <tr>
-                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch toggle_fullscreen</code></td>
-                                        <td class="p-3 border border-slate-200 dark:border-white/10">Toggles true fullscreen mode for the active window</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch toggle_fullscreen [id]</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Toggles true fullscreen mode for target or active window</td>
                                     </tr>
                                     <tr>
                                         <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch toggle_layout</code></td>
-                                        <td class="p-3 border border-slate-200 dark:border-white/10">Toggles layout engine between Fibonacci Spiral and Stack</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Toggles workspace layout engine between Fibonacci Spiral and Stack</td>
                                     </tr>
                                     <tr>
-                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch swap_main</code></td>
-                                        <td class="p-3 border border-slate-200 dark:border-white/10">Swaps active window with the master column window</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch swap_main [id]</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Swaps target or active window with the master column window</td>
                                     </tr>
                                     <tr>
-                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch focus_next / focus_prev</code></td>
-                                        <td class="p-3 border border-slate-200 dark:border-white/10">Cycles keyboard focus to the next/previous window in layout order</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch toggle_split</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Toggles layout split direction between horizontal and vertical</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch shutdown [timeout_ms]</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Triggers compositor-native graceful shutdown sequence (default timeout: 2500ms)</td>
                                     </tr>
                                     <tr>
                                         <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl reload</code></td>
                                         <td class="p-3 border border-slate-200 dark:border-white/10">Hot-reloads <code>miquland.conf</code> configuration on the fly</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl exec &lt;command&gt;</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Executes a program in the compositor session environment</td>
                                     </tr>
                                     <tr>
                                         <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl exit</code></td>
@@ -847,7 +925,7 @@ sudo cmake --install build</code></pre>
                             <a href="#doc-ipc-shutdown" class="text-xs text-slate-400 hover:text-emerald-500"><i class="fa-solid fa-link"></i></a>
                         </div>
                         <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
-                            Traditional compositor termination or crude shell scripts running <code>killall</code> or <code>pkill</code> abruptly sever applications, causing text editors, IDEs, and browsers to lose unsaved work. <strong><code>miquctl shutdown</code></strong> provides an intelligent, protocol-driven shutdown workflow:
+                            Traditional compositor termination or crude shell scripts running <code>killall</code> or <code>pkill</code> abruptly sever applications, causing text editors, IDEs, and browsers to lose unsaved work. <strong><code>miquctl shutdown</code></strong> provides an intelligent, protocol-driven shutdown workflow orchestrated natively by <code>miquland</code>:
                         </p>
 
                         <!-- Workflow Stages -->
@@ -856,23 +934,23 @@ sudo cmake --install build</code></pre>
                                 <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">Stage 1</span>
                                 <h4 class="font-bold text-slate-900 dark:text-white text-sm">Polite Close Broadcast</h4>
                                 <p class="text-xs text-slate-600 dark:text-gray-300">
-                                    Queries all open windows via IPC and dispatches standard XDG close requests (<code>xdg_toplevel_send_close</code>). Applications display "Save your document?" dialogs.
+                                    <code>miquland</code> broadcasts standard XDG polite close requests (<code>xdg_toplevel_send_close</code>) to all top-level application windows. Applications prompt the user to save unsaved documents.
                                 </p>
                             </div>
 
                             <div class="p-4 rounded-2xl bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/10 space-y-1.5">
                                 <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">Stage 2</span>
-                                <h4 class="font-bold text-slate-900 dark:text-white text-sm">Poll & Wait Period</h4>
+                                <h4 class="font-bold text-slate-900 dark:text-white text-sm">Event-Driven Unmap Watcher</h4>
                                 <p class="text-xs text-slate-600 dark:text-gray-300">
-                                    Monitors client count until zero windows remain, or until the configurable timeout elapses (default: 3000ms).
+                                    The compositor monitors view unmap events with a hardware timer fallback. If all windows close cleanly before the timeout, teardown executes immediately with zero unnecessary waiting.
                                 </p>
                             </div>
 
                             <div class="p-4 rounded-2xl bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/10 space-y-1.5">
                                 <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">Stage 3</span>
-                                <h4 class="font-bold text-slate-900 dark:text-white text-sm">Compositor Teardown</h4>
+                                <h4 class="font-bold text-slate-900 dark:text-white text-sm">Clean Session Teardown</h4>
                                 <p class="text-xs text-slate-600 dark:text-gray-300">
-                                    Terminates <code>miquland</code>. Socket severing triggers automatic clean exit in all bars (<code>miqubar</code>, <code>waybar</code>) and background daemons.
+                                    Broadcasts session shutdown event, sends <code>SIGTERM</code> to all tracked autostart process groups (<code>miqubar</code>, <code>miqudesk</code>, <code>miqunotify</code>, etc.), severs client display sockets, and exits.
                                 </p>
                             </div>
                         </div>
@@ -896,7 +974,7 @@ sudo cmake --install build</code></pre>
                                     <tr>
                                         <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>--force</code></td>
                                         <td class="p-3 border border-slate-200 dark:border-white/10"><code>false</code></td>
-                                        <td class="p-3 border border-slate-200 dark:border-white/10">Force exit session even if stubborn windows refuse to close</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Force immediate compositor exit without waiting for applications</td>
                                     </tr>
                                     <tr>
                                         <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>--dry-run</code></td>
@@ -952,7 +1030,57 @@ sudo cmake --install build</code></pre>
                                     <i class="fa-regular fa-copy"></i> <span>Copy</span>
                                 </button>
                             </div>
-                            <pre class="font-mono text-xs text-emerald-600 dark:text-emerald-400 overflow-x-auto"><code id="code-ipc-sub">miquctl subscribe workspace window monitor</code></pre>
+                            <pre class="font-mono text-xs text-emerald-600 dark:text-emerald-400 overflow-x-auto"><code id="code-ipc-sub">miquctl subscribe workspace window monitor shutdown</code></pre>
+                        </div>
+
+                        <!-- Event Payloads Table -->
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs font-mono border-collapse border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                                <thead class="bg-slate-100 dark:bg-white/5 text-slate-900 dark:text-white font-bold">
+                                    <tr>
+                                        <th class="p-3 border border-slate-200 dark:border-white/10">Event Channel</th>
+                                        <th class="p-3 border border-slate-200 dark:border-white/10">Trigger Action</th>
+                                        <th class="p-3 border border-slate-200 dark:border-white/10">Payload Schema Example</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-slate-600 dark:text-gray-300">
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>workspace</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Workspace switched</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10"><code>{"event":"workspace","data":{"action":"switch","workspace_id":2,"prev_workspace_id":1}}</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>window</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Window mapped / opened</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10"><code>{"event":"window","data":{"action":"map","id":1,"title":"kitty","app_id":"kitty","workspace_id":1}}</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>window</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Window unmapped / closed</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10"><code>{"event":"window","data":{"action":"unmap","id":1,"title":"kitty","app_id":"kitty","workspace_id":1}}</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>window</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Focus changed</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10"><code>{"event":"window","data":{"action":"focus","id":1,"title":"kitty","app_id":"kitty","workspace_id":1}}</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>window</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Title updated</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10"><code>{"event":"window","data":{"action":"title","id":1,"title":"vim: file.cpp"}}</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>monitor</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Output connected / disconnected</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10"><code>{"event":"monitor","data":{"action":"connect","name":"DP-1"}}</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>shutdown</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Compositor teardown initiated</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10"><code>{"event":"shutdown","data":{"status":"initiated","timeout_ms":2500}}</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
 
                         <p class="text-xs text-slate-500 dark:text-gray-400">
