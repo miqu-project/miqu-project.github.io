@@ -298,7 +298,7 @@
                                 </a>
                             </div>
                             <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
-                                Flagship Wayland dynamic tiling window manager and compositor built on wlroots and scenefx, featuring GPU-accelerated blur and 0% idle CPU usage.
+                                Flagship Wayland dynamic tiling window manager and compositor built on wlroots and scenefx, featuring GPU-accelerated blur, native IPC controls (<code class="font-mono text-xs bg-neutral-100 dark:bg-white/10 px-1 py-0.5 rounded">miquctl</code>), and 0% idle CPU usage.
                             </p>
                         </div>
                         <div class="mt-4 pt-3 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-xs text-neutral-600 dark:text-neutral-400 group-hover:text-black dark:group-hover:text-white font-medium transition-colors">
@@ -455,26 +455,512 @@ sudo cmake --install build</code></pre>
         <!-- ========================================================= -->
         <!-- TAB 2: DOCS                                               -->
         <!-- ========================================================= -->
-        <div id="tab-docs" class="tab-panel hidden space-y-8">
-            <div class="py-16 sm:py-24 flex flex-col items-center justify-center text-center p-8 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-sm dark:shadow-none relative overflow-hidden transition-colors">
-                <!-- Ambient Glow -->
-                <div class="absolute -right-16 -top-16 w-64 h-64 bg-neutral-300/20 dark:bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="absolute -left-16 -bottom-16 w-64 h-64 bg-neutral-300/10 dark:bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div id="tab-docs" class="tab-panel hidden">
+            <div class="flex flex-col lg:flex-row gap-8 items-start pt-2">
+                
+                <!-- STICKY DOCUMENTATION SIDEBAR -->
+                <aside class="w-full lg:w-72 shrink-0 lg:sticky lg:top-20 space-y-6 bg-slate-50 dark:bg-miqucard/60 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-white/10 text-xs sm:text-sm">
+                    
+                    <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/10">
+                        <span class="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-[11px] flex items-center gap-2">
+                            <i class="fa-solid fa-book-open text-emerald-600 dark:text-emerald-400"></i> Docs Navigation
+                        </span>
+                        <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 font-semibold">v1.0</span>
+                    </div>
 
-                <!-- Logo -->
-                <div class="w-16 h-16 sm:w-20 sm:h-20 mb-6 rounded-2xl p-2.5 bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/10 shadow-xs flex items-center justify-center">
-                    <img src="assets/logo.png" alt="Miqu Logo" class="w-full h-full object-contain" />
+                    <!-- MIQULAND CATEGORY -->
+                    <div class="space-y-2">
+                        <div class="font-bold text-slate-800 dark:text-white text-xs tracking-wider uppercase flex items-center gap-2">
+                            <i class="fa-solid fa-window-maximize text-emerald-600 dark:text-emerald-400"></i> miquland
+                        </div>
+                        <ul class="space-y-1 pl-3 border-l-2 border-emerald-500/40 dark:border-emerald-500/30">
+                            <li>
+                                <a href="#doc-ipc-overview" class="block font-semibold text-emerald-700 dark:text-emerald-400 py-1 hover:underline flex items-center justify-between">
+                                    <span>IPC Controls (miquctl)</span>
+                                    <span class="text-[9px] font-mono bg-emerald-500/20 text-emerald-800 dark:text-emerald-300 px-1.5 py-0.2 rounded font-bold">New</span>
+                                </a>
+                                <ul class="pl-2 space-y-0.5 text-[11px] text-slate-600 dark:text-gray-400 mt-1">
+                                    <li><a href="#doc-ipc-overview" class="hover:text-black dark:hover:text-white block py-0.5">• Socket Discovery</a></li>
+                                    <li><a href="#doc-ipc-protocol" class="hover:text-black dark:hover:text-white block py-0.5">• Wire Protocol</a></li>
+                                    <li><a href="#doc-ipc-queries" class="hover:text-black dark:hover:text-white block py-0.5">• State Queries</a></li>
+                                    <li><a href="#doc-ipc-dispatch" class="hover:text-black dark:hover:text-white block py-0.5">• Window Dispatchers</a></li>
+                                    <li><a href="#doc-ipc-shutdown" class="hover:text-black dark:hover:text-white block py-0.5">• Graceful Shutdown</a></li>
+                                    <li><a href="#doc-ipc-events" class="hover:text-black dark:hover:text-white block py-0.5">• Event Streaming</a></li>
+                                </ul>
+                            </li>
+                            <li class="pt-1.5">
+                                <span class="text-slate-400 dark:text-gray-500 flex items-center justify-between cursor-not-allowed">
+                                    <span>Tiling Engines</span>
+                                    <span class="text-[9px] font-mono opacity-60">Soon</span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="text-slate-400 dark:text-gray-500 flex items-center justify-between cursor-not-allowed">
+                                    <span>Layer & Window Rules</span>
+                                    <span class="text-[9px] font-mono opacity-60">Soon</span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="text-slate-400 dark:text-gray-500 flex items-center justify-between cursor-not-allowed">
+                                    <span>Configuration Reference</span>
+                                    <span class="text-[9px] font-mono opacity-60">Soon</span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- MIQUTOOLKIT CATEGORY -->
+                    <div class="space-y-2 pt-2 border-t border-slate-200 dark:border-white/10">
+                        <div class="font-bold text-slate-800 dark:text-white text-xs tracking-wider uppercase flex items-center gap-2">
+                            <i class="fa-solid fa-code text-purple-600 dark:text-purple-400"></i> miqutoolkit
+                        </div>
+                        <ul class="space-y-1 pl-3 border-l-2 border-slate-200 dark:border-white/10 text-slate-400 dark:text-gray-500 text-xs">
+                            <li class="flex items-center justify-between cursor-not-allowed">
+                                <span>AppEngine & Event Loop</span>
+                                <span class="text-[9px] font-mono opacity-60">Soon</span>
+                            </li>
+                            <li class="flex items-center justify-between cursor-not-allowed">
+                                <span>Design Tokens & Themes</span>
+                                <span class="text-[9px] font-mono opacity-60">Soon</span>
+                            </li>
+                            <li class="flex items-center justify-between cursor-not-allowed">
+                                <span>Widget Hierarchy</span>
+                                <span class="text-[9px] font-mono opacity-60">Soon</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- APPS CATEGORY -->
+                    <div class="space-y-2 pt-2 border-t border-slate-200 dark:border-white/10">
+                        <div class="font-bold text-slate-800 dark:text-white text-xs tracking-wider uppercase flex items-center gap-2">
+                            <i class="fa-solid fa-cubes text-blue-600 dark:text-blue-400"></i> Linux Apps
+                        </div>
+                        <ul class="space-y-1 pl-3 border-l-2 border-slate-200 dark:border-white/10 text-slate-400 dark:text-gray-500 text-xs">
+                            <li class="flex items-center justify-between cursor-not-allowed">
+                                <span>miqubar & flyouts</span>
+                                <span class="text-[9px] font-mono opacity-60">Soon</span>
+                            </li>
+                            <li class="flex items-center justify-between cursor-not-allowed">
+                                <span>miqunotify daemon</span>
+                                <span class="text-[9px] font-mono opacity-60">Soon</span>
+                            </li>
+                            <li class="flex items-center justify-between cursor-not-allowed">
+                                <span>miqupower session dialog</span>
+                                <span class="text-[9px] font-mono opacity-60">Soon</span>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- MAIN DOCUMENTATION CONTENT -->
+                <div class="flex-1 min-w-0 space-y-10">
+
+                    <!-- DOC HERO / HEADER -->
+                    <div class="p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard shadow-xs relative overflow-hidden transition-colors">
+                        <div class="absolute -right-16 -top-16 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                        <!-- Breadcrumbs -->
+                        <nav class="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-gray-400 mb-3">
+                            <span>Docs</span>
+                            <span>/</span>
+                            <span class="text-slate-700 dark:text-gray-300">miquland</span>
+                            <span>/</span>
+                            <span class="text-emerald-700 dark:text-emerald-400 font-semibold">IPC Controls (miquctl)</span>
+                        </nav>
+
+                        <div class="flex flex-wrap items-center gap-2 mb-3">
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
+                                miquland IPC Subsystem
+                            </span>
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-mono bg-neutral-100 dark:bg-white/10 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-white/10">
+                                Protocol: miqu-ipc-v1
+                            </span>
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-mono bg-neutral-100 dark:bg-white/10 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-white/10">
+                                0.0% Idle CPU
+                            </span>
+                        </div>
+
+                        <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-3">
+                            Compositor IPC Controls & <code class="font-mono text-emerald-600 dark:text-emerald-400">miquctl</code>
+                        </h1>
+                        <p class="text-sm sm:text-base text-slate-600 dark:text-gray-300 leading-relaxed max-w-3xl">
+                            The authoritative technical guide for the <strong>miquland</strong> Inter-Process Communication architecture, the first-party <code>miquctl</code> controller CLI, state query schemas, window management dispatchers, real-time event streaming, and graceful desktop shutdown orchestration.
+                        </p>
+                    </div>
+
+                    <!-- 1. OVERVIEW & SOCKET DISCOVERY -->
+                    <section id="doc-ipc-overview" class="p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400"></span> 1. Architecture & Socket Discovery
+                            </h2>
+                            <a href="#doc-ipc-overview" class="text-xs text-slate-400 hover:text-emerald-500"><i class="fa-solid fa-link"></i></a>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                            <code>miquland</code> initializes a dedicated Unix Domain Socket during startup. The IPC server integrates directly into the Wayland event loop using <code>wl_event_loop_add_fd()</code>, ensuring non-blocking execution, thread confinement to the compositor main thread, and strict compliance with the <strong>0.0% idle CPU utilization doctrine</strong>.
+                        </p>
+
+                        <div class="rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-black/50 p-4 space-y-3">
+                            <h3 class="text-xs font-mono font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Socket Path Resolution Order</h3>
+                            <ol class="list-decimal list-inside space-y-1.5 text-xs sm:text-sm text-slate-600 dark:text-gray-300 font-mono">
+                                <li><code>$MIQULAND_SOCKET</code> (explicit environment override, automatically imported into <code>systemd --user</code>)</li>
+                                <li><code>$XDG_RUNTIME_DIR/miquland-$WAYLAND_DISPLAY.sock</code> (default runtime location, e.g. <code>/run/user/1000/miquland-wayland-0.sock</code>)</li>
+                                <li><code>/tmp/miquland-$UID-$WAYLAND_DISPLAY.sock</code> (unprivileged fallback)</li>
+                            </ol>
+                        </div>
+                    </section>
+
+                    <!-- 2. WIRE PROTOCOL -->
+                    <section id="doc-ipc-protocol" class="p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400"></span> 2. Binary Framing & Fallback Wire Protocol
+                            </h2>
+                            <a href="#doc-ipc-protocol" class="text-xs text-slate-400 hover:text-emerald-500"><i class="fa-solid fa-link"></i></a>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                            Communication between clients and the compositor is framed using an efficient, length-prefixed binary header, ensuring zero message tearing:
+                        </p>
+
+                        <!-- Protocol Header Diagram -->
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs font-mono border-collapse border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                                <thead class="bg-slate-100 dark:bg-white/5 text-slate-900 dark:text-white font-bold">
+                                    <tr>
+                                        <th class="p-3 border border-slate-200 dark:border-white/10">Field</th>
+                                        <th class="p-3 border border-slate-200 dark:border-white/10">Size</th>
+                                        <th class="p-3 border border-slate-200 dark:border-white/10">Type</th>
+                                        <th class="p-3 border border-slate-200 dark:border-white/10">Value / Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-slate-600 dark:text-gray-300">
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold">Magic</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">4 Bytes</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">char[4]</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 text-emerald-700 dark:text-emerald-400"><code>"MIQU"</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold">Message Type</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">4 Bytes</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">uint32_t (LE)</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10"><code>0 = Command</code>, <code>1 = Subscribe</code>, <code>2 = Response</code>, <code>3 = Event</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold">Payload Length</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">4 Bytes</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">uint32_t (LE)</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Length in bytes of JSON payload</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold">Payload</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Variable</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">char[]</td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">UTF-8 JSON string or command string</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/10 text-xs sm:text-sm text-slate-600 dark:text-gray-300 space-y-2">
+                            <span class="font-bold text-black dark:text-white flex items-center gap-1.5">
+                                <i class="fa-solid fa-terminal text-emerald-600 dark:text-emerald-400"></i> Plain-Text Shell Fallback
+                            </span>
+                            <p>
+                                For maximum developer ergonomics, the IPC server also automatically recognizes plain newline-delimited ASCII strings. You can pipe shell commands directly via <code>socat</code> or <code>nc</code> without packaging binary headers:
+                            </p>
+                            <pre class="bg-black/90 text-emerald-400 p-2.5 rounded-lg font-mono text-xs overflow-x-auto">echo "workspaces" | nc -U /run/user/1000/miquland-wayland-0.sock</pre>
+                        </div>
+                    </section>
+
+                    <!-- 3. STATE QUERIES -->
+                    <section id="doc-ipc-queries" class="p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard space-y-6">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400"></span> 3. State Queries & Schemas
+                            </h2>
+                            <a href="#doc-ipc-queries" class="text-xs text-slate-400 hover:text-emerald-500"><i class="fa-solid fa-link"></i></a>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                            <code>miquland</code> allows external components (such as status bars, launchers, or script widgets) to query live runtime state. By default in interactive terminals, <code>miquctl</code> pretty-prints the output; pass <code>-j</code> or <code>--json</code> for compact machine-readable output.
+                        </p>
+
+                        <!-- Query 1: Workspaces -->
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-white font-mono flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400"></span> miquctl workspaces
+                                </h3>
+                                <button onclick="copyCode('code-ipc-ws', this)" class="text-xs text-slate-500 hover:text-black dark:hover:text-white flex items-center gap-1">
+                                    <i class="fa-regular fa-copy"></i> <span>Copy JSON</span>
+                                </button>
+                            </div>
+                            <pre class="bg-slate-100 dark:bg-[#0c0d12] p-4 rounded-xl font-mono text-xs text-slate-800 dark:text-slate-200 overflow-x-auto border border-slate-200 dark:border-white/10"><code id="code-ipc-ws">[
+  {
+    "id": 1,
+    "active": true,
+    "visible": true,
+    "view_count": 2,
+    "tiled_view_count": 2,
+    "floating_view_count": 0
+  },
+  {
+    "id": 2,
+    "active": false,
+    "visible": false,
+    "view_count": 1,
+    "tiled_view_count": 1,
+    "floating_view_count": 0
+  }
+]</code></pre>
+                        </div>
+
+                        <!-- Query 2: Clients -->
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-white font-mono flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400"></span> miquctl clients / miquctl windows
+                                </h3>
+                                <button onclick="copyCode('code-ipc-clients', this)" class="text-xs text-slate-500 hover:text-black dark:hover:text-white flex items-center gap-1">
+                                    <i class="fa-regular fa-copy"></i> <span>Copy JSON</span>
+                                </button>
+                            </div>
+                            <pre class="bg-slate-100 dark:bg-[#0c0d12] p-4 rounded-xl font-mono text-xs text-slate-800 dark:text-slate-200 overflow-x-auto border border-slate-200 dark:border-white/10"><code id="code-ipc-clients">[
+  {
+    "id": 1,
+    "title": "kitty: fish shell",
+    "app_id": "kitty",
+    "workspace_id": 1,
+    "focused": true,
+    "floating": false,
+    "fullscreen": false,
+    "geometry": { "x": 0, "y": 36, "width": 960, "height": 1044 }
+  },
+  {
+    "id": 2,
+    "title": "Firefox Web Browser",
+    "app_id": "firefox",
+    "workspace_id": 1,
+    "focused": false,
+    "floating": false,
+    "fullscreen": false,
+    "geometry": { "x": 960, "y": 36, "width": 960, "height": 1044 }
+  }
+]</code></pre>
+                        </div>
+
+                        <!-- Query 3: Monitors -->
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-white font-mono flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400"></span> miquctl monitors / miquctl outputs
+                                </h3>
+                                <button onclick="copyCode('code-ipc-monitors', this)" class="text-xs text-slate-500 hover:text-black dark:hover:text-white flex items-center gap-1">
+                                    <i class="fa-regular fa-copy"></i> <span>Copy JSON</span>
+                                </button>
+                            </div>
+                            <pre class="bg-slate-100 dark:bg-[#0c0d12] p-4 rounded-xl font-mono text-xs text-slate-800 dark:text-slate-200 overflow-x-auto border border-slate-200 dark:border-white/10"><code id="code-ipc-monitors">[
+  {
+    "name": "eDP-1",
+    "width": 1920,
+    "height": 1080,
+    "refresh_rate_mhz": 60000,
+    "scale": 1.0,
+    "usable_area": { "x": 0, "y": 36, "width": 1920, "height": 1044 }
+  }
+]</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- 4. WINDOW & WORKSPACE DISPATCHERS -->
+                    <section id="doc-ipc-dispatch" class="p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400"></span> 4. Window & Workspace Dispatchers
+                            </h2>
+                            <a href="#doc-ipc-dispatch" class="text-xs text-slate-400 hover:text-emerald-500"><i class="fa-solid fa-link"></i></a>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                            Issue real-time window management commands and trigger compositor state transitions directly from scripts, terminal keybindings, or gestures:
+                        </p>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs font-mono border-collapse border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                                <thead class="bg-slate-100 dark:bg-white/5 text-slate-900 dark:text-white font-bold">
+                                    <tr>
+                                        <th class="p-3 border border-slate-200 dark:border-white/10">Command</th>
+                                        <th class="p-3 border border-slate-200 dark:border-white/10">Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-slate-600 dark:text-gray-300">
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch close [win_id]</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Sends an XDG polite close request to targeted window (or focused window)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch workspace &lt;id&gt;</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Switches the active workspace to workspace <code>&lt;id&gt;</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch movetoworkspace &lt;id&gt; [win]</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Moves focused window (or target window ID) to workspace <code>&lt;id&gt;</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch toggle_floating</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Toggles floating/tiling state of the active window</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch toggle_fullscreen</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Toggles true fullscreen mode for the active window</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch toggle_layout</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Toggles layout engine between Fibonacci Spiral and Stack</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch swap_main</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Swaps active window with the master column window</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch focus_next / focus_prev</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Cycles keyboard focus to the next/previous window in layout order</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl reload</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Hot-reloads <code>miquland.conf</code> configuration on the fly</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl exit</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Terminates the compositor session immediately</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- 5. GRACEFUL DESKTOP SHUTDOWN -->
+                    <section id="doc-ipc-shutdown" class="p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard space-y-6">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400"></span> 5. Graceful Desktop Shutdown Orchestrator
+                            </h2>
+                            <a href="#doc-ipc-shutdown" class="text-xs text-slate-400 hover:text-emerald-500"><i class="fa-solid fa-link"></i></a>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                            Traditional compositor termination or crude shell scripts running <code>killall</code> or <code>pkill</code> abruptly sever applications, causing text editors, IDEs, and browsers to lose unsaved work. <strong><code>miquctl shutdown</code></strong> provides an intelligent, protocol-driven shutdown workflow:
+                        </p>
+
+                        <!-- Workflow Stages -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="p-4 rounded-2xl bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/10 space-y-1.5">
+                                <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">Stage 1</span>
+                                <h4 class="font-bold text-slate-900 dark:text-white text-sm">Polite Close Broadcast</h4>
+                                <p class="text-xs text-slate-600 dark:text-gray-300">
+                                    Queries all open windows via IPC and dispatches standard XDG close requests (<code>xdg_toplevel_send_close</code>). Applications display "Save your document?" dialogs.
+                                </p>
+                            </div>
+
+                            <div class="p-4 rounded-2xl bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/10 space-y-1.5">
+                                <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">Stage 2</span>
+                                <h4 class="font-bold text-slate-900 dark:text-white text-sm">Poll & Wait Period</h4>
+                                <p class="text-xs text-slate-600 dark:text-gray-300">
+                                    Monitors client count until zero windows remain, or until the configurable timeout elapses (default: 3000ms).
+                                </p>
+                            </div>
+
+                            <div class="p-4 rounded-2xl bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/10 space-y-1.5">
+                                <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">Stage 3</span>
+                                <h4 class="font-bold text-slate-900 dark:text-white text-sm">Compositor Teardown</h4>
+                                <p class="text-xs text-slate-600 dark:text-gray-300">
+                                    Terminates <code>miquland</code>. Socket severing triggers automatic clean exit in all bars (<code>miqubar</code>, <code>waybar</code>) and background daemons.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Flags -->
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs font-mono border-collapse border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden">
+                                <thead class="bg-slate-100 dark:bg-white/5 text-slate-900 dark:text-white font-bold">
+                                    <tr>
+                                        <th class="p-3 border border-slate-200 dark:border-white/10">Flag</th>
+                                        <th class="p-3 border border-slate-200 dark:border-white/10">Default</th>
+                                        <th class="p-3 border border-slate-200 dark:border-white/10">Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-slate-600 dark:text-gray-300">
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>--timeout &lt;ms&gt;</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10"><code>3000</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Maximum duration in milliseconds to wait for applications to close</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>--force</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10"><code>false</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Force exit session even if stubborn windows refuse to close</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>--dry-run</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10"><code>false</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Inspect open windows that would be closed without executing</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>--no-exit</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10"><code>false</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Close all application windows without quitting <code>miquland</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>--post-cmd &lt;cmd&gt;</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10"><code>""</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Execute power action after exit (e.g. <code>"systemctl poweroff"</code>)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Examples -->
+                        <div class="space-y-2">
+                            <h4 class="text-xs font-mono font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Common Power Action Recipes</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div class="p-3 rounded-xl bg-slate-100 dark:bg-[#0c0d12] border border-slate-200 dark:border-white/10">
+                                    <div class="text-[11px] font-bold text-slate-700 dark:text-gray-300 mb-1">Graceful System Poweroff</div>
+                                    <pre class="font-mono text-xs text-emerald-600 dark:text-emerald-400 overflow-x-auto">miquctl shutdown --post-cmd "systemctl poweroff"</pre>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-100 dark:bg-[#0c0d12] border border-slate-200 dark:border-white/10">
+                                    <div class="text-[11px] font-bold text-slate-700 dark:text-gray-300 mb-1">Graceful System Reboot</div>
+                                    <pre class="font-mono text-xs text-emerald-600 dark:text-emerald-400 overflow-x-auto">miquctl shutdown --post-cmd "systemctl reboot"</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 6. REAL-TIME EVENT STREAMING -->
+                    <section id="doc-ipc-events" class="p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400"></span> 6. Real-Time Event Subscriptions
+                            </h2>
+                            <a href="#doc-ipc-events" class="text-xs text-slate-400 hover:text-emerald-500"><i class="fa-solid fa-link"></i></a>
+                        </div>
+                        <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed">
+                            Rather than polling the compositor at fixed intervals (which wastes battery and CPU), client applications and status bars (such as <code>miqubar</code> or <code>waybar</code>) can subscribe to instant event broadcasts:
+                        </p>
+
+                        <div class="p-4 rounded-2xl bg-slate-100 dark:bg-[#0c0d12] border border-slate-200 dark:border-white/10 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-mono font-bold text-slate-700 dark:text-gray-300">Subscribe Command</span>
+                                <button onclick="copyCode('code-ipc-sub', this)" class="text-xs text-slate-500 hover:text-black dark:hover:text-white flex items-center gap-1">
+                                    <i class="fa-regular fa-copy"></i> <span>Copy</span>
+                                </button>
+                            </div>
+                            <pre class="font-mono text-xs text-emerald-600 dark:text-emerald-400 overflow-x-auto"><code id="code-ipc-sub">miquctl subscribe workspace window monitor</code></pre>
+                        </div>
+
+                        <p class="text-xs text-slate-500 dark:text-gray-400">
+                            The socket connection remains open, streaming newline-delimited JSON events with 0ms latency whenever workspaces switch, windows map or unmap, or monitor resolutions update.
+                        </p>
+                    </section>
+
                 </div>
-
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium text-emerald-700 dark:text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 mb-3">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400 animate-pulse"></span>
-                    Under Construction
-                </div>
-
-                <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-2">Documentation</h1>
-                <p class="text-sm sm:text-base text-slate-500 dark:text-gray-400 max-w-md mx-auto leading-relaxed">
-                    Coming soon. Architecture guides, toolkit specifications, and API documentation are in active development.
-                </p>
             </div>
         </div>
 
