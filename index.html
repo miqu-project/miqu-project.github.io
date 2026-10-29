@@ -489,6 +489,12 @@ sudo cmake --install build</code></pre>
                                 </ul>
                             </li>
                             <li class="pt-1.5">
+                                <a href="#doc-xdg-portals" class="block font-semibold text-emerald-700 dark:text-emerald-400 py-1 hover:underline flex items-center justify-between">
+                                    <span>XDG Portals & Screen Share</span>
+                                    <span class="text-[9px] font-mono bg-emerald-500/20 text-emerald-800 dark:text-emerald-300 px-1.5 py-0.2 rounded font-bold">New</span>
+                                </a>
+                            </li>
+                            <li class="pt-1.5">
                                 <span class="text-slate-400 dark:text-gray-500 flex items-center justify-between cursor-not-allowed">
                                     <span>Tiling Engines</span>
                                     <span class="text-[9px] font-mono opacity-60">Soon</span>
@@ -1085,6 +1091,62 @@ sudo cmake --install build</code></pre>
 
                         <p class="text-xs text-slate-500 dark:text-gray-400">
                             The socket connection remains open, streaming newline-delimited JSON events with 0ms latency whenever workspaces switch, windows map or unmap, or monitor resolutions update.
+                        </p>
+                    </section>
+
+                    <!-- SECTION: XDG DESKTOP PORTAL & SCREEN SHARING -->
+                    <section id="doc-xdg-portals" class="p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-white/10 bg-white dark:bg-miqucard space-y-4">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-xs">
+                                <i class="fa-solid fa-video"></i>
+                            </span>
+                            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">XDG Desktop Portals & Screen Sharing</h2>
+                        </div>
+                        
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Currently, the Miqu ecosystem does not maintain a dedicated bespoke portal daemon (such as <code>xdg-desktop-portal-miqu</code>). Instead, <code>miquland</code> natively implements modern Wayland capture protocols and integrates directly with proven standard backends:
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+                            <div class="p-4 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-black/20 space-y-2">
+                                <div class="font-bold text-slate-800 dark:text-white text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-desktop text-emerald-600 dark:text-emerald-400"></i>
+                                    <span>Screen & Window Capture</span>
+                                </div>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                                    Delegated to <code>xdg-desktop-portal-wlr</code>. Powered by <code>ext-image-copy-capture-v1</code>, <code>ext-foreign-toplevel-list-v1</code>, and <code>ext-foreign-toplevel-image-capture-source-v1</code> for smooth, deadlock-free streaming in OBS Studio, Discord, and WebRTC browsers.
+                                </p>
+                            </div>
+
+                            <div class="p-4 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-black/20 space-y-2">
+                                <div class="font-bold text-slate-800 dark:text-white text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-folder-open text-blue-600 dark:text-blue-400"></i>
+                                    <span>File Choosers & Dialogs</span>
+                                </div>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                                    Delegated to <code>xdg-desktop-portal-gtk</code> for native, standard GTK file picker dialogs, notifications, and application pickers.
+                                </p>
+                            </div>
+                        </div>
+
+                        <h3 class="text-base font-bold text-slate-800 dark:text-white pt-2">System Configuration Baseline</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400">
+                            The authoritative portal configuration is placed in the system path at <code>/usr/share/xdg-desktop-portal/miquland-portals.conf</code>:
+                        </p>
+
+                        <div class="bg-slate-100 dark:bg-[#0c0d12] p-4 rounded-xl font-mono text-xs text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-white/10 overflow-x-auto">
+                            <code>[preferred]<br>default=gtk<br>org.freedesktop.impl.portal.ScreenCast=wlr<br>org.freedesktop.impl.portal.Screenshot=wlr</code>
+                        </div>
+
+                        <h3 class="text-base font-bold text-slate-800 dark:text-white pt-2">User Customization & Overrides</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400">
+                            To customize or override these portal rules, write your own <code>miquland-portals.conf</code> in your user configuration directory:
+                        </p>
+                        <div class="bg-slate-100 dark:bg-[#0c0d12] p-3 rounded-xl font-mono text-xs text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-white/10">
+                            <code>~/.config/xdg-desktop-portal/miquland-portals.conf</code>
+                        </div>
+                        <p class="text-xs text-slate-500 dark:text-gray-400">
+                            Any settings defined in this user file will automatically take precedence over the system default without modifying system files.
                         </p>
                     </section>
 
