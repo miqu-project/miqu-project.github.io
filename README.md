@@ -17,7 +17,7 @@ This repository hosts the static landing page, architecture visualizer, and comp
 ### What is What
 - **Landing & UI Visualizer**: Interactive showcase of the desktop shell, native applications, and dynamic theme system.
 - **Architectural Specifications**: In-depth breakdowns of the wlroots compositor (`miquland`), C++20 UI toolkit (`miqutoolkit`), and IPC contracts.
-- **Component Directory**: Direct links and specifications for all 17 shell and desktop apps, plus Android companions.
+- **Component Directory**: Direct links and specifications for all 14 shell and desktop apps, plus Android companions.
 
 ### Local Development / Preview
 Serve with Python 3:
