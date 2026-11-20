@@ -813,6 +813,120 @@ cd miqu
 }</code></pre>
                             </div>
                         </div>
+
+                        <!-- Query 5: Configuration Options -->
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-white font-mono flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400"></span> miquctl getoption [name]
+                                </h3>
+                                <button onclick="copyCode('code-ipc-getoption', this)" class="text-xs text-slate-500 hover:text-black dark:hover:text-white flex items-center gap-1">
+                                    <i class="fa-regular fa-copy"></i> <span>Copy JSON</span>
+                                </button>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-gray-400 leading-relaxed">
+                                Dumps all active runtime configuration values or inspects a specific parameter (e.g. <code>miquctl getoption gaps_in</code>). Supports <code>layout</code>, <code>gaps_in</code>, <code>gaps_out</code>, <code>border_width</code>, <code>border_radius</code>, <code>border_active</code>, <code>border_inactive</code>, <code>border_shading</code>, <code>smart_gaps</code>, <code>cursor_theme</code>, <code>cursor_size</code>, and more:
+                            </p>
+                            <pre class="bg-slate-100 dark:bg-[#0c0d12] p-4 rounded-xl font-mono text-xs text-slate-800 dark:text-slate-200 overflow-x-auto border border-slate-200 dark:border-white/10"><code id="code-ipc-getoption">{
+  "layout": "dwindle",
+  "gaps_in": 4,
+  "gaps_out": 8,
+  "border_width": 1,
+  "border_radius": 18,
+  "border_active": "linear-gradient(45deg, 0xff5e81ac, 0xff88c0d0)",
+  "border_inactive": "0x442e3440",
+  "border_shading": true,
+  "border_shading_strength": 0.5,
+  "resize_on_border": true,
+  "border_grab_area": 10,
+  "opacity_active": 1.0,
+  "opacity_inactive": 1.0,
+  "animations": true,
+  "blur": true,
+  "smart_gaps": false,
+  "gamma_enabled": false,
+  "gamma_temperature": 4500,
+  "cursor_theme": "Qogir",
+  "cursor_size": 30
+}</code></pre>
+                        </div>
+
+                        <!-- Query 6: Window Gaps & Border Live Tuning -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-sm font-bold text-slate-900 dark:text-white font-mono flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400"></span> miquctl gaps [inner] [outer]
+                                    </h3>
+                                    <button onclick="copyCode('code-ipc-gaps', this)" class="text-xs text-slate-500 hover:text-black dark:hover:text-white flex items-center gap-1">
+                                        <i class="fa-regular fa-copy"></i> <span>Copy</span>
+                                    </button>
+                                </div>
+                                <p class="text-xs text-slate-600 dark:text-gray-400">
+                                    Query or live-adjust window gaps in RAM. Supports <code>miquctl gaps 8 12</code>, <code>miquctl gaps inner 10</code>, or <code>miquctl gaps smart on</code>.
+                                </p>
+                                <pre class="bg-slate-100 dark:bg-[#0c0d12] p-4 rounded-xl font-mono text-xs text-slate-800 dark:text-slate-200 overflow-x-auto border border-slate-200 dark:border-white/10"><code id="code-ipc-gaps">{
+  "inner": 4,
+  "outer": 8,
+  "smart_gaps": false
+}</code></pre>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-sm font-bold text-slate-900 dark:text-white font-mono flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400"></span> miquctl border [width] [radius] ...
+                                    </h3>
+                                    <button onclick="copyCode('code-ipc-border', this)" class="text-xs text-slate-500 hover:text-black dark:hover:text-white flex items-center gap-1">
+                                        <i class="fa-regular fa-copy"></i> <span>Copy</span>
+                                    </button>
+                                </div>
+                                <p class="text-xs text-slate-600 dark:text-gray-400">
+                                    Query or live-adjust border geometry and colors. Immediate Cairo/wlroots frame repaint. Supports <code>miquctl border 2 14</code> or <code>border active &lt;hex&gt;</code>.
+                                </p>
+                                <pre class="bg-slate-100 dark:bg-[#0c0d12] p-4 rounded-xl font-mono text-xs text-slate-800 dark:text-slate-200 overflow-x-auto border border-slate-200 dark:border-white/10"><code id="code-ipc-border">{
+  "width": 1,
+  "radius": 18,
+  "active": "linear-gradient(45deg, 0xff5e81ac, 0xff88c0d0)",
+  "inactive": "0x442e3440",
+  "shading": true,
+  "shading_strength": 0.5
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Query 7: Cursor & Pointer Theme Engine -->
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-sm font-bold text-slate-900 dark:text-white font-mono flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400"></span> miquctl cursor [theme] [size]
+                                </h3>
+                                <button onclick="copyCode('code-ipc-cursor', this)" class="text-xs text-slate-500 hover:text-black dark:hover:text-white flex items-center gap-1">
+                                    <i class="fa-regular fa-copy"></i> <span>Copy JSON</span>
+                                </button>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-gray-400 leading-relaxed">
+                                Query active pointer theme and pixel size, or dynamically hot-swap cursor assets in RAM across all seat pointers without restarting the compositor. Pass <code>-j</code> for machine-readable JSON:
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <span class="text-[11px] font-mono font-semibold text-slate-500 dark:text-gray-400 uppercase tracking-wider">Terminal CLI Output</span>
+                                    <pre class="bg-slate-100 dark:bg-[#0c0d12] p-4 rounded-xl font-mono text-xs text-slate-800 dark:text-slate-200 overflow-x-auto border border-slate-200 dark:border-white/10"><code id="code-ipc-cursor-cli"># Human-readable query
+$ miquctl cursor
+Cursor: Qogir (30px)
+
+# Live hot-swap across all pointers
+$ miquctl cursor Bibata-Modern-Classic 24
+Cursor: Bibata-Modern-Classic (24px)</code></pre>
+                                </div>
+                                <div class="space-y-1">
+                                    <span class="text-[11px] font-mono font-semibold text-slate-500 dark:text-gray-400 uppercase tracking-wider">JSON Response (<code>--json</code>)</span>
+                                    <pre class="bg-slate-100 dark:bg-[#0c0d12] p-4 rounded-xl font-mono text-xs text-slate-800 dark:text-slate-200 overflow-x-auto border border-slate-200 dark:border-white/10"><code id="code-ipc-cursor">{
+  "theme": "Qogir",
+  "size": 30
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
                     </section>
 
                     <!-- 4. WINDOW & WORKSPACE DISPATCHERS -->
@@ -899,6 +1013,26 @@ cd miqu
                                     <tr>
                                         <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl dispatch shutdown [timeout_ms]</code></td>
                                         <td class="p-3 border border-slate-200 dark:border-white/10">Triggers compositor-native graceful shutdown sequence (default timeout: 2500ms)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl gaps [inner] [outer]</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Gets or dynamically modifies window inner gaps, outer screen edge padding, and smart gaps in RAM</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl border [width] [radius] [active] [inactive]</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Gets or dynamically updates border width, corner radius, active/inactive gradient hex colors, and shading in RAM</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl cursor [theme] [size]</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Gets or hot-swaps active XCursor / wl_cursor theme and size across all pointer devices in RAM</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl setoption &lt;name&gt; &lt;value&gt;</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Dynamically sets any configuration option in RAM (e.g. <code>gaps_in</code>, <code>border_radius</code>, <code>smart_gaps</code>, <code>cursor_theme</code>) with immediate relayout and damage redraw</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl getoption [name]</code></td>
+                                        <td class="p-3 border border-slate-200 dark:border-white/10">Queries active runtime value of a configuration option, or dumps all runtime options if omitted</td>
                                     </tr>
                                     <tr>
                                         <td class="p-3 border border-slate-200 dark:border-white/10 font-bold text-emerald-700 dark:text-emerald-400"><code>miquctl reload</code></td>
