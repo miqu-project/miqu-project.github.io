@@ -87,21 +87,6 @@
     });
   });
 
-  // Clickable component names in table (Home page)
-  var pkgStatus = document.getElementById('pkg-status');
-  document.querySelectorAll('.pkg-btn[data-build]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var pkg = btn.getAttribute('data-build');
-      var cmd = './make.sh ' + pkg;
-      if (copyText(cmd)) {
-        if (pkgStatus) {
-          pkgStatus.innerHTML = 'Copied build command: <code>' + cmd + '</code>';
-        }
-        showToast('Copied: ' + cmd);
-      }
-    });
-  });
-
   // ---------------------------------------------------------
   // 3. Screenshot Fallback & Lightbox (Home page)
   // ---------------------------------------------------------
