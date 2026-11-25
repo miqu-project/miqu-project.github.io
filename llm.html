@@ -78,79 +78,20 @@
           </p>
         </div>
 
-        <!-- 1. Genuine, Documented Issues with LLM Coding -->
-        <section class="llm-section">
-          <h2>Genuine, Documented Issues with LLM Coding</h2>
-          <div class="essay-grid-3">
-            <div class="essay-card">
-              <h3>Hidden Vulnerabilities</h3>
-              <p>
-                LLMs frequently generate plausible-looking code that omits basic input validation or memory-safety checks, introducing subtle bugs like integer overflows, off-by-one errors, and deprecated cryptographic suites.
-              </p>
-            </div>
-
-            <div class="essay-card">
-              <h3>Hallucinated Dependencies</h3>
-              <p>
-                Models occasionally fabricate package names and function signatures. Attackers actively register these hallucinated package names on public registries to inject malicious code directly into automated build pipelines.
-              </p>
-            </div>
-
-            <div class="essay-card">
-              <h3>Flow Disruption</h3>
-              <p>
-                Meticulously verifying confident but subtly flawed code often takes more time than authoring it from scratch. This forces engineers into a passive reviewer/auditor role, breaking the deep focus of active programming.
-              </p>
-            </div>
-
-            <div class="essay-card">
-              <h3>Licensing &amp; Data Leaks</h3>
-              <p>
-                Models regularly output verbatim memorized code without attribution, risking unintended GPL or MIT license violations. They can also surface configuration tokens and private identifiers embedded in public training datasets.
-              </p>
-            </div>
-
-            <div class="essay-card">
-              <h3>Skill Degradation</h3>
-              <p>
-                Excessive reliance on AI deprives developers of the iterative problem-solving and debugging struggles needed to build deep first-principles intuition, reducing their ability to critically evaluate software.
-              </p>
-            </div>
-
-            <div class="essay-card">
-              <h3>Data Starvation</h3>
-              <p>
-                Widespread AI adoption has caused a noticeable drop in organic questions on public developer forums. This deprives future models of fresh human knowledge, raising the risk of recursive model collapse.
-              </p>
-            </div>
-
-            <div class="essay-card">
-              <h3>Minimal Viable Implementation</h3>
-              <p>
-                When asked for a high-level outcome (e.g., displaying "Hello World"), models may architect middle-layer classes like a <code>TextView</code> widget. Because the user never specified requirements for that intermediate layer, the model may implement only the bare minimum needed for the prompt&mdash;leaving the abstraction half-done and missing core features like multiline wrapping.
-              </p>
-            </div>
-
-            <div class="essay-card">
-              <h3>God Classes &amp; Redundant Reinvention</h3>
-              <p>
-                Lacking repository-wide awareness, models frequently dump all responsibilities into giant monolithic classes ("God Objects"), or author completely separate, parallel classes with redundant boilerplate instead of properly extending or composing with existing abstractions.
-              </p>
-            </div>
-
-            <div class="essay-card">
-              <h3>Code Churn &amp; Cascading Rewrites</h3>
-              <p>
-                When structural flaws surface in AI-generated systems, surgical refactoring is often unfeasible due to opaque interdependencies. Instead of incrementally fixing the foundation, developers are pushed into a total bottom-to-top overhaul, causing extreme code churn where codebases are repeatedly rewritten rather than steadily evolved.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <!-- 2. Weighing the Criticisms of AI Code Generation -->
+        <!-- 1. Weighing the Criticisms of AI Code Generation -->
         <section class="llm-section">
           <h2>Weighing the Criticisms of AI Code Generation</h2>
           <div class="essay-grid-2">
+            <div class="essay-card span-2">
+              <h3>The Cybersecurity Dilemma: Machine-Speed Threats vs. Human Latency</h3>
+              <p>
+                Avoiding AI has become like avoiding the smartphone: an individual may choose not to use it, but the banking networks, cloud servers, and public infrastructure they depend on already do. For decades, human-written code has harbored dormant zero-days&mdash;from OpenSSL to recent PHP argument injections&mdash;that evaded manual audits for years. Today, LLMs and automated agents can parse millions of lines of code to uncover subtle edge-case loopholes at machine speed. Because malicious actors operate without ethical hesitation, choosing not to use AI for defensive auditing simply guarantees that an attacker will find your vulnerabilities before you do.
+              </p>
+              <p>
+                This forces an urgent operational reality: when a critical zero-day is actively weaponized against production infrastructure, a manual human patch may take weeks of surgical deliberation while servers remain defenseless. You cannot take down global financial systems or hospital infrastructure for a month to wait for artisanal code. While an AI-generated patch carries the risk of introducing secondary bugs, the alternative&mdash;letting active exploits run rampant while rejecting machine assistance out of purist dogma&mdash;is untenable. In an asymmetric threat environment, machine-speed defense is no longer optional.
+              </p>
+            </div>
+
             <div class="essay-card">
               <h3>The Historical Precedent</h3>
               <p>
@@ -224,22 +165,81 @@
             </div>
 
             <div class="essay-card span-2">
-              <h3>The Cybersecurity Dilemma: Machine-Speed Threats vs. Human Latency</h3>
-              <p>
-                Avoiding AI has become like avoiding the smartphone: an individual may choose not to use it, but the banking networks, cloud servers, and public infrastructure they depend on already do. For decades, human-written code has harbored dormant zero-days&mdash;from OpenSSL to recent PHP argument injections&mdash;that evaded manual audits for years. Today, LLMs and automated agents can parse millions of lines of code to uncover subtle edge-case loopholes at machine speed. Because malicious actors operate without ethical hesitation, choosing not to use AI for defensive auditing simply guarantees that an attacker will find your vulnerabilities before you do.
-              </p>
-              <p>
-                This forces an urgent operational reality: when a critical zero-day is actively weaponized against production infrastructure, a manual human patch may take weeks of surgical deliberation while servers remain defenseless. You cannot take down global financial systems or hospital infrastructure for a month to wait for artisanal code. While an AI-generated patch carries the risk of introducing secondary bugs, the alternative&mdash;letting active exploits run rampant while rejecting machine assistance out of purist dogma&mdash;is untenable. In an asymmetric threat environment, machine-speed defense is no longer optional.
-              </p>
-            </div>
-
-            <div class="essay-card span-2">
               <h3>The DHH Shift: Enthusiasm, Efficiency &amp; The Reality Gap</h3>
               <p>
                 Recently, veteran creator David Heinemeier Hansson (DHH) voiced enthusiastic praise for the latest generation of coding agents, noting that while he would not have "vibecoded" a year ago, he does so now because AI has become remarkably efficient. His perspective validates the undeniable technological leap: coding models have evolved from clumsy autocomplete toys into formidable accelerators capable of scaffolded execution.
               </p>
               <p>
                 Yet declaring AI "extremely efficient" is inherently subjective. If models were truly self-sufficient or near-flawless, AI laboratories would not be frantically releasing weekly architectural revisions to patch basic reasoning deficits and hallucination traps. A significant reality gap remains. AI will likely never achieve mythical human-level perfection&mdash;but then again, human coders have never been perfect either. The sensible path is neither uncritical hype nor stubborn dismissal; it is harnessing AI's undeniable velocity while enforcing rigorous multi-model auditing, human skepticism, and careful architectural pacing.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. Genuine, Documented Issues with LLM Coding -->
+        <section class="llm-section">
+          <h2>Genuine, Documented Issues with LLM Coding</h2>
+          <div class="essay-grid-3">
+            <div class="essay-card">
+              <h3>Hidden Vulnerabilities</h3>
+              <p>
+                LLMs frequently generate plausible-looking code that omits basic input validation or memory-safety checks, introducing subtle bugs like integer overflows, off-by-one errors, and deprecated cryptographic suites.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>Hallucinated Dependencies</h3>
+              <p>
+                Models occasionally fabricate package names and function signatures. Attackers actively register these hallucinated package names on public registries to inject malicious code directly into automated build pipelines.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>Flow Disruption</h3>
+              <p>
+                Meticulously verifying confident but subtly flawed code often takes more time than authoring it from scratch. This forces engineers into a passive reviewer/auditor role, breaking the deep focus of active programming.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>Licensing &amp; Data Leaks</h3>
+              <p>
+                Models regularly output verbatim memorized code without attribution, risking unintended GPL or MIT license violations. They can also surface configuration tokens and private identifiers embedded in public training datasets.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>Skill Degradation</h3>
+              <p>
+                Excessive reliance on AI deprives developers of the iterative problem-solving and debugging struggles needed to build deep first-principles intuition, reducing their ability to critically evaluate software.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>Data Starvation</h3>
+              <p>
+                Widespread AI adoption has caused a noticeable drop in organic questions on public developer forums. This deprives future models of fresh human knowledge, raising the risk of recursive model collapse.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>Minimal Viable Implementation</h3>
+              <p>
+                When asked for a high-level outcome (e.g., displaying "Hello World"), models may architect middle-layer classes like a <code>TextView</code> widget. Because the user never specified requirements for that intermediate layer, the model may implement only the bare minimum needed for the prompt&mdash;leaving the abstraction half-done and missing core features like multiline wrapping.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>God Classes &amp; Redundant Reinvention</h3>
+              <p>
+                Lacking repository-wide awareness, models frequently dump all responsibilities into giant monolithic classes ("God Objects"), or author completely separate, parallel classes with redundant boilerplate instead of properly extending or composing with existing abstractions.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>Code Churn &amp; Cascading Rewrites</h3>
+              <p>
+                When structural flaws surface in AI-generated systems, surgical refactoring is often unfeasible due to opaque interdependencies. Instead of incrementally fixing the foundation, developers are pushed into a total bottom-to-top overhaul, causing extreme code churn where codebases are repeatedly rewritten rather than steadily evolved.
               </p>
             </div>
           </div>
