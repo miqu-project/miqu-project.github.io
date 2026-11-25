@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI, Code &amp; Trust — miqu-project</title>
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <meta name="description" content="An honest breakdown of LLM coding failures, criticisms weighed, our steelman against Miqu, and the strict C++20 RAII and 0.0% idle CPU rules that keep it safe." />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://miqu-project.github.io/llm.html" />
+  <meta property="og:title" content="AI, Code &amp; Trust — miqu-project" />
+  <meta property="og:description" content="An honest breakdown of LLM coding failures, criticisms weighed, our steelman against Miqu, and the strict C++20 RAII and 0.0% idle CPU rules that keep it safe." />
+  <meta property="og:image" content="https://raw.githubusercontent.com/miqu-project/.github/main/assets/logo.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://miqu-project.github.io/llm.html" />
+  <meta name="twitter:title" content="AI, Code &amp; Trust — miqu-project" />
+  <meta name="twitter:description" content="An honest breakdown of LLM coding failures, criticisms weighed, our steelman against Miqu, and the strict C++20 RAII and 0.0% idle CPU rules that keep it safe." />
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/miqu-project/.github/main/assets/logo.png" />
+
+  <!-- Pre-paint Theme Initialization -->
+  <script src="js/theme-init.js"></script>
+
+  <!-- Modern Typography: Plus Jakarta Sans, Inter, JetBrains Mono & Newsreader -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Shared Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast" role="status" aria-live="polite">Copied to clipboard</div>
+
+  <!-- Main Sheet -->
+  <div class="sheet">
+    <div class="sheet-accent"></div>
+    <div class="sheet-inner">
+
+      <!-- Header -->
+      <header class="site-header">
+        <a href="index.html" class="brand">
+          <img src="assets/logo.png" alt="miqu-project logo" class="brand-logo" onerror="this.style.display='none'" />
+          <div>
+            <h1>miqu-project</h1>
+            <span class="brand-sub">Wayland Desktop Ecosystem &amp; Native Applications</span>
+          </div>
+        </a>
+
+        <div class="header-controls">
+          <nav class="top-nav" aria-label="Primary Navigation">
+            <a href="index.html" class="nav-btn">Home</a>
+            <a href="docs.html" class="nav-btn">Docs</a>
+            <a href="llm.html" class="nav-btn active">LLM Use</a>
+          </nav>
+
+          <button type="button" id="theme-toggle" class="theme-btn" aria-label="Toggle Light or Dark Theme">
+            <span id="theme-icon" aria-hidden="true">&#9790;</span>
+            <span id="theme-label">Dark</span>
+          </button>
+
+          <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="gh-btn">
+            GitHub &#8599;
+          </a>
+        </div>
+      </header>
+
+      <main id="tab-llm" class="tab-panel active" aria-label="LLM Use and Safety">
+<div class="llm-hero">
+          <h2>AI, Code &amp; Trust</h2>
+          <p>
+            Let's be totally honest about AI. Here is where it fails, why we still use it to type fast, and how we actually keep Miqu memory-safe and private.
+          </p>
+        </div>
+
+        <!-- 1. Genuine, Documented Issues with LLM Coding -->
+        <section class="llm-section">
+          <h2>Genuine, Documented Issues with LLM Coding</h2>
+          <div class="essay-grid-3">
+            <div class="essay-card">
+              <h3>Hidden Vulnerabilities</h3>
+              <p>
+                LLMs frequently generate plausible-looking code that omits basic input validation or memory-safety checks, introducing subtle bugs like integer overflows, off-by-one errors, and deprecated cryptographic suites.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>Hallucinated Dependencies</h3>
+              <p>
+                Models occasionally fabricate package names and function signatures. Attackers actively register these hallucinated package names on public registries to inject malicious code directly into automated build pipelines.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>Flow Disruption</h3>
+              <p>
+                Meticulously verifying confident but subtly flawed code often takes more time than authoring it from scratch. This forces engineers into a passive reviewer/auditor role, breaking the deep focus of active programming.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>Licensing &amp; Data Leaks</h3>
+              <p>
+                Models regularly output verbatim memorized code without attribution, risking unintended GPL or MIT license violations. They can also surface configuration tokens and private identifiers embedded in public training datasets.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>Skill Degradation</h3>
+              <p>
+                Excessive reliance on AI deprives developers of the iterative problem-solving and debugging struggles needed to build deep first-principles intuition, reducing their ability to critically evaluate software.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>Data Starvation</h3>
+              <p>
+                Widespread AI adoption has caused a noticeable drop in organic questions on public developer forums. This deprives future models of fresh human knowledge, raising the risk of recursive model collapse.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>Minimal Viable Implementation</h3>
+              <p>
+                When asked for a high-level outcome (e.g., displaying "Hello World"), models may architect middle-layer classes like a <code>TextView</code> widget. Because the user never specified requirements for that intermediate layer, the model may implement only the bare minimum needed for the prompt&mdash;leaving the abstraction half-done and missing core features like multiline wrapping.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>God Classes &amp; Redundant Reinvention</h3>
+              <p>
+                Lacking repository-wide awareness, models frequently dump all responsibilities into giant monolithic classes ("God Objects"), or author completely separate, parallel classes with redundant boilerplate instead of properly extending or composing with existing abstractions.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>Code Churn &amp; Cascading Rewrites</h3>
+              <p>
+                When structural flaws surface in AI-generated systems, surgical refactoring is often unfeasible due to opaque interdependencies. Instead of incrementally fixing the foundation, developers are pushed into a total bottom-to-top overhaul, causing extreme code churn where codebases are repeatedly rewritten rather than steadily evolved.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. Weighing the Criticisms of AI Code Generation -->
+        <section class="llm-section">
+          <h2>Weighing the Criticisms of AI Code Generation</h2>
+          <div class="essay-grid-2">
+            <div class="essay-card">
+              <h3>The Historical Precedent</h3>
+              <p>
+                Every evolution in tooling was once attacked as "not real programming." Assembly programmers claimed high-level compilers produced lazy bloat; later critics attacked IDE autocompletion and Stack Overflow. Theoretical purism always concedes to pragmatic leverage.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>The Purity Trap</h3>
+              <p>
+                Purists confuse keystrokes with engineering. Typing syntax by hand is manual labor; engineering is defining architecture, memory boundaries, and state machines. Discrediting software merely because an accelerator typed the boilerplate is gatekeeping, not craftsmanship.
+              </p>
+            </div>
+
+            <div class="essay-card span-2">
+              <h3>If Boilerplate Is Not the Issue, What Is Its Extent?</h3>
+              <p>
+                Critics often concede that using AI for "mere boilerplate" is acceptable. But where does boilerplate end? When an IDE scaffolds a complex Android Activity with lifecycles and navigation, it is celebrated as productivity. Even beloved human-crafted compositors like Hyprland openly began by borrowing configuration parsing and event loop boilerplate from wlroots' reference implementation, <code>tinywl</code>. When a human copies reference boilerplate to build something greater, the community calls it pragmatic engineering.
+              </p>
+              <p>
+                Why then is the exact same foundation delegitimized when an accelerator types the syntax? If taking <code>tinywl</code>'s loops as boilerplate is valid, then prompting an LLM to scaffold Wayland dispatch loops is functionally identical. The boundary between "engineering" and "boilerplate" is entirely arbitrary.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>Big Tech's Black Boxes</h3>
+              <p>
+                Proprietary software giants openly write 50%+ of their code with AI, shielded behind closed-source binaries without public scrutiny. Open-source builders use the exact same accelerators but face performative outrage simply because their git history is transparent.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>The Open-Source Irony</h3>
+              <p>
+                Major ecosystems, including the Linux kernel, routinely merge machine-assisted patches as long as they survive human review and strict test suites. The loudest critics demanding "pure hand-typed" code are actively relying on software built with machine assistance.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>The "Clean Code" Double Standard</h3>
+              <p>
+                Human-written code has always been famously messy, held together by the age-old rule: <em>"If it works, don't touch it."</em> Multi-million-dollar cult games and foundational tools have shipped on giant ladders of nested <code>if</code> statements and duct-taped scripts without outcry. Yet critics hold AI code to a superhuman purity test&mdash;demanding textbook design patterns and pristine refactorability that most production human code never met in the first place.
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>The Omarchy Paradox: Upstream Gravity &amp; AI Velocity</h3>
+              <p>
+                Omarchy is flying high on the shoulders of Hyprland, driven by the frantic velocity of agentic scripting and vibecoded automation. But downstream layers moving at AI speed will inevitably outpace their native C++ foundations. As downstream users demand faster IPC turnaround and custom compositor hooks, Hyprland may soon be perceived as the bottleneck holding the ecosystem back.
+              </p>
+              <p>
+                Through community hype and financial donation backing, downstream AI ecosystems exert subconscious gravitational pull on upstream maintainers. Even if creators pledge independence, the velocity disparity will continuously pressure foundational C++ projects to match that pace&mdash;raising the question of how long human-only craftsmanship can resist the very AI acceleration fueling its popularity.
+              </p>
+            </div>
+
+            <div class="essay-card span-2">
+              <h3>The Calculator Dilemma: Purity vs. Sovereignty</h3>
+              <p>
+                Which would you prefer: an AI-assisted offline calculator, or a closed-source Big Tech calculator that phones home and connects to the internet? An artisanal, human-written offline tool is ideal in theory&mdash;but what if its design clashes with your desktop, fails to sync with your system theme, or lacks modern Wayland ergonomics? When off-the-shelf software doesn't fit your environment, using AI to curate a lightweight, 100% offline utility tailored precisely to your own system is the most pragmatic, privacy-respecting choice available.
+              </p>
+            </div>
+
+            <div class="essay-card span-2">
+              <h3>The Architecture Dilemma: Shipped Scaffolding vs. Obsolete Perfection</h3>
+              <p>
+                Software engineering has always wrestled with two opposing methodologies. The first is <strong>evolutionary scaffolding</strong>: author a workable baseline quickly, stack features upwards, and refactor downward only when higher layers buckle. It delivers tangible results immediately, but risks brittle seams and cascading overhauls. The second is <strong>foundational purism</strong>: refuse to build higher layers until the lower foundation is mathematically pristine. It promises textbook elegance, but demands clairvoyance about unknown future requirements, moves at a crawl, and frequently succumbs to developer burnout or obsolescence before the software ever ships.
+              </p>
+              <p>
+                With AI acceleration, the first approach has surged in popularity, enabling solo creators to flood ecosystems with visually stunning, highly functional software in months rather than decades. Purists dismiss this wave as fragile scaffolding built on sand. Yet Gall's Law and engineering history remind us of an uncomfortable truth: an imperfect system that actually ships and adapts in the wild will always outlive a theoretically flawless architecture that was abandoned before its first release.
+              </p>
+            </div>
+
+            <div class="essay-card span-2">
+              <h3>The Cybersecurity Dilemma: Machine-Speed Threats vs. Human Latency</h3>
+              <p>
+                Avoiding AI has become like avoiding the smartphone: an individual may choose not to use it, but the banking networks, cloud servers, and public infrastructure they depend on already do. For decades, human-written code has harbored dormant zero-days&mdash;from OpenSSL to recent PHP argument injections&mdash;that evaded manual audits for years. Today, LLMs and automated agents can parse millions of lines of code to uncover subtle edge-case loopholes at machine speed. Because malicious actors operate without ethical hesitation, choosing not to use AI for defensive auditing simply guarantees that an attacker will find your vulnerabilities before you do.
+              </p>
+              <p>
+                This forces an urgent operational reality: when a critical zero-day is actively weaponized against production infrastructure, a manual human patch may take weeks of surgical deliberation while servers remain defenseless. You cannot take down global financial systems or hospital infrastructure for a month to wait for artisanal code. While an AI-generated patch carries the risk of introducing secondary bugs, the alternative&mdash;letting active exploits run rampant while rejecting machine assistance out of purist dogma&mdash;is untenable. In an asymmetric threat environment, machine-speed defense is no longer optional.
+              </p>
+            </div>
+
+            <div class="essay-card span-2">
+              <h3>The DHH Shift: Enthusiasm, Efficiency &amp; The Reality Gap</h3>
+              <p>
+                Recently, veteran creator David Heinemeier Hansson (DHH) voiced enthusiastic praise for the latest generation of coding agents, noting that while he would not have "vibecoded" a year ago, he does so now because AI has become remarkably efficient. His perspective validates the undeniable technological leap: coding models have evolved from clumsy autocomplete toys into formidable accelerators capable of scaffolded execution.
+              </p>
+              <p>
+                Yet declaring AI "extremely efficient" is inherently subjective. If models were truly self-sufficient or near-flawless, AI laboratories would not be frantically releasing weekly architectural revisions to patch basic reasoning deficits and hallucination traps. A significant reality gap remains. AI will likely never achieve mythical human-level perfection&mdash;but then again, human coders have never been perfect either. The sensible path is neither uncritical hype nor stubborn dismissal; it is harnessing AI's undeniable velocity while enforcing rigorous multi-model auditing, human skepticism, and careful architectural pacing.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. Who Is a Developer? -->
+        <section class="llm-section">
+          <h2>Who Is a Developer?</h2>
+          <div class="essay-grid-2">
+            <div class="essay-card">
+              <h3>Where Does the Boundary Lie?</h3>
+              <p>
+                How much abstraction is allowed before someone stops being a developer? Where is the line actually drawn? Does it require writing raw C code against kernel syscalls? Is it authoring the window manager from scratch? Or does scripting an installer that downloads prebuilt compositors, status bars, and widgets&mdash;and stitches them all together&mdash;still count?
+              </p>
+              <p class="card-foot">
+                Every developer stands on someone else's abstraction. The question is: where does using tools end, and building software begin?
+              </p>
+            </div>
+
+            <div class="essay-card">
+              <h3>The "Rice in an ISO" Paradox</h3>
+              <p>
+                Consider a familiar scenario: someone takes Arch Linux as an OS base, Hyprland as compositor boilerplate, Quickshell as shell boilerplate, a community riced config as UI boilerplate, and packages it all into an ISO. Are they a software developer, a desktop environment creator, or a distribution maintainer?
+              </p>
+              <p>
+                If assembling layers of existing binaries and riced configurations into an installer is celebrated as building an OS or desktop, why should engineering native C++20 daemons and custom Wayland protocols be questioned simply because an LLM assisted with boilerplate?
+              </p>
+              <p class="card-foot">
+                When boilerplate is layered on top of boilerplate, who decides which layer confers the title of "developer"?
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. How to Criticize This Project: An Honest Steelman -->
+        <section class="llm-section">
+          <h2>How to Criticize This Project: An Honest Steelman</h2>
+          <div class="steelman-wrap">
+            <p>Here is the strongest, most honest case critics make against Miqu:</p>
+
+            <div class="essay-grid-2">
+              <div class="rose-card">
+                <h4>A Vibecoded Hyprland Clone</h4>
+                <p>
+                  Hyprland was built by hand over years of hard C++ engineering. Miqu borrowed its look, tiling ideas, and layout, using AI to generate code fast. It is an unoriginal, machine-generated copy riding on someone else's work.
+                </p>
+              </div>
+
+              <div class="rose-card">
+                <h4>Imperfect Edge Cases</h4>
+                <p>
+                  AI writes code that works on simple cases but fails on subtle bugs. Miqu likely has broken protocol handlers, glitchy multi-monitor quirks, and half-done parts that have never been battle-tested for daily use.
+                </p>
+              </div>
+
+              <div class="rose-card">
+                <h4>Too Broad, Not Deep Enough</h4>
+                <p>
+                  Instead of polishing one compositor, Miqu built a window manager, a UI toolkit, 14 desktop apps, and Android companions. It spreads itself too thin before the core foundation is even mature.
+                </p>
+              </div>
+
+              <div class="rose-card">
+                <h4>Relying on Upstream Libraries</h4>
+                <p>
+                  Hyprland built its own backend and renderer (<em>Aquamarine</em>). Miqu relies on stock <code>wlroots</code> and <code>scenefx</code>. If upstream libraries change direction or drop features, Miqu is stuck.
+                </p>
+              </div>
+            </div>
+
+            <!-- Our Response: Inspiration, Divergence & How We Keep It Safe -->
+            <div class="response-block">
+              <h3 style="margin-top:0;">Our Response: Inspiration, Divergence &amp; How We Keep It Safe</h3>
+              <p>
+                We openly credit <a href="https://hyprland.org" target="_blank" rel="noopener noreferrer">Hyprland</a> as our primary inspiration: its Wayland base, fluid tiling, and desktop feel inspired Miqu. But we did not just copy it&mdash;we diverged in several core ways:
+              </p>
+
+              <span class="sub-label">Notable Differences</span>
+              <div class="essay-grid-3">
+                <div class="diff-card">
+                  <strong>Backend</strong>
+                  <span class="diff-hypr">Hyprland: Custom Aquamarine</span>
+                  <span class="diff-miqu">Miqu: Upstream wlroots</span>
+                </div>
+                <div class="diff-card">
+                  <strong>Renderer</strong>
+                  <span class="diff-hypr">Hyprland: Custom renderer</span>
+                  <span class="diff-miqu">Miqu: scenefx</span>
+                </div>
+                <div class="diff-card">
+                  <strong>Config Model</strong>
+                  <span class="diff-hypr">Hyprland: Auto-creates ~/.config</span>
+                  <span class="diff-miqu">Miqu: Zero-config baseline &amp; --init-config</span>
+                </div>
+                <div class="diff-card">
+                  <strong>UI Toolkit</strong>
+                  <span class="diff-hypr">Hyprland: Bundled system-wide</span>
+                  <span class="diff-miqu">Miqu: Standalone miqutoolkit</span>
+                </div>
+                <div class="diff-card">
+                  <strong>Scope</strong>
+                  <span class="diff-hypr">Hyprland: Core desktop daemons</span>
+                  <span class="diff-miqu">Miqu: 14 Linux apps + companion Android</span>
+                </div>
+                <div class="diff-card">
+                  <strong>Other Features</strong>
+                  <span class="diff-hypr">Decoupled theming via 'source ='</span>
+                  <span class="diff-miqu">Strict 0.0% idle CPU event loops</span>
+                </div>
+              </div>
+
+              <span class="sub-label">How We Keep It Safe</span>
+              <p>
+                These criticisms are valid. That is why we use strict engineering rules to catch AI mistakes and keep Miqu stable, safe, and private:
+              </p>
+
+              <div class="essay-grid-3">
+                <div class="safe-card">
+                  <h4>Strict C++20 RAII</h4>
+                  <p>AI often writes memory leaks. We ban raw owning pointers. Every resource is scope-bound and cleans itself up automatically.</p>
+                </div>
+
+                <div class="safe-card">
+                  <h4>Zero-Warning Builds</h4>
+                  <p>We compile with <code>-Wall -Werror</code>. A single compiler warning breaks the build. AddressSanitizer catches memory bugs automatically.</p>
+                </div>
+
+                <div class="safe-card">
+                  <h4>0.0% Idle CPU</h4>
+                  <p>AI loves polling loops. We ban them. When nothing is happening on screen, Miqu sleeps at exactly 0.0% CPU in the Wayland event loop.</p>
+                </div>
+
+                <div class="safe-card">
+                  <h4>Standard Protocols</h4>
+                  <p>We don't invent hacky workarounds. We follow standard Wayland and scenefx protocol interfaces directly.</p>
+                </div>
+
+                <div class="safe-card">
+                  <h4>Multi-LLM &amp; Human Audits</h4>
+                  <p>Code is checked regularly by multiple AI models cross-checking each other alongside human review to catch blind spots early.</p>
+                </div>
+
+                <div class="safe-card">
+                  <h4>Ripple-Effect Tracing</h4>
+                  <p>We never patch blindly. Both human and AI trace how changes affect the compositor, toolkit, and apps before merging.</p>
+                </div>
+
+                <div class="safe-card emerald-tint">
+                  <h4>100% Offline</h4>
+                  <p>Zero telemetry. Zero tracking. The code links to no network libraries and runs entirely on your local machine.</p>
+                </div>
+
+                <div class="safe-card emerald-tint">
+                  <h4>100% Open Source</h4>
+                  <p>Miqu is licensed under MIT. Every line of code is open for anyone to inspect, audit, or challenge.</p>
+                </div>
+
+                <div class="safe-card emerald-tint">
+                  <h4>Careful Pacing &amp; Pruning</h4>
+                  <p>We move slowly and carefully. If a feature adds too much complexity or risks stability, we drop it. Simple and reliable wins.</p>
+                </div>
+              </div>
+
+              <p class="synthesis-note">
+                Miqu is an open experiment by a solo developer exploring how far modern AI tools and strict engineering discipline can go in building a complete desktop. It is actively improving, hardened by strict rules, and built completely in public for anyone to test or improve.
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Site Footer -->
+      <footer class="site-footer">
+        <div class="footer-brand">
+          <img src="assets/logo.png" alt="" onerror="this.style.display='none'" />
+          <span>miqu-project</span>
+        </div>
+        <span>Released under the MIT License &bull; Wayland Desktop Ecosystem</span>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- Shared Interactive Script -->
+  <script src="js/app.js" defer></script>
+</body>
+</html>

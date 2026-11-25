@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentation — miqu-project</title>
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <meta name="description" content="Authoritative technical documentation for miquland IPC controls (miquctl), state queries, dispatchers, graceful shutdown, event streaming, and XDG desktop portals." />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://miqu-project.github.io/docs.html" />
+  <meta property="og:title" content="Documentation — miqu-project" />
+  <meta property="og:description" content="Authoritative technical documentation for miquland IPC controls (miquctl), state queries, dispatchers, graceful shutdown, event streaming, and XDG desktop portals." />
+  <meta property="og:image" content="https://raw.githubusercontent.com/miqu-project/.github/main/assets/logo.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://miqu-project.github.io/docs.html" />
+  <meta name="twitter:title" content="Documentation — miqu-project" />
+  <meta name="twitter:description" content="Authoritative technical documentation for miquland IPC controls (miquctl), state queries, dispatchers, graceful shutdown, event streaming, and XDG desktop portals." />
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/miqu-project/.github/main/assets/logo.png" />
+
+  <!-- Pre-paint Theme Initialization -->
+  <script src="js/theme-init.js"></script>
+
+  <!-- Modern Typography: Plus Jakarta Sans, Inter, JetBrains Mono & Newsreader -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Shared Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast" role="status" aria-live="polite">Copied to clipboard</div>
+
+  <!-- Main Sheet -->
+  <div class="sheet">
+    <div class="sheet-accent"></div>
+    <div class="sheet-inner">
+
+      <!-- Header -->
+      <header class="site-header">
+        <a href="index.html" class="brand">
+          <img src="assets/logo.png" alt="miqu-project logo" class="brand-logo" onerror="this.style.display='none'" />
+          <div>
+            <h1>miqu-project</h1>
+            <span class="brand-sub">Wayland Desktop Ecosystem &amp; Native Applications</span>
+          </div>
+        </a>
+
+        <div class="header-controls">
+          <nav class="top-nav" aria-label="Primary Navigation">
+            <a href="index.html" class="nav-btn">Home</a>
+            <a href="docs.html" class="nav-btn active">Docs</a>
+            <a href="llm.html" class="nav-btn">LLM Use</a>
+          </nav>
+
+          <button type="button" id="theme-toggle" class="theme-btn" aria-label="Toggle Light or Dark Theme">
+            <span id="theme-icon" aria-hidden="true">&#9790;</span>
+            <span id="theme-label">Dark</span>
+          </button>
+
+          <a href="https://github.com/miqu-project" target="_blank" rel="noopener noreferrer" class="gh-btn">
+            GitHub &#8599;
+          </a>
+        </div>
+      </header>
+
+      <main id="tab-docs" class="tab-panel active" aria-label="Documentation">
+<div class="docs-layout">
+
+          <!-- Sticky Documentation Sidebar -->
+          <aside class="docs-sidebar">
+            <div class="docs-side-head">
+              <span>Docs Navigation</span>
+              <span class="ver-pill">v1.0</span>
+            </div>
+
+            <div class="docs-side-group">
+              <div class="docs-side-title">miquland</div>
+              <ul class="docs-side-list">
+                <li>
+                  <a href="#doc-ipc-overview" class="docs-side-link">
+                    <span>IPC Controls (miquctl)</span>
+                    <span class="tag-new">New</span>
+                  </a>
+                  <ul class="docs-side-sub">
+                    <li><a href="#doc-ipc-overview">&bull; Socket Discovery</a></li>
+                    <li><a href="#doc-ipc-protocol">&bull; Wire Protocol</a></li>
+                    <li><a href="#doc-ipc-queries">&bull; State Queries</a></li>
+                    <li><a href="#doc-ipc-dispatch">&bull; Window Dispatchers</a></li>
+                    <li><a href="#doc-ipc-shutdown">&bull; Graceful Shutdown</a></li>
+                    <li><a href="#doc-ipc-events">&bull; Event Streaming</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#doc-xdg-portals" class="docs-side-link">
+                    <span>XDG Portals &amp; Screen Share</span>
+                    <span class="tag-new">New</span>
+                  </a>
+                </li>
+                <li class="docs-side-soon"><span>Tiling Engines</span><span class="tag-soon">Soon</span></li>
+                <li class="docs-side-soon"><span>Layer &amp; Window Rules</span><span class="tag-soon">Soon</span></li>
+                <li class="docs-side-soon"><span>Configuration Reference</span><span class="tag-soon">Soon</span></li>
+              </ul>
+            </div>
+
+            <div class="docs-side-group">
+              <div class="docs-side-title">miqutoolkit</div>
+              <ul class="docs-side-list">
+                <li class="docs-side-soon"><span>AppEngine &amp; Event Loop</span><span class="tag-soon">Soon</span></li>
+                <li class="docs-side-soon"><span>Design Tokens &amp; Themes</span><span class="tag-soon">Soon</span></li>
+                <li class="docs-side-soon"><span>Widget Hierarchy</span><span class="tag-soon">Soon</span></li>
+              </ul>
+            </div>
+
+            <div class="docs-side-group">
+              <div class="docs-side-title">Linux Apps</div>
+              <ul class="docs-side-list">
+                <li class="docs-side-soon"><span>miqubar &amp; flyouts</span><span class="tag-soon">Soon</span></li>
+                <li class="docs-side-soon"><span>miqunotify daemon</span><span class="tag-soon">Soon</span></li>
+                <li class="docs-side-soon"><span>miqupower session dialog</span><span class="tag-soon">Soon</span></li>
+              </ul>
+            </div>
+          </aside>
+
+          <!-- Main Documentation Content -->
+          <div class="docs-main">
+
+            <!-- Docs Hero -->
+            <div class="docs-hero">
+              <div class="breadcrumbs">
+                Docs / miquland / <span class="cur">IPC Controls (miquctl)</span>
+              </div>
+              <div class="meta-pills">
+                <span class="meta-pill accent">miquland IPC Subsystem</span>
+                <span class="meta-pill">Protocol: miqu-ipc-v1</span>
+                <span class="meta-pill">0.0% Idle CPU</span>
+              </div>
+              <h2>Compositor IPC Controls &amp; <code>miquctl</code></h2>
+              <p>
+                The authoritative technical guide for the <strong>miquland</strong> Inter-Process Communication architecture, the first-party <code>miquctl</code> controller CLI, state query schemas, window management dispatchers, real-time event streaming, and graceful desktop shutdown orchestration.
+              </p>
+            </div>
+
+            <!-- 1. Architecture & Socket Discovery -->
+            <section id="doc-ipc-overview" class="doc-section">
+              <h2>1. Architecture &amp; Socket Discovery</h2>
+              <p>
+                <code>miquland</code> initializes a dedicated Unix Domain Socket during startup. The IPC server integrates directly into the Wayland event loop using <code>wl_event_loop_add_fd()</code>, ensuring non-blocking execution, thread confinement to the compositor main thread, and strict compliance with the <strong>0.0% idle CPU utilization doctrine</strong>.
+              </p>
+
+              <div class="doc-box">
+                <strong>Socket Path Resolution Order</strong>
+                <ol>
+                  <li><code>$MIQULAND_SOCKET</code> (explicit environment override, automatically imported into <code>systemd --user</code>)</li>
+                  <li><code>$XDG_RUNTIME_DIR/miquland-$WAYLAND_DISPLAY.sock</code> (default runtime location, e.g. <code>/run/user/1000/miquland-wayland-0.sock</code>)</li>
+                  <li><code>/tmp/miquland-$UID-$WAYLAND_DISPLAY.sock</code> (unprivileged fallback)</li>
+                </ol>
+              </div>
+            </section>
+
+            <!-- 2. Binary Framing & Fallback Wire Protocol -->
+            <section id="doc-ipc-protocol" class="doc-section">
+              <h2>2. Binary Framing &amp; Fallback Wire Protocol</h2>
+              <p>
+                Communication between clients and the compositor is framed using an efficient, length-prefixed binary header, ensuring zero message tearing:
+              </p>
+
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Field</th>
+                      <th>Size</th>
+                      <th>Type</th>
+                      <th>Value / Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Magic</strong></td>
+                      <td>4 Bytes</td>
+                      <td><code>char[4]</code></td>
+                      <td><code>"MIQU"</code></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Message Type</strong></td>
+                      <td>4 Bytes</td>
+                      <td><code>uint32_t (LE)</code></td>
+                      <td><code>0 = Command</code>, <code>1 = Subscribe</code>, <code>2 = Response</code>, <code>3 = Event</code></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Payload Length</strong></td>
+                      <td>4 Bytes</td>
+                      <td><code>uint32_t (LE)</code></td>
+                      <td>Length in bytes of JSON payload</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Payload</strong></td>
+                      <td>Variable</td>
+                      <td><code>char[]</code></td>
+                      <td>UTF-8 JSON string or command string</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="doc-box">
+                <strong>Plain-Text Shell Fallback</strong>
+                <p style="margin-top:6px;">
+                  For maximum developer ergonomics, the IPC server also automatically recognizes plain newline-delimited ASCII strings. You can pipe shell commands directly via <code>socat</code> or <code>nc</code> without packaging binary headers:
+                </p>
+                <div class="code-card" style="margin-bottom:0;">
+                  <div class="code-head">
+                    <span>Shell Example</span>
+                    <button type="button" class="copy-link" data-copy="code-ipc-nc">Copy</button>
+                  </div>
+                  <pre><code id="code-ipc-nc">echo "workspaces" | nc -U /run/user/1000/miquland-wayland-0.sock</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- 3. State Queries & Schemas -->
+            <section id="doc-ipc-queries" class="doc-section">
+              <h2>3. State Queries &amp; Schemas</h2>
+              <p>
+                <code>miquland</code> allows external components (such as status bars, launchers, or script widgets) to query live runtime state. By default in interactive terminals, <code>miquctl</code> pretty-prints the output; pass <code>-j</code> or <code>--json</code> for compact machine-readable output.
+              </p>
+
+              <div class="code-card">
+                <div class="code-head">
+                  <span>miquctl workspaces</span>
+                  <button type="button" class="copy-link" data-copy="code-ipc-ws">Copy JSON</button>
+                </div>
+                <pre><code id="code-ipc-ws">[
+  {
+    "id": 1,
+    "active": true,
+    "visible": true,
+    "view_count": 2,
+    "tiled_view_count": 2,
+    "floating_view_count": 0
+  },
+  {
+    "id": 2,
+    "active": false,
+    "visible": false,
+    "view_count": 1,
+    "tiled_view_count": 1,
+    "floating_view_count": 0
+  }
+]</code></pre>
+              </div>
+
+              <div class="code-card">
+                <div class="code-head">
+                  <span>miquctl clients / miquctl windows</span>
+                  <button type="button" class="copy-link" data-copy="code-ipc-clients">Copy JSON</button>
+                </div>
+                <pre><code id="code-ipc-clients">[
+  {
+    "id": 1,
+    "title": "kitty: fish shell",
+    "app_id": "kitty",
+    "workspace_id": 1,
+    "focused": true,
+    "floating": false,
+    "fullscreen": false,
+    "geometry": { "x": 0, "y": 36, "width": 960, "height": 1044 }
+  },
+  {
+    "id": 2,
+    "title": "Firefox Web Browser",
+    "app_id": "firefox",
+    "workspace_id": 1,
+    "focused": false,
+    "floating": false,
+    "fullscreen": false,
+    "geometry": { "x": 960, "y": 36, "width": 960, "height": 1044 }
+  }
+]</code></pre>
+              </div>
+
+              <div class="code-card">
+                <div class="code-head">
+                  <span>miquctl monitors / miquctl outputs</span>
+                  <button type="button" class="copy-link" data-copy="code-ipc-monitors">Copy JSON</button>
+                </div>
+                <pre><code id="code-ipc-monitors">[
+  {
+    "name": "eDP-1",
+    "width": 1920,
+    "height": 1080,
+    "refresh_rate_mhz": 60000,
+    "scale": 1.0,
+    "usable_area": { "x": 0, "y": 36, "width": 1920, "height": 1044 }
+  }
+]</code></pre>
+              </div>
+
+              <div class="two-col">
+                <div class="code-card" style="margin:0;">
+                  <div class="code-head">
+                    <span>miquctl activewindow</span>
+                    <button type="button" class="copy-link" data-copy="code-ipc-actwin">Copy</button>
+                  </div>
+                  <pre><code id="code-ipc-actwin">{
+  "id": 1,
+  "title": "kitty: fish shell",
+  "app_id": "kitty",
+  "workspace_id": 1,
+  "focused": true,
+  "floating": false,
+  "fullscreen": false,
+  "geometry": { "x": 0, "y": 36, "width": 960, "height": 1044 }
+}</code></pre>
+                </div>
+
+                <div class="code-card" style="margin:0;">
+                  <div class="code-head">
+                    <span>miquctl activeworkspace</span>
+                    <button type="button" class="copy-link" data-copy="code-ipc-actws">Copy</button>
+                  </div>
+                  <pre><code id="code-ipc-actws">{
+  "id": 1,
+  "active": true,
+  "visible": true,
+  "view_count": 2,
+  "tiled_view_count": 2,
+  "floating_view_count": 0
+}</code></pre>
+                </div>
+              </div>
+
+              <h3><code>miquctl getoption [name]</code></h3>
+              <p>
+                Dumps all active runtime configuration values or inspects a specific parameter (e.g. <code>miquctl getoption gaps_in</code>). Supports <code>layout</code>, <code>gaps_in</code>, <code>gaps_out</code>, <code>border_width</code>, <code>border_radius</code>, <code>border_active</code>, <code>border_inactive</code>, <code>border_shading</code>, <code>smart_gaps</code>, <code>cursor_theme</code>, <code>cursor_size</code>, and more:
+              </p>
+              <div class="code-card">
+                <div class="code-head">
+                  <span>miquctl getoption</span>
+                  <button type="button" class="copy-link" data-copy="code-ipc-getoption">Copy JSON</button>
+                </div>
+                <pre><code id="code-ipc-getoption">{
+  "layout": "dwindle",
+  "gaps_in": 4,
+  "gaps_out": 8,
+  "border_width": 1,
+  "border_radius": 18,
+  "border_active": "linear-gradient(45deg, 0xff5e81ac, 0xff88c0d0)",
+  "border_inactive": "0x442e3440",
+  "border_shading": true,
+  "border_shading_strength": 0.5,
+  "resize_on_border": true,
+  "border_grab_area": 10,
+  "opacity_active": 1.0,
+  "opacity_inactive": 1.0,
+  "animations": true,
+  "blur": true,
+  "smart_gaps": false,
+  "gamma_enabled": false,
+  "gamma_temperature": 4500,
+  "cursor_theme": "Qogir",
+  "cursor_size": 30
+}</code></pre>
+              </div>
+
+              <div class="two-col">
+                <div>
+                  <h3 style="margin-top:0;"><code>miquctl gaps [inner] [outer]</code></h3>
+                  <p>
+                    Query or live-adjust window gaps in RAM. Supports <code>miquctl gaps 8 12</code>, <code>miquctl gaps inner 10</code>, or <code>miquctl gaps smart on</code>.
+                  </p>
+                  <div class="code-card" style="margin:0;">
+                    <div class="code-head">
+                      <span>JSON Output</span>
+                      <button type="button" class="copy-link" data-copy="code-ipc-gaps">Copy</button>
+                    </div>
+                    <pre><code id="code-ipc-gaps">{
+  "inner": 4,
+  "outer": 8,
+  "smart_gaps": false
+}</code></pre>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 style="margin-top:0;"><code>miquctl border [width] [radius] ...</code></h3>
+                  <p>
+                    Query or live-adjust border geometry and colors. Immediate Cairo/wlroots frame repaint. Supports <code>miquctl border 2 14</code> or <code>border active &lt;hex&gt;</code>.
+                  </p>
+                  <div class="code-card" style="margin:0;">
+                    <div class="code-head">
+                      <span>JSON Output</span>
+                      <button type="button" class="copy-link" data-copy="code-ipc-border">Copy</button>
+                    </div>
+                    <pre><code id="code-ipc-border">{
+  "width": 1,
+  "radius": 18,
+  "active": "linear-gradient(45deg, 0xff5e81ac, 0xff88c0d0)",
+  "inactive": "0x442e3440",
+  "shading": true,
+  "shading_strength": 0.5
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <h3><code>miquctl cursor [theme] [size]</code></h3>
+              <p>
+                Query active pointer theme and pixel size, or dynamically hot-swap cursor assets in RAM across all seat pointers without restarting the compositor. Pass <code>-j</code> for machine-readable JSON:
+              </p>
+              <div class="two-col">
+                <div class="code-card" style="margin:0;">
+                  <div class="code-head">
+                    <span>Terminal CLI Output</span>
+                    <button type="button" class="copy-link" data-copy="code-ipc-cursor-cli">Copy</button>
+                  </div>
+                  <pre><code id="code-ipc-cursor-cli"># Human-readable query
+$ miquctl cursor
+Cursor: Qogir (30px)
+
+# Live hot-swap across all pointers
+$ miquctl cursor Bibata-Modern-Classic 24
+Cursor: Bibata-Modern-Classic (24px)</code></pre>
+                </div>
+
+                <div class="code-card" style="margin:0;">
+                  <div class="code-head">
+                    <span>JSON Response (--json)</span>
+                    <button type="button" class="copy-link" data-copy="code-ipc-cursor">Copy</button>
+                  </div>
+                  <pre><code id="code-ipc-cursor">{
+  "theme": "Qogir",
+  "size": 30
+}</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- 4. Comprehensive Window & Workspace Dispatchers -->
+            <section id="doc-ipc-dispatch" class="doc-section">
+              <h2>4. Comprehensive Window &amp; Workspace Dispatchers</h2>
+              <p>
+                Issue real-time window management commands and trigger compositor state transitions directly from scripts, terminal keybindings, or gestures:
+              </p>
+
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Command</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><code>miquctl dispatch close [id]</code></td><td>Sends an XDG polite close request to targeted window (or active focused window)</td></tr>
+                    <tr><td><code>miquctl dispatch kill [id]</code></td><td>Forcefully destroys Wayland client connection for target window</td></tr>
+                    <tr><td><code>miquctl dispatch focus &lt;left|right|up|down&gt;</code></td><td>Moves keyboard focus directionally using 2D Euclidean geometry bounding box calculations</td></tr>
+                    <tr><td><code>miquctl dispatch focus &lt;next|prev|id&gt;</code></td><td>Cycles keyboard focus to next/prev window or directly focuses window by numeric ID</td></tr>
+                    <tr><td><code>miquctl dispatch move &lt;dx&gt; &lt;dy&gt; [id]</code></td><td>Moves floating window by delta pixels relative to current position</td></tr>
+                    <tr><td><code>miquctl dispatch moveto &lt;x&gt; &lt;y&gt; [id]</code></td><td>Moves floating window to absolute coordinates</td></tr>
+                    <tr><td><code>miquctl dispatch resize &lt;dw&gt; &lt;dh&gt; [id]</code></td><td>Resizes floating window by delta pixels, or adjusts tiling split ratio on active workspace</td></tr>
+                    <tr><td><code>miquctl dispatch resizeto &lt;w&gt; &lt;h&gt; [id]</code></td><td>Sets floating window to absolute dimensions (minimum 100x80)</td></tr>
+                    <tr><td><code>miquctl dispatch workspace &lt;id&gt;</code></td><td>Switches the active workspace to workspace <code>&lt;id&gt;</code></td></tr>
+                    <tr><td><code>miquctl dispatch movetoworkspace &lt;id&gt; [id]</code></td><td>Moves focused window (or specified window ID) to workspace <code>&lt;id&gt;</code></td></tr>
+                    <tr><td><code>miquctl dispatch toggle_floating [id]</code></td><td>Toggles floating/tiling state of target or active window</td></tr>
+                    <tr><td><code>miquctl dispatch toggle_fullscreen [id]</code></td><td>Toggles true fullscreen mode for target or active window</td></tr>
+                    <tr><td><code>miquctl dispatch toggle_layout</code></td><td>Toggles workspace layout engine between Fibonacci Spiral and Stack</td></tr>
+                    <tr><td><code>miquctl dispatch swap_main [id]</code></td><td>Swaps target or active window with the master column window</td></tr>
+                    <tr><td><code>miquctl dispatch toggle_split</code></td><td>Toggles layout split direction between horizontal and vertical</td></tr>
+                    <tr><td><code>miquctl dispatch shutdown [timeout_ms]</code></td><td>Triggers compositor-native graceful shutdown sequence (default timeout: 2500ms)</td></tr>
+                    <tr><td><code>miquctl gaps [inner] [outer]</code></td><td>Gets or dynamically modifies window inner gaps, outer screen edge padding, and smart gaps in RAM</td></tr>
+                    <tr><td><code>miquctl border [width] [radius] [active] [inactive]</code></td><td>Gets or dynamically updates border width, corner radius, active/inactive gradient hex colors, and shading in RAM</td></tr>
+                    <tr><td><code>miquctl cursor [theme] [size]</code></td><td>Gets or hot-swaps active XCursor / wl_cursor theme and size across all pointer devices in RAM</td></tr>
+                    <tr><td><code>miquctl setoption &lt;name&gt; &lt;value&gt;</code></td><td>Dynamically sets any configuration option in RAM (e.g. <code>gaps_in</code>, <code>border_radius</code>, <code>smart_gaps</code>, <code>cursor_theme</code>) with immediate relayout and damage redraw</td></tr>
+                    <tr><td><code>miquctl getoption [name]</code></td><td>Queries active runtime value of a configuration option, or dumps all runtime options if omitted</td></tr>
+                    <tr><td><code>miquctl reload</code></td><td>Hot-reloads <code>miquland.conf</code> configuration on the fly</td></tr>
+                    <tr><td><code>miquctl exec &lt;command&gt;</code></td><td>Executes a program in the compositor session environment</td></tr>
+                    <tr><td><code>miquctl exit</code></td><td>Terminates the compositor session immediately</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- 5. Graceful Desktop Shutdown Orchestrator -->
+            <section id="doc-ipc-shutdown" class="doc-section">
+              <h2>5. Graceful Desktop Shutdown Orchestrator</h2>
+              <p>
+                Traditional compositor termination or crude shell scripts running <code>killall</code> or <code>pkill</code> abruptly sever applications, causing text editors, IDEs, and browsers to lose unsaved work. <strong><code>miquctl shutdown</code></strong> provides an intelligent, protocol-driven shutdown workflow orchestrated natively by <code>miquland</code>:
+              </p>
+
+              <div class="three-col">
+                <div class="stage-card">
+                  <span class="stage-tag">Stage 1</span>
+                  <h4>Polite Close Broadcast</h4>
+                  <p>
+                    <code>miquland</code> broadcasts standard XDG polite close requests (<code>xdg_toplevel_send_close</code>) to all top-level application windows. Applications prompt the user to save unsaved documents.
+                  </p>
+                </div>
+
+                <div class="stage-card">
+                  <span class="stage-tag">Stage 2</span>
+                  <h4>Event-Driven Unmap Watcher</h4>
+                  <p>
+                    The compositor monitors view unmap events with a hardware timer fallback. If all windows close cleanly before the timeout, teardown executes immediately with zero unnecessary waiting.
+                  </p>
+                </div>
+
+                <div class="stage-card">
+                  <span class="stage-tag">Stage 3</span>
+                  <h4>Clean Session Teardown</h4>
+                  <p>
+                    Broadcasts session shutdown event, sends <code>SIGTERM</code> to all tracked autostart process groups (<code>miqubar</code>, <code>miqudesk</code>, <code>miqunotify</code>, etc.), severs client display sockets, and exits.
+                  </p>
+                </div>
+              </div>
+
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Flag</th>
+                      <th>Default</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><code>--timeout &lt;ms&gt;</code></td><td><code>3000</code></td><td>Maximum duration in milliseconds to wait for applications to close</td></tr>
+                    <tr><td><code>--force</code></td><td><code>false</code></td><td>Force immediate compositor exit without waiting for applications</td></tr>
+                    <tr><td><code>--dry-run</code></td><td><code>false</code></td><td>Inspect open windows that would be closed without executing</td></tr>
+                    <tr><td><code>--no-exit</code></td><td><code>false</code></td><td>Close all application windows without quitting <code>miquland</code></td></tr>
+                    <tr><td><code>--post-cmd &lt;cmd&gt;</code></td><td><code>""</code></td><td>Execute power action after exit (e.g. <code>"systemctl poweroff"</code>)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h3>Common Power Action Recipes</h3>
+              <div class="two-col">
+                <div class="code-card" style="margin:0;">
+                  <div class="code-head">
+                    <span>Graceful System Poweroff</span>
+                    <button type="button" class="copy-link" data-copy="code-poweroff">Copy</button>
+                  </div>
+                  <pre><code id="code-poweroff">miquctl shutdown --post-cmd "systemctl poweroff"</code></pre>
+                </div>
+
+                <div class="code-card" style="margin:0;">
+                  <div class="code-head">
+                    <span>Graceful System Reboot</span>
+                    <button type="button" class="copy-link" data-copy="code-reboot">Copy</button>
+                  </div>
+                  <pre><code id="code-reboot">miquctl shutdown --post-cmd "systemctl reboot"</code></pre>
+                </div>
+              </div>
+            </section>
+
+            <!-- 6. Real-Time Event Subscriptions -->
+            <section id="doc-ipc-events" class="doc-section">
+              <h2>6. Real-Time Event Subscriptions</h2>
+              <p>
+                Rather than polling the compositor at fixed intervals (which wastes battery and CPU), client applications and status bars (such as <code>miqubar</code> or <code>waybar</code>) can subscribe to instant event broadcasts:
+              </p>
+
+              <div class="code-card">
+                <div class="code-head">
+                  <span>Subscribe Command</span>
+                  <button type="button" class="copy-link" data-copy="code-ipc-sub">Copy</button>
+                </div>
+                <pre><code id="code-ipc-sub">miquctl subscribe workspace window monitor shutdown</code></pre>
+              </div>
+
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Event Channel</th>
+                      <th>Trigger Action</th>
+                      <th>Payload Schema Example</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>workspace</code></td>
+                      <td>Workspace switched</td>
+                      <td><code>{"event":"workspace","data":{"action":"switch","workspace_id":2,"prev_workspace_id":1}}</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>window</code></td>
+                      <td>Window mapped / opened</td>
+                      <td><code>{"event":"window","data":{"action":"map","id":1,"title":"kitty","app_id":"kitty","workspace_id":1}}</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>window</code></td>
+                      <td>Window unmapped / closed</td>
+                      <td><code>{"event":"window","data":{"action":"unmap","id":1,"title":"kitty","app_id":"kitty","workspace_id":1}}</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>window</code></td>
+                      <td>Focus changed</td>
+                      <td><code>{"event":"window","data":{"action":"focus","id":1,"title":"kitty","app_id":"kitty","workspace_id":1}}</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>window</code></td>
+                      <td>Title updated</td>
+                      <td><code>{"event":"window","data":{"action":"title","id":1,"title":"vim: file.cpp"}}</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>monitor</code></td>
+                      <td>Output connected / disconnected</td>
+                      <td><code>{"event":"monitor","data":{"action":"connect","name":"DP-1"}}</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>shutdown</code></td>
+                      <td>Compositor teardown initiated</td>
+                      <td><code>{"event":"shutdown","data":{"status":"initiated","timeout_ms":2500}}</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p style="margin-top:12px; font-size:13.2px; color:var(--text-muted);">
+                The socket connection remains open, streaming newline-delimited JSON events with 0ms latency whenever workspaces switch, windows map or unmap, or monitor resolutions update.
+              </p>
+            </section>
+
+            <!-- XDG Desktop Portals & Screen Sharing -->
+            <section id="doc-xdg-portals" class="doc-section">
+              <h2>XDG Desktop Portals &amp; Screen Sharing</h2>
+              <p>
+                Currently, the Miqu ecosystem does not maintain a dedicated bespoke portal daemon (such as <code>xdg-desktop-portal-miqu</code>). Instead, <code>miquland</code> natively implements modern Wayland capture protocols and integrates directly with proven standard backends:
+              </p>
+
+              <div class="two-col">
+                <div class="stage-card">
+                  <h4>Screen &amp; Window Capture</h4>
+                  <p>
+                    Delegated to <code>xdg-desktop-portal-wlr</code>. Powered by <code>ext-image-copy-capture-v1</code>, <code>ext-foreign-toplevel-list-v1</code>, and <code>ext-foreign-toplevel-image-capture-source-v1</code> for smooth, deadlock-free streaming in OBS Studio, Discord, and WebRTC browsers.
+                  </p>
+                </div>
+
+                <div class="stage-card">
+                  <h4>File Choosers &amp; Dialogs</h4>
+                  <p>
+                    Delegated to <code>xdg-desktop-portal-gtk</code> for native, standard GTK file picker dialogs, notifications, and application pickers.
+                  </p>
+                </div>
+              </div>
+
+              <h3>System Configuration Baseline</h3>
+              <p>
+                The authoritative portal configuration is placed in the system path at <code>/usr/share/xdg-desktop-portal/miquland-portals.conf</code>:
+              </p>
+              <div class="code-card">
+                <div class="code-head">
+                  <span>/usr/share/xdg-desktop-portal/miquland-portals.conf</span>
+                  <button type="button" class="copy-link" data-copy="code-portals-conf">Copy</button>
+                </div>
+                <pre><code id="code-portals-conf">[preferred]
+default=gtk
+org.freedesktop.impl.portal.ScreenCast=wlr
+org.freedesktop.impl.portal.Screenshot=wlr</code></pre>
+              </div>
+
+              <h3>User Customization &amp; Overrides</h3>
+              <p>
+                To customize or override these portal rules, write your own <code>miquland-portals.conf</code> in your user configuration directory:
+              </p>
+              <div class="code-card">
+                <div class="code-head">
+                  <span>User Override Path</span>
+                  <button type="button" class="copy-link" data-copy="code-portals-user">Copy</button>
+                </div>
+                <pre><code id="code-portals-user">~/.config/xdg-desktop-portal/miquland-portals.conf</code></pre>
+              </div>
+              <p style="font-size:13.2px; color:var(--text-muted);">
+                Any settings defined in this user file will automatically take precedence over the system default without modifying system files.
+              </p>
+            </section>
+
+          </div>
+        </div>
+      </main>
+
+      <!-- Site Footer -->
+      <footer class="site-footer">
+        <div class="footer-brand">
+          <img src="assets/logo.png" alt="" onerror="this.style.display='none'" />
+          <span>miqu-project</span>
+        </div>
+        <span>Released under the MIT License &bull; Wayland Desktop Ecosystem</span>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- Shared Interactive Script -->
+  <script src="js/app.js" defer></script>
+</body>
+</html>
