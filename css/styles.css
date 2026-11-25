@@ -473,13 +473,6 @@
       white-space: nowrap;
     }
 
-    .path-cell {
-      white-space: nowrap;
-      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 13.5px;
-      color: var(--text-muted);
-    }
-
     /* Role Badges */
     .role-badge {
       display: inline-block;
