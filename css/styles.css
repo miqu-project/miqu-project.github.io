@@ -724,45 +724,50 @@
     .royal-quote {
       position: relative;
       overflow: hidden;
-      margin: 40px 0 0;
-      padding: 28px 32px;
-      background: linear-gradient(135deg, var(--amber-bg) 0%, var(--surface-subtle) 100%);
+      margin: 44px 0 0;
+      padding: 38px 42px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 15% 15%, var(--amber-bg), transparent 60%),
+        radial-gradient(circle at 85% 85%, var(--purple-soft), transparent 60%),
+        linear-gradient(135deg, var(--amber-bg) 0%, var(--surface-subtle) 100%);
       border: 1px solid var(--amber-border);
-      border-left: 4px solid var(--amber-accent);
-      border-radius: 14px;
-      box-shadow: var(--shadow-card);
+      border-top: 3px solid var(--amber-accent);
+      border-radius: 16px;
+      box-shadow: var(--shadow-card), 0 14px 36px -14px rgba(217, 119, 6, 0.24);
       color: var(--amber-text);
       font-family: "Newsreader", Georgia, "Times New Roman", serif;
-      font-size: clamp(19px, 2.1vw, 23px);
+      font-size: clamp(23px, 2.5vw, 29px);
       font-weight: 500;
       font-style: italic;
-      line-height: 1.65;
+      line-height: 1.55;
+      letter-spacing: -0.01em;
     }
 
     .royal-quote::before {
       content: "\201C";
       position: absolute;
-      top: -14px;
-      right: 18px;
+      top: -18px;
+      left: 20px;
       font-family: "Newsreader", Georgia, serif;
-      font-size: 110px;
+      font-size: 130px;
       line-height: 1;
       color: var(--amber-accent);
-      opacity: 0.14;
+      opacity: 0.16;
       pointer-events: none;
       user-select: none;
     }
 
     .royal-quote footer {
-      margin: 14px 0 0;
+      margin: 18px 0 0;
       padding: 0;
       border: none;
       display: block;
       font-style: normal;
       font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
       font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--amber-accent);
     }
