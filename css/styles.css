@@ -722,29 +722,48 @@
 
     /* Royal Epigraph Quote */
     .royal-quote {
-      margin: 34px 0 0;
-      padding: 18px 22px;
+      position: relative;
+      overflow: hidden;
+      margin: 40px 0 0;
+      padding: 28px 32px;
       background: linear-gradient(135deg, var(--amber-bg) 0%, var(--surface-subtle) 100%);
       border: 1px solid var(--amber-border);
-      border-left: 3px solid var(--amber-accent);
-      border-radius: 12px;
+      border-left: 4px solid var(--amber-accent);
+      border-radius: 14px;
       box-shadow: var(--shadow-card);
       color: var(--amber-text);
       font-family: "Newsreader", Georgia, "Times New Roman", serif;
-      font-size: 16px;
+      font-size: clamp(19px, 2.1vw, 23px);
+      font-weight: 500;
       font-style: italic;
-      line-height: 1.7;
+      line-height: 1.65;
+    }
+
+    .royal-quote::before {
+      content: "\201C";
+      position: absolute;
+      top: -14px;
+      right: 18px;
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 110px;
+      line-height: 1;
+      color: var(--amber-accent);
+      opacity: 0.14;
+      pointer-events: none;
+      user-select: none;
     }
 
     .royal-quote footer {
-      margin: 10px 0 0;
+      margin: 14px 0 0;
       padding: 0;
       border: none;
       display: block;
       font-style: normal;
       font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       color: var(--amber-accent);
     }
 
